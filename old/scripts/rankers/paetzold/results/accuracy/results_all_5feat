@@ -1,0 +1,109 @@
+For method all:---------------------------  ---------------  --------  -------
+Sel. Method                  Precision        Accuracy  Changed
+word2vec_sum_75              0.435897435897   0.408     0.936
+no_selection                 0.407809110629   0.376     0.922
+enhanced_lesk                0.328813559322   0.194     0.59
+word2vec_mult_75             0.37526652452    0.352     0.938
+word2vec_sum_1               0.433734939759   0.36      0.83
+wupalmer_similarity          0.0735785953177  0.044     0.598
+word2vec_sum_25              0.428251121076   0.382     0.892
+word2vec_sum_50              0.424628450106   0.4       0.942
+word2vec_mult_25             0.368544600939   0.314     0.852
+word2vec_sum_3               0.473451327434   0.428     0.904
+word2vec_sum_2               0.451754385965   0.412     0.912
+original_lesk                0.164305949008   0.116     0.706
+leacockchordorow_similarity  0.0735785953177  0.044     0.598
+word2vec_mult_50             0.350318471338   0.33      0.942
+path_similarity              0.0735785953177  0.044     0.598
+biran                        0.390134529148   0.174     0.446
+---------------------------  ---------------  --------  -------For method biran:---------------------------  --------------  --------  -------
+Sel. Method                  Precision       Accuracy  Changed
+word2vec_sum_75              0.345679012346  0.112     0.324
+no_selection                 0.352941176471  0.12      0.34
+enhanced_lesk                0.196721311475  0.024     0.122
+word2vec_mult_75             0.344594594595  0.102     0.296
+word2vec_sum_1               0.265957446809  0.05      0.188
+wupalmer_similarity          0.0             0.0       0.038
+word2vec_sum_25              0.324786324786  0.076     0.234
+word2vec_sum_50              0.351351351351  0.104     0.296
+word2vec_mult_25             0.234042553191  0.066     0.282
+word2vec_sum_3               0.365269461078  0.122     0.334
+word2vec_sum_2               0.336956521739  0.124     0.368
+original_lesk                0.121212121212  0.008     0.066
+leacockchordorow_similarity  0.0             0.0       0.038
+word2vec_mult_50             0.305732484076  0.096     0.314
+path_similarity              0.0             0.0       0.038
+biran                        0.65            0.052     0.08
+---------------------------  --------------  --------  -------For method kauchak:---------------------------  ---------------  --------  -------
+Sel. Method                  Precision        Accuracy  Changed
+word2vec_sum_75              0.6              0.522     0.87
+no_selection                 0.583518930958   0.524     0.898
+enhanced_lesk                0.478947368421   0.182     0.38
+word2vec_mult_75             0.516853932584   0.46      0.89
+word2vec_sum_1               0.528350515464   0.41      0.776
+wupalmer_similarity          0.0566037735849  0.006     0.106
+word2vec_sum_25              0.522458628842   0.442     0.846
+word2vec_sum_50              0.579326923077   0.482     0.832
+word2vec_mult_25             0.432692307692   0.36      0.832
+word2vec_sum_3               0.57380952381    0.482     0.84
+word2vec_sum_2               0.531531531532   0.472     0.888
+original_lesk                0.3              0.078     0.26
+leacockchordorow_similarity  0.0566037735849  0.006     0.106
+word2vec_mult_50             0.489411764706   0.416     0.85
+path_similarity              0.0566037735849  0.006     0.106
+biran                        0.539325842697   0.192     0.356
+---------------------------  ---------------  --------  -------For method merriam:---------------------------  ---------------  --------  -------
+Sel. Method                  Precision        Accuracy  Changed
+word2vec_sum_75              0.229381443299   0.178     0.776
+no_selection                 0.207407407407   0.168     0.81
+enhanced_lesk                0.168724279835   0.082     0.486
+word2vec_mult_75             0.227011494253   0.158     0.696
+word2vec_sum_1               0.152709359606   0.062     0.406
+wupalmer_similarity          0.0588235294118  0.02      0.34
+word2vec_sum_25              0.208480565371   0.118     0.566
+word2vec_sum_50              0.243767313019   0.176     0.722
+word2vec_mult_25             0.119760479042   0.08      0.668
+word2vec_sum_3               0.251428571429   0.176     0.7
+word2vec_sum_2               0.201219512195   0.132     0.656
+original_lesk                0.130597014925   0.07      0.536
+leacockchordorow_similarity  0.0588235294118  0.02      0.34
+word2vec_mult_50             0.189873417722   0.15      0.79
+path_similarity              0.0588235294118  0.02      0.34
+biran                        0.233333333333   0.07      0.3
+---------------------------  ---------------  --------  -------For method wordnet:---------------------------  --------------  --------  -------
+Sel. Method                  Precision       Accuracy  Changed
+word2vec_sum_75              0.304761904762  0.192     0.63
+no_selection                 0.311111111111  0.224     0.72
+enhanced_lesk                0.164794007491  0.088     0.534
+word2vec_mult_75             0.293209876543  0.19      0.648
+word2vec_sum_1               0.229166666667  0.11      0.48
+wupalmer_similarity          0.104972375691  0.038     0.362
+word2vec_sum_25              0.228571428571  0.144     0.63
+word2vec_sum_50              0.258928571429  0.174     0.672
+word2vec_mult_25             0.174418604651  0.12      0.688
+word2vec_sum_3               0.239892183288  0.178     0.742
+word2vec_sum_2               0.227810650888  0.154     0.676
+original_lesk                0.13829787234   0.078     0.564
+leacockchordorow_similarity  0.104972375691  0.038     0.362
+word2vec_mult_50             0.208450704225  0.148     0.71
+path_similarity              0.104972375691  0.038     0.362
+biran                        0.328358208955  0.088     0.268
+---------------------------  --------------  --------  -------For method yamamoto:---------------------------  --------------  --------  -------
+Sel. Method                  Precision       Accuracy  Changed
+word2vec_sum_75              0.286290322581  0.142     0.496
+no_selection                 0.252918287938  0.13      0.514
+enhanced_lesk                0.21978021978   0.04      0.182
+word2vec_mult_75             0.238866396761  0.118     0.494
+word2vec_sum_1               0.225           0.108     0.48
+wupalmer_similarity          0.0             0.0       0.046
+word2vec_sum_25              0.234200743494  0.126     0.538
+word2vec_sum_50              0.273109243697  0.13      0.476
+word2vec_mult_25             0.252525252525  0.1       0.396
+word2vec_sum_3               0.296610169492  0.14      0.472
+word2vec_sum_2               0.268482490272  0.138     0.514
+original_lesk                0.163265306122  0.016     0.098
+leacockchordorow_similarity  0.0             0.0       0.046
+word2vec_mult_50             0.228136882129  0.12      0.526
+path_similarity              0.0             0.0       0.046
+biran                        0.297872340426  0.056     0.188
+---------------------------  --------------  --------  -------

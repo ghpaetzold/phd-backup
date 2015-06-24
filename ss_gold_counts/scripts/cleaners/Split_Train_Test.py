@@ -1,0 +1,32 @@
+f1 = open('../../corpora/lexmturk_gold_targetfirst.txt')
+f2 = open('../../corpora/lexmturk_gold_counts.txt')
+f3 = open('../../corpora/lexmturk_gold.txt')
+
+o1 = open('../../corpora/lexmturk_gold_targetfirst_train.txt', 'w')
+o2 = open('../../corpora/lexmturk_gold_targetfirst_test.txt', 'w')
+o3 = open('../../corpora/lexmturk_gold_counts_test.txt', 'w')
+o4 = open('../../corpora/lexmturk_gold_train.txt', 'w')
+o5 = open('../../corpora/lexmturk_gold_test.txt', 'w')
+
+for i in range(0, 250):
+	l1 = f1.readline()
+	l2 = f3.readline()
+	f2.readline()
+	o1.write(l1)
+	o4.write(l2)
+o1.close()
+o4.close()
+
+for i in range(0, 250):
+	l1 = f1.readline()
+	l2 = f2.readline()
+	l3 = f3.readline()
+	o2.write(l1)
+	o3.write(l2)
+	o5.write(l3)
+o2.close()
+o3.close()
+o5.close()
+f1.close()
+f2.close()
+f3.close()

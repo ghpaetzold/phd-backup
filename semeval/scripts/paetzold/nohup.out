@@ -1,0 +1,612 @@
+Traceback (most recent call last):
+  File "Run_PaetzoldPop.py", line 26, in <module>
+    br.trainRanker(victor_corpus, positive_range, loss, penalty, alpha, l1_ratio, epsilon)
+  File "/export/data/ghpaetzold/benchmarking/semeval/scripts/paetzold/lexenstein/rankers.py", line 639, in trainRanker
+    self.classifier.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 483, in fit
+    sample_weight=sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 387, in _fit
+    classes, sample_weight, coef_init, intercept_init)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 352, in _partial_fit
+    sample_weight=sample_weight, n_iter=n_iter)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 398, in _fit_binary
+    sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 276, in fit_binary
+    est.power_t, est.t_, intercept_decay)
+  File "sgd_fast.pyx", line 522, in sklearn.linear_model.sgd_fast.plain_sgd (sklearn/linear_model/sgd_fast.c:5842)
+ValueError: Floating-point under-/overflow occurred at epoch #1. Scaling input data with StandardScaler or MinMaxScaler might help.
+Traceback (most recent call last):
+  File "Run_PaetzoldPop.py", line 26, in <module>
+    br.trainRanker(victor_corpus, positive_range, loss, penalty, alpha, l1_ratio, epsilon)
+  File "/export/data/ghpaetzold/benchmarking/semeval/scripts/paetzold/lexenstein/rankers.py", line 639, in trainRanker
+    self.classifier.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 483, in fit
+    sample_weight=sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 387, in _fit
+    classes, sample_weight, coef_init, intercept_init)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 352, in _partial_fit
+    sample_weight=sample_weight, n_iter=n_iter)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 398, in _fit_binary
+    sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 276, in fit_binary
+    est.power_t, est.t_, intercept_decay)
+  File "sgd_fast.pyx", line 522, in sklearn.linear_model.sgd_fast.plain_sgd (sklearn/linear_model/sgd_fast.c:5842)
+ValueError: Floating-point under-/overflow occurred at epoch #1. Scaling input data with StandardScaler or MinMaxScaler might help.
+Traceback (most recent call last):
+  File "Run_PaetzoldPop.py", line 26, in <module>
+    br.trainRanker(victor_corpus, positive_range, loss, penalty, alpha, l1_ratio, epsilon)
+  File "/export/data/ghpaetzold/benchmarking/semeval/scripts/paetzold/lexenstein/rankers.py", line 639, in trainRanker
+    self.classifier.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 483, in fit
+    sample_weight=sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 387, in _fit
+    classes, sample_weight, coef_init, intercept_init)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 352, in _partial_fit
+    sample_weight=sample_weight, n_iter=n_iter)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 398, in _fit_binary
+    sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 276, in fit_binary
+    est.power_t, est.t_, intercept_decay)
+  File "sgd_fast.pyx", line 522, in sklearn.linear_model.sgd_fast.plain_sgd (sklearn/linear_model/sgd_fast.c:5842)
+ValueError: Floating-point under-/overflow occurred at epoch #1. Scaling input data with StandardScaler or MinMaxScaler might help.
+Traceback (most recent call last):
+  File "Run_PaetzoldPop.py", line 26, in <module>
+    br.trainRanker(victor_corpus, positive_range, loss, penalty, alpha, l1_ratio, epsilon)
+  File "/export/data/ghpaetzold/benchmarking/semeval/scripts/paetzold/lexenstein/rankers.py", line 639, in trainRanker
+    self.classifier.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 483, in fit
+    sample_weight=sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 387, in _fit
+    classes, sample_weight, coef_init, intercept_init)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 352, in _partial_fit
+    sample_weight=sample_weight, n_iter=n_iter)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 398, in _fit_binary
+    sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 276, in fit_binary
+    est.power_t, est.t_, intercept_decay)
+  File "sgd_fast.pyx", line 522, in sklearn.linear_model.sgd_fast.plain_sgd (sklearn/linear_model/sgd_fast.c:5842)
+ValueError: Floating-point under-/overflow occurred at epoch #1. Scaling input data with StandardScaler or MinMaxScaler might help.
+Traceback (most recent call last):
+  File "Run_PaetzoldPop.py", line 26, in <module>
+    br.trainRanker(victor_corpus, positive_range, loss, penalty, alpha, l1_ratio, epsilon)
+  File "/export/data/ghpaetzold/benchmarking/semeval/scripts/paetzold/lexenstein/rankers.py", line 639, in trainRanker
+    self.classifier.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 483, in fit
+    sample_weight=sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 387, in _fit
+    classes, sample_weight, coef_init, intercept_init)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 352, in _partial_fit
+    sample_weight=sample_weight, n_iter=n_iter)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 398, in _fit_binary
+    sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 276, in fit_binary
+    est.power_t, est.t_, intercept_decay)
+  File "sgd_fast.pyx", line 522, in sklearn.linear_model.sgd_fast.plain_sgd (sklearn/linear_model/sgd_fast.c:5842)
+ValueError: Floating-point under-/overflow occurred at epoch #1. Scaling input data with StandardScaler or MinMaxScaler might help.
+Traceback (most recent call last):
+  File "Run_PaetzoldPop.py", line 26, in <module>
+    br.trainRanker(victor_corpus, positive_range, loss, penalty, alpha, l1_ratio, epsilon)
+  File "/export/data/ghpaetzold/benchmarking/semeval/scripts/paetzold/lexenstein/rankers.py", line 639, in trainRanker
+    self.classifier.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 483, in fit
+    sample_weight=sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 387, in _fit
+    classes, sample_weight, coef_init, intercept_init)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 352, in _partial_fit
+    sample_weight=sample_weight, n_iter=n_iter)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 398, in _fit_binary
+    sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 276, in fit_binary
+    est.power_t, est.t_, intercept_decay)
+  File "sgd_fast.pyx", line 522, in sklearn.linear_model.sgd_fast.plain_sgd (sklearn/linear_model/sgd_fast.c:5842)
+ValueError: Floating-point under-/overflow occurred at epoch #1. Scaling input data with StandardScaler or MinMaxScaler might help.
+Traceback (most recent call last):
+  File "Run_PaetzoldPop.py", line 26, in <module>
+    br.trainRanker(victor_corpus, positive_range, loss, penalty, alpha, l1_ratio, epsilon)
+  File "/export/data/ghpaetzold/benchmarking/semeval/scripts/paetzold/lexenstein/rankers.py", line 639, in trainRanker
+    self.classifier.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 483, in fit
+    sample_weight=sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 387, in _fit
+    classes, sample_weight, coef_init, intercept_init)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 352, in _partial_fit
+    sample_weight=sample_weight, n_iter=n_iter)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 398, in _fit_binary
+Traceback (most recent call last):
+  File "Run_PaetzoldPop.py", line 26, in <module>
+    br.trainRanker(victor_corpus, positive_range, loss, penalty, alpha, l1_ratio, epsilon)
+  File "/export/data/ghpaetzold/benchmarking/semeval/scripts/paetzold/lexenstein/rankers.py", line 639, in trainRanker
+    self.classifier.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 483, in fit
+    sample_weight=sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 387, in _fit
+    classes, sample_weight, coef_init, intercept_init)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 352, in _partial_fit
+    sample_weight=sample_weight, n_iter=n_iter)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 398, in _fit_binary
+    sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 276, in fit_binary
+    est.power_t, est.t_, intercept_decay)
+  File "sgd_fast.pyx", line 522, in sklearn.linear_model.sgd_fast.plain_sgd (sklearn/linear_model/sgd_fast.c:5842)
+ValueError: Floating-point under-/overflow occurred at epoch #1. Scaling input data with StandardScaler or MinMaxScaler might help.
+    sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 276, in fit_binary
+    est.power_t, est.t_, intercept_decay)
+  File "sgd_fast.pyx", line 522, in sklearn.linear_model.sgd_fast.plain_sgd (sklearn/linear_model/sgd_fast.c:5842)
+ValueError: Floating-point under-/overflow occurred at epoch #1. Scaling input data with StandardScaler or MinMaxScaler might help.
+Traceback (most recent call last):
+  File "Run_PaetzoldPop.py", line 26, in <module>
+    br.trainRanker(victor_corpus, positive_range, loss, penalty, alpha, l1_ratio, epsilon)
+  File "/export/data/ghpaetzold/benchmarking/semeval/scripts/paetzold/lexenstein/rankers.py", line 639, in trainRanker
+    self.classifier.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 483, in fit
+    sample_weight=sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 387, in _fit
+    classes, sample_weight, coef_init, intercept_init)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 352, in _partial_fit
+    sample_weight=sample_weight, n_iter=n_iter)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 398, in _fit_binary
+    sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 276, in fit_binary
+    est.power_t, est.t_, intercept_decay)
+  File "sgd_fast.pyx", line 522, in sklearn.linear_model.sgd_fast.plain_sgd (sklearn/linear_model/sgd_fast.c:5842)
+ValueError: Floating-point under-/overflow occurred at epoch #1. Scaling input data with StandardScaler or MinMaxScaler might help.
+Traceback (most recent call last):
+  File "Run_PaetzoldPop.py", line 26, in <module>
+    br.trainRanker(victor_corpus, positive_range, loss, penalty, alpha, l1_ratio, epsilon)
+  File "/export/data/ghpaetzold/benchmarking/semeval/scripts/paetzold/lexenstein/rankers.py", line 639, in trainRanker
+    self.classifier.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 483, in fit
+    sample_weight=sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 387, in _fit
+    classes, sample_weight, coef_init, intercept_init)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 352, in _partial_fit
+    sample_weight=sample_weight, n_iter=n_iter)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 398, in _fit_binary
+    sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 276, in fit_binary
+    est.power_t, est.t_, intercept_decay)
+  File "sgd_fast.pyx", line 522, in sklearn.linear_model.sgd_fast.plain_sgd (sklearn/linear_model/sgd_fast.c:5842)
+ValueError: Floating-point under-/overflow occurred at epoch #1. Scaling input data with StandardScaler or MinMaxScaler might help.
+Traceback (most recent call last):
+  File "Run_PaetzoldPop.py", line 26, in <module>
+    br.trainRanker(victor_corpus, positive_range, loss, penalty, alpha, l1_ratio, epsilon)
+  File "/export/data/ghpaetzold/benchmarking/semeval/scripts/paetzold/lexenstein/rankers.py", line 639, in trainRanker
+    self.classifier.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 483, in fit
+    sample_weight=sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 387, in _fit
+    classes, sample_weight, coef_init, intercept_init)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 352, in _partial_fit
+    sample_weight=sample_weight, n_iter=n_iter)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 398, in _fit_binary
+    sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 276, in fit_binary
+    est.power_t, est.t_, intercept_decay)
+  File "sgd_fast.pyx", line 522, in sklearn.linear_model.sgd_fast.plain_sgd (sklearn/linear_model/sgd_fast.c:5842)
+ValueError: Floating-point under-/overflow occurred at epoch #1. Scaling input data with StandardScaler or MinMaxScaler might help.
+Traceback (most recent call last):
+  File "Run_PaetzoldPop.py", line 26, in <module>
+    br.trainRanker(victor_corpus, positive_range, loss, penalty, alpha, l1_ratio, epsilon)
+  File "/export/data/ghpaetzold/benchmarking/semeval/scripts/paetzold/lexenstein/rankers.py", line 639, in trainRanker
+    self.classifier.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 483, in fit
+    sample_weight=sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 387, in _fit
+    classes, sample_weight, coef_init, intercept_init)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 352, in _partial_fit
+    sample_weight=sample_weight, n_iter=n_iter)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 398, in _fit_binary
+    sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 276, in fit_binary
+    est.power_t, est.t_, intercept_decay)
+  File "sgd_fast.pyx", line 522, in sklearn.linear_model.sgd_fast.plain_sgd (sklearn/linear_model/sgd_fast.c:5842)
+ValueError: Floating-point under-/overflow occurred at epoch #1. Scaling input data with StandardScaler or MinMaxScaler might help.
+Traceback (most recent call last):
+  File "Run_PaetzoldPop.py", line 26, in <module>
+    br.trainRanker(victor_corpus, positive_range, loss, penalty, alpha, l1_ratio, epsilon)
+  File "/export/data/ghpaetzold/benchmarking/semeval/scripts/paetzold/lexenstein/rankers.py", line 639, in trainRanker
+    self.classifier.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 483, in fit
+    sample_weight=sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 387, in _fit
+    classes, sample_weight, coef_init, intercept_init)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 352, in _partial_fit
+    sample_weight=sample_weight, n_iter=n_iter)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 398, in _fit_binary
+    sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 276, in fit_binary
+    est.power_t, est.t_, intercept_decay)
+  File "sgd_fast.pyx", line 522, in sklearn.linear_model.sgd_fast.plain_sgd (sklearn/linear_model/sgd_fast.c:5842)
+ValueError: Floating-point under-/overflow occurred at epoch #1. Scaling input data with StandardScaler or MinMaxScaler might help.
+Traceback (most recent call last):
+  File "Run_PaetzoldPop.py", line 26, in <module>
+    br.trainRanker(victor_corpus, positive_range, loss, penalty, alpha, l1_ratio, epsilon)
+  File "/export/data/ghpaetzold/benchmarking/semeval/scripts/paetzold/lexenstein/rankers.py", line 639, in trainRanker
+    self.classifier.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 483, in fit
+    sample_weight=sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 387, in _fit
+    classes, sample_weight, coef_init, intercept_init)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 352, in _partial_fit
+    sample_weight=sample_weight, n_iter=n_iter)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 398, in _fit_binary
+    sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 276, in fit_binary
+    est.power_t, est.t_, intercept_decay)
+  File "sgd_fast.pyx", line 522, in sklearn.linear_model.sgd_fast.plain_sgd (sklearn/linear_model/sgd_fast.c:5842)
+ValueError: Floating-point under-/overflow occurred at epoch #1. Scaling input data with StandardScaler or MinMaxScaler might help.
+Traceback (most recent call last):
+  File "Run_PaetzoldPop.py", line 26, in <module>
+    br.trainRanker(victor_corpus, positive_range, loss, penalty, alpha, l1_ratio, epsilon)
+  File "/export/data/ghpaetzold/benchmarking/semeval/scripts/paetzold/lexenstein/rankers.py", line 639, in trainRanker
+    self.classifier.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 483, in fit
+    sample_weight=sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 387, in _fit
+    classes, sample_weight, coef_init, intercept_init)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 352, in _partial_fit
+    sample_weight=sample_weight, n_iter=n_iter)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 398, in _fit_binary
+    sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 276, in fit_binary
+    est.power_t, est.t_, intercept_decay)
+  File "sgd_fast.pyx", line 522, in sklearn.linear_model.sgd_fast.plain_sgd (sklearn/linear_model/sgd_fast.c:5842)
+ValueError: Floating-point under-/overflow occurred at epoch #1. Scaling input data with StandardScaler or MinMaxScaler might help.
+Traceback (most recent call last):
+  File "Run_PaetzoldPop.py", line 26, in <module>
+    br.trainRanker(victor_corpus, positive_range, loss, penalty, alpha, l1_ratio, epsilon)
+  File "/export/data/ghpaetzold/benchmarking/semeval/scripts/paetzold/lexenstein/rankers.py", line 639, in trainRanker
+    self.classifier.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 483, in fit
+    sample_weight=sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 387, in _fit
+    classes, sample_weight, coef_init, intercept_init)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 352, in _partial_fit
+    sample_weight=sample_weight, n_iter=n_iter)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 398, in _fit_binary
+    sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 276, in fit_binary
+    est.power_t, est.t_, intercept_decay)
+  File "sgd_fast.pyx", line 522, in sklearn.linear_model.sgd_fast.plain_sgd (sklearn/linear_model/sgd_fast.c:5842)
+ValueError: Floating-point under-/overflow occurred at epoch #1. Scaling input data with StandardScaler or MinMaxScaler might help.
+Traceback (most recent call last):
+  File "Run_PaetzoldPop.py", line 26, in <module>
+    br.trainRanker(victor_corpus, positive_range, loss, penalty, alpha, l1_ratio, epsilon)
+  File "/export/data/ghpaetzold/benchmarking/semeval/scripts/paetzold/lexenstein/rankers.py", line 639, in trainRanker
+    self.classifier.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 483, in fit
+    sample_weight=sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 387, in _fit
+    classes, sample_weight, coef_init, intercept_init)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 352, in _partial_fit
+    sample_weight=sample_weight, n_iter=n_iter)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 398, in _fit_binary
+    sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 276, in fit_binary
+    est.power_t, est.t_, intercept_decay)
+  File "sgd_fast.pyx", line 522, in sklearn.linear_model.sgd_fast.plain_sgd (sklearn/linear_model/sgd_fast.c:5842)
+ValueError: Floating-point under-/overflow occurred at epoch #1. Scaling input data with StandardScaler or MinMaxScaler might help.
+Traceback (most recent call last):
+  File "Run_PaetzoldPop.py", line 26, in <module>
+    br.trainRanker(victor_corpus, positive_range, loss, penalty, alpha, l1_ratio, epsilon)
+  File "/export/data/ghpaetzold/benchmarking/semeval/scripts/paetzold/lexenstein/rankers.py", line 639, in trainRanker
+    self.classifier.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 483, in fit
+    sample_weight=sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 387, in _fit
+    classes, sample_weight, coef_init, intercept_init)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 352, in _partial_fit
+    sample_weight=sample_weight, n_iter=n_iter)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 398, in _fit_binary
+    sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 276, in fit_binary
+    est.power_t, est.t_, intercept_decay)
+  File "sgd_fast.pyx", line 522, in sklearn.linear_model.sgd_fast.plain_sgd (sklearn/linear_model/sgd_fast.c:5842)
+ValueError: Floating-point under-/overflow occurred at epoch #1. Scaling input data with StandardScaler or MinMaxScaler might help.
+Traceback (most recent call last):
+  File "Run_PaetzoldPop.py", line 26, in <module>
+    br.trainRanker(victor_corpus, positive_range, loss, penalty, alpha, l1_ratio, epsilon)
+  File "/export/data/ghpaetzold/benchmarking/semeval/scripts/paetzold/lexenstein/rankers.py", line 639, in trainRanker
+    self.classifier.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 483, in fit
+    sample_weight=sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 387, in _fit
+    classes, sample_weight, coef_init, intercept_init)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 352, in _partial_fit
+    sample_weight=sample_weight, n_iter=n_iter)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 398, in _fit_binary
+    sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 276, in fit_binary
+    est.power_t, est.t_, intercept_decay)
+  File "sgd_fast.pyx", line 522, in sklearn.linear_model.sgd_fast.plain_sgd (sklearn/linear_model/sgd_fast.c:5842)
+ValueError: Floating-point under-/overflow occurred at epoch #1. Scaling input data with StandardScaler or MinMaxScaler might help.
+Traceback (most recent call last):
+  File "Run_PaetzoldPop.py", line 26, in <module>
+    br.trainRanker(victor_corpus, positive_range, loss, penalty, alpha, l1_ratio, epsilon)
+Traceback (most recent call last):
+  File "Run_PaetzoldPop.py", line 26, in <module>
+    br.trainRanker(victor_corpus, positive_range, loss, penalty, alpha, l1_ratio, epsilon)
+  File "/export/data/ghpaetzold/benchmarking/semeval/scripts/paetzold/lexenstein/rankers.py", line 639, in trainRanker
+    self.classifier.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 483, in fit
+    sample_weight=sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 387, in _fit
+    classes, sample_weight, coef_init, intercept_init)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 352, in _partial_fit
+    sample_weight=sample_weight, n_iter=n_iter)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 398, in _fit_binary
+    sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 276, in fit_binary
+    est.power_t, est.t_, intercept_decay)
+  File "sgd_fast.pyx", line 522, in sklearn.linear_model.sgd_fast.plain_sgd (sklearn/linear_model/sgd_fast.c:5842)
+ValueError: Floating-point under-/overflow occurred at epoch #1. Scaling input data with StandardScaler or MinMaxScaler might help.
+  File "/export/data/ghpaetzold/benchmarking/semeval/scripts/paetzold/lexenstein/rankers.py", line 639, in trainRanker
+    self.classifier.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 483, in fit
+    sample_weight=sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 387, in _fit
+    classes, sample_weight, coef_init, intercept_init)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 352, in _partial_fit
+    sample_weight=sample_weight, n_iter=n_iter)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 398, in _fit_binary
+    sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 276, in fit_binary
+    est.power_t, est.t_, intercept_decay)
+  File "sgd_fast.pyx", line 522, in sklearn.linear_model.sgd_fast.plain_sgd (sklearn/linear_model/sgd_fast.c:5842)
+ValueError: Floating-point under-/overflow occurred at epoch #1. Scaling input data with StandardScaler or MinMaxScaler might help.
+Traceback (most recent call last):
+  File "Run_PaetzoldPop.py", line 26, in <module>
+    br.trainRanker(victor_corpus, positive_range, loss, penalty, alpha, l1_ratio, epsilon)
+  File "/export/data/ghpaetzold/benchmarking/semeval/scripts/paetzold/lexenstein/rankers.py", line 639, in trainRanker
+    self.classifier.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 483, in fit
+    sample_weight=sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 387, in _fit
+    classes, sample_weight, coef_init, intercept_init)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 352, in _partial_fit
+    sample_weight=sample_weight, n_iter=n_iter)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 398, in _fit_binary
+    sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 276, in fit_binary
+    est.power_t, est.t_, intercept_decay)
+  File "sgd_fast.pyx", line 522, in sklearn.linear_model.sgd_fast.plain_sgd (sklearn/linear_model/sgd_fast.c:5842)
+ValueError: Floating-point under-/overflow occurred at epoch #1. Scaling input data with StandardScaler or MinMaxScaler might help.
+Traceback (most recent call last):
+  File "Run_PaetzoldPop.py", line 26, in <module>
+    br.trainRanker(victor_corpus, positive_range, loss, penalty, alpha, l1_ratio, epsilon)
+  File "/export/data/ghpaetzold/benchmarking/semeval/scripts/paetzold/lexenstein/rankers.py", line 639, in trainRanker
+    self.classifier.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 483, in fit
+    sample_weight=sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 387, in _fit
+    classes, sample_weight, coef_init, intercept_init)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 352, in _partial_fit
+    sample_weight=sample_weight, n_iter=n_iter)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 398, in _fit_binary
+    sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 276, in fit_binary
+    est.power_t, est.t_, intercept_decay)
+  File "sgd_fast.pyx", line 522, in sklearn.linear_model.sgd_fast.plain_sgd (sklearn/linear_model/sgd_fast.c:5842)
+ValueError: Floating-point under-/overflow occurred at epoch #1. Scaling input data with StandardScaler or MinMaxScaler might help.
+Traceback (most recent call last):
+  File "Run_PaetzoldPop.py", line 26, in <module>
+    br.trainRanker(victor_corpus, positive_range, loss, penalty, alpha, l1_ratio, epsilon)
+  File "/export/data/ghpaetzold/benchmarking/semeval/scripts/paetzold/lexenstein/rankers.py", line 639, in trainRanker
+    self.classifier.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 483, in fit
+    sample_weight=sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 387, in _fit
+    classes, sample_weight, coef_init, intercept_init)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 352, in _partial_fit
+    sample_weight=sample_weight, n_iter=n_iter)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 398, in _fit_binary
+    sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 276, in fit_binary
+    est.power_t, est.t_, intercept_decay)
+  File "sgd_fast.pyx", line 522, in sklearn.linear_model.sgd_fast.plain_sgd (sklearn/linear_model/sgd_fast.c:5842)
+ValueError: Floating-point under-/overflow occurred at epoch #1. Scaling input data with StandardScaler or MinMaxScaler might help.
+Traceback (most recent call last):
+  File "Run_PaetzoldPop.py", line 26, in <module>
+    br.trainRanker(victor_corpus, positive_range, loss, penalty, alpha, l1_ratio, epsilon)
+  File "/export/data/ghpaetzold/benchmarking/semeval/scripts/paetzold/lexenstein/rankers.py", line 639, in trainRanker
+    self.classifier.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 483, in fit
+    sample_weight=sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 387, in _fit
+    classes, sample_weight, coef_init, intercept_init)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 352, in _partial_fit
+    sample_weight=sample_weight, n_iter=n_iter)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 398, in _fit_binary
+    sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 276, in fit_binary
+    est.power_t, est.t_, intercept_decay)
+  File "sgd_fast.pyx", line 522, in sklearn.linear_model.sgd_fast.plain_sgd (sklearn/linear_model/sgd_fast.c:5842)
+ValueError: Floating-point under-/overflow occurred at epoch #1. Scaling input data with StandardScaler or MinMaxScaler might help.
+Traceback (most recent call last):
+  File "Run_PaetzoldPop.py", line 26, in <module>
+    br.trainRanker(victor_corpus, positive_range, loss, penalty, alpha, l1_ratio, epsilon)
+  File "/export/data/ghpaetzold/benchmarking/semeval/scripts/paetzold/lexenstein/rankers.py", line 639, in trainRanker
+    self.classifier.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 483, in fit
+    sample_weight=sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 387, in _fit
+    classes, sample_weight, coef_init, intercept_init)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 352, in _partial_fit
+    sample_weight=sample_weight, n_iter=n_iter)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 398, in _fit_binary
+    sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 276, in fit_binary
+    est.power_t, est.t_, intercept_decay)
+  File "sgd_fast.pyx", line 522, in sklearn.linear_model.sgd_fast.plain_sgd (sklearn/linear_model/sgd_fast.c:5842)
+ValueError: Floating-point under-/overflow occurred at epoch #1. Scaling input data with StandardScaler or MinMaxScaler might help.
+Traceback (most recent call last):
+  File "Run_PaetzoldPop.py", line 26, in <module>
+    br.trainRanker(victor_corpus, positive_range, loss, penalty, alpha, l1_ratio, epsilon)
+  File "/export/data/ghpaetzold/benchmarking/semeval/scripts/paetzold/lexenstein/rankers.py", line 639, in trainRanker
+    self.classifier.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 483, in fit
+    sample_weight=sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 387, in _fit
+    classes, sample_weight, coef_init, intercept_init)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 352, in _partial_fit
+    sample_weight=sample_weight, n_iter=n_iter)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 398, in _fit_binary
+    sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 276, in fit_binary
+    est.power_t, est.t_, intercept_decay)
+  File "sgd_fast.pyx", line 522, in sklearn.linear_model.sgd_fast.plain_sgd (sklearn/linear_model/sgd_fast.c:5842)
+ValueError: Floating-point under-/overflow occurred at epoch #1. Scaling input data with StandardScaler or MinMaxScaler might help.
+Traceback (most recent call last):
+  File "Run_PaetzoldPop.py", line 26, in <module>
+    br.trainRanker(victor_corpus, positive_range, loss, penalty, alpha, l1_ratio, epsilon)
+  File "/export/data/ghpaetzold/benchmarking/semeval/scripts/paetzold/lexenstein/rankers.py", line 639, in trainRanker
+    self.classifier.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 483, in fit
+    sample_weight=sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 387, in _fit
+    classes, sample_weight, coef_init, intercept_init)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 352, in _partial_fit
+    sample_weight=sample_weight, n_iter=n_iter)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 398, in _fit_binary
+    sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 276, in fit_binary
+    est.power_t, est.t_, intercept_decay)
+  File "sgd_fast.pyx", line 522, in sklearn.linear_model.sgd_fast.plain_sgd (sklearn/linear_model/sgd_fast.c:5842)
+ValueError: Floating-point under-/overflow occurred at epoch #1. Scaling input data with StandardScaler or MinMaxScaler might help.
+Traceback (most recent call last):
+  File "Run_PaetzoldPop.py", line 26, in <module>
+    br.trainRanker(victor_corpus, positive_range, loss, penalty, alpha, l1_ratio, epsilon)
+  File "/export/data/ghpaetzold/benchmarking/semeval/scripts/paetzold/lexenstein/rankers.py", line 639, in trainRanker
+    self.classifier.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 483, in fit
+    sample_weight=sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 387, in _fit
+    classes, sample_weight, coef_init, intercept_init)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 352, in _partial_fit
+    sample_weight=sample_weight, n_iter=n_iter)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 398, in _fit_binary
+    sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 276, in fit_binary
+    est.power_t, est.t_, intercept_decay)
+  File "sgd_fast.pyx", line 522, in sklearn.linear_model.sgd_fast.plain_sgd (sklearn/linear_model/sgd_fast.c:5842)
+ValueError: Floating-point under-/overflow occurred at epoch #1. Scaling input data with StandardScaler or MinMaxScaler might help.
+Traceback (most recent call last):
+  File "Run_PaetzoldPop.py", line 26, in <module>
+    br.trainRanker(victor_corpus, positive_range, loss, penalty, alpha, l1_ratio, epsilon)
+  File "/export/data/ghpaetzold/benchmarking/semeval/scripts/paetzold/lexenstein/rankers.py", line 639, in trainRanker
+    self.classifier.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 483, in fit
+    sample_weight=sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 387, in _fit
+    classes, sample_weight, coef_init, intercept_init)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 352, in _partial_fit
+    sample_weight=sample_weight, n_iter=n_iter)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 398, in _fit_binary
+    sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 276, in fit_binary
+    est.power_t, est.t_, intercept_decay)
+  File "sgd_fast.pyx", line 522, in sklearn.linear_model.sgd_fast.plain_sgd (sklearn/linear_model/sgd_fast.c:5842)
+ValueError: Floating-point under-/overflow occurred at epoch #1. Scaling input data with StandardScaler or MinMaxScaler might help.
+Traceback (most recent call last):
+  File "Run_PaetzoldPop.py", line 26, in <module>
+    br.trainRanker(victor_corpus, positive_range, loss, penalty, alpha, l1_ratio, epsilon)
+  File "/export/data/ghpaetzold/benchmarking/semeval/scripts/paetzold/lexenstein/rankers.py", line 639, in trainRanker
+    self.classifier.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 483, in fit
+    sample_weight=sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 387, in _fit
+    classes, sample_weight, coef_init, intercept_init)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 352, in _partial_fit
+    sample_weight=sample_weight, n_iter=n_iter)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 398, in _fit_binary
+    sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 276, in fit_binary
+    est.power_t, est.t_, intercept_decay)
+  File "sgd_fast.pyx", line 522, in sklearn.linear_model.sgd_fast.plain_sgd (sklearn/linear_model/sgd_fast.c:5842)
+ValueError: Floating-point under-/overflow occurred at epoch #1. Scaling input data with StandardScaler or MinMaxScaler might help.
+Traceback (most recent call last):
+  File "Run_PaetzoldPop.py", line 26, in <module>
+    br.trainRanker(victor_corpus, positive_range, loss, penalty, alpha, l1_ratio, epsilon)
+  File "/export/data/ghpaetzold/benchmarking/semeval/scripts/paetzold/lexenstein/rankers.py", line 639, in trainRanker
+    self.classifier.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 483, in fit
+    sample_weight=sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 387, in _fit
+    classes, sample_weight, coef_init, intercept_init)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 352, in _partial_fit
+    sample_weight=sample_weight, n_iter=n_iter)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 398, in _fit_binary
+    sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 276, in fit_binary
+    est.power_t, est.t_, intercept_decay)
+  File "sgd_fast.pyx", line 522, in sklearn.linear_model.sgd_fast.plain_sgd (sklearn/linear_model/sgd_fast.c:5842)
+ValueError: Floating-point under-/overflow occurred at epoch #1. Scaling input data with StandardScaler or MinMaxScaler might help.
+Traceback (most recent call last):
+  File "Run_PaetzoldPop.py", line 26, in <module>
+    br.trainRanker(victor_corpus, positive_range, loss, penalty, alpha, l1_ratio, epsilon)
+  File "/export/data/ghpaetzold/benchmarking/semeval/scripts/paetzold/lexenstein/rankers.py", line 639, in trainRanker
+    self.classifier.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 483, in fit
+    sample_weight=sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 387, in _fit
+    classes, sample_weight, coef_init, intercept_init)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 352, in _partial_fit
+    sample_weight=sample_weight, n_iter=n_iter)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 398, in _fit_binary
+    sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 276, in fit_binary
+    est.power_t, est.t_, intercept_decay)
+  File "sgd_fast.pyx", line 522, in sklearn.linear_model.sgd_fast.plain_sgd (sklearn/linear_model/sgd_fast.c:5842)
+ValueError: Floating-point under-/overflow occurred at epoch #1. Scaling input data with StandardScaler or MinMaxScaler might help.
+Traceback (most recent call last):
+  File "Run_PaetzoldPop.py", line 26, in <module>
+    br.trainRanker(victor_corpus, positive_range, loss, penalty, alpha, l1_ratio, epsilon)
+  File "/export/data/ghpaetzold/benchmarking/semeval/scripts/paetzold/lexenstein/rankers.py", line 639, in trainRanker
+    self.classifier.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 483, in fit
+    sample_weight=sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 387, in _fit
+    classes, sample_weight, coef_init, intercept_init)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 352, in _partial_fit
+    sample_weight=sample_weight, n_iter=n_iter)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 398, in _fit_binary
+    sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 276, in fit_binary
+    est.power_t, est.t_, intercept_decay)
+  File "sgd_fast.pyx", line 522, in sklearn.linear_model.sgd_fast.plain_sgd (sklearn/linear_model/sgd_fast.c:5842)
+ValueError: Floating-point under-/overflow occurred at epoch #1. Scaling input data with StandardScaler or MinMaxScaler might help.
+Traceback (most recent call last):
+  File "Run_PaetzoldPop.py", line 26, in <module>
+    br.trainRanker(victor_corpus, positive_range, loss, penalty, alpha, l1_ratio, epsilon)
+  File "/export/data/ghpaetzold/benchmarking/semeval/scripts/paetzold/lexenstein/rankers.py", line 639, in trainRanker
+    self.classifier.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 483, in fit
+    sample_weight=sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 387, in _fit
+    classes, sample_weight, coef_init, intercept_init)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 352, in _partial_fit
+    sample_weight=sample_weight, n_iter=n_iter)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 398, in _fit_binary
+    sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 276, in fit_binary
+    est.power_t, est.t_, intercept_decay)
+  File "sgd_fast.pyx", line 522, in sklearn.linear_model.sgd_fast.plain_sgd (sklearn/linear_model/sgd_fast.c:5842)
+ValueError: Floating-point under-/overflow occurred at epoch #1. Scaling input data with StandardScaler or MinMaxScaler might help.
+Traceback (most recent call last):
+  File "Run_PaetzoldPop.py", line 26, in <module>
+    br.trainRanker(victor_corpus, positive_range, loss, penalty, alpha, l1_ratio, epsilon)
+  File "/export/data/ghpaetzold/benchmarking/semeval/scripts/paetzold/lexenstein/rankers.py", line 639, in trainRanker
+    self.classifier.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 483, in fit
+    sample_weight=sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 387, in _fit
+    classes, sample_weight, coef_init, intercept_init)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 352, in _partial_fit
+    sample_weight=sample_weight, n_iter=n_iter)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 398, in _fit_binary
+    sample_weight)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/linear_model/stochastic_gradient.py", line 276, in fit_binary
+    est.power_t, est.t_, intercept_decay)
+  File "sgd_fast.pyx", line 522, in sklearn.linear_model.sgd_fast.plain_sgd (sklearn/linear_model/sgd_fast.c:5842)
+ValueError: Floating-point under-/overflow occurred at epoch #1. Scaling input data with StandardScaler or MinMaxScaler might help.

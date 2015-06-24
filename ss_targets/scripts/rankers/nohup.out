@@ -1,0 +1,2256 @@
+Reading training examples...Reading training examples...Reading training examples...done
+Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.055874
+Iter 1: .........Reading training examples...Reading training examples...Reading training examples...done
+Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.005587
+Iter 1: .........Reading training examples...Reading training examples...Reading training examples...Reading training examples...done
+Reading training examples...Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.055874
+Iter 1: .........Reading training examples...done
+done
+Reading training examples...Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.005587
+Iter 1: .Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.005587
+Iter 1: ..............done
+...Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.005587
+Iter 1: ..done
+...Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.005587
+Iter 1: .............done
+Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.005587
+Iter 1: .........*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: done
+.Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.055874
+Iter 1: .Reading training examples...Reading training examples....Reading training examples............*(NumConst=2, SV=1, CEps=55.8738, QPEps=0.0000)
+Iter 3: .............(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=0.55874
+Primal objective value: pval=0.55874
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.00146
+Value of slack variable (on working set): xi=55.87379
+Value of slack variable (global): xi=55.87379
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.14560
+Runtime in cpu-seconds: 0.01
+Compacting linear model...done
+Writing learned model...done
+..Reading training examples...Reading training examples...Reading training examples...Reading training examples...done
+Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.055874
+Iter 1: .........done
+Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.055874
+Iter 1: .....Reading training examples.......done
+Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.055874
+Iter 1: .........done
+Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.005587
+Iter 1: ...Reading training examples......Reading training examples......*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: .........*(NumConst=2, SV=1, CEps=55.8719, QPEps=0.0000)
+Iter 3: .........(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=5.58729
+Primal objective value: pval=5.58729
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.01456
+Value of slack variable (on working set): xi=55.87188
+Value of slack variable (global): xi=55.87188
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.14560
+Runtime in cpu-seconds: 0.01
+Compacting linear model...done
+Writing learned model...done
+done
+Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.005587
+Iter 1: .........Reading training examples...Reading training examples...Reading training examples...Reading training examples...Reading training examples...Reading training examples...done
+Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.005587
+Iter 1: ........Reading training examples....Reading training examples...done
+Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.005587
+Iter 1: .done
+.done
+.Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.055874
+Iter 1: .......Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.005587
+Iter 1: ...Reading training examples.......*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: ...............*(NumConst=2, SV=1, CEps=55.8738, QPEps=0.0000)
+Iter 3: ...Reading training examples...Reading training examples.........(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=0.55874
+Primal objective value: pval=0.55874
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.00146
+Value of slack variable (on working set): xi=55.87379
+Value of slack variable (global): xi=55.87379
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.14560
+Runtime in cpu-seconds: 0.01
+Compacting linear model...done
+Writing learned model...done
+Reading training examples....Reading training examples....done
+..Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.005587
+Iter 1: .........*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: .........*(NumConst=2, SV=1, CEps=55.8738, QPEps=0.0000)
+Iter 3: .done
+........(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=0.55874
+Primal objective value: pval=0.55874
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.00146
+Value of slack variable (on working set): xi=55.87379
+Value of slack variable (global): xi=55.87379
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.14560
+Runtime in cpu-seconds: 0.01
+Compacting linear model...done
+Writing learned model...done
+Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.005587
+Iter 1: .Reading training examples...done
+.Reading training examples...Reading training examples......Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.005587
+Iter 1: ......Reading training examples...Reading training examples...done
+Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.055874
+Iter 1: ................Reading training examples...done
+Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.005587
+Iter 1: .done
+..Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.055874
+Iter 1: .............*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: .....Reading training examples.........*(NumConst=2, SV=1, CEps=55.8738, QPEps=0.0000)
+Iter 3: ....done
+.....(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=0.55874
+Primal objective value: pval=0.55874
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.00146
+Value of slack variable (on working set): xi=55.87379
+Value of slack variable (global): xi=55.87379
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.14560
+Runtime in cpu-seconds: 0.01
+Compacting linear model...done
+Writing learned model...done
+Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.055874
+Iter 1: ...done
+Reading training examples...done
+Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.055874
+Iter 1: .........*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: .........*(NumConst=2, SV=1, CEps=55.8738, QPEps=0.0000)
+Iter 3: .........(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=0.55874
+Primal objective value: pval=0.55874
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.00146
+Value of slack variable (on working set): xi=55.87379
+Value of slack variable (global): xi=55.87379
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.14560
+Runtime in cpu-seconds: 0.01
+Compacting linear model...done
+Writing learned model.......Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.055874
+Iter 1: ...........done
+done
+Reading training examples...Reading training examples...Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.005587
+Iter 1: .....done
+....Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.055874
+Iter 1: ..done
+..Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.005587
+Iter 1: .......done
+done
+Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.005587
+Iter 1: .......Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.005587
+Iter 1: ..*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: ......done
+.....done
+..*(NumConst=2, SV=1, CEps=55.8719, QPEps=0.0000)
+Iter 3: ....Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.005587
+Iter 1: .........Reading training examples...Reading training examples.........done
+.(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=5.58729
+Primal objective value: pval=5.58729
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.01456
+Value of slack variable (on working set): xi=55.87188
+Value of slack variable (global): xi=55.87188
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.14560
+Runtime in cpu-seconds: 0.01
+Compacting linear model...done
+Writing learned model....done
+..*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: .........Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.055874
+Iter 1: ......*(NumConst=2, SV=1, CEps=55.8719, QPEps=0.0000)
+Iter 3: ...............(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=5.58729
+Primal objective value: pval=5.58729
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.01456
+Value of slack variable (on working set): xi=55.87188
+Value of slack variable (global): xi=55.87188
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.14560
+Runtime in cpu-seconds: 0.01
+Compacting linear model...done
+Writing learned model...done
+....Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.055874
+Iter 1: ........Reading training examples....Reading training examples...Reading training examples...done
+Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.005587
+Iter 1: done
+.........Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.055874
+Iter 1: *(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: .......done
+....Reading training examples.....*(NumConst=2, SV=1, CEps=55.8719, QPEps=0.0000)
+Iter 3: ......Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.055874
+Iter 1: .........(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=5.58729
+Primal objective value: pval=5.58729
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.01456
+Value of slack variable (on working set): xi=55.87188
+Value of slack variable (global): xi=55.87188
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.14560
+Runtime in cpu-seconds: 0.01
+Compacting linear model...done
+Writing learned model...done
+..Reading training examples...done
+.Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.055874
+Iter 1: .Reading training examples..............*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: ......done
+Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.055874
+Iter 1: .........*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: ..done
+...........*(NumConst=2, SV=1, CEps=55.8719, QPEps=0.0000)
+Iter 3: ..done
+*(NumConst=2, SV=1, CEps=55.8738, QPEps=0.0000)
+Iter 3: .......Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.055874
+Iter 1: .............(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=5.58729
+Primal objective value: pval=5.58729
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.01456
+Value of slack variable (on working set): xi=55.87188
+Value of slack variable (global): xi=55.87188
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.14560
+Runtime in cpu-seconds: 0.01
+Compacting linear model...done
+Writing learned model.....done
+.(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=0.55874
+Primal objective value: pval=0.55874
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.00146
+Value of slack variable (on working set): xi=55.87379
+Value of slack variable (global): xi=55.87379
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.14560
+Runtime in cpu-seconds: 0.01
+Compacting linear model...done
+Writing learned model...done
+..Reading training examples....*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: .......done
+..*(NumConst=2, SV=1, CEps=55.8719, QPEps=0.0000)
+Iter 3: Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.055874
+Iter 1: .Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.005587
+Iter 1: .................done
+...(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=5.58729
+Primal objective value: pval=5.58729
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.01456
+Value of slack variable (on working set): xi=55.87188
+Value of slack variable (global): xi=55.87188
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.14560
+Runtime in cpu-seconds: 0.01
+Compacting linear model...done
+Writing learned model....*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: ..Reading training examples....Reading training examples........Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.005587
+Iter 1: .....*(NumConst=2, SV=1, CEps=55.8738, QPEps=0.0000)
+Iter 3: ...............(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=0.55874
+Primal objective value: pval=0.55874
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.00146
+Value of slack variable (on working set): xi=55.87379
+Value of slack variable (global): xi=55.87379
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.14560
+Runtime in cpu-seconds: 0.01
+Compacting linear model...done
+Writing learned model...done
+..done
+..done
+Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.005587
+Iter 1: .........Reading training examples...done
+Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.005587
+Iter 1: .........*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: .........*(NumConst=2, SV=1, CEps=55.8738, QPEps=0.0000)
+Iter 3: .........(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=0.55874
+Primal objective value: pval=0.55874
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.00146
+Value of slack variable (on working set): xi=55.87379
+Value of slack variable (global): xi=55.87379
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.14560
+Runtime in cpu-seconds: 0.01
+Compacting linear model...done
+Writing learned model...done
+done
+done
+Reading training examples...Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.005587
+Iter 1: Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.005587
+Iter 1: ..........done
+.......Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.055874
+Iter 1: .....Reading training examples....Reading training examples.......Reading training examples...Reading training examples...done
+done
+Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.055874
+Iter 1: ......Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.005587
+Iter 1: ....*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: .............*(NumConst=2, SV=1, CEps=55.8719, QPEps=0.0000)
+Iter 3: .............(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=5.58729
+Primal objective value: pval=5.58729
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.01456
+Value of slack variable (on working set): xi=55.87188
+Value of slack variable (global): xi=55.87188
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.14560
+Runtime in cpu-seconds: 0.01
+Compacting linear model...done
+Writing learned model...done
+done
+Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.005587
+Iter 1: ........done
+Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.005587
+Iter 1: ..........done
+Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.055874
+Iter 1: .........done
+Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.055874
+Iter 1: .........*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: .........*(NumConst=2, SV=1, CEps=55.8719, QPEps=0.0000)
+Iter 3: .......done
+..(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=5.58729
+Primal objective value: pval=5.58729
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.01456
+Value of slack variable (on working set): xi=55.87188
+Value of slack variable (global): xi=55.87188
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.14560
+Runtime in cpu-seconds: 0.01
+Compacting linear model...done
+Writing learned model...done
+Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.005587
+Iter 1: .........done
+Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.055874
+Iter 1: .........done
+done
+Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.005587
+Iter 1: .........done
+Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.055874
+Iter 1: .........Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.055874
+Iter 1: .........done
+Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.055874
+Iter 1: .........done
+Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.055874
+Iter 1: .........done
+Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.055874
+Iter 1: .........Reading training examples...Reading model...done.
+Reading test examples...done
+Training set properties: 9 features, 500 rankings, 6197 examples
+NOTE: Adjusted stopping criterion relative to maximum loss: eps=0.055874
+Iter 1: ........done.
+Classifying test examples....Reading model...done.
+Reading test examples...done
+Runtime (without IO) in cpu-seconds: 0.00
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+done.
+Classifying test examples...done
+Runtime (without IO) in cpu-seconds: 0.00
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Reading model...done.
+Reading test examples...Reading model...done.
+Reading test examples...done.
+Classifying test examples...done
+Runtime (without IO) in cpu-seconds: 0.00
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Reading model...done.
+Reading test examples...done.
+Classifying test examples...done
+Runtime (without IO) in cpu-seconds: 0.00
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+done.
+Classifying test examples...done
+Runtime (without IO) in cpu-seconds: 0.00
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Reading model...done.
+Reading test examples...Training...
+Trained!
+Scoring...
+Scored!
+Reading model...done.
+Reading test examples...Reading model...done.
+Reading test examples...done.
+Classifying test examples...done
+Runtime (without IO) in cpu-seconds: 0.00
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+Reading model...done.
+Reading test examples...done.
+Classifying test examples...done
+Runtime (without IO) in cpu-seconds: 0.00
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+done.
+Classifying test examples...Reading model...Reading model...done.
+Reading test examples...done.
+Reading test examples...done
+Runtime (without IO) in cpu-seconds: 0.00
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+done.
+Classifying test examples...done
+Runtime (without IO) in cpu-seconds: 0.00
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+done.
+Classifying test examples...Reading model...done.
+Reading test examples...done.
+Classifying test examples...done
+Runtime (without IO) in cpu-seconds: 0.00
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+done
+Runtime (without IO) in cpu-seconds: 0.00
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+done.
+Classifying test examples...done
+Runtime (without IO) in cpu-seconds: 0.00
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+Training...
+Trained!
+Scoring...
+Scored!
+Training...
+Trained!
+Scoring...
+Scored!
+Reading model...done.
+Reading test examples...Training...
+Trained!
+Scoring...
+Scored!
+Training...
+Trained!
+Scoring...
+Scored!
+Reading model...done.
+Reading test examples...done.
+Classifying test examples...Training...
+Trained!
+Scoring...
+Scored!
+Training...
+Trained!
+Scoring...
+Scored!
+done
+Runtime (without IO) in cpu-seconds: 0.00
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+Training...
+Trained!
+Scoring...
+Scored!
+done.
+Classifying test examples...done
+Runtime (without IO) in cpu-seconds: 0.00
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Reading model...done.
+Reading test examples...Reading model...done.
+Reading test examples...done.
+Classifying test examples...Training...
+Trained!
+Scoring...
+Scored!
+done
+Runtime (without IO) in cpu-seconds: 0.00
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+done.
+Classifying test examples...done
+Runtime (without IO) in cpu-seconds: 0.00
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+Training...
+Trained!
+Scoring...
+Scored!
+*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: *(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: *(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: ...*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: *(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: ....*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: *(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: .*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: ..*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: *(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: *(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: ..*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: *(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: *(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: .*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: *(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: *(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: .*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: .*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: ..*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: *(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: *(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: .*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: *(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: *(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: .......*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: ..*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: ....................*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: *(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: ......*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: .........*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: ........................*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: .....................................................................................................................*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: ..*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: .*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: ..*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: ...*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: *(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: ...............*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: ..*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: .............................*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: ..*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: ...*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: .......................*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: .*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: ........*(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: *(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: *(NumConst=1, SV=1, CEps=55.8740, QPEps=0.0000)
+Iter 2: ..........................................................................................................................................*(NumConst=2, SV=1, CEps=55.8698, QPEps=0.0000)
+Iter 3: *(NumConst=2, SV=1, CEps=55.8698, QPEps=0.0000)
+Iter 3: *(NumConst=2, SV=1, CEps=55.8736, QPEps=0.0000)
+Iter 3: **(NumConst=2, SV=1, CEps=55.8736, QPEps=0.0000)
+Iter 3: (NumConst=2, SV=1, CEps=55.8736, QPEps=0.0000)
+Iter 3: *(NumConst=2, SV=1, CEps=55.8698, QPEps=0.0000)
+Iter 3: *(NumConst=2, SV=1, CEps=55.8731, QPEps=0.0000)
+Iter 3: *(NumConst=2, SV=1, CEps=55.8736, QPEps=0.0000)
+Iter 3: *(NumConst=2, SV=1, CEps=55.8731, QPEps=0.0000)
+Iter 3: *(NumConst=2, SV=1, CEps=55.8739, QPEps=0.0000)
+Iter 3: *(NumConst=2, SV=1, CEps=55.8698, QPEps=0.0000)
+Iter 3: *(NumConst=2, SV=1, CEps=55.8736, QPEps=0.0000)
+Iter 3: *(NumConst=2, SV=1, CEps=55.8736, QPEps=0.0000)
+Iter 3: *(NumConst=2, SV=1, CEps=55.8698, QPEps=0.0000)
+Iter 3: *(NumConst=2, SV=1, CEps=55.8739, QPEps=0.0000)
+Iter 3: *(NumConst=2, SV=1, CEps=55.8739, QPEps=0.0000)
+Iter 3: *(NumConst=2, SV=1, CEps=55.8739, QPEps=0.0000)
+Iter 3: *(NumConst=2, SV=1, CEps=55.8698, QPEps=0.0000)
+Iter 3: *(NumConst=2, SV=1, CEps=55.8731, QPEps=0.0000)
+Iter 3: *(NumConst=2, SV=1, CEps=55.8736, QPEps=0.0000)
+Iter 3: *(NumConst=2, SV=1, CEps=55.8731, QPEps=0.0000)
+Iter 3: *(NumConst=2, SV=1, CEps=55.8739, QPEps=0.0000)
+Iter 3: *(NumConst=2, SV=1, CEps=55.8736, QPEps=0.0000)
+Iter 3: *(NumConst=2, SV=1, CEps=55.8731, QPEps=0.0000)
+Iter 3: *(NumConst=2, SV=1, CEps=55.8698, QPEps=0.0000)
+Iter 3: *(NumConst=2, SV=1, CEps=55.8731, QPEps=0.0000)
+Iter 3: *(NumConst=2, SV=1, CEps=55.8698, QPEps=0.0000)
+Iter 3: *(NumConst=2, SV=1, CEps=55.8739, QPEps=0.0000)
+Iter 3: *(NumConst=2, SV=1, CEps=55.8739, QPEps=0.0000)
+Iter 3: *(NumConst=2, SV=1, CEps=55.8731, QPEps=0.0000)
+Iter 3: *(NumConst=2, SV=1, CEps=55.8739, QPEps=0.0000)
+Iter 3: *(NumConst=2, SV=1, CEps=55.8731, QPEps=0.0000)
+Iter 3: ..............*(NumConst=2, SV=1, CEps=55.8676, QPEps=0.0000)
+Iter 3: ..........*(NumConst=2, SV=1, CEps=55.8734, QPEps=0.0000)
+Iter 3: ..*(NumConst=2, SV=1, CEps=55.8734, QPEps=0.0000)
+Iter 3: *(NumConst=2, SV=1, CEps=55.8676, QPEps=0.0000)
+Iter 3: ...*(NumConst=2, SV=1, CEps=55.8734, QPEps=0.0000)
+Iter 3: ..*(NumConst=2, SV=1, CEps=55.8676, QPEps=0.0000)
+Iter 3: *(NumConst=2, SV=1, CEps=55.8734, QPEps=0.0000)
+Iter 3: ..*(NumConst=2, SV=1, CEps=55.8734, QPEps=0.0000)
+Iter 3: ............*(NumConst=2, SV=1, CEps=55.8676, QPEps=0.0000)
+Iter 3: .*(NumConst=2, SV=1, CEps=55.8676, QPEps=0.0000)
+Iter 3: *(NumConst=2, SV=1, CEps=55.8676, QPEps=0.0000)
+Iter 3: *(NumConst=2, SV=1, CEps=55.8676, QPEps=0.0000)
+Iter 3: ....*(NumConst=2, SV=1, CEps=55.8734, QPEps=0.0000)
+Iter 3: .......*(NumConst=2, SV=1, CEps=55.8676, QPEps=0.0000)
+Iter 3: ..*(NumConst=2, SV=1, CEps=55.8734, QPEps=0.0000)
+Iter 3: .......................*(NumConst=2, SV=1, CEps=55.8734, QPEps=0.0000)
+Iter 3: ..............................................................................................................................................................................................................................................................................................................................................................(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: -0.00000
+Dual objective value: dval=0.55874
+Primal objective value: pval=0.55874
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.00206
+Value of slack variable (on working set): xi=55.87358
+Value of slack variable (global): xi=55.87358
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.20584
+Runtime in cpu-seconds: 148.01
+Writing learned model...done
+(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: -0.00000
+Dual objective value: dval=0.55874
+Primal objective value: pval=0.55874
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.00206
+Value of slack variable (on working set): xi=55.87358
+Value of slack variable (global): xi=55.87358
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.20584
+Runtime in cpu-seconds: 146.31
+Writing learned model...(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=5.58719
+Primal objective value: pval=5.58719
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.02058
+Value of slack variable (on working set): xi=55.86976
+Value of slack variable (global): xi=55.86976
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.20584
+Runtime in cpu-seconds: 147.50
+Writing learned model...done
+done
+Reading model...(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=5.58719
+Primal objective value: pval=5.58719
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.02058
+Value of slack variable (on working set): xi=55.86976
+Value of slack variable (global): xi=55.86976
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.20584
+Runtime in cpu-seconds: 147.45
+Writing learned model...done
+done.
+Reading test examples...done.
+Classifying test examples...Reading model...Reading model...done.
+Reading test examples...done.
+Reading test examples...done.
+Classifying test examples...done.
+Classifying test examples...Reading model...done.
+Reading test examples...done.
+Classifying test examples...done
+Runtime (without IO) in cpu-seconds: 4.04
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+done
+Runtime (without IO) in cpu-seconds: 4.20
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+Training...
+Trained!
+Scoring...
+Scored!
+done
+Runtime (without IO) in cpu-seconds: 5.53
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+done
+Runtime (without IO) in cpu-seconds: 7.60
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: -0.00000
+Dual objective value: dval=0.55874
+Primal objective value: pval=0.55874
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.00206
+Value of slack variable (on working set): xi=55.87358
+Value of slack variable (global): xi=55.87358
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.20584
+Runtime in cpu-seconds: 147.38
+Writing learned model...done
+Reading model...done.
+Reading test examples...done.
+Classifying test examples...done
+Runtime (without IO) in cpu-seconds: 3.96
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: -0.00000
+Dual objective value: dval=5.58736
+Primal objective value: pval=5.58736
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.00941
+Value of slack variable (on working set): xi=55.87311
+Value of slack variable (global): xi=55.87311
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.09413
+Runtime in cpu-seconds: 169.61
+Writing learned model...done
+Reading model...done.
+Reading test examples...done.
+Classifying test examples...(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=0.55874
+Primal objective value: pval=0.55874
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.00094
+Value of slack variable (on working set): xi=55.87391
+Value of slack variable (global): xi=55.87391
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.09413
+Runtime in cpu-seconds: 169.79
+Writing learned model...done
+(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=0.55874
+Primal objective value: pval=0.55874
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.00094
+Value of slack variable (on working set): xi=55.87391
+Value of slack variable (global): xi=55.87391
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.09413
+Runtime in cpu-seconds: 169.55
+Writing learned model...done
+Reading model...done.
+Reading test examples...done.
+Classifying test examples...Reading model...done.
+Reading test examples...done.
+Classifying test examples...(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=0.55874
+Primal objective value: pval=0.55874
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.00094
+Value of slack variable (on working set): xi=55.87391
+Value of slack variable (global): xi=55.87391
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.09413
+Runtime in cpu-seconds: 170.06
+Writing learned model...done
+(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: -0.00000
+Dual objective value: dval=5.58736
+Primal objective value: pval=5.58736
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.00941
+Value of slack variable (on working set): xi=55.87311
+Value of slack variable (global): xi=55.87311
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.09413
+Runtime in cpu-seconds: 169.93
+Writing learned model...done
+Reading model...(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=0.55874
+Primal objective value: pval=0.55874
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.00094
+Value of slack variable (on working set): xi=55.87391
+Value of slack variable (global): xi=55.87391
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.09413
+Runtime in cpu-seconds: 169.52
+Writing learned model...done
+(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: -0.00000
+Dual objective value: dval=5.58736
+Primal objective value: pval=5.58736
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.00941
+Value of slack variable (on working set): xi=55.87311
+Value of slack variable (global): xi=55.87311
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.09413
+Runtime in cpu-seconds: 169.78
+Writing learned model...done.
+Reading test examples...Reading model...done
+done.
+Classifying test examples...(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: -0.00000
+Dual objective value: dval=5.58736
+Primal objective value: pval=5.58736
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.00941
+Value of slack variable (on working set): xi=55.87311
+Value of slack variable (global): xi=55.87311
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.09413
+Runtime in cpu-seconds: 170.02
+Writing learned model...done
+done.
+Reading test examples...done.
+Classifying test examples...Reading model...(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: -0.00000
+Dual objective value: dval=5.58736
+Primal objective value: pval=5.58736
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.00941
+Value of slack variable (on working set): xi=55.87311
+Value of slack variable (global): xi=55.87311
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.09413
+Runtime in cpu-seconds: 169.89
+Writing learned model...done
+Reading model...done.
+Reading test examples...done
+Runtime (without IO) in cpu-seconds: 4.51
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+done.
+Classifying test examples...Training...
+Trained!
+Scoring...
+Scored!
+Reading model...done.
+Reading test examples...done.
+Classifying test examples...done.
+Reading test examples...done.
+Classifying test examples...Reading model...(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=0.55874
+Primal objective value: pval=0.55874
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.00094
+Value of slack variable (on working set): xi=55.87391
+Value of slack variable (global): xi=55.87391
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.09413
+Runtime in cpu-seconds: 169.60
+Writing learned model...done
+done.
+Reading test examples...done.
+Classifying test examples...Reading model...done.
+Reading test examples...done.
+Classifying test examples...(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: -0.00000
+Dual objective value: dval=5.58736
+Primal objective value: pval=5.58736
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.00941
+Value of slack variable (on working set): xi=55.87311
+Value of slack variable (global): xi=55.87311
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.09413
+Runtime in cpu-seconds: 169.95
+Writing learned model...done
+Reading model...done.
+Reading test examples...done.
+Classifying test examples...done
+Runtime (without IO) in cpu-seconds: 4.73
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+done
+Runtime (without IO) in cpu-seconds: 4.89
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+done
+Runtime (without IO) in cpu-seconds: 4.96
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+done
+Runtime (without IO) in cpu-seconds: 4.91
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+Training...
+Trained!
+Scoring...
+Scored!
+done
+Runtime (without IO) in cpu-seconds: 4.86
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+done
+Runtime (without IO) in cpu-seconds: 8.87
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+done
+Runtime (without IO) in cpu-seconds: 4.83
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+Training...
+Trained!
+Scoring...
+Scored!
+done
+Runtime (without IO) in cpu-seconds: 4.37
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=5.58719
+Primal objective value: pval=5.58719
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.02058
+Value of slack variable (on working set): xi=55.86976
+Value of slack variable (global): xi=55.86976
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.20584
+Runtime in cpu-seconds: 167.04
+Writing learned model...done
+done
+Runtime (without IO) in cpu-seconds: 8.32
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+Reading model...done.
+Reading test examples...done.
+Classifying test examples...(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: -0.00000
+Dual objective value: dval=0.55874
+Primal objective value: pval=0.55874
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.00206
+Value of slack variable (on working set): xi=55.87358
+Value of slack variable (global): xi=55.87358
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.20584
+Runtime in cpu-seconds: 169.09
+Writing learned model...done
+done
+Runtime (without IO) in cpu-seconds: 8.64
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=5.58719
+Primal objective value: pval=5.58719
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.02058
+Value of slack variable (on working set): xi=55.86976
+Value of slack variable (global): xi=55.86976
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.20584
+Runtime in cpu-seconds: 169.18
+Writing learned model...done
+Reading model...done.
+Reading test examples...done.
+Classifying test examples...Reading model...done.
+Reading test examples...done.
+Classifying test examples...(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=5.58719
+Primal objective value: pval=5.58719
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.02058
+Value of slack variable (on working set): xi=55.86976
+Value of slack variable (global): xi=55.86976
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.20584
+Runtime in cpu-seconds: 169.35
+Writing learned model...done
+Runtime (without IO) in cpu-seconds: 2.98
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+done
+Training...
+Trained!
+Scoring...
+Scored!
+Reading model...(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: -0.00000
+Dual objective value: dval=0.55874
+Primal objective value: pval=0.55874
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.00206
+Value of slack variable (on working set): xi=55.87358
+Value of slack variable (global): xi=55.87358
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.20584
+Runtime in cpu-seconds: 170.10
+Writing learned model...done
+done.
+Reading test examples...done.
+Classifying test examples...(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: -0.00000
+Dual objective value: dval=0.55874
+Primal objective value: pval=0.55874
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.00206
+Value of slack variable (on working set): xi=55.87358
+Value of slack variable (global): xi=55.87358
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.20584
+Runtime in cpu-seconds: 169.88
+Writing learned model...Reading model...done
+(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=5.58719
+Primal objective value: pval=5.58719
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.02058
+Value of slack variable (on working set): xi=55.86976
+Value of slack variable (global): xi=55.86976
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.20584
+Runtime in cpu-seconds: 170.20
+Writing learned model...done
+done.
+Reading test examples...done.
+Classifying test examples...(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: -0.00000
+Dual objective value: dval=0.55874
+Primal objective value: pval=0.55874
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.00206
+Value of slack variable (on working set): xi=55.87358
+Value of slack variable (global): xi=55.87358
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.20584
+Runtime in cpu-seconds: 170.05
+Writing learned model...done
+Reading model...done
+Runtime (without IO) in cpu-seconds: 3.55
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+done.
+Reading test examples...Reading model...done.
+Classifying test examples...(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: -0.00000
+Dual objective value: dval=0.55874
+Primal objective value: pval=0.55874
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.00206
+Value of slack variable (on working set): xi=55.87358
+Value of slack variable (global): xi=55.87358
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.20584
+Runtime in cpu-seconds: 171.75
+Writing learned model...Reading model...Training...
+Trained!
+Scoring...
+Scored!
+done
+done.
+Reading test examples...done.
+Classifying test examples...done.
+Reading test examples...done.
+Classifying test examples...(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=5.58719
+Primal objective value: pval=5.58719
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.02058
+Value of slack variable (on working set): xi=55.86976
+Value of slack variable (global): xi=55.86976
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.20584
+Runtime in cpu-seconds: 170.65
+Writing learned model...done
+(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=5.58719
+Primal objective value: pval=5.58719
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.02058
+Value of slack variable (on working set): xi=55.86976
+Value of slack variable (global): xi=55.86976
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.20584
+Runtime in cpu-seconds: 170.53
+Writing learned model...done
+Reading model...done.
+Reading test examples...done.
+Classifying test examples...Reading model...Reading model...done.
+Reading test examples...done.
+Classifying test examples...done.
+Reading test examples...done.
+Classifying test examples...done
+Runtime (without IO) in cpu-seconds: 3.43
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+done
+Runtime (without IO) in cpu-seconds: 3.24
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+done
+Runtime (without IO) in cpu-seconds: 3.32
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+done
+Runtime (without IO) in cpu-seconds: 6.24
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+Training...
+Trained!
+Scoring...
+Scored!
+done
+Runtime (without IO) in cpu-seconds: 3.40
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+done
+Runtime (without IO) in cpu-seconds: 2.74
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+done
+Runtime (without IO) in cpu-seconds: 3.02
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+done
+Runtime (without IO) in cpu-seconds: 5.44
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+done
+Runtime (without IO) in cpu-seconds: 4.96
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: -0.00000
+Dual objective value: dval=5.58736
+Primal objective value: pval=5.58736
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.00941
+Value of slack variable (on working set): xi=55.87311
+Value of slack variable (global): xi=55.87311
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.09413
+Runtime in cpu-seconds: 186.35
+Writing learned model...done
+Reading model...done.
+Reading test examples...done.
+Classifying test examples...(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=0.55874
+Primal objective value: pval=0.55874
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.00094
+Value of slack variable (on working set): xi=55.87391
+Value of slack variable (global): xi=55.87391
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.09413
+Runtime in cpu-seconds: 187.38
+Writing learned model...done
+(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: -0.00000
+Dual objective value: dval=5.58736
+Primal objective value: pval=5.58736
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.00941
+Value of slack variable (on working set): xi=55.87311
+Value of slack variable (global): xi=55.87311
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.09413
+Runtime in cpu-seconds: 187.96
+Writing learned model...done
+Reading model...done.
+Reading test examples...done.
+Classifying test examples...Reading model...(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=0.55874
+Primal objective value: pval=0.55874
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.00094
+Value of slack variable (on working set): xi=55.87391
+Value of slack variable (global): xi=55.87391
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.09413
+Runtime in cpu-seconds: 188.01
+Writing learned model...done
+done.
+Reading test examples...done.
+Classifying test examples...Reading model...done.
+Reading test examples...done.
+Classifying test examples...(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=0.55874
+Primal objective value: pval=0.55874
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.00094
+Value of slack variable (on working set): xi=55.87391
+Value of slack variable (global): xi=55.87391
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.09413
+Runtime in cpu-seconds: 187.97
+Writing learned model...done
+Reading model...done.
+Reading test examples...done.
+Classifying test examples...done
+Runtime (without IO) in cpu-seconds: 3.24
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+done
+Runtime (without IO) in cpu-seconds: 2.87
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+done
+Runtime (without IO) in cpu-seconds: 3.95
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+done
+Runtime (without IO) in cpu-seconds: 5.66
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+done
+Runtime (without IO) in cpu-seconds: 3.00
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=5.58708
+Primal objective value: pval=5.58708
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.02530
+Value of slack variable (on working set): xi=55.86760
+Value of slack variable (global): xi=55.86760
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.25298
+Runtime in cpu-seconds: 223.18
+Writing learned model...done
+(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=0.55874
+Primal objective value: pval=0.55874
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.00253
+Value of slack variable (on working set): xi=55.87336
+Value of slack variable (global): xi=55.87336
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.25298
+Runtime in cpu-seconds: 223.52
+Writing learned model...done
+Reading model...done.
+Reading test examples...done.
+Classifying test examples...Reading model...done.
+Reading test examples...done.
+Classifying test examples...(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=5.58708
+Primal objective value: pval=5.58708
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.02530
+Value of slack variable (on working set): xi=55.86760
+Value of slack variable (global): xi=55.86760
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.25298
+Runtime in cpu-seconds: 223.45
+Writing learned model...done
+Reading model...done.
+Reading test examples...done.
+Classifying test examples...(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=5.58708
+Primal objective value: pval=5.58708
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.02530
+Value of slack variable (on working set): xi=55.86760
+Value of slack variable (global): xi=55.86760
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.25298
+Runtime in cpu-seconds: 223.00
+Writing learned model...done
+Reading model...done.
+Reading test examples...done.
+Classifying test examples...done
+Runtime (without IO) in cpu-seconds: 4.07
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+done
+Runtime (without IO) in cpu-seconds: 3.98
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+done
+Runtime (without IO) in cpu-seconds: 4.05
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+done
+Runtime (without IO) in cpu-seconds: 7.24
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=0.55874
+Primal objective value: pval=0.55874
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.00253
+Value of slack variable (on working set): xi=55.87336
+Value of slack variable (global): xi=55.87336
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.25298
+Runtime in cpu-seconds: 223.63
+Writing learned model...(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=0.55874
+Primal objective value: pval=0.55874
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.00253
+Value of slack variable (on working set): xi=55.87336
+Value of slack variable (global): xi=55.87336
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.25298
+Runtime in cpu-seconds: 224.08
+Writing learned model...done
+done
+Reading model...done.
+Reading test examples...done.
+Classifying test examples...Reading model...done.
+Reading test examples...done.
+Classifying test examples...(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=0.55874
+Primal objective value: pval=0.55874
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.00253
+Value of slack variable (on working set): xi=55.87336
+Value of slack variable (global): xi=55.87336
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.25298
+Runtime in cpu-seconds: 223.70
+Writing learned model...done
+Reading model...done.
+Reading test examples...done.
+Classifying test examples...(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=0.55874
+Primal objective value: pval=0.55874
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.00253
+Value of slack variable (on working set): xi=55.87336
+Value of slack variable (global): xi=55.87336
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.25298
+Runtime in cpu-seconds: 223.79
+Writing learned model...done
+done
+Runtime (without IO) in cpu-seconds: 3.99
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Reading model...Training...
+Trained!
+Scoring...
+Scored!
+done.
+Reading test examples...done.
+Classifying test examples...done
+Runtime (without IO) in cpu-seconds: 3.91
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+done
+Runtime (without IO) in cpu-seconds: 7.14
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+done
+Runtime (without IO) in cpu-seconds: 3.89
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=5.58708
+Primal objective value: pval=5.58708
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.02530
+Value of slack variable (on working set): xi=55.86760
+Value of slack variable (global): xi=55.86760
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.25298
+Runtime in cpu-seconds: 243.16
+Writing learned model...done
+Reading model...done.
+Reading test examples...done.
+Classifying test examples...(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=5.58708
+Primal objective value: pval=5.58708
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.02530
+Value of slack variable (on working set): xi=55.86760
+Value of slack variable (global): xi=55.86760
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.25298
+Runtime in cpu-seconds: 243.65
+Writing learned model...done
+(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=0.55874
+Primal objective value: pval=0.55874
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.00253
+Value of slack variable (on working set): xi=55.87336
+Value of slack variable (global): xi=55.87336
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.25298
+Runtime in cpu-seconds: 243.41
+Writing learned model...done
+Reading model...done.
+Reading test examples...done.
+Classifying test examples...Reading model...done.
+Reading test examples...done.
+Classifying test examples...(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=5.58708
+Primal objective value: pval=5.58708
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.02530
+Value of slack variable (on working set): xi=55.86760
+Value of slack variable (global): xi=55.86760
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.25298
+Runtime in cpu-seconds: 243.52
+Writing learned model...done
+Reading model...done.
+Reading test examples...done.
+Classifying test examples...(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=5.58708
+Primal objective value: pval=5.58708
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.02530
+Value of slack variable (on working set): xi=55.86760
+Value of slack variable (global): xi=55.86760
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.25298
+Runtime in cpu-seconds: 243.49
+Writing learned model...done
+Reading model...(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=0.55874
+Primal objective value: pval=0.55874
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.00253
+Value of slack variable (on working set): xi=55.87336
+Value of slack variable (global): xi=55.87336
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.25298
+Runtime in cpu-seconds: 243.26
+Writing learned model...done
+done.
+Reading test examples...done.
+Classifying test examples...Reading model...(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=5.58708
+Primal objective value: pval=5.58708
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.02530
+Value of slack variable (on working set): xi=55.86760
+Value of slack variable (global): xi=55.86760
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.25298
+Runtime in cpu-seconds: 243.28
+Writing learned model...done.
+Reading test examples...done
+done.
+Classifying test examples...Reading model...done.
+Reading test examples...done.
+Classifying test examples...done
+Runtime (without IO) in cpu-seconds: 3.82
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+done
+Runtime (without IO) in cpu-seconds: 3.89
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+done
+Runtime (without IO) in cpu-seconds: 3.88
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+(NumConst=2, SV=1, CEps=0.0000, QPEps=0.0000)
+Final epsilon on KKT-Conditions: 0.00000
+Upper bound on duality gap: 0.00000
+Dual objective value: dval=0.55874
+Primal objective value: pval=0.55874
+Total number of constraints in final working set: 2 (of 2)
+Number of iterations: 3
+Number of calls to 'find_most_violated_constraint': 1500
+Number of SV: 1 
+Norm of weight vector: |w|=0.00253
+Value of slack variable (on working set): xi=55.87336
+Value of slack variable (global): xi=55.87336
+Norm of longest difference vector: ||Psi(x,y)-Psi(x,ybar)||=0.25298
+Runtime in cpu-seconds: 242.90
+Writing learned model...done
+Reading model...done.
+Reading test examples...done.
+Classifying test examples...done
+Runtime (without IO) in cpu-seconds: 6.92
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+done
+Runtime (without IO) in cpu-seconds: 3.82
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+done
+Runtime (without IO) in cpu-seconds: 3.74
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+done
+Runtime (without IO) in cpu-seconds: 3.60
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!
+done
+Runtime (without IO) in cpu-seconds: 6.63
+Average loss on test set: 0.0000
+Zero/one-error on test set: 0.00% (500 correct, 0 incorrect, 500 total)
+NOTE: The loss reported above is the fraction of swapped pairs averaged over
+      all rankings. The zero/one-error is fraction of perfectly correct
+      rankings!
+Total Num Swappedpairs  :      0
+Avg Swappedpairs Percent:   0.00
+Training...
+Trained!
+Scoring...
+Scored!

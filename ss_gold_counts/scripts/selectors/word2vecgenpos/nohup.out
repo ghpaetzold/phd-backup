@@ -1,0 +1,196 @@
+Traceback (most recent call last):
+  File "Run_BoundaryCV.py", line 55, in <module>
+    bs.trainSelectorWithCrossValidation(train_victor_corpus, positive_range, folds, test_size, k=features)
+  File "/export/data/ghpaetzold/benchmarking/ss_gold_counts/scripts/selectors/word2vecgenpos/lexenstein/selectors.py", line 369, in trainSelectorWithCrossValidation
+    self.ranker.trainRankerWithCrossValidation(victor_corpus, positive_range, folds, test_size, losses=losses, penalties=penalties, alphas=alphas, l1_ratios=l1_ratios, k=k)
+  File "/export/data/ghpaetzold/benchmarking/ss_gold_counts/scripts/selectors/word2vecgenpos/lexenstein/rankers.py", line 677, in trainRankerWithCrossValidation
+    self.feature_selector.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/feature_selection/univariate_selection.py", line 300, in fit
+    self._check_params(X, y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/feature_selection/univariate_selection.py", line 405, in _check_params
+    % self.k)
+ValueError: k should be >=0, <= n_features; got 15.Use k='all' to return all features.
+Traceback (most recent call last):
+  File "Run_BoundaryCV.py", line 55, in <module>
+    bs.trainSelectorWithCrossValidation(train_victor_corpus, positive_range, folds, test_size, k=features)
+  File "/export/data/ghpaetzold/benchmarking/ss_gold_counts/scripts/selectors/word2vecgenpos/lexenstein/selectors.py", line 369, in trainSelectorWithCrossValidation
+    self.ranker.trainRankerWithCrossValidation(victor_corpus, positive_range, folds, test_size, losses=losses, penalties=penalties, alphas=alphas, l1_ratios=l1_ratios, k=k)
+  File "/export/data/ghpaetzold/benchmarking/ss_gold_counts/scripts/selectors/word2vecgenpos/lexenstein/rankers.py", line 677, in trainRankerWithCrossValidation
+    self.feature_selector.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/feature_selection/univariate_selection.py", line 300, in fit
+    self._check_params(X, y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/feature_selection/univariate_selection.py", line 405, in _check_params
+    % self.k)
+ValueError: k should be >=0, <= n_features; got 15.Use k='all' to return all features.
+Traceback (most recent call last):
+  File "Run_BoundaryCV.py", line 55, in <module>
+    bs.trainSelectorWithCrossValidation(train_victor_corpus, positive_range, folds, test_size, k=features)
+  File "/export/data/ghpaetzold/benchmarking/ss_gold_counts/scripts/selectors/word2vecgenpos/lexenstein/selectors.py", line 369, in trainSelectorWithCrossValidation
+    self.ranker.trainRankerWithCrossValidation(victor_corpus, positive_range, folds, test_size, losses=losses, penalties=penalties, alphas=alphas, l1_ratios=l1_ratios, k=k)
+  File "/export/data/ghpaetzold/benchmarking/ss_gold_counts/scripts/selectors/word2vecgenpos/lexenstein/rankers.py", line 677, in trainRankerWithCrossValidation
+    self.feature_selector.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/feature_selection/univariate_selection.py", line 300, in fit
+    self._check_params(X, y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/feature_selection/univariate_selection.py", line 405, in _check_params
+    % self.k)
+ValueError: k should be >=0, <= n_features; got 15.Use k='all' to return all features.
+Traceback (most recent call last):
+  File "Run_BoundaryCV.py", line 55, in <module>
+    bs.trainSelectorWithCrossValidation(train_victor_corpus, positive_range, folds, test_size, k=features)
+  File "/export/data/ghpaetzold/benchmarking/ss_gold_counts/scripts/selectors/word2vecgenpos/lexenstein/selectors.py", line 369, in trainSelectorWithCrossValidation
+    self.ranker.trainRankerWithCrossValidation(victor_corpus, positive_range, folds, test_size, losses=losses, penalties=penalties, alphas=alphas, l1_ratios=l1_ratios, k=k)
+  File "/export/data/ghpaetzold/benchmarking/ss_gold_counts/scripts/selectors/word2vecgenpos/lexenstein/rankers.py", line 677, in trainRankerWithCrossValidation
+    self.feature_selector.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/feature_selection/univariate_selection.py", line 300, in fit
+    self._check_params(X, y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/feature_selection/univariate_selection.py", line 405, in _check_params
+    % self.k)
+ValueError: k should be >=0, <= n_features; got 15.Use k='all' to return all features.
+Traceback (most recent call last):
+  File "Run_BoundaryCV.py", line 55, in <module>
+    bs.trainSelectorWithCrossValidation(train_victor_corpus, positive_range, folds, test_size, k=features)
+  File "/export/data/ghpaetzold/benchmarking/ss_gold_counts/scripts/selectors/word2vecgenpos/lexenstein/selectors.py", line 369, in trainSelectorWithCrossValidation
+    self.ranker.trainRankerWithCrossValidation(victor_corpus, positive_range, folds, test_size, losses=losses, penalties=penalties, alphas=alphas, l1_ratios=l1_ratios, k=k)
+  File "/export/data/ghpaetzold/benchmarking/ss_gold_counts/scripts/selectors/word2vecgenpos/lexenstein/rankers.py", line 677, in trainRankerWithCrossValidation
+    self.feature_selector.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/feature_selection/univariate_selection.py", line 300, in fit
+    self._check_params(X, y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/feature_selection/univariate_selection.py", line 405, in _check_params
+    % self.k)
+ValueError: k should be >=0, <= n_features; got 15.Use k='all' to return all features.
+Traceback (most recent call last):
+  File "Run_BoundaryCV.py", line 55, in <module>
+    bs.trainSelectorWithCrossValidation(train_victor_corpus, positive_range, folds, test_size, k=features)
+  File "/export/data/ghpaetzold/benchmarking/ss_gold_counts/scripts/selectors/word2vecgenpos/lexenstein/selectors.py", line 369, in trainSelectorWithCrossValidation
+    self.ranker.trainRankerWithCrossValidation(victor_corpus, positive_range, folds, test_size, losses=losses, penalties=penalties, alphas=alphas, l1_ratios=l1_ratios, k=k)
+  File "/export/data/ghpaetzold/benchmarking/ss_gold_counts/scripts/selectors/word2vecgenpos/lexenstein/rankers.py", line 677, in trainRankerWithCrossValidation
+    self.feature_selector.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/feature_selection/univariate_selection.py", line 300, in fit
+    self._check_params(X, y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/feature_selection/univariate_selection.py", line 405, in _check_params
+    % self.k)
+ValueError: k should be >=0, <= n_features; got 15.Use k='all' to return all features.
+Traceback (most recent call last):
+  File "Run_BoundaryCV.py", line 55, in <module>
+    bs.trainSelectorWithCrossValidation(train_victor_corpus, positive_range, folds, test_size, k=features)
+  File "/export/data/ghpaetzold/benchmarking/ss_gold_counts/scripts/selectors/word2vecgenpos/lexenstein/selectors.py", line 369, in trainSelectorWithCrossValidation
+    self.ranker.trainRankerWithCrossValidation(victor_corpus, positive_range, folds, test_size, losses=losses, penalties=penalties, alphas=alphas, l1_ratios=l1_ratios, k=k)
+  File "/export/data/ghpaetzold/benchmarking/ss_gold_counts/scripts/selectors/word2vecgenpos/lexenstein/rankers.py", line 677, in trainRankerWithCrossValidation
+    self.feature_selector.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/feature_selection/univariate_selection.py", line 300, in fit
+    self._check_params(X, y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/feature_selection/univariate_selection.py", line 405, in _check_params
+    % self.k)
+ValueError: k should be >=0, <= n_features; got 15.Use k='all' to return all features.
+Traceback (most recent call last):
+  File "Run_BoundaryCV.py", line 55, in <module>
+    bs.trainSelectorWithCrossValidation(train_victor_corpus, positive_range, folds, test_size, k=features)
+  File "/export/data/ghpaetzold/benchmarking/ss_gold_counts/scripts/selectors/word2vecgenpos/lexenstein/selectors.py", line 369, in trainSelectorWithCrossValidation
+    self.ranker.trainRankerWithCrossValidation(victor_corpus, positive_range, folds, test_size, losses=losses, penalties=penalties, alphas=alphas, l1_ratios=l1_ratios, k=k)
+  File "/export/data/ghpaetzold/benchmarking/ss_gold_counts/scripts/selectors/word2vecgenpos/lexenstein/rankers.py", line 677, in trainRankerWithCrossValidation
+    self.feature_selector.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/feature_selection/univariate_selection.py", line 300, in fit
+    self._check_params(X, y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/feature_selection/univariate_selection.py", line 405, in _check_params
+    % self.k)
+ValueError: k should be >=0, <= n_features; got 15.Use k='all' to return all features.
+Traceback (most recent call last):
+  File "Run_BoundaryCV.py", line 55, in <module>
+    bs.trainSelectorWithCrossValidation(train_victor_corpus, positive_range, folds, test_size, k=features)
+  File "/export/data/ghpaetzold/benchmarking/ss_gold_counts/scripts/selectors/word2vecgenpos/lexenstein/selectors.py", line 369, in trainSelectorWithCrossValidation
+    self.ranker.trainRankerWithCrossValidation(victor_corpus, positive_range, folds, test_size, losses=losses, penalties=penalties, alphas=alphas, l1_ratios=l1_ratios, k=k)
+  File "/export/data/ghpaetzold/benchmarking/ss_gold_counts/scripts/selectors/word2vecgenpos/lexenstein/rankers.py", line 677, in trainRankerWithCrossValidation
+    self.feature_selector.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/feature_selection/univariate_selection.py", line 300, in fit
+    self._check_params(X, y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/feature_selection/univariate_selection.py", line 405, in _check_params
+    % self.k)
+ValueError: k should be >=0, <= n_features; got 15.Use k='all' to return all features.
+Traceback (most recent call last):
+  File "Run_BoundaryCV.py", line 55, in <module>
+    bs.trainSelectorWithCrossValidation(train_victor_corpus, positive_range, folds, test_size, k=features)
+  File "/export/data/ghpaetzold/benchmarking/ss_gold_counts/scripts/selectors/word2vecgenpos/lexenstein/selectors.py", line 369, in trainSelectorWithCrossValidation
+    self.ranker.trainRankerWithCrossValidation(victor_corpus, positive_range, folds, test_size, losses=losses, penalties=penalties, alphas=alphas, l1_ratios=l1_ratios, k=k)
+  File "/export/data/ghpaetzold/benchmarking/ss_gold_counts/scripts/selectors/word2vecgenpos/lexenstein/rankers.py", line 677, in trainRankerWithCrossValidation
+    self.feature_selector.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/feature_selection/univariate_selection.py", line 300, in fit
+    self._check_params(X, y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/feature_selection/univariate_selection.py", line 405, in _check_params
+    % self.k)
+ValueError: k should be >=0, <= n_features; got 15.Use k='all' to return all features.
+Traceback (most recent call last):
+  File "Run_BoundaryCV.py", line 55, in <module>
+    bs.trainSelectorWithCrossValidation(train_victor_corpus, positive_range, folds, test_size, k=features)
+  File "/export/data/ghpaetzold/benchmarking/ss_gold_counts/scripts/selectors/word2vecgenpos/lexenstein/selectors.py", line 369, in trainSelectorWithCrossValidation
+    self.ranker.trainRankerWithCrossValidation(victor_corpus, positive_range, folds, test_size, losses=losses, penalties=penalties, alphas=alphas, l1_ratios=l1_ratios, k=k)
+  File "/export/data/ghpaetzold/benchmarking/ss_gold_counts/scripts/selectors/word2vecgenpos/lexenstein/rankers.py", line 677, in trainRankerWithCrossValidation
+    self.feature_selector.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/feature_selection/univariate_selection.py", line 300, in fit
+    self._check_params(X, y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/feature_selection/univariate_selection.py", line 405, in _check_params
+    % self.k)
+ValueError: k should be >=0, <= n_features; got 15.Use k='all' to return all features.
+Traceback (most recent call last):
+  File "Run_BoundaryCV.py", line 55, in <module>
+    bs.trainSelectorWithCrossValidation(train_victor_corpus, positive_range, folds, test_size, k=features)
+  File "/export/data/ghpaetzold/benchmarking/ss_gold_counts/scripts/selectors/word2vecgenpos/lexenstein/selectors.py", line 369, in trainSelectorWithCrossValidation
+    self.ranker.trainRankerWithCrossValidation(victor_corpus, positive_range, folds, test_size, losses=losses, penalties=penalties, alphas=alphas, l1_ratios=l1_ratios, k=k)
+  File "/export/data/ghpaetzold/benchmarking/ss_gold_counts/scripts/selectors/word2vecgenpos/lexenstein/rankers.py", line 677, in trainRankerWithCrossValidation
+    self.feature_selector.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/feature_selection/univariate_selection.py", line 300, in fit
+    self._check_params(X, y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/feature_selection/univariate_selection.py", line 405, in _check_params
+    % self.k)
+ValueError: k should be >=0, <= n_features; got 15.Use k='all' to return all features.
+Traceback (most recent call last):
+  File "Run_BoundaryCV.py", line 55, in <module>
+    bs.trainSelectorWithCrossValidation(train_victor_corpus, positive_range, folds, test_size, k=features)
+  File "/export/data/ghpaetzold/benchmarking/ss_gold_counts/scripts/selectors/word2vecgenpos/lexenstein/selectors.py", line 369, in trainSelectorWithCrossValidation
+    self.ranker.trainRankerWithCrossValidation(victor_corpus, positive_range, folds, test_size, losses=losses, penalties=penalties, alphas=alphas, l1_ratios=l1_ratios, k=k)
+  File "/export/data/ghpaetzold/benchmarking/ss_gold_counts/scripts/selectors/word2vecgenpos/lexenstein/rankers.py", line 677, in trainRankerWithCrossValidation
+    self.feature_selector.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/feature_selection/univariate_selection.py", line 300, in fit
+    self._check_params(X, y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/feature_selection/univariate_selection.py", line 405, in _check_params
+    % self.k)
+ValueError: k should be >=0, <= n_features; got 15.Use k='all' to return all features.
+rm: cannot remove ‘./temp/temp_file_boundary_28.txt’: No such file or directory
+Traceback (most recent call last):
+  File "Run_BoundaryCV.py", line 55, in <module>
+    bs.trainSelectorWithCrossValidation(train_victor_corpus, positive_range, folds, test_size, k=features)
+  File "/export/data/ghpaetzold/benchmarking/ss_gold_counts/scripts/selectors/word2vecgenpos/lexenstein/selectors.py", line 369, in trainSelectorWithCrossValidation
+    self.ranker.trainRankerWithCrossValidation(victor_corpus, positive_range, folds, test_size, losses=losses, penalties=penalties, alphas=alphas, l1_ratios=l1_ratios, k=k)
+  File "/export/data/ghpaetzold/benchmarking/ss_gold_counts/scripts/selectors/word2vecgenpos/lexenstein/rankers.py", line 677, in trainRankerWithCrossValidation
+    self.feature_selector.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/feature_selection/univariate_selection.py", line 300, in fit
+    self._check_params(X, y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/feature_selection/univariate_selection.py", line 405, in _check_params
+    % self.k)
+ValueError: k should be >=0, <= n_features; got 15.Use k='all' to return all features.
+Traceback (most recent call last):
+  File "Run_BoundaryCV.py", line 55, in <module>
+    bs.trainSelectorWithCrossValidation(train_victor_corpus, positive_range, folds, test_size, k=features)
+  File "/export/data/ghpaetzold/benchmarking/ss_gold_counts/scripts/selectors/word2vecgenpos/lexenstein/selectors.py", line 369, in trainSelectorWithCrossValidation
+    self.ranker.trainRankerWithCrossValidation(victor_corpus, positive_range, folds, test_size, losses=losses, penalties=penalties, alphas=alphas, l1_ratios=l1_ratios, k=k)
+  File "/export/data/ghpaetzold/benchmarking/ss_gold_counts/scripts/selectors/word2vecgenpos/lexenstein/rankers.py", line 677, in trainRankerWithCrossValidation
+    self.feature_selector.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/feature_selection/univariate_selection.py", line 300, in fit
+    self._check_params(X, y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/feature_selection/univariate_selection.py", line 405, in _check_params
+    % self.k)
+ValueError: k should be >=0, <= n_features; got 15.Use k='all' to return all features.
+rm: cannot remove ‘./temp/temp_file_boundary_16.txt’: No such file or directory
+rm: cannot remove ‘./temp/temp_file_boundary_12.txt’: No such file or directory
+rm: cannot remove ‘./temp/temp_file_boundary_29.txt’: No such file or directory
+Traceback (most recent call last):
+  File "Run_BoundaryCV.py", line 55, in <module>
+    bs.trainSelectorWithCrossValidation(train_victor_corpus, positive_range, folds, test_size, k=features)
+  File "/export/data/ghpaetzold/benchmarking/ss_gold_counts/scripts/selectors/word2vecgenpos/lexenstein/selectors.py", line 369, in trainSelectorWithCrossValidation
+    self.ranker.trainRankerWithCrossValidation(victor_corpus, positive_range, folds, test_size, losses=losses, penalties=penalties, alphas=alphas, l1_ratios=l1_ratios, k=k)
+  File "/export/data/ghpaetzold/benchmarking/ss_gold_counts/scripts/selectors/word2vecgenpos/lexenstein/rankers.py", line 677, in trainRankerWithCrossValidation
+    self.feature_selector.fit(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/feature_selection/univariate_selection.py", line 300, in fit
+    self._check_params(X, y)
+  File "/usr/local/lib/python2.7/dist-packages/sklearn/feature_selection/univariate_selection.py", line 405, in _check_params
+    % self.k)
+ValueError: k should be >=0, <= n_features; got 15.Use k='all' to return all features.
