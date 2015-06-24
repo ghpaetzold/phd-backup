@@ -1,3 +1,4 @@
+nohup.out
 *.bin
 *.txt
 ./ss_no_training/substitutions/all/substitutions.txt
