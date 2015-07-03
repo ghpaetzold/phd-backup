@@ -23,20 +23,23 @@ flabels.append('hyponyms')
 flabels.append('mindepth')
 flabels.append('maxdepth')
 
+flabels = ['colloc00']
+
 generators = os.listdir('../../substitutions/')
 #generators = ['merriam', 'wordnet', 'yamamoto']
 
 testsets = []
 #testsets.append('substitutions_svmrank_0.125_1_1_0.0001.txt')
 #testsets.append('substitutions_boundaryCV_0.5.txt')
-testsets.append('substitutions_WSD_enhancedlesk.txt')
+#testsets.append('substitutions_WSD_enhancedlesk.txt')
 #testsets.append('substitutions_wordvector_0.125_HasStop_0_True_True_True.txt')
 #testsets.append('substitutions_void.txt')
-#testsets.append('substitutions_biran_0.0_0.8.txt')
-#testsets.append('substitutions_WSD_first.txt')
-#testsets.append('substitutions_WSD_lesk.txt')
-#testsets.append('substitutions_WSD_path.txt')
-#testsets.append('substitutions_WSD_random.txt')
+testsets.append('substitutions_biran_0.0_0.8.txt')
+testsets.append('substitutions_WSD_first.txt')
+testsets.append('substitutions_WSD_lesk.txt')
+testsets.append('substitutions_WSD_path.txt')
+testsets.append('substitutions_WSD_random.txt')
+testsets.append('substitutions_clusters.txt')
 
 for generator in generators:
         print(generator)

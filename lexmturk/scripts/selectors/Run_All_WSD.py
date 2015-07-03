@@ -6,7 +6,8 @@ generators = os.listdir('../../substitutions/')
 #generators = ['merriam']
 #generators = ['wordnet']
 #generators = ['yamamoto']
-#generators = ['all']
+generators = ['all']
+#generators = ['paetzold']
 victor_corpus = '../../corpora/lexmturk_all.txt'
 
 #Run WSD selector:

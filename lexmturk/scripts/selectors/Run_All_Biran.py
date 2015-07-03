@@ -6,7 +6,7 @@ generators = os.listdir('../../substitutions/')
 #generators = ['merriam']
 #generators = ['wordnet']
 #generators = ['yamamoto']
-#generators = ['all']
+generators = ['all', 'paetzold']
 victor_corpus = '../../corpora/lexmturk_all.txt'
 
 #Run Biran selector:

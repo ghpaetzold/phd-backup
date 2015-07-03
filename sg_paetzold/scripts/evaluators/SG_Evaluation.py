@@ -6,9 +6,8 @@ def getData(model):
 	d = model.split('_')
 	amount = d[len(d)-1]
 	ann = 'normal'
-	if 'generalized' in model:
+	if 'annotated' in model:
 		ann = 'annotated'
-
 	size = '500'
 	if '300' in model:
 		size = '300'
@@ -21,7 +20,7 @@ def getData(model):
 folder = '../../substitutions/'
 files = os.listdir(folder)
 
-metrics = ['Potential', 'Precision', 'Recall', 'F1']
+metrics = ['Potential', 'Precision', 'Recall', 'F$1$']
 anns = ['normal', 'annotated']
 amounts = ['5', '10', '15', '20', '25']
 arcs = ['cbow', 'skip']
@@ -58,7 +57,30 @@ for file in files:
 	ge = GeneratorEvaluator()
 	pot, prec, rec, fmean = ge.evaluateGenerator('/export/data/ghpaetzold/benchmarking/lexmturk/corpora/lexmturk_all.txt', orig_s)
 
-	resdata['Potential'][ann][amount][arc][size] = pot
-	resdata['Precision'][ann][amount][arc][size] = prec
-	resdata['Recall'][ann][amount][arc][size] = rec
-	resdata['F1'][ann][amount][arc][size] = fmean
+	resdata['Potential'][ann][amount][arc][size] = "%.3f" % pot
+	resdata['Precision'][ann][amount][arc][size] = "%.3f" % prec
+	resdata['Recall'][ann][amount][arc][size] = "%.3f" % rec
+	resdata['F$1$'][ann][amount][arc][size] = "%.3f" % fmean
+
+counter = 0
+for metric in metrics:
+	for ann in anns:
+		counter += 1
+		table = r'\begin{table}[htpb]' + '\n'
+		if ann=='annotated':
+			table += r'\caption{' + metric + ' measures for word-sense aware embedding models}\n'
+		else:
+			table += r'\caption{' + metric + ' measures for traditional embedding models}\n'
+		table += r'\centering' + '\n'
+		table += r'\label{table:sgpaetzeval' + str(counter) + '}\n'
+		table += r'\begin{tabular}{c|cc|cc}' + '\n'
+		table += r' & \multicolumn{2}{c}{CBOW} & \multicolumn{2}{c}{Skip-Gram} \\' + '\n'
+		table += r'\# & $300$ & $500$ & $300$ & $500$ \\' + '\n' + r'\hline' + '\n'
+		for amount in amounts:
+			table += r'$' + amount + r'$ & $' + str(resdata[metric][ann][amount]['cbow']['300']) + r'$ & '
+			table += r'$' + str(resdata[metric][ann][amount]['cbow']['500']) + r'$ & '
+			table += r'$' + str(resdata[metric][ann][amount]['skip']['300']) + r'$ & '
+			table += r'$' + str(resdata[metric][ann][amount]['skip']['500']) + r'$ \\ ' + '\n'
+		table += r'\end{tabular}' + '\n'
+		table += r'\end{table}' + '\n\n'
+		print(str(table))
