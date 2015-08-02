@@ -3,7 +3,7 @@ import os
 from lexenstein.evaluators import *
 
 methods = os.listdir('../../labels/')
-maxis = set(['svm', 'pa', 'sgd', 'decision', 'shardlow', 'svm_colloc', 'svm_set1', 'svm_set2', 'voting', 'adaboost', 'gradientboost', 'extratrees', 'randomtrees'])
+maxis = set(['svm', 'pa', 'sgd', 'decision', 'shardlow', 'svm_colloc', 'svm_set1', 'svm_set2', 'voting', 'adaboost', 'gradientboost', 'extratrees', 'randomtrees', 'nslackcrf'])
 
 bestscoring = open('best_cwi.txt', 'w')
 

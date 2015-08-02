@@ -1,0 +1,621 @@
+XTR: (2247, 3)
+XTE: (88235, 3)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/downhill_simplex_ssvm.py", line 26, in fit
+    res = fmin(func, x0=w + 1, full_output=1)
+  File "/usr/lib/python2.7/dist-packages/scipy/optimize/optimize.py", line 373, in fmin
+    res = _minimize_neldermead(func, x0, args, callback=callback, **opts)
+  File "/usr/lib/python2.7/dist-packages/scipy/optimize/optimize.py", line 438, in _minimize_neldermead
+    fsim[0] = func(x0)
+  File "/usr/lib/python2.7/dist-packages/scipy/optimize/optimize.py", line 281, in function_wrapper
+    return function(*(wrapper_args + args))
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/downhill_simplex_ssvm.py", line 20, in func
+    x, y, w)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/utils/inference.py", line 65, in find_constraint
+    y_hat = model.loss_augmented_inference(x, y, w, relaxed=relaxed)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/models/unstructured_svm.py", line 123, in loss_augmented_inference
+    return np.sign(np.dot(x, w) - y)
+ValueError: matrices are not aligned
+XTR: (2247, 3)
+XTE: (88235, 3)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/downhill_simplex_ssvm.py", line 25, in fit
+    w = 1e-5 * np.ones(self.model.size_joint_feature)
+AttributeError: 'MultiClassClf' object has no attribute 'size_joint_feature'
+XTR: (2247, 3)
+XTE: (88235, 3)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/subgradient_ssvm.py", line 178, in fit
+    self.model.initialize(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/models/crf.py", line 26, in initialize
+    n_features = X[0][0].shape[1]
+IndexError: tuple index out of range
+XTR: (2247, 3)
+XTE: (88235, 3)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/latent_structured_svm.py", line 78, in fit
+    self.model.initialize(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/latent_structured_svm.py", line 159, in model
+    return self.base_ssvm.model
+AttributeError: 'ChainCRF' object has no attribute 'model'
+XTR: (2247, 3)
+XTE: (88235, 3)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/latent_structured_svm.py", line 78, in fit
+    self.model.initialize(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/latent_structured_svm.py", line 159, in model
+    return self.base_ssvm.model
+AttributeError: 'MultiClassClf' object has no attribute 'model'
+XTR: (2247, 3)
+XTE: (88235, 3)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/latent_structured_svm.py", line 78, in fit
+    self.model.initialize(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/latent_structured_svm.py", line 159, in model
+    return self.base_ssvm.model
+AttributeError: 'GridCRF' object has no attribute 'model'
+XTR: (2247, 3)
+XTE: (88235, 3)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/subgradient_latent_ssvm.py", line 161, in fit
+    h = self.model.latent(x, y, w)
+AttributeError: 'MultiClassClf' object has no attribute 'latent'
+XTR: (2247, 3)
+XTE: (88235, 3)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/downhill_simplex_ssvm.py", line 25, in fit
+    w = 1e-5 * np.ones(self.model.size_joint_feature)
+AttributeError: 'GridCRF' object has no attribute 'size_joint_feature'
+XTR: (2247, 3)
+XTE: (88235, 3)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/structured_perceptron.py", line 100, in fit
+    self.model.initialize(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/models/crf.py", line 26, in initialize
+    n_features = X[0][0].shape[1]
+IndexError: tuple index out of range
+XTR: (2247, 3)
+XTE: (88235, 3)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/latent_structured_svm.py", line 78, in fit
+    self.model.initialize(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/latent_structured_svm.py", line 159, in model
+    return self.base_ssvm.model
+AttributeError: 'BinaryClf' object has no attribute 'model'
+XTR: (2247, 3)
+XTE: (88235, 3)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/latent_structured_svm.py", line 78, in fit
+    self.model.initialize(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/latent_structured_svm.py", line 159, in model
+    return self.base_ssvm.model
+AttributeError: 'GraphCRF' object has no attribute 'model'
+XTR: (2247, 3)
+XTE: (88235, 3)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/subgradient_latent_ssvm.py", line 134, in fit
+    self.model.initialize(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/models/chain_crf.py", line 62, in initialize
+    n_features = X[0].shape[1]
+IndexError: tuple index out of range
+XTR: (2247, 3)
+XTE: (88235, 3)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/structured_perceptron.py", line 100, in fit
+    self.model.initialize(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/models/chain_crf.py", line 62, in initialize
+    n_features = X[0].shape[1]
+IndexError: tuple index out of range
+XTR: (2247, 3)
+XTE: (88235, 3)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/subgradient_latent_ssvm.py", line 134, in fit
+    self.model.initialize(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/models/crf.py", line 26, in initialize
+    n_features = X[0][0].shape[1]
+IndexError: tuple index out of range
+XTR: (2247, 3)
+XTE: (88235, 3)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/downhill_simplex_ssvm.py", line 25, in fit
+    w = 1e-5 * np.ones(self.model.size_joint_feature)
+AttributeError: 'GraphCRF' object has no attribute 'size_joint_feature'
+XTR: (2247, 3)
+XTE: (88235, 3)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/subgradient_ssvm.py", line 178, in fit
+    self.model.initialize(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/models/chain_crf.py", line 62, in initialize
+    n_features = X[0].shape[1]
+IndexError: tuple index out of range
+XTR: (2247, 3)
+XTE: (88235, 3)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/subgradient_ssvm.py", line 199, in fit
+    objective, positive_slacks, w = self._sequential_learning(X, Y, w)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/subgradient_ssvm.py", line 287, in _sequential_learning
+    find_constraint(self.model, x, y, w)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/utils/inference.py", line 75, in find_constraint
+    delta_joint_feature += joint_feature(x, y)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/models/unstructured_svm.py", line 63, in joint_feature
+    raise ValueError("y has to be either -1 or +1, got %s" % repr(y))
+ValueError: y has to be either -1 or +1, got 0
+XTR: (2247, 3)
+XTE: (88235, 3)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/frankwolfe_ssvm.py", line 297, in fit
+    self._frank_wolfe_bc(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/frankwolfe_ssvm.py", line 222, in _frank_wolfe_bc
+    y_hat, delta_joint_feature, slack, loss = find_constraint(self.model, x, y, w)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/utils/inference.py", line 70, in find_constraint
+    delta_joint_feature = -joint_feature(x, y_hat)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/models/unstructured_svm.py", line 63, in joint_feature
+    raise ValueError("y has to be either -1 or +1, got %s" % repr(y))
+ValueError: y has to be either -1 or +1, got 0.0
+XTR: (2247, 3)
+XTE: (88235, 3)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/subgradient_ssvm.py", line 178, in fit
+    self.model.initialize(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/models/crf.py", line 26, in initialize
+    n_features = X[0][0].shape[1]
+IndexError: tuple index out of range
+XTR: (2247, 3)
+XTE: (88235, 3)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/frankwolfe_ssvm.py", line 288, in fit
+    self.model.initialize(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/models/crf.py", line 26, in initialize
+    n_features = X[0][0].shape[1]
+IndexError: tuple index out of range
+XTR: (2247, 3)
+XTE: (88235, 3)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/frankwolfe_ssvm.py", line 288, in fit
+    self.model.initialize(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/models/crf.py", line 26, in initialize
+    n_features = X[0][0].shape[1]
+IndexError: tuple index out of range
+XTR: (2247, 3)
+XTE: (88235, 3)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/subgradient_latent_ssvm.py", line 134, in fit
+    self.model.initialize(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/models/crf.py", line 26, in initialize
+    n_features = X[0][0].shape[1]
+IndexError: tuple index out of range
+XTR: (2247, 3)
+XTE: (88235, 3)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/frankwolfe_ssvm.py", line 288, in fit
+    self.model.initialize(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/models/chain_crf.py", line 62, in initialize
+    n_features = X[0].shape[1]
+IndexError: tuple index out of range
+XTR: (2247, 3)
+XTE: (88235, 3)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/structured_perceptron.py", line 148, in fit
+    self.w += effective_lr * (self.model.joint_feature(x, y) -
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/models/unstructured_svm.py", line 63, in joint_feature
+    raise ValueError("y has to be either -1 or +1, got %s" % repr(y))
+ValueError: y has to be either -1 or +1, got 0
+XTR: (2247, 3)
+XTE: (88235, 3)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/downhill_simplex_ssvm.py", line 25, in fit
+    w = 1e-5 * np.ones(self.model.size_joint_feature)
+AttributeError: 'ChainCRF' object has no attribute 'size_joint_feature'
+XTR: (2247, 3)
+XTE: (88235, 3)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/structured_perceptron.py", line 100, in fit
+    self.model.initialize(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/models/crf.py", line 26, in initialize
+    n_features = X[0][0].shape[1]
+IndexError: tuple index out of range
+XTR: (2247, 3)
+XTE: (88235, 3)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/subgradient_latent_ssvm.py", line 161, in fit
+    h = self.model.latent(x, y, w)
+AttributeError: 'BinaryClf' object has no attribute 'latent'
+XTR: (2247, 3)
+XTE: (88235, 3)
+YTR: (2247,)
+XTR: (2247, 3)
+XTE: (88235, 3)
+YTR: (2247,)
+XTR: (2247, 30)
+XTE: (88235, 30)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/downhill_simplex_ssvm.py", line 25, in fit
+    w = 1e-5 * np.ones(self.model.size_joint_feature)
+AttributeError: 'MultiClassClf' object has no attribute 'size_joint_feature'
+XTR: (2247, 30)
+XTE: (88235, 30)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/subgradient_ssvm.py", line 178, in fit
+    self.model.initialize(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/models/crf.py", line 26, in initialize
+    n_features = X[0][0].shape[1]
+IndexError: tuple index out of range
+XTR: (2247, 30)
+XTE: (88235, 30)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/frankwolfe_ssvm.py", line 288, in fit
+    self.model.initialize(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/models/chain_crf.py", line 62, in initialize
+    n_features = X[0].shape[1]
+IndexError: tuple index out of range
+XTR: (2247, 30)
+XTE: (88235, 30)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/subgradient_ssvm.py", line 178, in fit
+    self.model.initialize(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/models/chain_crf.py", line 62, in initialize
+    n_features = X[0].shape[1]
+IndexError: tuple index out of range
+XTR: (2247, 30)
+XTE: (88235, 30)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/frankwolfe_ssvm.py", line 288, in fit
+    self.model.initialize(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/models/crf.py", line 26, in initialize
+    n_features = X[0][0].shape[1]
+IndexError: tuple index out of range
+XTR: (2247, 30)
+XTE: (88235, 30)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/downhill_simplex_ssvm.py", line 25, in fit
+    w = 1e-5 * np.ones(self.model.size_joint_feature)
+AttributeError: 'GraphCRF' object has no attribute 'size_joint_feature'
+XTR: (2247, 30)
+XTE: (88235, 30)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/latent_structured_svm.py", line 78, in fit
+    self.model.initialize(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/latent_structured_svm.py", line 159, in model
+    return self.base_ssvm.model
+AttributeError: 'ChainCRF' object has no attribute 'model'
+XTR: (2247, 30)
+XTE: (88235, 30)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/subgradient_ssvm.py", line 199, in fit
+    objective, positive_slacks, w = self._sequential_learning(X, Y, w)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/subgradient_ssvm.py", line 287, in _sequential_learning
+    find_constraint(self.model, x, y, w)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/utils/inference.py", line 75, in find_constraint
+    delta_joint_feature += joint_feature(x, y)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/models/unstructured_svm.py", line 63, in joint_feature
+    raise ValueError("y has to be either -1 or +1, got %s" % repr(y))
+ValueError: y has to be either -1 or +1, got 0
+XTR: (2247, 30)
+XTE: (88235, 30)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/structured_perceptron.py", line 100, in fit
+    self.model.initialize(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/models/chain_crf.py", line 62, in initialize
+    n_features = X[0].shape[1]
+IndexError: tuple index out of range
+XTR: (2247, 30)
+XTE: (88235, 30)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/latent_structured_svm.py", line 78, in fit
+    self.model.initialize(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/latent_structured_svm.py", line 159, in model
+    return self.base_ssvm.model
+AttributeError: 'MultiClassClf' object has no attribute 'model'
+XTR: (2247, 30)
+XTE: (88235, 30)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/latent_structured_svm.py", line 78, in fit
+    self.model.initialize(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/latent_structured_svm.py", line 159, in model
+    return self.base_ssvm.model
+AttributeError: 'GraphCRF' object has no attribute 'model'
+XTR: (2247, 30)
+XTE: (88235, 30)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/structured_perceptron.py", line 148, in fit
+    self.w += effective_lr * (self.model.joint_feature(x, y) -
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/models/unstructured_svm.py", line 63, in joint_feature
+    raise ValueError("y has to be either -1 or +1, got %s" % repr(y))
+ValueError: y has to be either -1 or +1, got 0
+XTR: (2247, 30)
+XTE: (88235, 30)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/structured_perceptron.py", line 100, in fit
+    self.model.initialize(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/models/crf.py", line 26, in initialize
+    n_features = X[0][0].shape[1]
+IndexError: tuple index out of range
+XTR: (2247, 30)
+XTE: (88235, 30)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/structured_perceptron.py", line 100, in fit
+    self.model.initialize(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/models/crf.py", line 26, in initialize
+    n_features = X[0][0].shape[1]
+IndexError: tuple index out of range
+XTR: (2247, 30)
+XTE: (88235, 30)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/latent_structured_svm.py", line 78, in fit
+    self.model.initialize(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/latent_structured_svm.py", line 159, in model
+    return self.base_ssvm.model
+AttributeError: 'BinaryClf' object has no attribute 'model'
+XTR: (2247, 30)
+XTE: (88235, 30)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/downhill_simplex_ssvm.py", line 26, in fit
+    res = fmin(func, x0=w + 1, full_output=1)
+  File "/usr/lib/python2.7/dist-packages/scipy/optimize/optimize.py", line 373, in fmin
+    res = _minimize_neldermead(func, x0, args, callback=callback, **opts)
+  File "/usr/lib/python2.7/dist-packages/scipy/optimize/optimize.py", line 438, in _minimize_neldermead
+    fsim[0] = func(x0)
+  File "/usr/lib/python2.7/dist-packages/scipy/optimize/optimize.py", line 281, in function_wrapper
+    return function(*(wrapper_args + args))
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/downhill_simplex_ssvm.py", line 20, in func
+    x, y, w)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/utils/inference.py", line 65, in find_constraint
+    y_hat = model.loss_augmented_inference(x, y, w, relaxed=relaxed)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/models/unstructured_svm.py", line 123, in loss_augmented_inference
+    return np.sign(np.dot(x, w) - y)
+ValueError: matrices are not aligned
+XTR: (2247, 30)
+XTE: (88235, 30)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/subgradient_latent_ssvm.py", line 161, in fit
+    h = self.model.latent(x, y, w)
+AttributeError: 'BinaryClf' object has no attribute 'latent'
+XTR: (2247, 30)
+XTE: (88235, 30)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/subgradient_ssvm.py", line 178, in fit
+    self.model.initialize(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/models/crf.py", line 26, in initialize
+    n_features = X[0][0].shape[1]
+IndexError: tuple index out of range
+XTR: (2247, 30)
+XTE: (88235, 30)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/frankwolfe_ssvm.py", line 297, in fit
+    self._frank_wolfe_bc(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/frankwolfe_ssvm.py", line 222, in _frank_wolfe_bc
+    y_hat, delta_joint_feature, slack, loss = find_constraint(self.model, x, y, w)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/utils/inference.py", line 70, in find_constraint
+    delta_joint_feature = -joint_feature(x, y_hat)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/models/unstructured_svm.py", line 63, in joint_feature
+    raise ValueError("y has to be either -1 or +1, got %s" % repr(y))
+ValueError: y has to be either -1 or +1, got 0.0
+XTR: (2247, 30)
+XTE: (88235, 30)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/subgradient_latent_ssvm.py", line 134, in fit
+    self.model.initialize(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/models/crf.py", line 26, in initialize
+    n_features = X[0][0].shape[1]
+IndexError: tuple index out of range
+XTR: (2247, 30)
+XTE: (88235, 30)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/subgradient_latent_ssvm.py", line 134, in fit
+    self.model.initialize(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/models/chain_crf.py", line 62, in initialize
+    n_features = X[0].shape[1]
+IndexError: tuple index out of range
+XTR: (2247, 30)
+XTE: (88235, 30)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/downhill_simplex_ssvm.py", line 25, in fit
+    w = 1e-5 * np.ones(self.model.size_joint_feature)
+AttributeError: 'ChainCRF' object has no attribute 'size_joint_feature'
+XTR: (2247, 30)
+XTE: (88235, 30)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/downhill_simplex_ssvm.py", line 25, in fit
+    w = 1e-5 * np.ones(self.model.size_joint_feature)
+AttributeError: 'GridCRF' object has no attribute 'size_joint_feature'
+XTR: (2247, 30)
+XTE: (88235, 30)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/latent_structured_svm.py", line 78, in fit
+    self.model.initialize(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/latent_structured_svm.py", line 159, in model
+    return self.base_ssvm.model
+AttributeError: 'GridCRF' object has no attribute 'model'
+XTR: (2247, 30)
+XTE: (88235, 30)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/subgradient_latent_ssvm.py", line 134, in fit
+    self.model.initialize(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/models/crf.py", line 26, in initialize
+    n_features = X[0][0].shape[1]
+IndexError: tuple index out of range
+XTR: (2247, 30)
+XTE: (88235, 30)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/subgradient_latent_ssvm.py", line 161, in fit
+    h = self.model.latent(x, y, w)
+AttributeError: 'MultiClassClf' object has no attribute 'latent'
+XTR: (2247, 30)
+XTE: (88235, 30)
+YTR: (2247,)
+Traceback (most recent call last):
+  File "Run_CRF.py", line 44, in <module>
+    clf.fit(Xtr, Ytr)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/learners/frankwolfe_ssvm.py", line 288, in fit
+    self.model.initialize(X, Y)
+  File "/usr/local/lib/python2.7/dist-packages/pystruct/models/crf.py", line 26, in initialize
+    n_features = X[0][0].shape[1]
+IndexError: tuple index out of range
+XTR: (2247, 30)
+XTE: (88235, 30)
+YTR: (2247,)
+XTR: (2247, 30)
+XTE: (88235, 30)
+YTR: (2247,)
+XTR: (2247, 30)
+XTE: (88235, 30)
+YTR: (2247,)

@@ -3,7 +3,7 @@ import os
 from lexenstein.evaluators import *
 
 generators = os.listdir('../../substitutions/')
-selectors = ['biran', 'void', 'wordvector', 'path', 'random', 'first', 'lesk', 'enhancedlesk', 'boundaryCV', 'svmrank']
+selectors = ['biran', 'void', 'wordvector', 'path', 'random', 'first', 'lesk', 'enhancedlesk', 'boundaryCV', 'svmrank', 'clusters']
 methods = set(os.listdir('../../rankings/'))
 #methods.remove('svm')
 
@@ -18,6 +18,7 @@ namem['wordvector'] = 'Word Vector'
 namem['void'] = 'No Selection'
 namem['boundaryCV'] = 'Boundary'
 namem['svmrank'] = 'SVM Rank'
+namem['clusters'] = 'Clusters'
 
 results = {}
 for generator in generators:

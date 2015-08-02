@@ -1,16 +1,15 @@
 import os
-1_0.005_0.00001
+#1_0.005_0.00001
 #Max file: ranks_modified_huber_l1_0.1_0.05_0.0001.txt
+
+#lphas=[0.0001, 0.001, 0.01], l1_ratios=[0.0, 0.15, 0.25, 0.5, 0.75, 1.0]
 
 #Parameters:
 losses = ['hinge', 'log', 'modified_huber', 'squared_hinge', 'perceptron']
 losses = ['hinge', 'squared_hinge', 'modified_huber']
-penalties = ['l2', 'l1', 'elasticnet']
-alphas = ['0.001', '0.01', '0.1']
-alphas = ['0.1', '0.02', '1']
-l1ratios = ['0.05', '0.10', '0.15']
-l1ratios = ['0.05', '0.01', '0.005']
-epsilons = ['0.0001', '0.001']
+penalties = ['elasticnet']
+alphas = ['0.0001', '0.001', '0.01']
+l1ratios = ['0.0', '0.15', '0.25', '0.5', '0.75', '1.0']
 epsilons = ['0.0001', '0.00001']
 
 trainset = '../../corpora/semeval/semeval_train.txt'

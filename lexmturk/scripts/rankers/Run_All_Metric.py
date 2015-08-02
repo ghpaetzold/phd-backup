@@ -23,7 +23,8 @@ flabels.append('hyponyms')
 flabels.append('mindepth')
 flabels.append('maxdepth')
 
-flabels = ['colloc00']
+flabels = ['colloc00', 'senses', 'synonyms', 'hypernyms', 'hyponyms']
+flabels = ['length']
 
 generators = os.listdir('../../substitutions/')
 #generators = ['merriam', 'wordnet', 'yamamoto']
