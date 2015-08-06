@@ -4,7 +4,7 @@ from lexenstein.evaluators import *
 
 methods = os.listdir('../rankings/')
 
-maxes = set(['svm_original', 'boundary', 'bott', 'biran', 'yamamoto', 'paetzold', 'horn', 'svm_top1', 'svm_top2', 'svm_top2e', 'svm_top3', 'paetzoldCV', 'paetzoldpop', 'paetzoldRawCV'])
+maxes = set(['glavas', 'svm_original', 'bott', 'biran', 'yamamoto', 'paetzold', 'horn', 'svm_top1', 'svm_top2', 'svm_top2e', 'svm_top3', 'paetzoldCV'])
 alls = set(['metrics'])
 
 re = RankerEvaluator()
@@ -51,7 +51,7 @@ for method in methods:
 		print('Max file: ' + maxf)
 		#myt.append([method[0].upper()+method[1:len(method)],'$'+"%.3f" % maxt1+'$', '$'+"%.3f" % maxt2+'$', '$'+"%.3f" % maxt3+'$', '$'+"%.3f" % maxr1+'$', '$'+"%.3f" % maxr2+'$', '$'+"%.3f" % maxr3+'$'])
 		myt.append([method[0].upper()+method[1:len(method)],'$'+"%.3f" % maxt1+'$', '$'+"%.3f" % maxr1+'$', '$'+"%.3f" % maxr2+'$', '$'+"%.3f" % maxr3+'$'])
-	else:
+	elif method in alls:
 		files = os.listdir('../rankings/'+method+'/')
 		for file in sorted(files):
 			prefix = file[6:len(file)-4]
