@@ -2,6 +2,7 @@ import numpy as np
 from sklearn import svm
 from sklearn.linear_model import *
 from sklearn.tree import *
+from sklearn.ensemble import *
 from sklearn.feature_selection import SelectKBest
 from sklearn.feature_selection import f_classif
 from sklearn.preprocessing import normalize
@@ -17,13 +18,12 @@ class MachineLearningIdentifier:
 		self.fe = fe
 		self.classifier = None
 	
-	def calculateTrainingFeatures(self, training_corpus, norm=False):
+	def calculateTrainingFeatures(self, training_corpus):
 		"""
 		Calculate features of a corpus in CWICTOR format.
 	
 		@param training_corpus: Path to a corpus in the CWICTOR format.
 		For more information about the file's format, refer to the LEXenstein Manual.
-		@param norm: Boolean variable that determines whether or not feature values should be normalized.
 		"""
 		self.Xtr = self.fe.calculateFeatures(training_corpus, format='cwictor')
 		self.Ytr = []
@@ -34,23 +34,14 @@ class MachineLearningIdentifier:
 			self.Ytr.append(y)
 		f.close()
 		
-		#Normalize if required:
-		if norm:
-			self.Xtr = normalize(self.Xtr, axis=0)
-			
-	def calculateTestingFeatures(self, testing_corpus, norm=False):
+	def calculateTestingFeatures(self, testing_corpus):
 		"""
 		Calculate testing features of a corpus in VICTOR or CWICTOR format.
 	
 		@param testing_corpus: Path to a corpus in the VICTOR or CWICTOR format.
 		For more information about the file's format, refer to the LEXenstein Manual.
-		@param norm: Boolean variable that determines whether or not feature values should be normalized.
 		"""
 		self.Xte = self.fe.calculateFeatures(testing_corpus, format='cwictor')
-		
-		#Normalize if required:
-		if norm:
-			self.Xte = normalize(self.Xte, axis=0)
 		
 	def selectKBestFeatures(self, k='all'):
 		"""
@@ -93,6 +84,38 @@ class MachineLearningIdentifier:
 		please refer to http://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html
 		"""
 		self.classifier = DecisionTreeClassifier(criterion=criterion, splitter=splitter, max_features=max_features, max_depth=max_depth)
+		self.classifier.fit(self.Xtr, self.Ytr)
+	
+	def trainAdaBoostClassifier(self, n_estimators=50, learning_rate=1, algorithm='SAMME.R'):
+		"""
+		Trains an Ada Boost Classifier. To know more about the meaning of each parameter,
+		please refer to http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostClassifier.html
+		"""
+		self.classifier = AdaBoostClassifier(n_estimators=n_estimators, learning_rate=learning_rate, algorithm=algorithm)
+		self.classifier.fit(self.Xtr, self.Ytr)
+		
+	def trainGradientBoostClassifier(self, loss='deviance', n_estimators=50, learning_rate=1, max_features=None):
+		"""
+		Trains an Gradient Boost Classifier. To know more about the meaning of each parameter,
+		please refer to http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html
+		"""
+		self.classifier = GradientBoostingClassifier(loss=loss, n_estimators=n_estimators, learning_rate=learning_rate, max_features=max_features)
+		self.classifier.fit(self.Xtr, self.Ytr)
+		
+	def trainExtraTreesClassifier(self, n_estimators=50, criterion='gini', max_features=None):
+		"""
+		Trains an Extra Trees Classifier. To know more about the meaning of each parameter,
+		please refer to http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesClassifier.html
+		"""
+		self.classifier = ExtraTreesClassifier(n_estimators=n_estimators, criterion=criterion, max_features=max_features)
+		self.classifier.fit(self.Xtr, self.Ytr)
+		
+	def trainRandomForestClassifier(self, n_estimators=50, criterion='gini', max_features=None):
+		"""
+		Trains an Random Trees Classifier. To know more about the meaning of each parameter,
+		please refer to http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesClassifier.html
+		"""
+		self.classifier = RandomForestClassifier(n_estimators=n_estimators, criterion=criterion, max_features=max_features)
 		self.classifier.fit(self.Xtr, self.Ytr)
 		
 	def identifyComplexWords(self):
@@ -230,7 +253,7 @@ class ThresholdIdentifier:
 		#Find best threshold:
 		best = -1
 		bestIndex = None
-		i = step
+		i = min+step
 		while i<max:
 			score = self.getScore(i)
 			if score>best:

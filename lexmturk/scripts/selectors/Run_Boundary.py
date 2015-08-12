@@ -16,6 +16,18 @@ proportion = float(sys.argv[10].strip())
 out = sys.argv[11].strip()
 doCV = sys.argv[12].strip()
 
+def getTaggedSents(corpus):
+        result = []
+        f = open(corpus)
+        for line in f:
+                tags = []
+                tokens = line.strip().split(' ')
+                for token in tokens:
+                        tokendata = token.strip().split('|||')
+                        tags.append((tokendata[0].strip(), tokendata[1].strip()))
+                result.append(tags)
+        return result
+
 def getSubs(generator):
 	result = {}
 	f = open('../../substitutions/' + generator + '/substitutions.txt')
@@ -27,21 +39,31 @@ def getSubs(generator):
 	f.close()
 	return result
 
+model = '/export/data/ghpaetzold/benchmarking/lexmturk/scripts/evaluators/stanford-postagger-full-2015-04-20/models/english-bidirectional-distsim.tagger'
+tagger = '/export/data/ghpaetzold/benchmarking/lexmturk/scripts/evaluators/stanford-postagger-full-2015-04-20/stanford-postagger.jar'
+java = '/usr/bin/java'
+
 fe = FeatureEstimator()
-fe.addWordVectorSimilarityFeature('../../corpora/word_vectors_all.bin', 'Simplicity')
-#fe.addCollocationalFeature('../../corpora/subtleximdb.5gram.bin.unk.txt', 2, 2, 'Complexity')
+#fe.addWordVectorSimilarityFeature('/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_300_cbow.bin', 'Simplicity')
+#fe.addCollocationalFeature('/export/data/ghpaetzold/subtitlesimdb/corpora/160715/subtleximdb.5gram.unk.bin.txt', 2, 2, 'Complexity')
 fe.addCollocationalFeature('../../corpora/simplewiki.5.bin.txt', 2, 2, 'Complexity')
-fe.addTranslationProbabilityFeature('/export/data/ghpaetzold/LEXenstein/corpora/translation_probabilities_lexmturkall.txt', 'Simplicity')
+#fe.addTranslationProbabilityFeature('/export/data/ghpaetzold/LEXenstein/corpora/transprob_dict_lexmturk.bin', 'Simplicity')
+w2vmodel = '/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_generalized_500_cbow.bin'
+fe.addTaggedWordVectorSimilarityFeature(w2vmodel, model, tagger, java, 'paetzold', 'Simplicity')
 
 br = BoundaryRanker(fe)
 
 subs = getSubs(generator)
 
 bs = BoundarySelector(br)
+tagged_sents = getTaggedSents('../../../ss_userstudy/corpora/tagged_sents_lexmturk_all.txt')
+bs.ranker.fe.temp_resources['tagged_sents'] = tagged_sents
 if doCV!='1':
 	bs.trainSelector(victor_corpus, positive_range, loss, penalty, alpha, l1_ratio, epsilon)
 else:
 	bs.trainSelectorWithCrossValidation(victor_corpus, positive_range, 5, 0.25)
+
+bs.ranker.fe.temp_resources['tagged_sents'] = tagged_sents
 selected = bs.selectCandidates(subs, victor_corpus, temp_file, proportion)
 
 outf = open(out, 'w')

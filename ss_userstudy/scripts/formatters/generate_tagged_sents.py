@@ -1,5 +1,5 @@
 from nltk.tag.stanford import StanfordPOSTagger
-import os, sys
+import os, sys, codecs
 
 input = sys.argv[1]
 output = sys.argv[2]

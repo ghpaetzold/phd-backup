@@ -15,7 +15,7 @@ generators = os.listdir('../../substitutions/')
 #generators = ['wordnet']
 #generators = ['yamamoto']
 #generators = ['all']
-victor_corpus = '../../corpora/lexmturk_all.txt'
+victor_corpus = '../../corpora/lexmturk_all_targetfirst.txt'
 
 #Run SVMRank selector:
 c = 0

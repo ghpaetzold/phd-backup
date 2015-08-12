@@ -1,0 +1,280 @@
+Traceback (most recent call last):
+  File "Run_WordVectorTreebank.py", line 270, in <module>
+    wordvecselector = WordVectorSelector('/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin')
+  File "Run_WordVectorTreebank.py", line 96, in __init__
+    self.model = gensim.models.word2vec.Word2Vec.load_word2vec_format(vector_model, binary=True)
+  File "/usr/local/lib/python2.7/dist-packages/gensim-0.11.1_1-py2.7-linux-x86_64.egg/gensim/models/word2vec.py", line 581, in load_word2vec_format
+    with utils.smart_open(fname) as fin:
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 89, in smart_open
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 301, in file_smart_open
+IOError: [Errno 2] No such file or directory: '/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin'
+Traceback (most recent call last):
+  File "Run_WordVectorTreebank.py", line 270, in <module>
+    wordvecselector = WordVectorSelector('/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin')
+  File "Run_WordVectorTreebank.py", line 96, in __init__
+    self.model = gensim.models.word2vec.Word2Vec.load_word2vec_format(vector_model, binary=True)
+  File "/usr/local/lib/python2.7/dist-packages/gensim-0.11.1_1-py2.7-linux-x86_64.egg/gensim/models/word2vec.py", line 581, in load_word2vec_format
+    with utils.smart_open(fname) as fin:
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 89, in smart_open
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 301, in file_smart_open
+IOError: [Errno 2] No such file or directory: '/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin'
+Traceback (most recent call last):
+  File "Run_WordVectorTreebank.py", line 270, in <module>
+    wordvecselector = WordVectorSelector('/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin')
+  File "Run_WordVectorTreebank.py", line 96, in __init__
+    self.model = gensim.models.word2vec.Word2Vec.load_word2vec_format(vector_model, binary=True)
+  File "/usr/local/lib/python2.7/dist-packages/gensim-0.11.1_1-py2.7-linux-x86_64.egg/gensim/models/word2vec.py", line 581, in load_word2vec_format
+    with utils.smart_open(fname) as fin:
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 89, in smart_open
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 301, in file_smart_open
+IOError: [Errno 2] No such file or directory: '/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin'
+Traceback (most recent call last):
+  File "Run_WordVectorTreebank.py", line 270, in <module>
+    wordvecselector = WordVectorSelector('/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin')
+  File "Run_WordVectorTreebank.py", line 96, in __init__
+    self.model = gensim.models.word2vec.Word2Vec.load_word2vec_format(vector_model, binary=True)
+  File "/usr/local/lib/python2.7/dist-packages/gensim-0.11.1_1-py2.7-linux-x86_64.egg/gensim/models/word2vec.py", line 581, in load_word2vec_format
+    with utils.smart_open(fname) as fin:
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 89, in smart_open
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 301, in file_smart_open
+IOError: [Errno 2] No such file or directory: '/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin'
+Traceback (most recent call last):
+  File "Run_WordVectorTreebank.py", line 270, in <module>
+    wordvecselector = WordVectorSelector('/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin')
+  File "Run_WordVectorTreebank.py", line 96, in __init__
+    self.model = gensim.models.word2vec.Word2Vec.load_word2vec_format(vector_model, binary=True)
+  File "/usr/local/lib/python2.7/dist-packages/gensim-0.11.1_1-py2.7-linux-x86_64.egg/gensim/models/word2vec.py", line 581, in load_word2vec_format
+Traceback (most recent call last):
+  File "Run_WordVectorTreebank.py", line 270, in <module>
+    wordvecselector = WordVectorSelector('/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin')
+  File "Run_WordVectorTreebank.py", line 96, in __init__
+    self.model = gensim.models.word2vec.Word2Vec.load_word2vec_format(vector_model, binary=True)
+    with utils.smart_open(fname) as fin:
+  File "/usr/local/lib/python2.7/dist-packages/gensim-0.11.1_1-py2.7-linux-x86_64.egg/gensim/models/word2vec.py", line 581, in load_word2vec_format
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 89, in smart_open
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 301, in file_smart_open
+    with utils.smart_open(fname) as fin:
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 89, in smart_open
+IOError:   File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 301, in file_smart_open
+[Errno 2] No such file or directory: '/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin'
+IOError: [Errno 2] No such file or directory: '/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin'
+Traceback (most recent call last):
+  File "Run_WordVectorTreebank.py", line 270, in <module>
+    wordvecselector = WordVectorSelector('/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin')
+  File "Run_WordVectorTreebank.py", line 96, in __init__
+    self.model = gensim.models.word2vec.Word2Vec.load_word2vec_format(vector_model, binary=True)
+  File "/usr/local/lib/python2.7/dist-packages/gensim-0.11.1_1-py2.7-linux-x86_64.egg/gensim/models/word2vec.py", line 581, in load_word2vec_format
+    with utils.smart_open(fname) as fin:
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 89, in smart_open
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 301, in file_smart_open
+IOError: [Errno 2] No such file or directory: '/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin'
+Traceback (most recent call last):
+  File "Run_WordVectorTreebank.py", line 270, in <module>
+    wordvecselector = WordVectorSelector('/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin')
+  File "Run_WordVectorTreebank.py", line 96, in __init__
+    self.model = gensim.models.word2vec.Word2Vec.load_word2vec_format(vector_model, binary=True)
+  File "/usr/local/lib/python2.7/dist-packages/gensim-0.11.1_1-py2.7-linux-x86_64.egg/gensim/models/word2vec.py", line 581, in load_word2vec_format
+    with utils.smart_open(fname) as fin:
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 89, in smart_open
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 301, in file_smart_open
+IOError: [Errno 2] No such file or directory: '/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin'
+Traceback (most recent call last):
+  File "Run_WordVectorTreebank.py", line 270, in <module>
+    wordvecselector = WordVectorSelector('/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin')
+  File "Run_WordVectorTreebank.py", line 96, in __init__
+    self.model = gensim.models.word2vec.Word2Vec.load_word2vec_format(vector_model, binary=True)
+  File "/usr/local/lib/python2.7/dist-packages/gensim-0.11.1_1-py2.7-linux-x86_64.egg/gensim/models/word2vec.py", line 581, in load_word2vec_format
+    with utils.smart_open(fname) as fin:
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 89, in smart_open
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 301, in file_smart_open
+IOError: [Errno 2] No such file or directory: '/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin'
+Traceback (most recent call last):
+  File "Run_WordVectorTreebank.py", line 270, in <module>
+    wordvecselector = WordVectorSelector('/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin')
+  File "Run_WordVectorTreebank.py", line 96, in __init__
+    self.model = gensim.models.word2vec.Word2Vec.load_word2vec_format(vector_model, binary=True)
+  File "/usr/local/lib/python2.7/dist-packages/gensim-0.11.1_1-py2.7-linux-x86_64.egg/gensim/models/word2vec.py", line 581, in load_word2vec_format
+    with utils.smart_open(fname) as fin:
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 89, in smart_open
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 301, in file_smart_open
+IOError: [Errno 2] No such file or directory: '/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin'
+Traceback (most recent call last):
+  File "Run_WordVectorTreebank.py", line 270, in <module>
+    wordvecselector = WordVectorSelector('/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin')
+  File "Run_WordVectorTreebank.py", line 96, in __init__
+    self.model = gensim.models.word2vec.Word2Vec.load_word2vec_format(vector_model, binary=True)
+  File "/usr/local/lib/python2.7/dist-packages/gensim-0.11.1_1-py2.7-linux-x86_64.egg/gensim/models/word2vec.py", line 581, in load_word2vec_format
+    with utils.smart_open(fname) as fin:
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 89, in smart_open
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 301, in file_smart_open
+IOError: [Errno 2] No such file or directory: '/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin'
+Traceback (most recent call last):
+  File "Run_WordVectorTreebank.py", line 270, in <module>
+    wordvecselector = WordVectorSelector('/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin')
+  File "Run_WordVectorTreebank.py", line 96, in __init__
+    self.model = gensim.models.word2vec.Word2Vec.load_word2vec_format(vector_model, binary=True)
+  File "/usr/local/lib/python2.7/dist-packages/gensim-0.11.1_1-py2.7-linux-x86_64.egg/gensim/models/word2vec.py", line 581, in load_word2vec_format
+    with utils.smart_open(fname) as fin:
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 89, in smart_open
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 301, in file_smart_open
+IOError: [Errno 2] No such file or directory: '/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin'
+Traceback (most recent call last):
+  File "Run_WordVectorTreebank.py", line 270, in <module>
+    wordvecselector = WordVectorSelector('/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin')
+  File "Run_WordVectorTreebank.py", line 96, in __init__
+    self.model = gensim.models.word2vec.Word2Vec.load_word2vec_format(vector_model, binary=True)
+  File "/usr/local/lib/python2.7/dist-packages/gensim-0.11.1_1-py2.7-linux-x86_64.egg/gensim/models/word2vec.py", line 581, in load_word2vec_format
+    with utils.smart_open(fname) as fin:
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 89, in smart_open
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 301, in file_smart_open
+IOError: [Errno 2] No such file or directory: '/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin'
+Traceback (most recent call last):
+  File "Run_WordVectorTreebank.py", line 270, in <module>
+    wordvecselector = WordVectorSelector('/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin')
+  File "Run_WordVectorTreebank.py", line 96, in __init__
+    self.model = gensim.models.word2vec.Word2Vec.load_word2vec_format(vector_model, binary=True)
+  File "/usr/local/lib/python2.7/dist-packages/gensim-0.11.1_1-py2.7-linux-x86_64.egg/gensim/models/word2vec.py", line 581, in load_word2vec_format
+    with utils.smart_open(fname) as fin:
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 89, in smart_open
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 301, in file_smart_open
+IOError: [Errno 2] No such file or directory: '/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin'
+Traceback (most recent call last):
+  File "Run_WordVectorTreebank.py", line 270, in <module>
+    wordvecselector = WordVectorSelector('/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin')
+  File "Run_WordVectorTreebank.py", line 96, in __init__
+    self.model = gensim.models.word2vec.Word2Vec.load_word2vec_format(vector_model, binary=True)
+  File "/usr/local/lib/python2.7/dist-packages/gensim-0.11.1_1-py2.7-linux-x86_64.egg/gensim/models/word2vec.py", line 581, in load_word2vec_format
+    with utils.smart_open(fname) as fin:
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 89, in smart_open
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 301, in file_smart_open
+IOError: [Errno 2] No such file or directory: '/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin'
+Traceback (most recent call last):
+  File "Run_WordVectorTreebank.py", line 270, in <module>
+    wordvecselector = WordVectorSelector('/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin')
+  File "Run_WordVectorTreebank.py", line 96, in __init__
+    self.model = gensim.models.word2vec.Word2Vec.load_word2vec_format(vector_model, binary=True)
+  File "/usr/local/lib/python2.7/dist-packages/gensim-0.11.1_1-py2.7-linux-x86_64.egg/gensim/models/word2vec.py", line 581, in load_word2vec_format
+    with utils.smart_open(fname) as fin:
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 89, in smart_open
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 301, in file_smart_open
+IOError: [Errno 2] No such file or directory: '/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin'
+Traceback (most recent call last):
+  File "Run_WordVectorTreebank.py", line 270, in <module>
+    wordvecselector = WordVectorSelector('/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin')
+  File "Run_WordVectorTreebank.py", line 96, in __init__
+    self.model = gensim.models.word2vec.Word2Vec.load_word2vec_format(vector_model, binary=True)
+  File "/usr/local/lib/python2.7/dist-packages/gensim-0.11.1_1-py2.7-linux-x86_64.egg/gensim/models/word2vec.py", line 581, in load_word2vec_format
+    with utils.smart_open(fname) as fin:
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 89, in smart_open
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 301, in file_smart_open
+IOError: [Errno 2] No such file or directory: '/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin'
+Traceback (most recent call last):
+  File "Run_WordVectorTreebank.py", line 270, in <module>
+    wordvecselector = WordVectorSelector('/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin')
+  File "Run_WordVectorTreebank.py", line 96, in __init__
+    self.model = gensim.models.word2vec.Word2Vec.load_word2vec_format(vector_model, binary=True)
+  File "/usr/local/lib/python2.7/dist-packages/gensim-0.11.1_1-py2.7-linux-x86_64.egg/gensim/models/word2vec.py", line 581, in load_word2vec_format
+    with utils.smart_open(fname) as fin:
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 89, in smart_open
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 301, in file_smart_open
+IOError: [Errno 2] No such file or directory: '/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin'
+Traceback (most recent call last):
+  File "Run_WordVectorTreebank.py", line 270, in <module>
+    wordvecselector = WordVectorSelector('/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin')
+  File "Run_WordVectorTreebank.py", line 96, in __init__
+    self.model = gensim.models.word2vec.Word2Vec.load_word2vec_format(vector_model, binary=True)
+  File "/usr/local/lib/python2.7/dist-packages/gensim-0.11.1_1-py2.7-linux-x86_64.egg/gensim/models/word2vec.py", line 581, in load_word2vec_format
+    with utils.smart_open(fname) as fin:
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 89, in smart_open
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 301, in file_smart_open
+IOError: [Errno 2] No such file or directory: '/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin'
+Traceback (most recent call last):
+  File "Run_WordVectorTreebank.py", line 270, in <module>
+    wordvecselector = WordVectorSelector('/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin')
+  File "Run_WordVectorTreebank.py", line 96, in __init__
+    self.model = gensim.models.word2vec.Word2Vec.load_word2vec_format(vector_model, binary=True)
+  File "/usr/local/lib/python2.7/dist-packages/gensim-0.11.1_1-py2.7-linux-x86_64.egg/gensim/models/word2vec.py", line 581, in load_word2vec_format
+    with utils.smart_open(fname) as fin:
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 89, in smart_open
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 301, in file_smart_open
+IOError: [Errno 2] No such file or directory: '/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin'
+Traceback (most recent call last):
+  File "Run_WordVectorTreebank.py", line 270, in <module>
+    wordvecselector = WordVectorSelector('/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin')
+  File "Run_WordVectorTreebank.py", line 96, in __init__
+    self.model = gensim.models.word2vec.Word2Vec.load_word2vec_format(vector_model, binary=True)
+  File "/usr/local/lib/python2.7/dist-packages/gensim-0.11.1_1-py2.7-linux-x86_64.egg/gensim/models/word2vec.py", line 581, in load_word2vec_format
+    with utils.smart_open(fname) as fin:
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 89, in smart_open
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 301, in file_smart_open
+IOError: [Errno 2] No such file or directory: '/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin'
+Traceback (most recent call last):
+  File "Run_WordVectorTreebank.py", line 270, in <module>
+    wordvecselector = WordVectorSelector('/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin')
+  File "Run_WordVectorTreebank.py", line 96, in __init__
+    self.model = gensim.models.word2vec.Word2Vec.load_word2vec_format(vector_model, binary=True)
+  File "/usr/local/lib/python2.7/dist-packages/gensim-0.11.1_1-py2.7-linux-x86_64.egg/gensim/models/word2vec.py", line 581, in load_word2vec_format
+    with utils.smart_open(fname) as fin:
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 89, in smart_open
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 301, in file_smart_open
+IOError: [Errno 2] No such file or directory: '/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin'
+Traceback (most recent call last):
+  File "Run_WordVectorTreebank.py", line 270, in <module>
+    wordvecselector = WordVectorSelector('/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin')
+  File "Run_WordVectorTreebank.py", line 96, in __init__
+    self.model = gensim.models.word2vec.Word2Vec.load_word2vec_format(vector_model, binary=True)
+  File "/usr/local/lib/python2.7/dist-packages/gensim-0.11.1_1-py2.7-linux-x86_64.egg/gensim/models/word2vec.py", line 581, in load_word2vec_format
+    with utils.smart_open(fname) as fin:
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 89, in smart_open
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 301, in file_smart_open
+IOError: [Errno 2] No such file or directory: '/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin'
+Traceback (most recent call last):
+  File "Run_WordVectorTreebank.py", line 270, in <module>
+    wordvecselector = WordVectorSelector('/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin')
+  File "Run_WordVectorTreebank.py", line 96, in __init__
+    self.model = gensim.models.word2vec.Word2Vec.load_word2vec_format(vector_model, binary=True)
+  File "/usr/local/lib/python2.7/dist-packages/gensim-0.11.1_1-py2.7-linux-x86_64.egg/gensim/models/word2vec.py", line 581, in load_word2vec_format
+    with utils.smart_open(fname) as fin:
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 89, in smart_open
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 301, in file_smart_open
+IOError: [Errno 2] No such file or directory: '/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin'
+Traceback (most recent call last):
+  File "Run_WordVectorTreebank.py", line 270, in <module>
+    wordvecselector = WordVectorSelector('/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin')
+  File "Run_WordVectorTreebank.py", line 96, in __init__
+    self.model = gensim.models.word2vec.Word2Vec.load_word2vec_format(vector_model, binary=True)
+  File "/usr/local/lib/python2.7/dist-packages/gensim-0.11.1_1-py2.7-linux-x86_64.egg/gensim/models/word2vec.py", line 581, in load_word2vec_format
+    with utils.smart_open(fname) as fin:
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 89, in smart_open
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 301, in file_smart_open
+IOError: [Errno 2] No such file or directory: '/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin'
+Traceback (most recent call last):
+  File "Run_WordVectorTreebank.py", line 270, in <module>
+    wordvecselector = WordVectorSelector('/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin')
+  File "Run_WordVectorTreebank.py", line 96, in __init__
+    self.model = gensim.models.word2vec.Word2Vec.load_word2vec_format(vector_model, binary=True)
+  File "/usr/local/lib/python2.7/dist-packages/gensim-0.11.1_1-py2.7-linux-x86_64.egg/gensim/models/word2vec.py", line 581, in load_word2vec_format
+    with utils.smart_open(fname) as fin:
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 89, in smart_open
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 301, in file_smart_open
+IOError: [Errno 2] No such file or directory: '/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin'
+Traceback (most recent call last):
+  File "Run_WordVectorTreebank.py", line 270, in <module>
+    wordvecselector = WordVectorSelector('/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin')
+  File "Run_WordVectorTreebank.py", line 96, in __init__
+    self.model = gensim.models.word2vec.Word2Vec.load_word2vec_format(vector_model, binary=True)
+  File "/usr/local/lib/python2.7/dist-packages/gensim-0.11.1_1-py2.7-linux-x86_64.egg/gensim/models/word2vec.py", line 581, in load_word2vec_format
+    with utils.smart_open(fname) as fin:
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 89, in smart_open
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 301, in file_smart_open
+IOError: [Errno 2] No such file or directory: '/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin'
+Traceback (most recent call last):
+  File "Run_WordVectorTreebank.py", line 270, in <module>
+    wordvecselector = WordVectorSelector('/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin')
+  File "Run_WordVectorTreebank.py", line 96, in __init__
+    self.model = gensim.models.word2vec.Word2Vec.load_word2vec_format(vector_model, binary=True)
+  File "/usr/local/lib/python2.7/dist-packages/gensim-0.11.1_1-py2.7-linux-x86_64.egg/gensim/models/word2vec.py", line 581, in load_word2vec_format
+    with utils.smart_open(fname) as fin:
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 89, in smart_open
+  File "build/bdist.linux-x86_64/egg/smart_open/smart_open_lib.py", line 301, in file_smart_open
+IOError: [Errno 2] No such file or directory: '/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_treebank_500_cbow.bin'

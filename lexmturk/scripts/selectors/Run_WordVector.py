@@ -32,7 +32,7 @@ def getSubs(generator):
 
 subs = getSubs(generator)
 
-wordvecselector = WordVectorSelector('../../corpora/word_vectors_all.bin')
+wordvecselector = WordVectorSelector('/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_500_cbow.bin')
 selected = wordvecselector.selectCandidates(subs, victor_corpus, proportion=proportion, stop_words_file=stop_words_file, window=window, onlyInformative=onlyInformative, keepTarget=keepTarget, onePerWord=onePerWord)
 
 outf = open(out, 'w')

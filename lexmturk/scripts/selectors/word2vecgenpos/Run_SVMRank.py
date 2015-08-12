@@ -31,7 +31,7 @@ model = '/export/data/ghpaetzold/benchmarking/lexmturk/scripts/evaluators/stanfo
 tagger = '/export/data/ghpaetzold/benchmarking/lexmturk/scripts/evaluators/stanford-postagger-full-2015-04-20/stanford-postagger.jar'
 java = '/usr/bin/java'
 fe = FeatureEstimator()
-fe.addWordVectorSimilarityFeature('/export/data/ghpaetzold/word2vecvectors/corpora/word_vectors_all_generalized.bin', java, model, tagger, 'Simplicity')
+fe.addWordVectorSimilarityFeature('/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_generalized_500_cbow.bin', java, model, tagger, 'Simplicity')
 #fe.addCollocationalFeature('../../corpora/subtleximdb.5gram.bin.unk.txt', 2, 2, 'Complexity')
 fe.addCollocationalFeature('../../../corpora/simplewiki.5.bin.txt', 2, 2, 'Complexity')
 fe.addTranslationProbabilityFeature('/export/data/ghpaetzold/LEXenstein/corpora/translation_probabilities_lexmturkall.txt', 'Simplicity')

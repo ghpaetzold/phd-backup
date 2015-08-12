@@ -72,7 +72,7 @@ class GeneratorEvaluator:
 			target = data[1].strip()
 			items = data[3:len(data)]
 			candidates = set([item.strip().split(':')[1].strip() for item in items])
-			if target in substitutions.keys():
+			if target in substitutions:
 				overlap = candidates.intersection(set(substitutions[target]))
 				precisionc += len(overlap)
 				if len(overlap)>0:
@@ -126,8 +126,6 @@ class SelectorEvaluator:
 			candidates = set([item.strip().split(':')[1].strip() for item in items])
 			
 			selected = substitutions[index]
-#			if len(candidates)!=len(selected):
-#				print('Difference: c:' + str(len(candidates)) + ', s:' + str(len(selected)))
 			if len(selected)>0:
 				overlap = candidates.intersection(set(selected))
 				precisionc += len(overlap)
@@ -146,9 +144,6 @@ class SelectorEvaluator:
 			fmean = 0.0
 		else:
 			fmean = 2*(precision*recall)/(precision+recall)
-
-		if precision!=recall:
-			print('Problem! Precisiont: ' + str(precisiont) + ', Recallt: ' + str(recallt)) 
 			
 		#Return measures:
 		return potential, precision, recall, fmean

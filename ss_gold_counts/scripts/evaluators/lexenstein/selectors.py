@@ -2,6 +2,7 @@ import pywsd
 import gensim
 from scipy.spatial.distance import cosine
 import nltk
+from nltk.tag.stanford import StanfordPOSTagger
 import numpy as np
 import os
 
@@ -72,8 +73,12 @@ class SVMRankSelector:
 		"""
 		Selects which candidates can replace the target complex words in each instance of a VICTOR corpus.
 	
-		@param substitutions: A dictionary linking complex words to a set of candidate substitutions
+		@param substitutions: Candidate substitutions to be filtered.
+		It can be in two formats:
+		A dictionary produced by a Substitution Generator linking complex words to a set of candidate substitutions.
 		Example: substitutions['perched'] = {'sat', 'roosted'}
+		A list of candidate substitutions selected for the "victor_corpus" dataset by a Substitution Selector.
+		Example: [['sat', 'roosted'], ['easy', 'uncomplicated']]
 		@param victor_corpus: Path to a corpus in the VICTOR format.
 		For more information about the file's format, refer to the LEXenstein Manual.
 		@param features_file: File in which to save the testing features file.
@@ -137,7 +142,7 @@ class SVMRankSelector:
 			word = word.strip()
 			score = scores[index]
 			index += 1
-			if id in ranking_data.keys():
+			if id in ranking_data:
 				ranking_data[id][word] = score
 			else:
 				ranking_data[id] = {word:score}
@@ -149,7 +154,7 @@ class SVMRankSelector:
 		for line in f:
 			id += 1
 			candidates = []
-			if id in ranking_data.keys():
+			if id in ranking_data:
 				candidates = ranking_data[id].keys()
 				candidates = sorted(candidates, key=ranking_data[id].__getitem__, reverse=False)
 			result.append(candidates)
@@ -181,6 +186,130 @@ class SVMRankSelector:
 		f.close()
 		o.close()
 
+class SVMBoundarySelector:
+
+	def __init__(self, svm_boundary_ranker):
+		"""
+		Creates an instance of the SVMBoundarySelector class.
+	
+		@param svm_boundary_ranker: An instance of the BoundaryRanker class.
+		"""
+		self.ranker = svm_boundary_ranker
+		
+	def trainSelector(self, victor_corpus, positive_range, C, kernel, degree, gamma, coef0, k='all'):
+		"""
+		Trains a Boundary Ranker according to the parameters provided.
+	
+		@param victor_corpus: Path to a training corpus in VICTOR format.
+		For more information about the file's format, refer to the LEXenstein Manual.
+		@param positive_range: Maximum rank to which label 1 is assigned in the binary classification setup.
+		Recommended value: 1.
+		@param C: Penalty parameter.
+		Recommended values: 0.1, 1, 10.
+		@param kernel: Kernel function to be used.
+		Supported values: 'linear', 'poly', 'rbf', 'sigmoid'.
+		@param degree: Degree of the polynomial kernel.
+		Recommended values: 2, 3.
+		@param gamma: Kernel coefficient.
+		Recommended values: 0.01, 0.1, 1.
+		@param coef0: Independent term value.
+		Recommended values: 0, 1.
+		@param k: Number of best features to be selected through univariate feature selection.
+		If k='all', then no feature selection is performed.
+		"""
+		self.ranker.trainRanker(victor_corpus, positive_range, C, kernel, degree, gamma, coef0, k=k)
+	
+	def trainSelectorWithCrossValidation(self, victor_corpus, positive_range, folds, test_size, Cs=[0.1, 1, 10], kernels=['linear', 'rbf', 'poly', 'sigmoid'], degrees=[2], gammas=[0.01, 0.1, 1], coef0s=[0, 1], k='all'):
+		"""
+		Trains a Boundary Selector while maximizing hyper-parameters through cross-validation.
+		It uses the TRank-at-1 as an optimization metric.
+	
+		@param victor_corpus: Path to a training corpus in VICTOR format.
+		For more information about the file's format, refer to the LEXenstein Manual.
+		@param positive_range: Maximum rank to which label 1 is assigned in the binary classification setup.
+		Recommended value: 1.
+		@param folds: Number of folds to be used in cross-validation.
+		@param test_size: Percentage of the dataset to be used in testing.
+		Recommended values: 0.2, 0.25, 0.33
+		@param Cs: Penalty parameters.
+		Recommended values: 0.1, 1, 10.
+		@param kernels: Kernel functions to be used.
+		Supported values: 'linear', 'poly', 'rbf', 'sigmoid'.
+		@param degrees: Degrees of the polynomial kernel.
+		Recommended values: 2, 3.
+		@param gammas: Kernel coefficients.
+		Recommended values: 0.01, 0.1, 1.
+		@param coef0s: Independent term values.
+		Recommended values: 0, 1.
+		@param k: Number of best features to be selected through univariate feature selection.
+		If k='all', then no feature selection is performed.
+		"""
+		self.ranker.trainRankerWithCrossValidation(victor_corpus, positive_range, folds, test_size, Cs=Cs, kernels=kernels, degrees=degrees, gammas=gammas, coef0s=coef0s, k=k)
+		
+	def selectCandidates(self, substitutions, victor_corpus, temp_file, proportion):
+		"""
+		Selects which candidates can replace the target complex words in each instance of a VICTOR corpus.
+	
+		@param substitutions: Candidate substitutions to be filtered.
+		It can be in two formats:
+		A dictionary produced by a Substitution Generator linking complex words to a set of candidate substitutions.
+		Example: substitutions['perched'] = {'sat', 'roosted'}
+		A list of candidate substitutions selected for the "victor_corpus" dataset by a Substitution Selector.
+		Example: [['sat', 'roosted'], ['easy', 'uncomplicated']]
+		@param victor_corpus: Path to a corpus in the VICTOR format.
+		For more information about the file's format, refer to the LEXenstein Manual.
+		User must have the privilege to delete such file without administrator privileges.
+		@param temp_file: File in which to save a temporary victor corpus.
+		The file is removed after the algorithm is concluded.
+		@param proportion: Percentage of substitutions to keep.
+		@return: Returns a vector of size N, containing a set of selected substitutions for each instance in the VICTOR corpus.
+		"""
+		void = VoidSelector()
+		selected_void = void.selectCandidates(substitutions, victor_corpus)
+		void.toVictorFormat(victor_corpus, selected_void, temp_file)
+		
+		rankings = self.ranker.getRankings(temp_file)
+		
+		selected_substitutions = []				
+
+		lexf = open(victor_corpus)
+		index = -1
+		for line in lexf:
+			index += 1
+		
+			selected_candidates = rankings[index][0:max(1, int(proportion*float(len(rankings[index]))))]
+		
+			selected_substitutions.append(selected_candidates)
+		lexf.close()
+		
+		#Delete temp_file:
+		os.system('rm ' + temp_file)
+		return selected_substitutions
+		
+	def toVictorFormat(self, victor_corpus, substitutions, output_path, addTargetAsCandidate=False):
+		"""
+		Saves a set of selected substitutions in a file in VICTOR format.
+	
+		@param victor_corpus: Path to the corpus in the VICTOR format to which the substitutions were selected.
+		@param substitutions: The vector of substitutions selected for the VICTOR corpus.
+		@param output_path: The path in which to save the resulting VICTOR corpus.
+		@param addTargetAsCandidate: If True, adds the target complex word of each instance as a candidate substitution.
+		"""
+		o = open(output_path, 'w')
+		f = open(victor_corpus)
+		for subs in substitutions:
+			data = f.readline().strip().split('\t')
+			sentence = data[0].strip()
+			target = data[1].strip()
+			head = data[2].strip()
+			
+			newline = sentence + '\t' + target + '\t' + head + '\t'
+			for sub in subs:
+				newline += '0:'+sub + '\t'
+			o.write(newline.strip() + '\n')
+		f.close()
+		o.close()
+		
 class BoundarySelector:
 
 	def __init__(self, boundary_ranker):
@@ -191,7 +320,7 @@ class BoundarySelector:
 		"""
 		self.ranker = boundary_ranker
 		
-	def trainSelector(self, victor_corpus, positive_range, loss, penalty, alpha, l1_ratio, epsilon):
+	def trainSelector(self, victor_corpus, positive_range, loss, penalty, alpha, l1_ratio, epsilon, k='all'):
 		"""
 		Trains a Boundary Ranker according to the parameters provided.
 	
@@ -209,10 +338,12 @@ class BoundarySelector:
 		Recommended values: 0.05, 0.10, 0.15
 		@param epsilon: Acceptable error margin.
 		Recommended values: 0.0001, 0.001
+		@param k: Number of best features to be selected through univariate feature selection.
+		If k='all', then no feature selection is performed.
 		"""
-		self.ranker.trainRanker(victor_corpus, positive_range, loss, penalty, alpha, l1_ratio, epsilon)
+		self.ranker.trainRanker(victor_corpus, positive_range, loss, penalty, alpha, l1_ratio, epsilon, k=k)
 	
-	def trainSelectorWithCrossValidation(self, victor_corpus, positive_range, folds, test_size, losses=['hinge', 'modified_huber'], penalties=['elasticnet'], alphas=[0.0001, 0.001, 0.01], l1_ratios=[0.0, 0.15, 0.25, 0.5, 0.75, 1.0]):
+	def trainSelectorWithCrossValidation(self, victor_corpus, positive_range, folds, test_size, losses=['hinge', 'modified_huber'], penalties=['elasticnet'], alphas=[0.0001, 0.001, 0.01], l1_ratios=[0.0, 0.15, 0.25, 0.5, 0.75, 1.0], k='all'):
 		"""
 		Trains a Boundary Selector while maximizing hyper-parameters through cross-validation.
 		It uses the TRank-at-1 as an optimization metric.
@@ -232,17 +363,21 @@ class BoundarySelector:
 		Recommended values: 0.0001, 0.001, 0.01, 0.1
 		@param l1_ratios: Elastic net mixing parameters.
 		Recommended values: 0.05, 0.10, 0.15
-		@param epsilons: Acceptable error margins.
-		Recommended values: 0.0001, 0.001
+		@param k: Number of best features to be selected through univariate feature selection.
+		If k='all', then no feature selection is performed.
 		"""
-		self.ranker.trainRankerWithCrossValidation(victor_corpus, positive_range, folds, test_size, losses=losses, penalties=penalties, alphas=alphas, l1_ratios=l1_ratios)
+		self.ranker.trainRankerWithCrossValidation(victor_corpus, positive_range, folds, test_size, losses=losses, penalties=penalties, alphas=alphas, l1_ratios=l1_ratios, k=k)
 		
 	def selectCandidates(self, substitutions, victor_corpus, temp_file, proportion):
 		"""
 		Selects which candidates can replace the target complex words in each instance of a VICTOR corpus.
 	
-		@param substitutions: A dictionary linking complex words to a set of candidate substitutions
+		@param substitutions: Candidate substitutions to be filtered.
+		It can be in two formats:
+		A dictionary produced by a Substitution Generator linking complex words to a set of candidate substitutions.
 		Example: substitutions['perched'] = {'sat', 'roosted'}
+		A list of candidate substitutions selected for the "victor_corpus" dataset by a Substitution Selector.
+		Example: [['sat', 'roosted'], ['easy', 'uncomplicated']]
 		@param victor_corpus: Path to a corpus in the VICTOR format.
 		For more information about the file's format, refer to the LEXenstein Manual.
 		User must have the privilege to delete such file without administrator privileges.
@@ -312,26 +447,41 @@ class ClusterSelector:
 		"""
 		Selects which candidates can replace the target complex words in each instance of a VICTOR corpus.
 	
-		@param substitutions: A dictionary linking complex words to a set of candidate substitutions
+		@param substitutions: Candidate substitutions to be filtered.
+		It can be in two formats:
+		A dictionary produced by a Substitution Generator linking complex words to a set of candidate substitutions.
 		Example: substitutions['perched'] = {'sat', 'roosted'}
+		A list of candidate substitutions selected for the "victor_corpus" dataset by a Substitution Selector.
+		Example: [['sat', 'roosted'], ['easy', 'uncomplicated']]
 		@param victor_corpus: Path to a corpus in the VICTOR format.
 		For more information about the file's format, refer to the LEXenstein Manual.
 		@return: Returns a vector of size N, containing a set of selected substitutions for each instance in the VICTOR corpus.
 		"""
-		selected_substitutions = []				
+		selected_substitutions = []
 
+		substitution_candidates = []
+		if isinstance(substitutions, list):
+			substitution_candidates = substitutions
+		elif isinstance(substitutions, dict):
+			void = VoidSelector()
+			substitution_candidates = void.selectCandidates(substitutions, victor_corpus)
+		else:
+			print('ERROR: Substitutions are neither a dictionary or a list!')
+			return selected_substitutions
+
+		c = -1
 		lexf = open(victor_corpus)
 		for line in lexf:
+			c += 1
 			data = line.strip().split('\t')
 			sent = data[0].strip()
 			target = data[1].strip()
 		
 			selected_candidates = set([])
-			if target in substitutions.keys():
-				if target in self.words_to_clusters.keys():	
-					cluster = self.words_to_clusters[target]
-					candidates = set(substitutions[target])
-					selected_candidates = candidates.intersection(self.clusters_to_words[cluster])
+			if target in self.words_to_clusters:	
+				cluster = self.words_to_clusters[target]
+				candidates = set(substitution_candidates[c])
+				selected_candidates = candidates.intersection(self.clusters_to_words[cluster])
 		
 			selected_substitutions.append(selected_candidates)
 		lexf.close()
@@ -346,7 +496,7 @@ class ClusterSelector:
 			cluster = data[0].strip()
 			word = data[1].strip()
 			
-			if cluster in cw.keys():
+			if cluster in cw:
 				cw[cluster].add(word)
 			else:
 				cw[cluster] = set([word])
@@ -381,30 +531,84 @@ class ClusterSelector:
 
 class POSTagSelector:
 
+	def __init__(self, pos_model, stanford_tagger, java_path):
+		"""
+		Creates a POSTagSelector instance.
+	
+		@param pos_model: Path to a POS tagging model for the Stanford POS Tagger.
+		The models can be downloaded from the following link: http://nlp.stanford.edu/software/tagger.shtml
+		@param stanford_tagger: Path to the "stanford-postagger.jar" file.
+		The tagger can be downloaded from the following link: http://nlp.stanford.edu/software/tagger.shtml
+		@param java_path: Path to the system's "java" executable.
+		Can be commonly found in "/usr/bin/java" in Unix/Linux systems, or in "C:/Program Files/Java/jdk_version/java.exe" in Windows systems.
+		"""
+		os.environ['JAVAHOME'] = java_path
+		self.tagger = StanfordPOSTagger(pos_model, stanford_tagger)
+
 	def selectCandidates(self, substitutions, victor_corpus):
 		"""
 		Selects which candidates can replace the target complex words in each instance of a VICTOR corpus.
 	
-		@param substitutions: A dictionary linking complex words to a set of candidate substitutions
+		@param substitutions: Candidate substitutions to be filtered.
+		It can be in two formats:
+		A dictionary produced by a Substitution Generator linking complex words to a set of candidate substitutions.
 		Example: substitutions['perched'] = {'sat', 'roosted'}
+		A list of candidate substitutions selected for the "victor_corpus" dataset by a Substitution Selector.
+		Example: [['sat', 'roosted'], ['easy', 'uncomplicated']]
 		@param victor_corpus: Path to a corpus in the VICTOR format.
 		For more information about the file's format, refer to the LEXenstein Manual.
 		@return: Returns a vector of size N, containing a set of selected substitutions for each instance in the VICTOR corpus.
 		"""
-		selected_substitutions = []				
+		selected_substitutions = []
 
+		substitution_candidates = []
+		if isinstance(substitutions, list):
+			substitution_candidates = substitutions
+		elif isinstance(substitutions, dict):
+			void = VoidSelector()
+			substitution_candidates = void.selectCandidates(substitutions, victor_corpus)
+		else:
+			print('ERROR: Substitutions are neither a dictionary or a list!')
+			return selected_substitutions
+		
+		#Read VICTOR corpus:
 		lexf = open(victor_corpus)
+		sents = []
+		targets = []
+		heads = []
+		words = set([])
+		c = -1
 		for line in lexf:
+			c += 1
 			data = line.strip().split('\t')
-			sent = data[0].strip()
+			sent = data[0].strip().split(' ')
 			target = data[1].strip()
 			head = int(data[2].strip())
+			sents.append(sent)
+			targets.append(target)
+			heads.append(head)
+			words.update(set(substitution_candidates[c]))
+		lexf.close()
+		
+		#Tag sentences:
+		tagged_sents = self.tagger.tag_sents(sents)
+		
+		#Tag words:
+		words = list(words)
+		words_sents = [[w] for w in words]
+		tagged_words = self.tagger.tag_sents(words_sents)
+		word_to_tag = {}
+		for i in range(0, len(words)):
+			word_to_tag[words[i]] = tagged_words[i][0][1]
+		
+		for i in range(0, len(sents)):
+			target = targets[i]
+			head = heads[i]
+			target_pos = str(tagged_sents[i][head][1])
 		
 			candidates = []
-			if target in substitutions.keys():
-				target_POS = self.getTargetPOS(sent, target, head)
-				candidates = substitutions[target]
-				candidates = self.getCandidatesWithSamePOS(sent.split(' '), head, candidates, target_POS)
+			candidates = set(substitution_candidates[i])
+			candidates = self.getCandidatesWithSamePOS(candidates, word_to_tag, target_pos)
 		
 			selected_substitutions.append(candidates)
 		lexf.close()
@@ -423,29 +627,13 @@ class POSTagSelector:
 				return 'None'
 			
 		
-	def getCandidatesWithSamePOS(self, tokens, head, candidates, pos):
+	def getCandidatesWithSamePOS(self, candidates, word_to_tag, target_pos):
 		result = set([])
-		pref = ''
-		suff = ''
-		for i in range(0, head):
-			pref += tokens[i] + ' '
-		for i in range(head+1, len(tokens)):
-			suff += tokens[i] + ' '
-		suff = ' ' + suff.strip()
 		for candidate in candidates:
-			sent = pref + candidate + suff
-			candidate_tag = []
-			try:
-				pos_data = nltk.pos_tag(sent)
-				candidate_tag = pos_data[head][1]
-			except UnicodeDecodeError:
-				try:
-					pos_data = nltk.pos_tag(candidate)
-					candidate_tag =  pos_data[0][1]
-				except UnicodeDecodeError:
-					candidate_tag = 'NoneCand'
-			if candidate_tag==pos:
-				result.add(candidate)
+			if candidate in word_to_tag:
+				ctag = word_to_tag[candidate]
+				if ctag==target_pos:
+					result.add(candidate)
 		return result
 	
 	def toVictorFormat(self, victor_corpus, substitutions, output_path, addTargetAsCandidate=False):
@@ -478,13 +666,20 @@ class VoidSelector:
 		"""
 		Selects which candidates can replace the target complex words in each instance of a VICTOR corpus.
 	
-		@param substitutions: A dictionary linking complex words to a set of candidate substitutions
+		@param substitutions: Candidate substitutions to be filtered.
+		It can be in two formats:
+		A dictionary produced by a Substitution Generator linking complex words to a set of candidate substitutions.
 		Example: substitutions['perched'] = {'sat', 'roosted'}
+		A list of candidate substitutions selected for the "victor_corpus" dataset by a Substitution Selector.
+		Example: [['sat', 'roosted'], ['easy', 'uncomplicated']]
 		@param victor_corpus: Path to a corpus in the VICTOR format.
 		For more information about the file's format, refer to the LEXenstein Manual.
 		@return: Returns a vector of size N, containing a set of selected substitutions for each instance in the VICTOR corpus.
 		"""
-		selected_substitutions = []				
+		selected_substitutions = []
+
+		if isinstance(substitutions, list):
+			return substitutions	
 
 		lexf = open(victor_corpus)
 		for line in lexf:
@@ -493,7 +688,7 @@ class VoidSelector:
 			target = data[1].strip()
 		
 			candidates = []
-			if target in substitutions.keys():
+			if target in substitutions:
 				candidates = substitutions[target]
 		
 			selected_substitutions.append(candidates)
@@ -535,12 +730,16 @@ class BiranSelector:
 		"""
 		self.model = self.getModel(cooc_model)
 		
-	def selectCandidates(self, substitutions, victor_corpus, common_distance, candidate_distance):
+	def selectCandidates(self, substitutions, victor_corpus, common_distance=0.01, candidate_distance=0.9):
 		"""
 		Selects which candidates can replace the target complex words in each instance of a VICTOR corpus.
 	
-		@param substitutions: A dictionary linking complex words to a set of candidate substitutions
+		@param substitutions: Candidate substitutions to be filtered.
+		It can be in two formats:
+		A dictionary produced by a Substitution Generator linking complex words to a set of candidate substitutions.
 		Example: substitutions['perched'] = {'sat', 'roosted'}
+		A list of candidate substitutions selected for the "victor_corpus" dataset by a Substitution Selector.
+		Example: [['sat', 'roosted'], ['easy', 'uncomplicated']]
 		@param victor_corpus: Path to a corpus in the VICTOR format.
 		For more information about the file's format, refer to the LEXenstein Manual.
 		@param common_distance: The cutoff minimum distance from the sentence's co-occurrence vector and the common vector between the target complex word and the candidate.
@@ -549,10 +748,22 @@ class BiranSelector:
 		We recommend using values close to 1.0, such as 0.8, or 0.9.
 		@return: Returns a vector of size N, containing a set of selected substitutions for each instance in the VICTOR corpus.
 		"""
-		selected_substitutions = []				
+		selected_substitutions = []
 
+		substitution_candidates = []
+		if isinstance(substitutions, list):
+			substitution_candidates = substitutions
+		elif isinstance(substitutions, dict):
+			void = VoidSelector()
+			substitution_candidates = void.selectCandidates(substitutions, victor_corpus)
+		else:
+			print('ERROR: Substitutions are neither a dictionary or a list!')
+			return selected_substitutions			
+
+		c = -1
 		lexf = open(victor_corpus)
 		for line in lexf:
+			c += 1
 			data = line.strip().split('\t')
 			sent = data[0].strip()
 			target = data[1].strip()
@@ -560,12 +771,11 @@ class BiranSelector:
 		
 			target_vec = self.getSentVec(sent, head)
 
-			candidates = []
-			if target in substitutions.keys():
-				candidates = substitutions[target]
+			candidates = set(substitution_candidates[c])
 		
 			final_candidates = set([])
-			for candidate in candidates:
+			for candidate_raw in candidates:
+				candidate = str(candidate_raw)
 				candidate_vec = self.getVec(candidate)
 				candidate_dist = 1.0
 				try:
@@ -616,7 +826,7 @@ class BiranSelector:
 		return cosine(v1, v2)
 	
 	def getCommonVec(self, target, candidate):
-		if target not in self.model.keys() or candidate not in self.model.keys():
+		if target not in self.model.keys() or candidate not in self.model:
 			return {}
 		else:
 			result = {}
@@ -645,7 +855,7 @@ class BiranSelector:
 				cooc = tokens[j]
 				if self.isNumeral(cooc):
 					cooc = '#NUMERAL#'
-				if cooc not in coocs.keys():
+				if cooc not in coocs:
 					coocs[cooc] = 1
 				else:
 					coocs[cooc] += 1
@@ -711,8 +921,12 @@ class WordVectorSelector:
 		"""
 		Selects which candidates can replace the target complex words in each instance of a VICTOR corpus.
 	
-		@param substitutions: A dictionary linking complex words to a set of candidate substitutions
+		@param substitutions: Candidate substitutions to be filtered.
+		It can be in two formats:
+		A dictionary produced by a Substitution Generator linking complex words to a set of candidate substitutions.
 		Example: substitutions['perched'] = {'sat', 'roosted'}
+		A list of candidate substitutions selected for the "victor_corpus" dataset by a Substitution Selector.
+		Example: [['sat', 'roosted'], ['easy', 'uncomplicated']]
 		@param victor_corpus: Path to a corpus in the VICTOR format.
 		For more information about the file's format, refer to the LEXenstein Manual.
 		@param proportion: Percentage of substitutions to keep.
@@ -724,15 +938,26 @@ class WordVectorSelector:
 		@param onePerWord: If True, a word in the complex word's context can only contribute once to its resulting word vector.
 		@return: Returns a vector of size N, containing a set of selected substitutions for each instance in the VICTOR corpus.
 		"""
-		
 		stop_words = set([])
 		if stop_words_file != None:
 			stop_words = set([word.strip() for word in open(stop_words_file)])
 	
-		selected_substitutions = []				
+		selected_substitutions = []
 
+		substitution_candidates = []
+		if isinstance(substitutions, list):
+			substitution_candidates = substitutions
+		elif isinstance(substitutions, dict):
+			void = VoidSelector()
+			substitution_candidates = void.selectCandidates(substitutions, victor_corpus)
+		else:
+			print('ERROR: Substitutions are neither a dictionary or a list!')
+			return selected_substitutions			
+
+		c = -1
 		lexf = open(victor_corpus)
 		for line in lexf:
+			c += 1
 			data = line.strip().split('\t')
 			sent = data[0].strip()
 			target = data[1].strip()
@@ -740,10 +965,7 @@ class WordVectorSelector:
 		
 			target_vec = self.getSentVec(sent, head, stop_words, window, onlyInformative, keepTarget, onePerWord)
 		
-			candidates = []
-			if target in substitutions.keys():
-				candidates = substitutions[target]
-	
+			candidates = substitution_candidates[c]
 
 			candidate_dists = {}
 			for candidate in candidates:
@@ -879,17 +1101,33 @@ class WSDSelector:
 		"""
 		Selects which candidates can replace the target complex words in each instance of a VICTOR corpus.
 	
-		@param substitutions: A dictionary linking complex words to a set of candidate substitutions
+		@param substitutions: Candidate substitutions to be filtered.
+		It can be in two formats:
+		A dictionary produced by a Substitution Generator linking complex words to a set of candidate substitutions.
 		Example: substitutions['perched'] = {'sat', 'roosted'}
+		A list of candidate substitutions selected for the "victor_corpus" dataset by a Substitution Selector.
+		Example: [['sat', 'roosted'], ['easy', 'uncomplicated']]
 		@param victor_corpus: Path to a corpus in the VICTOR format.
 		For more information about the file's format, refer to the LEXenstein Manual.
 		@return: Returns a vector of size N, containing a set of selected substitutions for each instance in the VICTOR corpus.
 		"""
 		
-		selected_substitutions = []				
+		selected_substitutions = []
 
+		substitution_candidates = []
+		if isinstance(substitutions, list):
+			substitution_candidates = substitutions
+		elif isinstance(substitutions, dict):
+			void = VoidSelector()
+			substitution_candidates = void.selectCandidates(substitutions, victor_corpus)
+		else:
+			print('ERROR: Substitutions are neither a dictionary or a list!')
+			return selected_substitutions					
+
+		c = -1
 		lexf = open(victor_corpus)
 		for line in lexf:
+			c += 1
 			data = line.strip().split('\t')
 			sent = data[0].strip()
 			target = data[1].strip()
@@ -897,9 +1135,7 @@ class WSDSelector:
 		
 			target_sense = self.WSDfunction.__call__(sent, target)
 		
-			candidates = []
-			if target in substitutions.keys():
-				candidates = substitutions[target]
+			candidates = substitution_candidates[c]
 		
 			selected_candidates = set([])
 			for candidate in candidates:

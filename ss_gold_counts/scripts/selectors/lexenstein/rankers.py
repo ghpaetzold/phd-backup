@@ -10,6 +10,93 @@ from sklearn.cross_validation import train_test_split
 from sklearn.feature_selection import SelectKBest
 from sklearn.feature_selection import f_classif
 
+class GlavasRanker:
+
+	def __init__(self, fe):
+		"""
+		Creates an instance of the GlavasRanker class.
+	
+		@param fe: A configured FeatureEstimator object.
+		"""
+		
+		self.fe = fe
+		self.feature_values = None
+		
+	def getRankings(self, victor_corpus):
+		"""
+		Ranks candidates with respect to a set of features.
+		Candidates are ranked according to their average ranking position obtained with all feature values.
+	
+		@param victor_corpus: Path to a testing corpus in VICTOR format.
+		For more information about the file's format, refer to the LEXenstein Manual.
+		@return: A list of ranked candidates for each instance in the VICTOR corpus, from simplest to most complex.
+		"""
+		
+		#If feature values are not available, then estimate them:
+		if self.feature_values == None:
+			self.feature_values = self.fe.calculateFeatures(victor_corpus)
+		
+		#Create object for results:
+		result = []
+		
+		#Read feature values for each candidate in victor corpus:
+		f = open(victor_corpus)
+		index = 0
+		for line in f:
+			#Get all substitutions in ranking instance:
+			data = line.strip().split('\t')
+			substitutions = data[3:len(data)]
+			
+			#Get instance's feature values:
+			instance_features = []
+			for substitution in substitutions:
+				instance_features.append(self.feature_values[index])
+				index += 1
+			
+			rankings = {}
+			for i in range(0, len(self.fe.identifiers)):
+				#Create dictionary of substitution to feature value:
+				scores = {}
+				for j in range(0, len(substitutions)):
+					substitution = substitutions[j]
+					word = substitution.strip().split(':')[1].strip()
+					scores[word] = instance_features[j][i]
+				
+				#Check if feature is simplicity or complexity measure:
+				rev = False
+				if self.fe.identifiers[i][1]=='Simplicity':
+					rev = True
+				
+				#Sort substitutions:
+				words = scores.keys()
+				sorted_substitutions = sorted(words, key=scores.__getitem__, reverse=rev)
+				
+				#Update rankings:
+				for j in range(0, len(sorted_substitutions)):
+					word = sorted_substitutions[j]
+					if word in rankings:
+						rankings[word] += j
+					else:
+						rankings[word] = j
+		
+			#Produce final rankings:
+			final_rankings = sorted(rankings.keys(), key=rankings.__getitem__)
+		
+			#Add them to result:
+			result.append(final_rankings)
+		f.close()
+		
+		#Return result:
+		return result
+		
+	def size(self):
+		"""
+		Returns the number of features available for a given MetricRanker.
+		
+		@return: The number of features in the MetricRanker's FeatureEstimator object.
+		"""
+		return len(self.fe.identifiers)
+
 class SVMBoundaryRanker:
 
 	def __init__(self, fe):
@@ -502,12 +589,12 @@ class YamamotoRanker:
 		
 	def getCoocScore(self, word, sent):
 		tokens = sent.strip().split(' ')
-		if word not in self.cooc_model.keys():
+		if word not in self.cooc_model:
 			return 0
 		else:
 			result = 0
 			for token in tokens:
-				if token in self.cooc_model[word].keys():
+				if token in self.cooc_model[word]:
 					result += self.cooc_model[word][token]
 			return result
 		
@@ -1116,7 +1203,7 @@ class SVMRanker:
 			word = word.strip()
 			score = scores[index]
 			index += 1
-			if id in ranking_data.keys():
+			if id in ranking_data:
 				ranking_data[id][word] = score
 			else:
 				ranking_data[id] = {word:score}
@@ -1145,8 +1232,7 @@ class MetricRanker:
 		
 	def getRankings(self, victor_corpus, featureIndex):
 		"""
-		Ranks candidates with respect to their simplicity.
-		Requires for the trainRanker function to be previously called so that a model can be trained.
+		Ranks candidates according to a feature's orientation and its values.
 	
 		@param victor_corpus: Path to a testing corpus in VICTOR format.
 		For more information about the file's format, refer to the LEXenstein Manual.

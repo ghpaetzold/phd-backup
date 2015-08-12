@@ -3,7 +3,7 @@ import pywsd
 import gensim
 from scipy.spatial.distance import cosine
 import nltk
-from nltk.tag.stanford import POSTagger
+from nltk.tag.stanford import StanfordTagger
 import numpy as np
 import os
 
@@ -285,7 +285,7 @@ def getSubs(generator):
 
 subs = getSubs(generator)
 
-wordvecselector = WordVectorSelector('/export/data/ghpaetzold/word2vecvectors/corpora/word_vectors_all_generalized.bin')
+wordvecselector = WordVectorSelector('/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_generalized_500_cbow.bin')
 selected = wordvecselector.selectCandidates(subs, victor_corpus, proportion=proportion, stop_words_file=stop_words_file, window=window, onlyInformative=onlyInformative, keepTarget=keepTarget, onePerWord=onePerWord)
 
 outf = open(out, 'w')

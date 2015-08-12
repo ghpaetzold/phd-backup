@@ -1,9 +1,9 @@
 import os
 from lexenstein.evaluators import *
 
-def getSelectors():
+def getSelectors(generator):
 	result = {}
-	files = os.listdir('../../substitutions/all/')
+	files = os.listdir('../../substitutions/'+generator+'/')
 	for file in files:
 		if file != 'substitutions.txt':
 			bulk = file[0:len(file)-4].strip().split('_')[1].strip()
@@ -19,13 +19,11 @@ def getSelectors():
 
 
 namem = {}
-namem['wordvector'] = 'Word Vector'
-namem['clusters'] = 'Brown Clusters'
-namem['clusters2k'] = 'Brown Clusters 2k'
-namem['boundary'] = 'Boundary'
 namem['boundaryCV'] = 'Boundary (CV)'
+namem['boundaryUnsupervisedCV'] = 'Boundary Unsupervised (CV)'
+namem['boundaryCVnotgt1st'] = 'Boundary (CV) (No-Tgt-1st)'
 namem['svmrank'] = 'SVM Rank'
-namem['svmboundary'] = 'SVM Boundary'
+namem['svmranknotgt1st'] = 'SVM Rank (No-Tgt-1st)'
 namem['vectorsim'] = 'Word Vector Sim.'
 namem['subimdb10'] = 'Colloc. (1, 0)'
 namem['subimdb01'] = 'Colloc. (0, 1)'
@@ -36,8 +34,11 @@ namem['subimdb21'] = 'Colloc. (2, 1)'
 namem['subimdb12'] = 'Colloc. (1, 2)'
 namem['subimdb22'] = 'Colloc. (2, 2)'
 namem['translationprob'] = 'Translation Prob.'
+namem['postagprob'] = 'POS Tag Prob.'
 namem['void'] = 'No Selection'
-methods = ['all']
+
+methods = ['all', 'kauchak', 'paetzold', 'wordnet']
+
 lexf = open('../../corpora/lexmturk_gold_test.txt')
 lex = []
 for line in lexf:
@@ -54,14 +55,14 @@ for line in gc:
 	c += 1
 	gold_counts.append(int(line.strip()))
 gc.close()
-print(str(c))
+#print(str(c))
 
-selectors = getSelectors()
-maxims = set(['wordvector', 'clusters', 'clusters2k', 'boundary', 'boundaryCV', 'svmrank', 'svmboundary', 'void'])
-maxims.update(set(['vector_sim', 'subimdb10', 'subimdb01', 'subimdb11', 'subimdb20', 'subimdb02', 'subimdb21', 'subimdb12', 'subimdb22', 'translation_prob']))
 
 bestssf = {}
 for index in range(0, len(methods)):
+	selectors = getSelectors(methods[index])
+	maxims = set(selectors.keys()).difference(set(['unsupervised']))
+
 	method = methods[index]
 	bestssf[method] = set([])
 	myt = ''
@@ -77,13 +78,15 @@ for index in range(0, len(methods)):
 	se = SelectorEvaluator()
 	for selector in sorted(selectors.keys()):
 		if selector in maxims:
-			print(str(selector))
+			#print(str(selector))
 			maxfmean = -1
 			maxpot = -1
 			maxprec = -1
 			maxrec = -1
 			maxfile = ''
-			for file in selectors[selector]:		
+			for file in selectors[selector]:
+				#print(file)
+
 				#Generate sele_d (selected data):
 				sele_d = []
 				sele_p = '../../substitutions/'+method+'/'+file
@@ -96,11 +99,15 @@ for index in range(0, len(methods)):
 					data = line.strip().split('\t')
 					data = data[3:len(data)]
 					data = [candidate.strip().split(':')[1].strip() for candidate in data]
-					counts = gold_counts[c]
+					try:
+						counts = gold_counts[c]
+					except Exception:
+						print('Required: ' + str(c))
+						print('Has: ' + str(len(gold_counts)))
 					data = data[0:counts]
-				
-					if counts!=len(set(data)):
-						print('Asked: ' + str(counts) + ', gotten: ' + str(len(set(data))))
+					
+					#if counts!=len(set(data)):
+					#	print('Asked: ' + str(counts) + ', gotten: ' + str(len(set(data))))
 
 					if len(data)>0:
 						sele_d.append(set(data))
@@ -109,9 +116,9 @@ for index in range(0, len(methods)):
 				sele_f.close()
 				
 				pot, prec, rec, fmean = se.evaluateSelector('../../corpora/lexmturk_gold_test.txt', sele_d)
-				if selector=='void':
-					print('VOID!')
-					print('Results: ' + str(pot) + ' ' + str(prec) + ' ' + str(rec) + ' ' + str(fmean))
+				#if selector=='void':
+				#	print('VOID!')
+				#	print('Results: ' + str(pot) + ' ' + str(prec) + ' ' + str(rec) + ' ' + str(fmean))
 				if fmean>maxfmean:
 					maxfmean = fmean
 					maxpot = pot
@@ -119,8 +126,8 @@ for index in range(0, len(methods)):
 					maxrec = rec
 					maxfile = file
 			components = [maxpot, maxprec, maxrec, maxfmean]
-			print('For: ' + selector)
-			print('Max file: ' + maxfile)
+			#print('For: ' + selector)
+			#print('Max file: ' + maxfile)
 			bestssf[method].add(maxfile.strip())
 			if selector in namem.keys():
 				myt += namem[selector] + ' '

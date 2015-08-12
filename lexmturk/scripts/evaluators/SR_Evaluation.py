@@ -3,22 +3,24 @@ import os
 from lexenstein.evaluators import *
 
 generators = os.listdir('../../substitutions/')
-selectors = ['biran', 'void', 'wordvector', 'path', 'random', 'first', 'lesk', 'enhancedlesk', 'boundaryCV', 'svmrank', 'clusters']
+generators = ['paetzold']
+#selectors = ['biran', 'void', 'wordvector', 'path', 'random', 'first', 'lesk', 'enhancedlesk', 'boundaryCV', 'svmrank', 'clusters']
+selectors = ['biran', 'void', 'wordvector', 'boundaryCV', 'svmrank', 'clusters', 'SGDClassifier']
 methods = set(os.listdir('../../rankings/'))
-#methods.remove('svm')
 
 namem = {}
-namem['lesk'] = 'Lesk'
-namem['first'] = 'First'
-namem['random'] = 'Random'
-namem['path'] = 'Wu-Palmer'
-namem['enhancedlesk'] = 'Enhanced Lesk'
+#namem['lesk'] = 'Lesk'
+#namem['first'] = 'First'
+#namem['random'] = 'Random'
+#namem['path'] = 'Wu-Palmer'
+#namem['enhancedlesk'] = 'Enhanced Lesk'
 namem['biran'] = 'Biran'
 namem['wordvector'] = 'Word Vector'
 namem['void'] = 'No Selection'
 namem['boundaryCV'] = 'Boundary'
 namem['svmrank'] = 'SVM Rank'
 namem['clusters'] = 'Clusters'
+namem['SGDClassifier'] = 'Grammaticality Model'
 
 results = {}
 for generator in generators:
@@ -46,8 +48,11 @@ for method in methods:
 			
 			precision, accuracy, changed = pe.evaluatePipeline('../../corpora/lexmturk_all.txt', subs)
 			
-			if precision>results[generator][selector][method][0]:
-				results[generator][selector][method] = (precision, accuracy, changed)
+			try:
+				if precision>results[generator][selector][method][0]:
+					results[generator][selector][method] = (precision, accuracy, changed)
+			except Exception:
+				pass
 
 index = -1
 for generator in results.keys():

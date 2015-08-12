@@ -5,7 +5,7 @@ from lexenstein.evaluators import *
 myt = []
 headers = ['Method', 'Potential', 'Precision', 'Recall', 'F-Measure']
 
-methods = ['biran', 'kauchak', 'merriam', 'wordnet', 'yamamoto', 'all', 'paetzold']
+methods = ['biran', 'kauchak', 'merriam', 'wordnet', 'yamamoto', 'all', 'paetzold', 'glavas']
 
 for method in methods:
 	orig_p = '../../substitutions/'+method+'/substitutions.txt'

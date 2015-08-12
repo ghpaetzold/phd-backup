@@ -1,8 +1,8 @@
 import os
 
 #Parameters:
-Cs = ['10', '1', '0.1']
-#Cs = ['1']
+#Cs = ['10', '1', '0.1']
+Cs = ['1']
 kernels = ['0', '1', '3']
 #kernels = ['1']
 epsilons = ['0.0001', '0.00001']
@@ -10,7 +10,9 @@ epsilons = ['0.0001', '0.00001']
 proportions = ['1']
 
 generators = os.listdir('../../substitutions/')
-train_victor_corpus = '../../corpora/lexmturk_gold_targetfirst_test.txt'
+generators = ['kauchak', 'paetzold', 'wordnet']
+
+train_victor_corpus = '../../corpora/lexmturk_gold_targetfirst_train.txt'
 test_victor_corpus = '../../corpora/lexmturk_gold_test.txt'
 
 #Run SVMRank selector:

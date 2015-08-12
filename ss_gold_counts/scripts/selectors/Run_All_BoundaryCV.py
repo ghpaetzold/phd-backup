@@ -1,14 +1,16 @@
 import os
 
 generators = os.listdir('../../substitutions/')
+generators = ['kauchak', 'paetzold', 'wordnet']
+
 train_victor_corpus = '../../corpora/lexmturk_gold_targetfirst_train.txt'
 test_victor_corpus = '../../corpora/lexmturk_gold_test.txt'
 
 #Parameters:
-rs = ['1', '2', '3', '4']
+rs = ['1', '2', '3']
 fs = ['5', '10']
 ts = ['0.25', '0.75']
-ks = ['5', '10', '15', 'all']
+ks = ['8', 'all']
 proportions = ['1.0']
 
 #Run Boundary selector:

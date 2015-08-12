@@ -4,10 +4,401 @@ import urllib2 as urllib
 from nltk.corpus import wordnet as wn
 import subprocess
 import nltk
-from nltk.tag.stanford import POSTagger
+from nltk.tag.stanford import StanfordPOSTagger
 import kenlm
 import codecs
 import os
+import gensim
+from nltk.stem.wordnet import WordNetLemmatizer
+from nltk.stem.porter import PorterStemmer
+
+class PaetzoldGenerator:
+
+	def __init__(self, posw2vmodel, nc, pos_model, stanford_tagger, java_path):
+		"""
+		Creates a PaetzoldGenerator instance.
+	
+		@param posw2vmodel: Binary parsed word vector model.
+		For more information on how to produce the model, please refer to the LEXenstein Manual.
+		@param nc: NorvigCorrector object.
+		@param pos_model: Path to a POS tagging model for the Stanford POS Tagger.
+		The models can be downloaded from the following link: http://nlp.stanford.edu/software/tagger.shtml
+		@param stanford_tagger: Path to the "stanford-postagger.jar" file.
+		The tagger can be downloaded from the following link: http://nlp.stanford.edu/software/tagger.shtml
+		@param java_path: Path to the system's "java" executable.
+		Can be commonly found in "/usr/bin/java" in Unix/Linux systems, or in "C:/Program Files/Java/jdk_version/java.exe" in Windows systems.
+		"""
+		self.lemmatizer = WordNetLemmatizer()
+		self.stemmer = PorterStemmer()
+		self.model = gensim.models.word2vec.Word2Vec.load_word2vec_format(posw2vmodel, binary=True)
+		self.nc = nc
+		os.environ['JAVAHOME'] = java_path
+		self.tagger = StanfordPOSTagger(pos_model, stanford_tagger)
+
+	def getSubstitutions(self, victor_corpus, amount):
+		"""
+		Generates substitutions for the target words of a corpus in VICTOR format.
+	
+		@param victor_corpus: Path to a corpus in the VICTOR format.
+		For more information about the file's format, refer to the LEXenstein Manual.
+		@return: A dictionary that assigns target complex words to sets of candidate substitutions.
+		Example: substitutions['perched'] = {'sat', 'roosted'}
+		"""
+		#Get candidate->pos map:
+		tagged_sents = self.getParsedSentences(victor_corpus)
+
+		#Get initial set of substitutions:
+		substitutions = self.getInitialSet(victor_corpus, tagged_sents, amount)
+		return substitutions
+		
+	def getParsedSentences(self, victor_corpus):
+		lexf = open(victor_corpus)
+		sents = []
+		for line in lexf:
+			data = line.strip().split('\t')
+			sent = data[0].strip().split(' ')
+			sents.append(sent)
+		lexf.close()
+		
+		tagged_sents = self.tagger.tag_sents(sents)
+		return tagged_sents
+
+	def getInitialSet(self, victor_corpus, tsents, amount):
+		lexf = open(victor_corpus)
+		data = []
+		for line in lexf:
+			d = line.strip().split('\t')
+			data.append(d)
+		lexf.close()
+		
+		trgs = []
+		trgsc = []
+		trgsstems = []
+		trgslemmas = []
+		trgscstems = []
+		trgsclemmas = []
+		for i in range(0, len(data)):
+			d = data[i]
+			tags = tsents[i]
+			target = d[1].strip().lower()
+			head = int(d[2].strip())
+			tag = self.getClass(tags[head][1])
+			targetc = self.nc.correct(target)
+			trgs.append(target)
+			trgsc.append(targetc)
+		trgslemmas = self.lemmatizeWords(trgs)
+		trgsclemmas = self.lemmatizeWords(trgsc)
+		trgsstems = self.stemWords(trgs)
+		trgscstems = self.stemWords(trgsc)
+		trgmap = {}
+		for i in range(0, len(trgslemmas)):
+			target = data[i][1].strip().lower()
+			head = int(data[i][2].strip())
+			tag = self.getClass(tsents[i][head][1])
+			lemma = trgslemmas[i]
+			stem = trgsstems[i]
+			trgmap[target] = (lemma, stem)
+	
+		subs = []
+		cands = set([])
+		for i in range(0, len(data)):
+			d = data[i]
+
+			t = trgs[i]
+			tstem = trgsstems[i]
+			tlemma = trgslemmas[i] 
+			tc = trgsc[i]
+			tcstem = trgscstems[i]
+			tclemma = trgsclemmas[i]
+
+			tags = tsents[i]
+			head = int(d[2].strip())
+			tag = tags[head][1]
+
+			word = t+'|||'+self.getClass(tag)
+			wordc = tc+'|||'+self.getClass(tag)
+
+			most_sim = []
+			try:
+				most_sim = self.model.most_similar(positive=[word], topn=50)
+			except KeyError:
+				try:
+					most_sim = self.model.most_similar(positive=[wordc], topn=50)
+				except KeyError:
+					most_sim = []
+
+			subs.append([word[0] for word in most_sim])
+			
+		subsr = subs
+		subs = []
+		for l in subsr:
+			lr = []
+			for inst in l:
+				cand = inst.split('|||')[0].strip()
+				encc = None
+				try:
+					encc = cand.encode('ascii')
+				except Exception:
+					encc = None
+				if encc:
+					cands.add(cand)
+					lr.append(inst)
+			subs.append(lr)
+			
+		cands = list(cands)
+		candslemmas = self.lemmatizeWords(cands)
+		candsstems = self.stemWords(cands)
+		candmap = {}
+		for i in range(0, len(cands)):
+			cand = cands[i]
+			lemma = candslemmas[i]
+			stem = candsstems[i]
+			candmap[cand] = (lemma, stem)
+		
+		subs_filtered = self.filterSubs(data, tsents, subs, candmap, trgs, trgsc, trgsstems, trgscstems, trgslemmas, trgsclemmas)
+		
+		final_cands = {}
+		for i in range(0, len(data)):
+			target = data[i][1]
+			cands = subs_filtered[i][0:min(amount, subs_filtered[i])]
+			cands = [str(word.split('|||')[0].strip()) for word in cands]
+			if target not in final_cands:
+				final_cands[target] = set([])
+			final_cands[target].update(set(cands))
+		
+		return final_cands
+		
+	def lemmatizeWords(self, words):
+		result = []
+		for word in words:
+			result.append(self.lemmatizer.lemmatize(word))
+		return result
+		
+	def stemWords(self, words):
+		result = []
+		for word in words:
+			result.append(self.stemmer.stem(word))
+		return result
+	
+	def filterSubs(self, data, tsents, subs, candmap, trgs, trgsc, trgsstems, trgscstems, trgslemmas, trgsclemmas):
+		result = []
+		for i in range(0, len(data)):
+			d = data[i]
+
+			t = trgs[i]
+			tstem = trgsstems[i]
+			tlemma = trgslemmas[i]
+			tc = trgsc[i]
+			tcstem = trgscstems[i]
+			tclemma = trgsclemmas[i]
+
+			tags = tsents[i]
+			head = int(d[2].strip())
+			tag = self.getClass(tags[head][1])
+
+			word = t+'|||'+self.getClass(tag)
+			wordc = tc+'|||'+self.getClass(tag)
+
+			most_sim = subs[i]
+			most_simf = []
+
+			for cand in most_sim:
+				candd = cand.split('|||')
+				cword = candd[0].strip()
+				ctag = candd[1].strip()
+				clemma = candmap[cword][0]
+				cstem = candmap[cword][1]
+
+				if ctag==tag:
+					if clemma!=tlemma and clemma!=tclemma and cstem!=tstem and cstem!=tcstem:
+						if cword not in t and cword not in tc and t not in cword and tc not in cword:
+							most_simf.append(cand)
+			
+			class_filtered = []
+			for cand in most_simf:
+				candd = cand.split('|||')
+				cword = candd[0].strip()
+				ctag = candd[1].strip()
+				clemma = candmap[cword][0]
+				cstem = candmap[cword][1]
+
+				if tag=='V':
+					if (t.endswith('ing') or tc.endswith('ing')) and cword.endswith('ing'):
+						class_filtered.append(cand)
+					elif (t.endswith('d') or tc.endswith('d')) and cword.endswith('d'):
+						class_filtered.append(cand)
+				else:
+					class_filtered.append(cand)
+
+			result.append(most_simf)
+		return result
+		
+	def getClass(self, tag):
+		result = None
+		if tag.startswith('N'):
+			result = 'N'
+		elif tag.startswith('V'):
+			result = 'V'
+		elif tag.startswith('RB'):
+			result = 'A'
+		elif tag.startswith('J'):
+			result = 'J'
+		elif tag.startswith('W'):
+			result = 'W'
+		elif tag.startswith('PRP'):
+			result = 'P'
+		else:
+			result = tag.strip()
+		return result
+
+class GlavasGenerator:
+
+	def __init__(self, w2vmodel):
+		"""
+		Creates a GlavasGenerator instance.
+	
+		@param w2vmodel: Binary parsed word vector model.
+		For more information on how to produce the model, please refer to the LEXenstein Manual.
+		"""
+		self.lemmatizer = WordNetLemmatizer()
+		self.stemmer = PorterStemmer()
+		self.model = gensim.models.word2vec.Word2Vec.load_word2vec_format(w2vmodel, binary=True)
+
+	def getSubstitutions(self, victor_corpus, amount):
+		"""
+		Generates substitutions for the target words of a corpus in VICTOR format.
+	
+		@param victor_corpus: Path to a corpus in the VICTOR format.
+		For more information about the file's format, refer to the LEXenstein Manual.
+		@return: A dictionary that assigns target complex words to sets of candidate substitutions.
+		Example: substitutions['perched'] = {'sat', 'roosted'}
+		"""
+
+		#Get initial set of substitutions:
+		substitutions = self.getInitialSet(victor_corpus, amount)
+		return substitutions
+
+	def getInitialSet(self, victor_corpus, amount):
+		lexf = open(victor_corpus)
+		data = []
+		for line in lexf:
+			d = line.strip().split('\t')
+			data.append(d)
+		lexf.close()
+		
+		trgs = []
+		trgsstems = []
+		trgslemmas = []
+		for i in range(0, len(data)):
+			d = data[i]
+			target = d[1].strip().lower()
+			head = int(d[2].strip())
+			trgs.append(target)
+		trgslemmas = self.lemmatizeWords(trgs)
+		trgsstems = self.stemWords(trgs)
+		
+		trgmap = {}
+		for i in range(0, len(trgslemmas)):
+			target = data[i][1].strip().lower()
+			head = int(data[i][2].strip())
+			lemma = trgslemmas[i]
+			stem = trgsstems[i]
+			trgmap[target] = (lemma, stem)
+	
+		subs = []
+		cands = set([])
+		for i in range(0, len(data)):
+			d = data[i]
+
+			t = trgs[i]
+			tstem = trgsstems[i]
+			tlemma = trgslemmas[i]
+
+			word = t
+
+			most_sim = []
+			try:
+				most_sim = self.model.most_similar(positive=[word], topn=50)
+			except KeyError:
+				most_sim = []
+
+			subs.append([word[0] for word in most_sim])
+			
+		subsr = subs
+		subs = []
+		for l in subsr:
+			lr = []
+			for inst in l:
+				cand = inst.split('|||')[0].strip()
+				encc = None
+				try:
+					encc = cand.encode('ascii')
+				except Exception:
+					encc = None
+				if encc:
+					cands.add(cand)
+					lr.append(inst)
+			subs.append(lr)
+			
+		cands = list(cands)
+		candslemmas = self.lemmatizeWords(cands)
+		candsstems = self.stemWords(cands)
+		candmap = {}
+		for i in range(0, len(cands)):
+			cand = cands[i]
+			lemma = candslemmas[i]
+			stem = candsstems[i]
+			candmap[cand] = (lemma, stem)
+		
+		subs_filtered = self.filterSubs(data, subs, candmap, trgs, trgsstems, trgslemmas)
+		
+		final_cands = {}
+		for i in range(0, len(data)):
+			target = data[i][1]
+			cands = subs_filtered[i][0:min(amount, subs_filtered[i])]
+			cands = [str(word.split('|||')[0].strip()) for word in cands]
+			if target not in final_cands:
+				final_cands[target] = set([])
+			final_cands[target].update(set(cands))
+		
+		return final_cands
+		
+	def lemmatizeWords(self, words):
+		result = []
+		for word in words:
+			result.append(self.lemmatizer.lemmatize(word))
+		return result
+		
+	def stemWords(self, words):
+		result = []
+		for word in words:
+			result.append(self.stemmer.stem(word))
+		return result
+	
+	def filterSubs(self, data, subs, candmap, trgs, trgsstems, trgslemmas):
+		result = []
+		for i in range(0, len(data)):
+			d = data[i]
+
+			t = trgs[i]
+			tstem = trgsstems[i]
+			tlemma = trgslemmas[i]
+
+			word = t
+
+			most_sim = subs[i]
+			most_simf = []
+
+			for cand in most_sim:
+				cword = cand
+				clemma = candmap[cword][0]
+				cstem = candmap[cword][1]
+
+				if clemma!=tlemma and cstem!=tstem:
+					most_simf.append(cand)
+
+			result.append(most_simf)
+		return result
 
 class KauchakGenerator:
 
@@ -82,8 +473,8 @@ class KauchakGenerator:
 				rightw = rightraw.split('|||')[0].strip()
 
 				if len(leftw)>0 and len(rightw)>0 and leftp!='nnp' and rightp!='nnp' and rightp==leftp and leftw not in self.stop_words and rightw not in self.stop_words and leftw!=rightw:
-						if leftw in substitutions_initial.keys():
-							if leftp in substitutions_initial[leftw].keys():
+						if leftw in substitutions_initial:
+							if leftp in substitutions_initial[leftw]:
 								substitutions_initial[leftw][leftp].add(rightw)
 							else:
 								substitutions_initial[leftw][leftp] = set(rightw)
@@ -104,7 +495,7 @@ class KauchakGenerator:
 
 			posd = nltk.pos_tag(sent)
 			postarget = posd[head][1].lower().strip()
-			if target in result.keys():
+			if target in result:
 				result[target].add(postarget)
 			else:
 				result[target] = set([postarget])
@@ -129,7 +520,7 @@ class KauchakGenerator:
 			key = allkeys[i]
 			leftw = key
 
-			for leftp in result[leftw].keys():
+			for leftp in result[leftw]:
 				if leftp.startswith('n'):
 					if leftp=='nns':
 						pluralsk[leftw] = set([])
@@ -224,10 +615,10 @@ class KauchakGenerator:
 		for i in range(0, len(allkeys)):
 			key = allkeys[i]
 			leftw = key
-			for leftp in result[leftw].keys():			
+			for leftp in result[leftw]:			
 
 				#Add final version to candidates:
-				if leftw not in final_substitutions.keys():
+				if leftw not in final_substitutions:
 					final_substitutions[leftw] = result[key][leftp]
 				else:
 					final_substitutions[leftw] = final_substitutions[leftw].union(result[key][leftp])
@@ -240,7 +631,7 @@ class KauchakGenerator:
 						for candidate in result[key][leftp]:
 							candplurl = plurals[candidate]
 							newcands.add(candplurl)
-						if plurl not in final_substitutions.keys():
+						if plurl not in final_substitutions:
 							final_substitutions[plurl] = newcands
 						else:
 							final_substitutions[plurl] = final_substitutions[plurl].union(newcands)
@@ -251,7 +642,7 @@ class KauchakGenerator:
 						for candidate in result[key][leftp]:
 							candsingl = singulars[candidate]
 							newcands.add(candsingl)
-						if singl not in final_substitutions.keys():
+						if singl not in final_substitutions:
 							final_substitutions[singl] = newcands
 						else:
 							final_substitutions[singl] = final_substitutions[singl].union(newcands)
@@ -263,7 +654,7 @@ class KauchakGenerator:
 						for candidate in result[key][leftp]:
 							candtensedl = verbs[candidate][verb_tense]
 							newcands.add(candtensedl)
-						if tensedl not in final_substitutions.keys():
+						if tensedl not in final_substitutions:
 							final_substitutions[tensedl] = newcands
 						else:
 							final_substitutions[tensedl] = final_substitutions[tensedl].union(newcands)
@@ -371,7 +762,7 @@ class YamamotoGenerator:
 			key = allkeys[i]
 			leftw = key
 
-			for leftp in result[leftw].keys():
+			for leftp in result[leftw]:
 				if leftp.startswith('n'):
 					if leftp=='nns':
 						pluralsk[leftw] = set([])
@@ -466,10 +857,10 @@ class YamamotoGenerator:
 		for i in range(0, len(allkeys)):
 			key = allkeys[i]
 			leftw = key
-			for leftp in result[leftw].keys():			
+			for leftp in result[leftw]:			
 
 				#Add final version to candidates:
-				if leftw not in final_substitutions.keys():
+				if leftw not in final_substitutions:
 					final_substitutions[leftw] = result[key][leftp]
 				else:
 					final_substitutions[leftw] = final_substitutions[leftw].union(result[key][leftp])
@@ -482,7 +873,7 @@ class YamamotoGenerator:
 						for candidate in result[key][leftp]:
 							candplurl = plurals[candidate]
 							newcands.add(candplurl)
-						if plurl not in final_substitutions.keys():
+						if plurl not in final_substitutions:
 							final_substitutions[plurl] = newcands
 						else:
 							final_substitutions[plurl] = final_substitutions[plurl].union(newcands)
@@ -493,7 +884,7 @@ class YamamotoGenerator:
 						for candidate in result[key][leftp]:
 							candsingl = singulars[candidate]
 							newcands.add(candsingl)
-						if singl not in final_substitutions.keys():
+						if singl not in final_substitutions:
 							final_substitutions[singl] = newcands
 						else:
 							final_substitutions[singl] = final_substitutions[singl].union(newcands)
@@ -505,7 +896,7 @@ class YamamotoGenerator:
 						for candidate in result[key][leftp]:
 							candtensedl = verbs[candidate][verb_tense]
 							newcands.add(candtensedl)
-						if tensedl not in final_substitutions.keys():
+						if tensedl not in final_substitutions:
 							final_substitutions[tensedl] = newcands
 						else:
 							final_substitutions[tensedl] = final_substitutions[tensedl].union(newcands)
@@ -574,7 +965,7 @@ class YamamotoGenerator:
 				node_pos = entry.find('fl')
 				if node_pos != None:
 					node_pos = node_pos.text.strip()[0].lower()
-					if node_pos not in cands.keys():
+					if node_pos not in cands:
 						cands[node_pos] = set([])
 				for definition in entry.iter('dt'):
 					if definition.text!=None:
@@ -587,7 +978,7 @@ class YamamotoGenerator:
 							cand = p[0].strip()
 							if postag==node_pos:
 								cands[node_pos].add(cand)
-			for pos in cands.keys():
+			for pos in cands:
 				if target in cands[pos]:
 					cands[pos].remove(target)
 			if len(cands.keys())>0:
@@ -655,7 +1046,7 @@ class MerriamGenerator:
 			key = allkeys[i]
 			leftw = key
 
-			for leftp in result[leftw].keys():
+			for leftp in result[leftw]:
 				if leftp.startswith('n'):
 					if leftp=='nns':
 						pluralsk[leftw] = set([])
@@ -750,10 +1141,10 @@ class MerriamGenerator:
 		for i in range(0, len(allkeys)):
 			key = allkeys[i]
 			leftw = key
-			for leftp in result[leftw].keys():			
+			for leftp in result[leftw]:			
 
 				#Add final version to candidates:
-				if leftw not in final_substitutions.keys():
+				if leftw not in final_substitutions:
 					final_substitutions[leftw] = result[key][leftp]
 				else:
 					final_substitutions[leftw] = final_substitutions[leftw].union(result[key][leftp])
@@ -766,7 +1157,7 @@ class MerriamGenerator:
 						for candidate in result[key][leftp]:
 							candplurl = plurals[candidate]
 							newcands.add(candplurl)
-						if plurl not in final_substitutions.keys():
+						if plurl not in final_substitutions:
 							final_substitutions[plurl] = newcands
 						else:
 							final_substitutions[plurl] = final_substitutions[plurl].union(newcands)
@@ -777,7 +1168,7 @@ class MerriamGenerator:
 						for candidate in result[key][leftp]:
 							candsingl = singulars[candidate]
 							newcands.add(candsingl)
-						if singl not in final_substitutions.keys():
+						if singl not in final_substitutions:
 							final_substitutions[singl] = newcands
 						else:
 							final_substitutions[singl] = final_substitutions[singl].union(newcands)
@@ -789,7 +1180,7 @@ class MerriamGenerator:
 						for candidate in result[key][leftp]:
 							candtensedl = verbs[candidate][verb_tense]
 							newcands.add(candtensedl)
-						if tensedl not in final_substitutions.keys():
+						if tensedl not in final_substitutions:
 							final_substitutions[tensedl] = newcands
 						else:
 							final_substitutions[tensedl] = final_substitutions[tensedl].union(newcands)
@@ -855,7 +1246,7 @@ class MerriamGenerator:
 					node_pos = root_node.find('fl')
 					if node_pos != None:
 						node_pos = node_pos.text.strip()[0].lower()
-						if node_pos not in cands.keys():
+						if node_pos not in cands:
 							cands[node_pos] = set([])
 					for sense in root_node.iter('sens'):
 						syn = sense.findall('syn')[0]
@@ -875,7 +1266,7 @@ class MerriamGenerator:
 								cands[node_pos].add(synonym)
 							except UnicodeEncodeError:
 								cands = cands
-			for pos in cands.keys():
+			for pos in cands:
 				if target in cands[pos]:
 					cands[pos].remove(target)
 			if len(cands.keys())>0:
@@ -908,7 +1299,7 @@ class WordnetGenerator:
 		self.mat = mat
 		self.nc = nc
 		os.environ['JAVAHOME'] = java_path
-		self.tagger = POSTagger(pos_model, stanford_tagger)
+		self.tagger = StanfordPOSTagger(pos_model, stanford_tagger)
 
 	def getSubstitutions(self, victor_corpus):
 		"""
@@ -950,9 +1341,9 @@ class WordnetGenerator:
 		toOriginal = []
 		
 		#Fill lists:
-		for target in subs.keys():
+		for target in subs:
 			targets.append(target)
-			for pos in subs[target].keys():
+			for pos in subs[target]:
 				#Get cands for a target and tag combination:
 				cands = list(subs[target][pos])
 				
@@ -1056,7 +1447,7 @@ class WordnetGenerator:
 			
 		#Create final substitutions:
 		final_substitutions = {}
-		for target in subs.keys():
+		for target in subs:
 			#Get lemma of target:
 			targetL = stemM[target]
 			
@@ -1064,7 +1455,7 @@ class WordnetGenerator:
 			final_substitutions[target] = set([])
 			
 			#Iterate through pos tags of target:
-			for pos in subs[target].keys():
+			for pos in subs[target]:
 				#Create final cands:
 				final_cands = set([])
 				
@@ -1128,8 +1519,8 @@ class WordnetGenerator:
 		adjectives = set([])
 		
 		#Fill lists:
-		for target in subs.keys():
-			for pos in subs[target].keys():
+		for target in subs:
+			for pos in subs[target]:
 				#Get cands for a target and tag combination:
 				cands = list(subs[target][pos])
 				
@@ -1192,8 +1583,8 @@ class WordnetGenerator:
 		
 		#Create extended substitutions:
 		substitutions_extended = {}
-		for target in subs.keys():
-			for pos in subs[target].keys():
+		for target in subs:
+			for pos in subs[target]:
 				#Get cands for a target and tag combination:
 				cands = list(subs[target][pos])
 				
@@ -1339,10 +1730,10 @@ class WordnetGenerator:
 		return substitutions_initial
 
 	def addToExtended(self, target, tag, cands, subs):
-		if target not in subs.keys():
+		if target not in subs:
 			subs[target] = {tag:cands}
 		else:
-			if tag not in subs[target].keys():
+			if tag not in subs[target]:
 				subs[target][tag] = cands
 			else:
 				subs[target][tag].extend(cands)
@@ -1400,7 +1791,7 @@ class BiranGenerator:
 		self.mat = mat
 		self.nc = nc
 		os.environ['JAVAHOME'] = java_path
-		self.tagger = POSTagger(pos_model, stanford_tagger)
+		self.tagger = StanfordPOSTagger(pos_model, stanford_tagger)
 
 	def getSubstitutions(self, victor_corpus):
 		"""
@@ -1432,7 +1823,7 @@ class BiranGenerator:
 		#Remove simple->complex substitutions:
 		substitutions_final = {}
 
-		for key in substitutions_inflected.keys():
+		for key in substitutions_inflected:
 			candidate_list = set([])
 			key_score = self.getComplexity(key, self.complex_lm, self.simple_lm)
 			for cand in substitutions_inflected[key]:
@@ -1461,9 +1852,9 @@ class BiranGenerator:
 		toOriginal = []
 		
 		#Fill lists:
-		for target in subs.keys():
+		for target in subs:
 			targets.append(target)
-			for pos in subs[target].keys():
+			for pos in subs[target]:
 				#Get cands for a target and tag combination:
 				cands = list(subs[target][pos])
 				
@@ -1567,7 +1958,7 @@ class BiranGenerator:
 			
 		#Create final substitutions:
 		final_substitutions = {}
-		for target in subs.keys():
+		for target in subs:
 			#Get lemma of target:
 			targetL = stemM[target]
 			
@@ -1575,7 +1966,7 @@ class BiranGenerator:
 			final_substitutions[target] = set([])
 			
 			#Iterate through pos tags of target:
-			for pos in subs[target].keys():
+			for pos in subs[target]:
 				#Create final cands:
 				final_cands = set([])
 				

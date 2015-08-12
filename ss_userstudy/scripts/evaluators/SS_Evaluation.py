@@ -24,7 +24,7 @@ namem['SVMClassifierGrammaticality'] = 'SVM Classifier (Grammaticality)'
 namem['RandomTreesClassifierGrammaticality'] = 'Random Trees (Grammaticality'
 namem['DecisionTreeJoint'] = 'Decision Trees (Joint)'
 methods = ['biran', 'kauchak', 'merriam', 'wordnet', 'yamamoto', 'all', 'paetzold']
-methods = ['all']
+#methods = ['all']
 lexf = open('/export/data/ghpaetzold/benchmarking/lexmturk/corpora/lexmturk_all.txt')
 lex = []
 for line in lexf:

@@ -28,10 +28,10 @@ def getSubs(generator):
 	return result
 
 fe = FeatureEstimator()
-fe.addWordVectorSimilarityFeature('../../corpora/word_vectors_all.bin', 'Simplicity')
-#fe.addCollocationalFeature('../../corpora/subtleximdb.5gram.bin.unk.txt', 2, 2, 'Complexity')
-fe.addCollocationalFeature('../../corpora/simplewiki.5.bin.txt', 2, 2, 'Complexity')
-fe.addTranslationProbabilityFeature('/export/data/ghpaetzold/LEXenstein/corpora/translation_probabilities_lexmturkall.txt', 'Simplicity')
+fe.addWordVectorSimilarityFeature('/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_500_cbow.bin', 'Simplicity')
+fe.addCollocationalFeature('/export/data/ghpaetzold/subtitlesimdb/corpora/160715/subtleximdb.5gram.unk.bin.txt', 2, 2, 'Complexity')
+#fe.addCollocationalFeature('../../corpora/simplewiki.5.bin.txt', 2, 2, 'Complexity')
+fe.addTranslationProbabilityFeature('/export/data/ghpaetzold/LEXenstein/corpora/transprob_dict_lexmturk.bin', 'Simplicity')
 
 br = SVMRanker(fe, '/export/tools/svm-rank')
 

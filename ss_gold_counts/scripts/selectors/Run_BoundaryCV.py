@@ -21,6 +21,18 @@ temp_file = sys.argv[13].strip()
 proportion = float(sys.argv[14].strip())
 out = sys.argv[15].strip()
 
+def getTaggedSents(corpus):
+        result = []
+        f = open(corpus)
+        for line in f:
+                tags = []
+                tokens = line.strip().split(' ')
+                for token in tokens:
+                        tokendata = token.strip().split('|||')
+                        tags.append((tokendata[0].strip(), tokendata[1].strip()))
+                result.append(tags)
+        return result
+
 def getSubs(generator):
 	result = {}
 	f = open('../../substitutions/' + generator + '/substitutions.txt')
@@ -32,23 +44,29 @@ def getSubs(generator):
 	f.close()
 	return result
 
-fe = FeatureEstimator()
-fe.addWordVectorSimilarityFeature('../../../lexmturk/corpora/word_vectors_all.bin', 'Simplicity')
-fe.addCollocationalFeature('../../../lexmturk/corpora/subtleximdb.5gram.bin.unk.txt', 2, 2, 'Complexity')
-fe.addCollocationalFeature('../../../lexmturk/corpora/simplewiki.5.bin.txt', 2, 2, 'Complexity')
-fe.addTranslationProbabilityFeature('/export/data/ghpaetzold/LEXenstein/corpora/translation_probabilities_lexmturkall.txt', 'Simplicity')
 condprob_model = '/export/data/ghpaetzold/corpora/pos_tag_conditional_probabilities/simplewiki_condprob_model.bin'
 model = '/export/data/ghpaetzold/benchmarking/lexmturk/scripts/evaluators/stanford-postagger-full-2015-04-20/models/english-bidirectional-distsim.tagger'
 tagger = '/export/data/ghpaetzold/benchmarking/lexmturk/scripts/evaluators/stanford-postagger-full-2015-04-20/stanford-postagger.jar'
 java = '/usr/bin/java'
-#fe.addTargetPOSTagProbability(condprob_model, model, tagger, java, 'Simplicity')
+
+fe = FeatureEstimator()
+fe.addCollocationalFeature('/export/data/ghpaetzold/subtitlesimdb/corpora/160715/subtleximdb.5gram.unk.bin.txt', 2, 2, 'Complexity')
+fe.addTargetPOSTagProbability('/export/data/ghpaetzold/LEXenstein/corpora/POS_condprob_model.bin', model, tagger, java, 'Simplicity')
+w2vmodel = '/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_generalized_500_cbow.bin'
+fe.addTaggedWordVectorSimilarityFeature(w2vmodel, model, tagger, java, 'paetzold', 'Simplicity')
 
 br = BoundaryRanker(fe)
 
 subs = getSubs(generator)
 
 bs = BoundarySelector(br)
+
+tagged_sents = getTaggedSents('../../corpora/tagged_sents_lexmturk_train.txt')
+bs.ranker.fe.temp_resources['tagged_sents'] = tagged_sents
 bs.trainSelectorWithCrossValidation(train_victor_corpus, positive_range, folds, test_size, k=features)
+
+tagged_sents = getTaggedSents('../../corpora/tagged_sents_lexmturk_test.txt')
+bs.ranker.fe.temp_resources['tagged_sents'] = tagged_sents
 selected = bs.selectCandidates(subs, test_victor_corpus, temp_file, proportion)
 
 outf = open(out, 'w')

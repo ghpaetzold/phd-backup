@@ -2,7 +2,7 @@ import pywsd
 import gensim
 from scipy.spatial.distance import cosine
 import nltk
-from nltk.tag.stanford import POSTagger
+from nltk.tag.stanford import StanfordPOSTagger
 import numpy as np
 import os
 
@@ -142,7 +142,7 @@ class SVMRankSelector:
 			word = word.strip()
 			score = scores[index]
 			index += 1
-			if id in ranking_data.keys():
+			if id in ranking_data:
 				ranking_data[id][word] = score
 			else:
 				ranking_data[id] = {word:score}
@@ -154,7 +154,7 @@ class SVMRankSelector:
 		for line in f:
 			id += 1
 			candidates = []
-			if id in ranking_data.keys():
+			if id in ranking_data:
 				candidates = ranking_data[id].keys()
 				candidates = sorted(candidates, key=ranking_data[id].__getitem__, reverse=False)
 			result.append(candidates)
@@ -186,6 +186,130 @@ class SVMRankSelector:
 		f.close()
 		o.close()
 
+class SVMBoundarySelector:
+
+	def __init__(self, svm_boundary_ranker):
+		"""
+		Creates an instance of the SVMBoundarySelector class.
+	
+		@param svm_boundary_ranker: An instance of the BoundaryRanker class.
+		"""
+		self.ranker = svm_boundary_ranker
+		
+	def trainSelector(self, victor_corpus, positive_range, C, kernel, degree, gamma, coef0, k='all'):
+		"""
+		Trains a Boundary Ranker according to the parameters provided.
+	
+		@param victor_corpus: Path to a training corpus in VICTOR format.
+		For more information about the file's format, refer to the LEXenstein Manual.
+		@param positive_range: Maximum rank to which label 1 is assigned in the binary classification setup.
+		Recommended value: 1.
+		@param C: Penalty parameter.
+		Recommended values: 0.1, 1, 10.
+		@param kernel: Kernel function to be used.
+		Supported values: 'linear', 'poly', 'rbf', 'sigmoid'.
+		@param degree: Degree of the polynomial kernel.
+		Recommended values: 2, 3.
+		@param gamma: Kernel coefficient.
+		Recommended values: 0.01, 0.1, 1.
+		@param coef0: Independent term value.
+		Recommended values: 0, 1.
+		@param k: Number of best features to be selected through univariate feature selection.
+		If k='all', then no feature selection is performed.
+		"""
+		self.ranker.trainRanker(victor_corpus, positive_range, C, kernel, degree, gamma, coef0, k=k)
+	
+	def trainSelectorWithCrossValidation(self, victor_corpus, positive_range, folds, test_size, Cs=[0.1, 1, 10], kernels=['linear', 'rbf', 'poly', 'sigmoid'], degrees=[2], gammas=[0.01, 0.1, 1], coef0s=[0, 1], k='all'):
+		"""
+		Trains a Boundary Selector while maximizing hyper-parameters through cross-validation.
+		It uses the TRank-at-1 as an optimization metric.
+	
+		@param victor_corpus: Path to a training corpus in VICTOR format.
+		For more information about the file's format, refer to the LEXenstein Manual.
+		@param positive_range: Maximum rank to which label 1 is assigned in the binary classification setup.
+		Recommended value: 1.
+		@param folds: Number of folds to be used in cross-validation.
+		@param test_size: Percentage of the dataset to be used in testing.
+		Recommended values: 0.2, 0.25, 0.33
+		@param Cs: Penalty parameters.
+		Recommended values: 0.1, 1, 10.
+		@param kernels: Kernel functions to be used.
+		Supported values: 'linear', 'poly', 'rbf', 'sigmoid'.
+		@param degrees: Degrees of the polynomial kernel.
+		Recommended values: 2, 3.
+		@param gammas: Kernel coefficients.
+		Recommended values: 0.01, 0.1, 1.
+		@param coef0s: Independent term values.
+		Recommended values: 0, 1.
+		@param k: Number of best features to be selected through univariate feature selection.
+		If k='all', then no feature selection is performed.
+		"""
+		self.ranker.trainRankerWithCrossValidation(victor_corpus, positive_range, folds, test_size, Cs=Cs, kernels=kernels, degrees=degrees, gammas=gammas, coef0s=coef0s, k=k)
+		
+	def selectCandidates(self, substitutions, victor_corpus, temp_file, proportion):
+		"""
+		Selects which candidates can replace the target complex words in each instance of a VICTOR corpus.
+	
+		@param substitutions: Candidate substitutions to be filtered.
+		It can be in two formats:
+		A dictionary produced by a Substitution Generator linking complex words to a set of candidate substitutions.
+		Example: substitutions['perched'] = {'sat', 'roosted'}
+		A list of candidate substitutions selected for the "victor_corpus" dataset by a Substitution Selector.
+		Example: [['sat', 'roosted'], ['easy', 'uncomplicated']]
+		@param victor_corpus: Path to a corpus in the VICTOR format.
+		For more information about the file's format, refer to the LEXenstein Manual.
+		User must have the privilege to delete such file without administrator privileges.
+		@param temp_file: File in which to save a temporary victor corpus.
+		The file is removed after the algorithm is concluded.
+		@param proportion: Percentage of substitutions to keep.
+		@return: Returns a vector of size N, containing a set of selected substitutions for each instance in the VICTOR corpus.
+		"""
+		void = VoidSelector()
+		selected_void = void.selectCandidates(substitutions, victor_corpus)
+		void.toVictorFormat(victor_corpus, selected_void, temp_file)
+		
+		rankings = self.ranker.getRankings(temp_file)
+		
+		selected_substitutions = []				
+
+		lexf = open(victor_corpus)
+		index = -1
+		for line in lexf:
+			index += 1
+		
+			selected_candidates = rankings[index][0:max(1, int(proportion*float(len(rankings[index]))))]
+		
+			selected_substitutions.append(selected_candidates)
+		lexf.close()
+		
+		#Delete temp_file:
+		os.system('rm ' + temp_file)
+		return selected_substitutions
+		
+	def toVictorFormat(self, victor_corpus, substitutions, output_path, addTargetAsCandidate=False):
+		"""
+		Saves a set of selected substitutions in a file in VICTOR format.
+	
+		@param victor_corpus: Path to the corpus in the VICTOR format to which the substitutions were selected.
+		@param substitutions: The vector of substitutions selected for the VICTOR corpus.
+		@param output_path: The path in which to save the resulting VICTOR corpus.
+		@param addTargetAsCandidate: If True, adds the target complex word of each instance as a candidate substitution.
+		"""
+		o = open(output_path, 'w')
+		f = open(victor_corpus)
+		for subs in substitutions:
+			data = f.readline().strip().split('\t')
+			sentence = data[0].strip()
+			target = data[1].strip()
+			head = data[2].strip()
+			
+			newline = sentence + '\t' + target + '\t' + head + '\t'
+			for sub in subs:
+				newline += '0:'+sub + '\t'
+			o.write(newline.strip() + '\n')
+		f.close()
+		o.close()
+		
 class BoundarySelector:
 
 	def __init__(self, boundary_ranker):
@@ -354,7 +478,7 @@ class ClusterSelector:
 			target = data[1].strip()
 		
 			selected_candidates = set([])
-			if target in self.words_to_clusters.keys():	
+			if target in self.words_to_clusters:	
 				cluster = self.words_to_clusters[target]
 				candidates = set(substitution_candidates[c])
 				selected_candidates = candidates.intersection(self.clusters_to_words[cluster])
@@ -372,7 +496,7 @@ class ClusterSelector:
 			cluster = data[0].strip()
 			word = data[1].strip()
 			
-			if cluster in cw.keys():
+			if cluster in cw:
 				cw[cluster].add(word)
 			else:
 				cw[cluster] = set([word])
@@ -419,7 +543,7 @@ class POSTagSelector:
 		Can be commonly found in "/usr/bin/java" in Unix/Linux systems, or in "C:/Program Files/Java/jdk_version/java.exe" in Windows systems.
 		"""
 		os.environ['JAVAHOME'] = java_path
-		self.tagger = POSTagger(pos_model, stanford_tagger, encoding='utf8')
+		self.tagger = StanfordPOSTagger(pos_model, stanford_tagger)
 
 	def selectCandidates(self, substitutions, victor_corpus):
 		"""
@@ -506,7 +630,7 @@ class POSTagSelector:
 	def getCandidatesWithSamePOS(self, candidates, word_to_tag, target_pos):
 		result = set([])
 		for candidate in candidates:
-			if candidate in word_to_tag.keys():
+			if candidate in word_to_tag:
 				ctag = word_to_tag[candidate]
 				if ctag==target_pos:
 					result.add(candidate)
@@ -564,7 +688,7 @@ class VoidSelector:
 			target = data[1].strip()
 		
 			candidates = []
-			if target in substitutions.keys():
+			if target in substitutions:
 				candidates = substitutions[target]
 		
 			selected_substitutions.append(candidates)
@@ -702,7 +826,7 @@ class BiranSelector:
 		return cosine(v1, v2)
 	
 	def getCommonVec(self, target, candidate):
-		if target not in self.model.keys() or candidate not in self.model.keys():
+		if target not in self.model.keys() or candidate not in self.model:
 			return {}
 		else:
 			result = {}
@@ -731,7 +855,7 @@ class BiranSelector:
 				cooc = tokens[j]
 				if self.isNumeral(cooc):
 					cooc = '#NUMERAL#'
-				if cooc not in coocs.keys():
+				if cooc not in coocs:
 					coocs[cooc] = 1
 				else:
 					coocs[cooc] += 1

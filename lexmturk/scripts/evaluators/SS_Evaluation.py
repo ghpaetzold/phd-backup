@@ -19,25 +19,25 @@ def getSelectors(map):
 
 
 namem = {}
-namem['lesk'] = 'Lesk'
-namem['first'] = 'First'
-namem['random'] = 'Random'
-namem['wupalmer'] = 'Wu-Palmer'
-namem['path'] = 'Path'
-namem['enhancedlesk'] = 'Enhanced Lesk'
+#namem['lesk'] = 'Lesk'
+#namem['first'] = 'First'
+#namem['random'] = 'Random'
+#namem['wupalmer'] = 'Wu-Palmer'
+#namem['path'] = 'Path'
+#namem['enhancedlesk'] = 'Enhanced Lesk'
 namem['biran'] = 'Biran'
 namem['wordvector'] = 'Word Vector'
 namem['postag'] = 'POS Tag'
 namem['clusters'] = 'Brown Clusters'
-#namem['clusters2k'] = 'Brown Clusters 2k'
-#namem['boundary'] = 'Boundary'
 namem['boundaryCV'] = 'Boundary (CV)'
 namem['svmrank'] = 'SVM Rank'
-#namem['spellcorrected'] = 'Spell-Corrected'
-#namem['boundarypostag'] = 'Boundary+POSTag'
 namem['wordvectortreebank'] = 'Word Vector (Treebank)'
 namem['wordvectorgeneralized'] = 'Word Vector (Generalized)'
+namem['SGDClassifier'] = 'Grammaticality Model'
+
 methods = ['biran', 'kauchak', 'merriam', 'wordnet', 'yamamoto', 'all', 'paetzold']
+methods = ['paetzold']
+
 lexf = open('../../corpora/lexmturk_all.txt')
 lex = []
 for line in lexf:
@@ -48,7 +48,7 @@ for line in lexf:
 lexf.close()
 
 selectors = getSelectors(namem)
-maxims = set(['wordvector', 'biran', 'void', 'postag', 'clusters', 'clusters2k', 'boundary', 'boundaryCV', 'svmrank', 'spellcorrected', 'boundarypostag', 'wordvectortreebank', 'wordvectorgeneralized'])
+maxims = set(['wordvector', 'biran', 'void', 'clusters', 'boundary', 'boundaryCV', 'svmrank', 'wordvectortreebank', 'wordvectorgeneralized', 'SGDClassifier'])
 
 #Create file containing best SS parameters:
 bestssf = open('best_ss.txt', 'w')
@@ -95,13 +95,17 @@ for index in range(0, len(methods)):
 							sele_d.append(set([]))
 					sele_f.close()
 					
-					pot, prec, rec, fmean = se.evaluateSelector('../../corpora/lexmturk_all.txt', sele_d)
-					if fmean>maxfmean:
-						maxfmean = fmean
-						maxpot = pot
-						maxprec = prec
-						maxrec = rec
-						maxfile = file
+					try:
+						pot, prec, rec, fmean = se.evaluateSelector('../../corpora/lexmturk_all.txt', sele_d)
+#						if fmean>maxfmean:
+						if prec>maxprec:
+							maxfmean = fmean
+							maxpot = pot
+							maxprec = prec
+							maxrec = rec
+							maxfile = file
+					except Exception:
+						pass
 			components = [maxpot, maxprec, maxrec, maxfmean]
 			#print('For: ' + selector)
 			#print('Max file: ' + maxfile)

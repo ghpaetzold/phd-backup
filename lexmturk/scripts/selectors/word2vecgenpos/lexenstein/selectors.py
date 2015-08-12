@@ -2,7 +2,7 @@ import pywsd
 import gensim
 from scipy.spatial.distance import cosine
 import nltk
-from nltk.tag.stanford import POSTagger
+from nltk.tag.stanford import StanfordTagger
 import numpy as np
 import os
 

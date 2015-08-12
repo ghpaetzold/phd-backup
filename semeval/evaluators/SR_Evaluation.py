@@ -4,7 +4,7 @@ from lexenstein.evaluators import *
 
 methods = os.listdir('../rankings/')
 
-maxes = set(['glavas', 'svm_original', 'bott', 'biran', 'yamamoto', 'paetzold', 'horn', 'svm_top1', 'svm_top2', 'svm_top2e', 'svm_top3', 'paetzoldCV'])
+maxes = set(['glavas', 'svm_original', 'bott', 'biran', 'yamamoto', 'paetzold', 'horn', 'svm_top1', 'svm_top2', 'svm_top2e', 'svm_top3', 'paetzoldCV', 'paetzold+w2vCV'])
 alls = set(['metrics'])
 
 re = RankerEvaluator()

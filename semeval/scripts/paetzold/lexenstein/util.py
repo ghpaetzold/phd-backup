@@ -1,6 +1,124 @@
 import nltk
 import pickle
 import shelve
+import re
+
+def dependencyParseSentences(parser, sentences):
+	"""
+	Use StanfordParser to parse multiple sentences.
+	Takes multiple sentences as a list where each sentence is a list of words.
+	Each sentence will be automatically tagged with this StanfordParser instance's tagger.
+	If whitespaces exists inside a token, then the token will be treated as separate tokens.
+	This method is an adaptation of the code provided by NLTK.
+
+	@param parser: An instance of the nltk.parse.stanford.StanfordParser class.
+	@param sentences: Input sentences to parse.
+	Each sentence must be a list of tokens.
+	@return A list of the dependency links of each sentence.
+	Each dependency link is composed by the relation type, the source word, its position in the sentence, the target word, and its position in the sentence.
+	"""
+	cmd = [
+	    'edu.stanford.nlp.parser.lexparser.LexicalizedParser',
+	    '-model', parser.model_path,
+	    '-sentences', 'newline',
+	    '-outputFormat', 'typedDependencies',
+	    '-tokenized',
+	    '-escaper', 'edu.stanford.nlp.process.PTBEscapingProcessor',
+	]
+
+	output=parser._execute(cmd, '\n'.join(' '.join(sentence) for sentence in sentences), False)
+
+	depexp = re.compile("([^\\(]+)\\(([^\\,]+)\\,\s([^\\)]+)\\)")
+
+	res = []
+	cur_lines = []
+	for line in output.splitlines(False):
+	    if line == '':
+			res.append(cur_lines)
+			cur_lines = []
+	    else:
+			depdata = re.findall(depexp, line)
+			if len(depdata)>0:
+				link = depdata[0]
+				subjecth = link[1].rfind('-')
+				objecth = link[2].rfind('-')
+				subjectindex = link[1][subjecth+1:len(link[1])]
+				if subjectindex.endswith(r"'"):
+					subjectindex = subjectindex[0:len(subjectindex)-1]
+				objectindex = link[2][objecth+1:len(link[2])]
+				if objectindex.endswith(r"'"):
+					objectindex = objectindex[0:len(objectindex)-1]
+				clean_link = (link[0], link[1][0:subjecth], subjectindex, link[2][0:objecth], objectindex)
+				try:
+					a = int(subjectindex)
+					b = int(objectindex)
+					cur_lines.append(clean_link)
+				except Exception:
+					pass
+	return res
+
+def getGeneralisedPOS(tag):
+	"""
+	Returns a generalised version of a POS tag in Treebank format.
+
+	@param tag: POS tag in Treebank format.
+	@return A generalised POS tag.
+	"""
+	result = None
+	if tag.startswith('N'):
+		result = 'N'
+	elif tag.startswith('V'):
+		result = 'V'
+	elif tag.startswith('RB'):
+		result = 'A'
+	elif tag.startswith('J'):
+		result = 'J'
+	elif tag.startswith('W'):
+		result = 'W'
+	elif tag.startswith('PRP'):
+		result = 'P'
+	else:
+		result = tag.strip()
+	return result
+	
+def createTaggedNgramsFile(ngrams_file, tagged_ngrams_file):
+	"""
+	Creates a tagged version of an annotated n-gram counts file.
+	
+	@param ngrams_file: File containing n-gram counts.
+	The file must be in the format produced by the "-write" option of SRILM.
+	Each word in the corpus used must be in the following format: <word>|||<tag>
+	@param tagged_ngrams_file: File with tagged n-gram counts.
+	"""
+	o = open(tagged_ngrams_file, 'w')
+	
+	print('Opening input n-gram counts file...')
+	c = 0
+	f = open(ngrams_file)
+	for line in f:
+		c += 1
+		if c % 1000000 == 0:
+			print(str(c) + ' n-grams processed.')
+		data = line.strip().split('\t')
+		tokens = [t.split('|||') for t in data[0].split(' ')]
+		if len(tokens)==2:
+			o.write(tokens[0][0] + ' ' + tokens[1][min(1, len(tokens[1])-1)] + '\t' + data[1] + '\n')
+			o.write(tokens[0][min(1, len(tokens[0])-1)] + ' ' + tokens[1][0] + '\t' + data[1] + '\n')
+		elif len(tokens)==3:
+			o.write(tokens[0][0] + ' ' + tokens[1][min(1, len(tokens[1])-1)] + ' ' + tokens[2][min(1, len(tokens[2])-1)] + '\t' + data[1] + '\n')
+			o.write(tokens[0][min(1, len(tokens[0])-1)] + ' ' + tokens[1][0] + ' ' + tokens[2][min(1, len(tokens[2])-1)] + '\t' + data[1] + '\n')
+			o.write(tokens[0][min(1, len(tokens[0])-1)] + ' ' + tokens[1][min(1, len(tokens[1])-1)] + ' ' + tokens[2][0] + '\t' + data[1] + '\n')
+		elif len(tokens)==4:
+			o.write(tokens[0][min(1, len(tokens[0])-1)] + ' ' + tokens[1][min(1, len(tokens[1])-1)] + ' ' + tokens[2][0] + ' ' + tokens[3][min(1, len(tokens[3])-1)] + '\t' + data[1] + '\n')
+			o.write(tokens[0][min(1, len(tokens[0])-1)] + ' ' + tokens[1][0] + ' ' + tokens[2][min(1, len(tokens[2])-1)] + ' ' + tokens[3][min(1, len(tokens[3])-1)] + '\t' + data[1] + '\n')
+		elif len(tokens)==5:
+			o.write(tokens[0][min(1, len(tokens[0])-1)] + ' ' + tokens[1][min(1, len(tokens[1])-1)] + ' ' + tokens[2][0] + ' ' + tokens[3][min(1, len(tokens[3])-1)] + ' ' + tokens[4][min(1, len(tokens[4])-1)] + '\t' + data[1] + '\n')
+	f.close()
+	print('N-grams file read!')
+	
+	print('Saving model...')
+	o.close()
+	print('Finished!')
 
 def removeUnkFromNgramsFile(ngrams_file, output):
 	"""
@@ -74,6 +192,41 @@ def getVocabularyFromDataset(dataset, vocab_file, leftw, rightw, format='victor'
 			f.write(word.strip() + '\n')
 	f.close()
 
+def addTranslationProbabilitiesFileToShelve(transprob_file, model_file):
+	"""
+	Adds a translation probabilities file to an either new, or existing shelve dictionary.
+	The shelve file can then be used for the calculation of features.
+	To produce the translation probabilities file, first run the following command through fast_align:
+	fast_align -i <parallel_data> -v -d -o <transprob_file>
+	
+	@param transprob_file: File containing translation probabilities.
+	@param model_file: Shelve file in which to save the translation probabilities.
+	"""
+	print('Opening shelve file...')
+	d = shelve.open(model_file, protocol=pickle.HIGHEST_PROTOCOL)
+	print('Shelve file open!')
+	
+	print('Reading translation probabilities file...')
+	c = 0
+	f = open(transprob_file)
+	for line in f:
+		c += 1
+		if c % 1000000 == 0:
+			print(str(c) + ' translation probabilities read.')
+		data = line.strip().split('\t')
+		key = data[0] + '\t' + data[1]
+		value = float(data[2])
+		if key not in d:
+			d[key] = value
+		else:
+			d[key] += value
+	f.close()
+	print('Translation probabilities file read!')
+	
+	print('Saving model...')
+	d.close()
+	print('Finished!')
+	
 def addNgramCountsFileToShelve(ngrams_file, model_file):
 	"""
 	Adds a n-gram counts file to an either new, or existing shelve dictionary.
@@ -81,7 +234,7 @@ def addNgramCountsFileToShelve(ngrams_file, model_file):
 	The file must be in the format produced by the "-write" option of SRILM.
 	
 	@param ngrams_file: File containing n-gram counts.
-	@param model_file: File in which to save the frequency model.
+	@param model_file: Shelve file in which to save the n-gram counts file.
 	"""
 	print('Opening shelve file...')
 	d = shelve.open(model_file, protocol=pickle.HIGHEST_PROTOCOL)

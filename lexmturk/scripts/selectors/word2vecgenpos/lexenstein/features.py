@@ -3,7 +3,7 @@ from nltk.corpus import wordnet as wn
 import kenlm
 import math
 import gensim
-from nltk.tag.stanford import POSTagger
+from nltk.tag.stanford import StanfordPOSTagger
 import os
 import pickle
 from sklearn.preprocessing import normalize
@@ -493,7 +493,7 @@ class FeatureEstimator:
 		else:
 			os.environ['JAVAHOME'] = java_path
 			if pos_model not in self.resources.keys():
-				tagger = POSTagger(pos_model, stanford_tagger)
+				tagger = StanfordPOSTagger(pos_model, stanford_tagger)
 				self.resources[pos_model] = tagger
 			if model not in self.resources.keys():
 				m = gensim.models.word2vec.Word2Vec.load_word2vec_format(model, binary=True)
