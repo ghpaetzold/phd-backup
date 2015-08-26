@@ -4,10 +4,15 @@ from lexenstein.evaluators import *
 
 #Generators:
 generators = os.listdir('../../substitutions/')
+#generators = ['glavas']
 generators = ['paetzold']
+#generators = ['kauchak']
+#generators = ['biran']
 
 #Selectors:
-selectors = ['svmrank', 'GrammaticalitySGD', 'boundaryUnsupervisedCV', 'boundaryUnsupervised']
+selectors = ['svmrank', 'GrammaticalitySGD', 'boundaryUnsupervisedCV', 'boundaryUnsupervised', 'void']
+#selectors = ['biran']
+#selectors = ['void']
 
 #Rankers:
 methods = set(os.listdir('../../rankings/'))
@@ -19,6 +24,8 @@ namem['Grammaticality'] = 'Grammaticality (DT)'
 namem['GrammaticalitySGD'] = 'Grammaticality (SGD)'
 namem['boundaryUnsupervisedCV'] = 'Boundary (Unsupervised) (CV)'
 namem['boundaryUnsupervised'] = 'Boundary (Unsupervised)'
+namem['void'] = 'No Selection'
+namem['biran'] = 'Biran'
 
 results = {}
 for generator in generators:

@@ -6,7 +6,7 @@ folds = ['5', '10']
 test_sizes = ['0.25', '0.5', '0.75']
 
 generators = os.listdir('../../substitutions/')
-generators = ['paetzold']
+generators = ['paetzold', 'kauchak']
 
 best_map = {}
 f = open('../evaluators/best_ss.txt')

@@ -18,7 +18,7 @@ def getSubs(generator):
 
 subs = getSubs(generator)
 
-voidselector = ClusterSelector('/export/data/ghpaetzold/LEXenstein/corpora/clusters.txt')
+voidselector = ClusterSelector('/export/data/ghpaetzold/LEXenstein/corpora/clusters2k.txt')
 selected = voidselector.selectCandidates(subs, victor_corpus)
 
 outf = open(out, 'w')

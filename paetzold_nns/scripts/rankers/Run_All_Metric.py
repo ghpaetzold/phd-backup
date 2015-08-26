@@ -2,8 +2,8 @@ import os
 
 #Features: 21
 flabels = []
-flabels.append('lexicon_basic')
-flabels.append('lexicon_wikisimple')
+#flabels.append('lexicon_basic')
+#flabels.append('lexicon_wikisimple')
 flabels.append('length')
 flabels.append('syllable')
 flabels.append('colloc00')
@@ -22,9 +22,6 @@ flabels.append('hypernyms')
 flabels.append('hyponyms')
 flabels.append('mindepth')
 flabels.append('maxdepth')
-
-#flabels = ['colloc00', 'senses', 'synonyms', 'hypernyms', 'hyponyms']
-#flabels = ['length']
 
 generators = os.listdir('../../substitutions/')
 generators = ['paetzold']

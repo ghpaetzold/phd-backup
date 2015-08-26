@@ -1,0 +1,26 @@
+import os
+
+generators = os.listdir('../../substitutions/')
+generators = ['glavas']
+
+best_map = {}
+f = open('../evaluators/best_ss.txt')
+for line in f:
+        data = line.strip().split('\t')
+        gen = data[0].strip()
+        sel = data[1].strip()
+        file = data[2].strip()
+        if gen not in best_map:
+                best_map[gen] = {}
+        best_map[gen][sel] = file
+f.close()
+
+os.system('mkdir ../../rankings/glavas')
+
+for generator in generators:
+	for selector in best_map[generator]:
+		trainset = 'placeholder'
+		testset = '../../substitutions/'+generator+'/'+best_map[generator][selector]
+		output = '../../rankings/glavas/ranks_'+generator+'_'+selector+'.txt'
+		comm = 'nohup python Run_Glavas.py '+trainset+' '+testset+' '+output+' &'
+		os.system(comm)

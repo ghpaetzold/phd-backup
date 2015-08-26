@@ -2,8 +2,8 @@ import os
 
 #Features: 21
 flabels = []
-flabels.append('lexicon_basic')
-flabels.append('lexicon_wikisimple')
+#flabels.append('lexicon_basic')
+#flabels.append('lexicon_wikisimple')
 flabels.append('length')
 flabels.append('syllable')
 flabels.append('colloc00')
@@ -23,11 +23,10 @@ flabels.append('hyponyms')
 flabels.append('mindepth')
 flabels.append('maxdepth')
 
-#flabels = ['colloc00', 'senses', 'synonyms', 'hypernyms', 'hyponyms']
-#flabels = ['length']
+flabels = ['length', 'colloc00', 'senses', 'synonyms', 'hypernyms', 'hyponyms']
 
 generators = os.listdir('../../substitutions/')
-generators = ['paetzold']
+generators = ['wordnet']
 
 best_map = {}
 f = open('../evaluators/best_ss.txt')

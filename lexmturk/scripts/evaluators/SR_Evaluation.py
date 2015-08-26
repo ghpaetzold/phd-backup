@@ -2,25 +2,30 @@ from tabulate import tabulate
 import os
 from lexenstein.evaluators import *
 
+#Generators:
 generators = os.listdir('../../substitutions/')
-generators = ['paetzold']
-#selectors = ['biran', 'void', 'wordvector', 'path', 'random', 'first', 'lesk', 'enhancedlesk', 'boundaryCV', 'svmrank', 'clusters']
-selectors = ['biran', 'void', 'wordvector', 'boundaryCV', 'svmrank', 'clusters', 'SGDClassifier']
-methods = set(os.listdir('../../rankings/'))
+generators = ['all']
 
+#Selectors:
+selectors = ['biran', 'subimdb22', 'boundaryUnsupervisedCV', 'boundaryCV', 'svmrank', 'clusters', 'lesk', 'first', 'random', 'wupalmer', 'void']
+
+#Rankers:
+methods = set(os.listdir('../../rankings/'))
+methods = ['colloc00', 'length', 'senses', 'synonyms']
+
+#Names:
 namem = {}
-#namem['lesk'] = 'Lesk'
-#namem['first'] = 'First'
-#namem['random'] = 'Random'
-#namem['path'] = 'Wu-Palmer'
-#namem['enhancedlesk'] = 'Enhanced Lesk'
+namem['lesk'] = 'Lesk'
+namem['first'] = 'First'
+namem['random'] = 'Random'
+namem['wupalmer'] = 'Wu-Palmer'
 namem['biran'] = 'Biran'
-namem['wordvector'] = 'Word Vector'
+#namem['wordvector'] = 'Word Vector'
 namem['void'] = 'No Selection'
 namem['boundaryCV'] = 'Boundary'
 namem['svmrank'] = 'SVM Rank'
 namem['clusters'] = 'Clusters'
-namem['SGDClassifier'] = 'Grammaticality Model'
+#namem['SGDClassifier'] = 'Grammaticality Model'
 
 results = {}
 for generator in generators:
@@ -32,7 +37,7 @@ for generator in generators:
 
 pe = PipelineEvaluator()
 for method in methods:
-		#print(method)
+		print(method)
 		files = os.listdir('../../rankings/'+method+'/')
 
 		for file in files:
@@ -55,9 +60,9 @@ for method in methods:
 				pass
 
 index = -1
-for generator in results.keys():
+for generator in results:
 	genprefix = generator[0].upper() + generator[1:len(generator)]
-	for selector in results[generator].keys():
+	for selector in results[generator]:
 		index += 1
 		myt = ''
 		myt += r'\begin{table}[htpb]'+'\n'

@@ -14,8 +14,8 @@ def getSubs(generator):
 generators = os.listdir('../../substitutions/')
 
 for generator in generators:
-	f = open('../../corpora/lexmturk_gold_test.txt')
-	o = open('../../substitutions/'+generator+'/substitutions_unsupervised_test.txt', 'w')
+	f = open('../../corpora/lexmturk_gold.txt')
+	o = open('../../substitutions/'+generator+'/substitutions_unsupervised.txt', 'w')
 	subs = getSubs(generator)
 	for line in f:
 		data = line.strip().split('\t')

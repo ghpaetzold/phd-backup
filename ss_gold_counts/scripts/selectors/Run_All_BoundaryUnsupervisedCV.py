@@ -2,6 +2,7 @@ import os
 
 generators = os.listdir('../../substitutions/')
 generators = ['kauchak', 'paetzold', 'wordnet']
+#generators = ['all']
 
 #train_victor_corpus = '../../corpora/lexmturk_gold_targetfirst_train.txt'
 test_victor_corpus = '../../corpora/lexmturk_gold_test.txt'
@@ -10,13 +11,15 @@ test_victor_corpus = '../../corpora/lexmturk_gold_test.txt'
 rs = ['1']
 fs = ['5', '10']
 ts = ['0.25', '0.75']
-ks = ['8', 'all']
+ks = ['all', '8']
+#ks = ['6']
 proportions = ['1.0']
 
 #Run Boundary selector:
 c = 0
 for generator in generators:
-	train_victor_corpus = '../../substitutions/'+generator+'/substitutions_unsupervised.txt'
+#	train_victor_corpus = '../../substitutions/'+generator+'/substitutions_unsupervised.txt'
+	train_victor_corpus = '../../substitutions/all/substitutions_unsupervised.txt'
 	for proportion in proportions:
 		for positive_range in rs:
 			for folds in fs:

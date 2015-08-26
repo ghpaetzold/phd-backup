@@ -20,22 +20,24 @@ def getSelectors(map):
 #Name map:
 namem = {}
 namem['lesk'] = 'Lesk'
-namem['first'] = 'First'
-namem['random'] = 'Random'
-namem['wupalmer'] = 'Wu-Palmer'
+#namem['first'] = 'First'
+#namem['random'] = 'Random'
+#namem['wupalmer'] = 'Wu-Palmer'
 namem['path'] = 'Path'
 namem['biran'] = 'Biran'
 namem['clusters'] = 'Brown Clusters'
-namem['boundary'] = 'Boundary (No-CV)'
-namem['boundaryCV'] = 'Boundary (CV)'
-namem['svmrank'] = 'SVM Rank'
-namem['Grammaticality'] = 'Grammaticality (DT)'
-namem['GrammaticalitySGD'] = 'Grammaticality (SGD)'
+#namem['boundary'] = 'Boundary (No-CV)'
+#namem['boundaryCV'] = 'Boundary (CV)'
+#namem['svmrank'] = 'SVM Rank'
+#namem['GrammaticalitySGD'] = 'Grammaticality (SGD)'
 namem['boundaryUnsupervisedCV'] = 'Boundary (Unsupervised) (CV)'
 namem['boundaryUnsupervised'] = 'Boundary (Unsupervised)'
+namem['void'] = 'No Selection'
 
 #Generators:
 methods = os.listdir('../../substitutions/')
+methods = ['paetzold', 'kauchak', 'glavas']
+methods = ['biran']
 methods = ['paetzold']
 
 #Dataset:
@@ -114,9 +116,10 @@ for index in range(0, len(methods)):
 			components = [maxpot, maxprec, maxrec, maxfmean]
 			#print('For: ' + selector)
 			#print('Max file: ' + maxfile)
-			if maxfmean>-1:
-				bestssf.write(method + '\t' + selector + '\t' + maxfile.strip() + '\n')
 			if selector in namem.keys():
+				if maxfmean>-1:
+					bestssf.write(method + '\t' + selector + '\t' + maxfile.strip() + '\n')
+
 				myt += namem[selector] + ' '
 				for comp in components:
 					cstr = "%.3f" % comp

@@ -1,12 +1,12 @@
 import os
 
 #Parameters:
-Cs = ['1', '0.1']
+#Cs = ['1', '0.1']
 Cs = ['1']
 kernels = ['1', '3']
-kernels = ['1']
+#kernels = ['1']
 epsilons = ['0.0001']
-proportions = ['0.125', '0.25', '0.5']
+proportions = ['7', '14']
 
 generators = os.listdir('../../substitutions/')
 #generators = ['kauchak']
@@ -15,7 +15,8 @@ generators = os.listdir('../../substitutions/')
 #generators = ['wordnet']
 #generators = ['yamamoto']
 #generators = ['all']
-victor_corpus = '../../corpora/lexmturk_all_targetfirst.txt'
+generators = ['wordnet', 'paetzold']
+victor_corpus = '../../corpora/lexmturk_all.txt'
 
 #Run SVMRank selector:
 c = 0

@@ -1,11 +1,11 @@
 import os
 from lexenstein.evaluators import *
 
-def getSelectors(map):
+def getSelectors(map, generator):
 	result = {}
-	files = os.listdir('../../substitutions/kauchak/')
+	files = os.listdir('../../substitutions/'+generator+'/')
 	for file in files:
-		if file != 'substitutions.txt':
+		if file != 'substitutions.txt' and '_unsupervised' not in file:
 			bulk = file[0:len(file)-4].strip().split('_')[1].strip()
 			if bulk in result:
 				result[bulk].add(file)
@@ -17,27 +17,31 @@ def getSelectors(map):
 
 
 
-
+#Names:
 namem = {}
-#namem['lesk'] = 'Lesk'
-#namem['first'] = 'First'
-#namem['random'] = 'Random'
-#namem['wupalmer'] = 'Wu-Palmer'
+namem['lesk'] = 'Lesk'
+namem['first'] = 'First'
+namem['random'] = 'Random'
+namem['wupalmer'] = 'Leacock'
 #namem['path'] = 'Path'
 #namem['enhancedlesk'] = 'Enhanced Lesk'
 namem['biran'] = 'Biran'
-namem['wordvector'] = 'Word Vector'
-namem['postag'] = 'POS Tag'
+#namem['wordvector'] = 'Word Vector'
+#namem['postag'] = 'POS Tag'
 namem['clusters'] = 'Brown Clusters'
-namem['boundaryCV'] = 'Boundary (CV)'
+namem['boundaryCV'] = 'Supervised Boundary'
+namem['boundaryUnsupervisedCV'] = 'Unsupervised Boundary'
 namem['svmrank'] = 'SVM Rank'
-namem['wordvectortreebank'] = 'Word Vector (Treebank)'
-namem['wordvectorgeneralized'] = 'Word Vector (Generalized)'
-namem['SGDClassifier'] = 'Grammaticality Model'
+namem['subimdb22'] = 'Metric-Based'
+#namem['wordvectortreebank'] = 'Word Vector (Treebank)'
+#namem['wordvectorgeneralized'] = 'Word Vector (Generalized)'
+#namem['SGDClassifier'] = 'Grammaticality Model'
 
+#Generators
 methods = ['biran', 'kauchak', 'merriam', 'wordnet', 'yamamoto', 'all', 'paetzold']
-methods = ['paetzold']
+methods = ['wordnet', 'kauchak', 'paetzold', 'all']
 
+#Data:
 lexf = open('../../corpora/lexmturk_all.txt')
 lex = []
 for line in lexf:
@@ -47,13 +51,15 @@ for line in lexf:
 	lex.append((target, subs))
 lexf.close()
 
-selectors = getSelectors(namem)
-maxims = set(['wordvector', 'biran', 'void', 'clusters', 'boundary', 'boundaryCV', 'svmrank', 'wordvectortreebank', 'wordvectorgeneralized', 'SGDClassifier'])
+#Maxims:
+maxims = set(['wordvector', 'biran', 'void', 'clusters', 'boundary', 'boundaryCV', 'svmrank', 'wordvectortreebank', 'wordvectorgeneralized', 'SGDClassifier', 'boundaryUnsupervisedCV', 'subimdb22'])
 
 #Create file containing best SS parameters:
 bestssf = open('best_ss.txt', 'w')
 for index in range(0, len(methods)):
 	method = methods[index]
+	selectors = getSelectors(namem, method)
+
 	myt = ''
 	headers = ['Selector', 'Potential', 'Precision', 'Recall', 'F-Measure']
 	myt += r'\begin{table}[htpb]'+'\n'
@@ -97,8 +103,7 @@ for index in range(0, len(methods)):
 					
 					try:
 						pot, prec, rec, fmean = se.evaluateSelector('../../corpora/lexmturk_all.txt', sele_d)
-#						if fmean>maxfmean:
-						if prec>maxprec:
+						if fmean>maxfmean:
 							maxfmean = fmean
 							maxpot = pot
 							maxprec = prec
@@ -107,11 +112,10 @@ for index in range(0, len(methods)):
 					except Exception:
 						pass
 			components = [maxpot, maxprec, maxrec, maxfmean]
-			#print('For: ' + selector)
-			#print('Max file: ' + maxfile)
-			if maxfmean>-1:
+
+			if maxfmean>-1 and selector in namem:
 				bestssf.write(method + '\t' + selector + '\t' + maxfile.strip() + '\n')
-			if selector in namem.keys():
+			if selector in namem:
 				myt += namem[selector] + ' '
 				for comp in components:
 					cstr = "%.3f" % comp

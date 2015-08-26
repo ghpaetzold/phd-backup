@@ -13,8 +13,20 @@ model_file = sys.argv[7].strip()
 temp_file = sys.argv[8].strip()
 te_features_file = sys.argv[9].strip()
 scores_file = sys.argv[10].strip()
-proportion = float(sys.argv[11].strip())
+proportion = int(sys.argv[11].strip())
 out = sys.argv[12].strip()
+
+def getTaggedSents(corpus):
+        result = []
+        f = open(corpus)
+        for line in f:
+                tags = []
+                tokens = line.strip().split(' ')
+                for token in tokens:
+                        tokendata = token.strip().split('|||')
+                        tags.append((tokendata[0].strip(), tokendata[1].strip()))
+                result.append(tags)
+        return result
 
 def getSubs(generator):
 	result = {}
@@ -28,18 +40,29 @@ def getSubs(generator):
 	return result
 
 fe = FeatureEstimator()
-fe.addWordVectorSimilarityFeature('/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_500_cbow.bin', 'Simplicity')
+condprob_model = '/export/data/ghpaetzold/corpora/pos_tag_conditional_probabilities/simplewiki_condprob_model.bin'
+model = '/export/data/ghpaetzold/benchmarking/lexmturk/scripts/evaluators/stanford-postagger-full-2015-04-20/models/english-bidirectional-distsim.tagger'
+tagger = '/export/data/ghpaetzold/benchmarking/lexmturk/scripts/evaluators/stanford-postagger-full-2015-04-20/stanford-postagger.jar'
+java = '/usr/bin/java'
+
+fe = FeatureEstimator()
 fe.addCollocationalFeature('/export/data/ghpaetzold/subtitlesimdb/corpora/160715/subtleximdb.5gram.unk.bin.txt', 2, 2, 'Complexity')
-#fe.addCollocationalFeature('../../corpora/simplewiki.5.bin.txt', 2, 2, 'Complexity')
-fe.addTranslationProbabilityFeature('/export/data/ghpaetzold/LEXenstein/corpora/transprob_dict_lexmturk.bin', 'Simplicity')
+fe.addTargetPOSTagProbability('/export/data/ghpaetzold/LEXenstein/corpora/POS_condprob_model.bin', model, tagger, java, 'Simplicity')
+w2vmodel = '/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_generalized_500_cbow.bin'
+fe.addTaggedWordVectorSimilarityFeature(w2vmodel, model, tagger, java, 'paetzold', 'Simplicity')
 
 br = SVMRanker(fe, '/export/tools/svm-rank')
 
 subs = getSubs(generator)
 
 bs = SVMRankSelector(br)
+tagged_sents = getTaggedSents('../../corpora/tagged_sents_lexmturk_all.txt')
+bs.ranker.fe.temp_resources['tagged_sents'] = tagged_sents
 bs.trainSelector(victor_corpus, features_file, model_file, C, epsilon, kernel)
-selected = bs.selectCandidates(subs, victor_corpus, te_features_file, scores_file, temp_file, proportion)
+
+tagged_sents = getTaggedSents('../../corpora/tagged_sents_lexmturk_all.txt')
+bs.ranker.fe.temp_resources['tagged_sents'] = tagged_sents
+selected = bs.selectCandidates(subs, victor_corpus, te_features_file, scores_file, temp_file, proportion, proportion_type='integer')
 
 outf = open(out, 'w')
 vicf = open(victor_corpus)

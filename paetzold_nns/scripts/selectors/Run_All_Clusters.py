@@ -1,6 +1,7 @@
 import os
 
 generators = os.listdir('../../substitutions/')
+generators = ['paetzold']
 
 victor_corpus = '../../corpora/paetzold_nns_dataset.txt'
 
