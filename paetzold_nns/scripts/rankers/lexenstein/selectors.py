@@ -5,6 +5,7 @@ import nltk
 from nltk.tag.stanford import StanfordPOSTagger
 import numpy as np
 import os
+import pickle
 
 class SVMRankSelector:
 
@@ -69,7 +70,7 @@ class SVMRankSelector:
 		self.ranker.getTrainingModel(features_file, parameters[0], parameters[2], parameters[1], model_file)
 		self.model = model_file
 		
-	def selectCandidates(self, substitutions, victor_corpus, features_file, scores_file, temp_file, proportion):
+	def selectCandidates(self, substitutions, victor_corpus, features_file, scores_file, temp_file, proportion, proportion_type='percentage'):
 		"""
 		Selects which candidates can replace the target complex words in each instance of a VICTOR corpus.
 	
@@ -86,7 +87,11 @@ class SVMRankSelector:
 		User must have the privilege to delete such file without administrator privileges.
 		@param temp_file: File in which to save a temporary victor corpus.
 		The file is removed after the algorithm is concluded.
-		@param proportion: Percentage of substitutions to keep.
+		@param proportion: Proportion of substitutions to keep.
+		If proportion_type is set to "percentage", then this parameter must be a floating point number between 0 and 1.
+		If proportion_type is set to "integer", then this parameter must be an integer number.
+		@param proportion_type: Type of proportion to be kept.
+		Values supported: percentage, integer.
 		@return: Returns a vector of size N, containing a set of selected substitutions for each instance in the VICTOR corpus.
 		"""
 		void = VoidSelector()
@@ -104,7 +109,23 @@ class SVMRankSelector:
 		for line in lexf:
 			index += 1
 		
-			selected_candidates = rankings[index][0:max(1, int(proportion*float(len(rankings[index]))))]
+			selected_candidates = None
+			if proportion_type == 'percentage':
+				toselect = None
+				if proportion > 1.0:
+					toselect = 1.0
+				else:
+					toselect = proportion
+				selected_candidates = rankings[index][0:max(1, int(toselect*float(len(rankings[index]))))]
+			else:
+				toselect = None
+				if proportion < 1:
+					toselect = 1
+				elif proportion > len(rankings[index]):
+					toselect = len(rankings[index])
+				else:
+					toselect = proportion
+				selected_candidates = rankings[index][0:toselect]
 		
 			selected_substitutions.append(selected_candidates)
 		lexf.close()
@@ -246,7 +267,7 @@ class SVMBoundarySelector:
 		"""
 		self.ranker.trainRankerWithCrossValidation(victor_corpus, positive_range, folds, test_size, Cs=Cs, kernels=kernels, degrees=degrees, gammas=gammas, coef0s=coef0s, k=k)
 		
-	def selectCandidates(self, substitutions, victor_corpus, temp_file, proportion):
+	def selectCandidates(self, substitutions, victor_corpus, temp_file, proportion, proportion_type='percentage'):
 		"""
 		Selects which candidates can replace the target complex words in each instance of a VICTOR corpus.
 	
@@ -261,7 +282,11 @@ class SVMBoundarySelector:
 		User must have the privilege to delete such file without administrator privileges.
 		@param temp_file: File in which to save a temporary victor corpus.
 		The file is removed after the algorithm is concluded.
-		@param proportion: Percentage of substitutions to keep.
+		@param proportion: Proportion of substitutions to keep.
+		If proportion_type is set to "percentage", then this parameter must be a floating point number between 0 and 1.
+		If proportion_type is set to "integer", then this parameter must be an integer number.
+		@param proportion_type: Type of proportion to be kept.
+		Values supported: percentage, integer.
 		@return: Returns a vector of size N, containing a set of selected substitutions for each instance in the VICTOR corpus.
 		"""
 		void = VoidSelector()
@@ -277,7 +302,23 @@ class SVMBoundarySelector:
 		for line in lexf:
 			index += 1
 		
-			selected_candidates = rankings[index][0:max(1, int(proportion*float(len(rankings[index]))))]
+			selected_candidates = None
+			if proportion_type == 'percentage':
+				toselect = None
+				if proportion > 1.0:
+					toselect = 1.0
+				else:
+					toselect = proportion
+				selected_candidates = rankings[index][0:max(1, int(toselect*float(len(rankings[index]))))]
+			else:
+				toselect = None
+				if proportion < 1:
+					toselect = 1
+				elif proportion > len(rankings[index]):
+					toselect = len(rankings[index])
+				else:
+					toselect = proportion
+				selected_candidates = rankings[index][0:toselect]
 		
 			selected_substitutions.append(selected_candidates)
 		lexf.close()
@@ -368,7 +409,7 @@ class BoundarySelector:
 		"""
 		self.ranker.trainRankerWithCrossValidation(victor_corpus, positive_range, folds, test_size, losses=losses, penalties=penalties, alphas=alphas, l1_ratios=l1_ratios, k=k)
 		
-	def selectCandidates(self, substitutions, victor_corpus, temp_file, proportion):
+	def selectCandidates(self, substitutions, victor_corpus, temp_file, proportion, proportion_type='percentage'):
 		"""
 		Selects which candidates can replace the target complex words in each instance of a VICTOR corpus.
 	
@@ -383,7 +424,11 @@ class BoundarySelector:
 		User must have the privilege to delete such file without administrator privileges.
 		@param temp_file: File in which to save a temporary victor corpus.
 		The file is removed after the algorithm is concluded.
-		@param proportion: Percentage of substitutions to keep.
+		@param proportion: Proportion of substitutions to keep.
+		If proportion_type is set to "percentage", then this parameter must be a floating point number between 0 and 1.
+		If proportion_type is set to "integer", then this parameter must be an integer number.
+		@param proportion_type: Type of proportion to be kept.
+		Values supported: percentage, integer.
 		@return: Returns a vector of size N, containing a set of selected substitutions for each instance in the VICTOR corpus.
 		"""
 		void = VoidSelector()
@@ -399,7 +444,23 @@ class BoundarySelector:
 		for line in lexf:
 			index += 1
 		
-			selected_candidates = rankings[index][0:max(1, int(proportion*float(len(rankings[index]))))]
+			selected_candidates = None
+			if proportion_type == 'percentage':
+				toselect = None
+				if proportion > 1.0:
+					toselect = 1.0
+				else:
+					toselect = proportion
+				selected_candidates = rankings[index][0:max(1, int(toselect*float(len(rankings[index]))))]
+			else:
+				toselect = None
+				if proportion < 1:
+					toselect = 1
+				elif proportion > len(rankings[index]):
+					toselect = len(rankings[index])
+				else:
+					toselect = proportion
+				selected_candidates = rankings[index][0:toselect]
 		
 			selected_substitutions.append(selected_candidates)
 		lexf.close()
@@ -432,11 +493,11 @@ class BoundarySelector:
 		f.close()
 		o.close()
 
-class ClusterSelector:
+class BelderSelector:
 
 	def __init__(self, clusters):
 		"""
-		Creates an instance of the ClusterSelector class.
+		Creates an instance of the BelderSelector class.
 	
 		@param clusters: Path to a file containing clusters of words.
 		For instructions on how to create the file, please refer to the LEXenstein Manual.
@@ -529,12 +590,14 @@ class ClusterSelector:
 		f.close()
 		o.close()
 
-class POSTagSelector:
+class NunesSelector:
 
-	def __init__(self, pos_model, stanford_tagger, java_path):
+	def __init__(self, condprob_model, pos_model, stanford_tagger, java_path):
 		"""
 		Creates a POSTagSelector instance.
 	
+		@param condprob_model: Path to a binary conditional probability model.
+		For instructions on how to create the model, please refer to the LEXenstein Manual.
 		@param pos_model: Path to a POS tagging model for the Stanford POS Tagger.
 		The models can be downloaded from the following link: http://nlp.stanford.edu/software/tagger.shtml
 		@param stanford_tagger: Path to the "stanford-postagger.jar" file.
@@ -544,6 +607,7 @@ class POSTagSelector:
 		"""
 		os.environ['JAVAHOME'] = java_path
 		self.tagger = StanfordPOSTagger(pos_model, stanford_tagger)
+		self.model = pickle.load(open(condprob_model, 'rb'))
 
 	def selectCandidates(self, substitutions, victor_corpus):
 		"""
@@ -576,7 +640,6 @@ class POSTagSelector:
 		sents = []
 		targets = []
 		heads = []
-		words = set([])
 		c = -1
 		for line in lexf:
 			c += 1
@@ -587,19 +650,10 @@ class POSTagSelector:
 			sents.append(sent)
 			targets.append(target)
 			heads.append(head)
-			words.update(set(substitution_candidates[c]))
 		lexf.close()
 		
 		#Tag sentences:
 		tagged_sents = self.tagger.tag_sents(sents)
-		
-		#Tag words:
-		words = list(words)
-		words_sents = [[w] for w in words]
-		tagged_words = self.tagger.tag_sents(words_sents)
-		word_to_tag = {}
-		for i in range(0, len(words)):
-			word_to_tag[words[i]] = tagged_words[i][0][1]
 		
 		for i in range(0, len(sents)):
 			target = targets[i]
@@ -608,7 +662,7 @@ class POSTagSelector:
 		
 			candidates = []
 			candidates = set(substitution_candidates[i])
-			candidates = self.getCandidatesWithSamePOS(candidates, word_to_tag, target_pos)
+			candidates = self.getCandidatesWithSamePOS(candidates, target_pos)
 		
 			selected_substitutions.append(candidates)
 		lexf.close()
@@ -626,14 +680,16 @@ class POSTagSelector:
 			except UnicodeDecodeError:
 				return 'None'
 			
-		
-	def getCandidatesWithSamePOS(self, candidates, word_to_tag, target_pos):
+	def getCandidatesWithSamePOS(self, candidates, target_pos):
 		result = set([])
 		for candidate in candidates:
-			if candidate in word_to_tag:
-				ctag = word_to_tag[candidate]
-				if ctag==target_pos:
-					result.add(candidate)
+			cand_tag = None
+			try:
+				cand_tag = self.model[candidate].max()
+			except Exception:
+				pass
+			if cand_tag and cand_tag==target_pos:
+				result.add(candidate)
 		return result
 	
 	def toVictorFormat(self, victor_corpus, substitutions, output_path, addTargetAsCandidate=False):

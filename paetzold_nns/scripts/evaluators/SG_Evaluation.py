@@ -2,12 +2,32 @@ from tabulate import tabulate
 import os
 from lexenstein.evaluators import *
 
-myt = []
-headers = ['Method', 'Potential', 'Precision', 'Recall', 'F-Measure']
+#Initialize table:
+myt = ''
+myt += r'\begin{table}[htpb]'+'\n'
+myt += r'\caption{Evaluation results for SG approaches' + '}\n'
+myt += r'\centering'+'\n'
+myt += r'\label{table:benchsg}'+'\n'
+myt += r'\begin{tabular}{l|cccc}'+'\n'
+myt += r'Generator & Potential & Precision & Recall & F1 \\'+ '\n'
+myt += r'\hline'+'\n'
 
+#Generators:
 methods = os.listdir('../../substitutions/')
-#methods = ['biran', 'kauchak', 'merriam', 'wordnet', 'yamamoto', 'all', 'paetzold']
+methods = ['biran', 'kauchak', 'merriam', 'yamamoto', 'wordnet', 'glavas', 'paetzold', 'all']
 
+#Name map:
+genmap = {}
+genmap['biran'] = 'Biran'
+genmap['kauchak'] = 'Kauchak'
+genmap['merriam'] = 'Merriam'
+genmap['wordnet'] = 'WordNet'
+genmap['yamamoto'] = 'Yamamoto'
+genmap['glavas'] = 'Glavas'
+genmap['paetzold'] = 'Paetzold'
+genmap['all'] = 'All'
+
+#Produce table:
 for method in methods:
 	orig_p = '../../substitutions/'+method+'/substitutions.txt'
 	
@@ -26,6 +46,19 @@ for method in methods:
 	pot, prec, rec, fmean = ge.evaluateGenerator('../../corpora/paetzold_nns_dataset.txt', orig_s)
 
 	#Get statistics without selection:
-	myt.append([method, "%.3f" % pot, "%.3f" % prec, "%.3f" % rec, "%.3f" % fmean])
+	components = [pot, prec, rec, fmean]
+	myt += genmap[method] + ' '
+	for comp in components:
+		cstr = "%.3f" % comp
+		if len(cstr)==1:
+			cstr += '.000'
+		elif len(cstr)==3:
+			cstr += '00'
+		elif len(cstr)==4:
+			cstr += '0'
+		myt += r'& $' + cstr + r'$ '
+	myt += r'\\' + '\n'
 
-print(tabulate(myt, headers, tablefmt="latex"))
+myt += r'\end{tabular}'+'\n'
+myt += r'\end{table}'+'\n'
+print(myt)

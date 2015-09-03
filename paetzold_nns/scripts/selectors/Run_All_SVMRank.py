@@ -1,15 +1,15 @@
 import os
 
 #Parameters:
-Cs = ['1', '0.1']
-#Cs = ['1']
-kernels = ['0', '1', '2', '3']
+Cs = ['1']
+kernels = ['0', '2', '3']
 #kernels = ['1']
 epsilons = ['0.0001']
-proportions = ['0.125', '0.25', '0.5']
+proportions = ['7', '14']
 
 generators = os.listdir('../../substitutions/')
-generators = ['paetzold']
+generators = ['all', 'biran', 'glavas', 'kauchak']
+generators = ['merriam', 'yamamoto']
 
 train_victor_corpus = '../../corpora/lexmturk_all.txt'
 test_victor_corpus = '../../corpora/paetzold_nns_dataset.txt'

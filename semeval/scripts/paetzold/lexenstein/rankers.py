@@ -475,6 +475,7 @@ class BottRanker:
 		if len(word)>4:
 			ScoreWL = math.sqrt(len(word)-4)
 		ScoreFreq = -1*self.simple_lm.score(word, bos=False, eos=False)
+		#ScoreFreq = -1*self.simple_lm.score(word)
 		return a1*ScoreWL + a2*ScoreFreq
 
 class YamamotoRanker:
@@ -551,6 +552,7 @@ class YamamotoRanker:
 		
 	def getCandidateScore(self, sent, target, head, word, a1, a2, a3, a4, a5):
 		Fcorpus = a1*self.simple_lm.score(word, bos=False, eos=False)
+		#Fcorpus = a1*self.simple_lm.score(word)
 		Sense = a2*self.getSenseScore(word, target)
 		Cooc = a3*self.getCoocScore(word, sent)
 		Log = a4*self.getLogScore(Cooc, sent, word)
@@ -572,11 +574,13 @@ class YamamotoRanker:
 		if tokens[h+1]=='':
 			eos = True
 		result = self.simple_lm.score(t1, bos=bos, eos=eos)+self.simple_lm.score(t2, bos=bos, eos=eos)+self.simple_lm.score(t3, bos=bos, eos=eos)
+		#result = self.simple_lm.score(t1)+self.simple_lm.score(t2)+self.simple_lm.score(t3)
 		return result
 	
 	def getLogScore(self, Cooc, sent, word):
 		dividend = Cooc
 		divisor = self.simple_lm.score(word, bos=False, eos=False)*self.simple_lm.score(sent, bos=True, eos=True)
+		#divisor = self.simple_lm.score(word)*self.simple_lm.score(sent)
 		if divisor==0:
 			return 0
 		else:
@@ -667,6 +671,7 @@ class BiranRanker:
 		
 	def getCandidateComplexity(self, word):
 		C = (self.complex_lm.score(word, bos=False, eos=False))/(self.simple_lm.score(word, bos=False, eos=False))
+		#C = (self.complex_lm.score(word))/(self.simple_lm.score(word))
 		L = float(len(word))
 		return C*L
 
@@ -725,7 +730,7 @@ class BoundaryRanker:
 		self.classifier = linear_model.SGDClassifier(loss=loss, penalty=penalty, alpha=alpha, l1_ratio=l1_ratio, epsilon=epsilon)
 		self.classifier.fit(X, Y)
 		
-	def trainRankerWithCrossValidation(self, victor_corpus, positive_range, folds, test_size, losses=['hinge', 'modified_huber'], penalties=['elasticnet'], alphas=[0.0001, 0.001, 0.01], l1_ratios=[0.0, 0.15, 0.25, 0.5, 0.75, 1.0], k='all'):
+	def trainRankerWithCrossValidation(self, victor_corpus, positive_range, folds, test_size, losses=['hinge', 'modified_huber'], penalties=['elasticnet'], alphas=[0.0001, 0.001, 0.01], l1_ratios=[0.0, 0.15, 0.25, 0.5], k='all'):
 		"""
 		Trains a Boundary Ranker while maximizing hyper-parameters through cross-validation.
 		It uses the TRank-at-1 as an optimization metric.

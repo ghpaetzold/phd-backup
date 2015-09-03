@@ -11,6 +11,7 @@ def dependencyParseSentences(parser, sentences):
 	If whitespaces exists inside a token, then the token will be treated as separate tokens.
 	This method is an adaptation of the code provided by NLTK.
 
+	@param parser: An instance of the nltk.parse.stanford.StanfordParser class.
 	@param sentences: Input sentences to parse.
 	Each sentence must be a list of tokens.
 	@return A list of the dependency links of each sentence.
@@ -27,18 +28,33 @@ def dependencyParseSentences(parser, sentences):
 
 	output=parser._execute(cmd, '\n'.join(' '.join(sentence) for sentence in sentences), False)
 
-	depexp = re.compile("([^\\(]+)\\(([^\\-]+)\\-([^\\,]+)\\,\s([^\\-]+)\\-([^\\)]+)\\)")
+	depexp = re.compile("([^\\(]+)\\(([^\\,]+)\\,\s([^\\)]+)\\)")
 
 	res = []
 	cur_lines = []
 	for line in output.splitlines(False):
 	    if line == '':
-		res.append(cur_lines)
-		cur_lines = []
+			res.append(cur_lines)
+			cur_lines = []
 	    else:
-		depdata = re.findall(depexp, line)
-		if len(depdata)>0:
-			cur_lines.append(depdata[0])
+			depdata = re.findall(depexp, line)
+			if len(depdata)>0:
+				link = depdata[0]
+				subjecth = link[1].rfind('-')
+				objecth = link[2].rfind('-')
+				subjectindex = link[1][subjecth+1:len(link[1])]
+				if subjectindex.endswith(r"'"):
+					subjectindex = subjectindex[0:len(subjectindex)-1]
+				objectindex = link[2][objecth+1:len(link[2])]
+				if objectindex.endswith(r"'"):
+					objectindex = objectindex[0:len(objectindex)-1]
+				clean_link = (link[0], link[1][0:subjecth], subjectindex, link[2][0:objecth], objectindex)
+				try:
+					a = int(subjectindex)
+					b = int(objectindex)
+					cur_lines.append(clean_link)
+				except Exception:
+					pass
 	return res
 
 def getGeneralisedPOS(tag):

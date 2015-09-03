@@ -1,21 +1,13 @@
 import os
 
-#Features: 21
 flabels = []
-#flabels.append('lexicon_basic')
-#flabels.append('lexicon_wikisimple')
 flabels.append('length')
 flabels.append('syllable')
-flabels.append('colloc00')
-flabels.append('colloc01')
-flabels.append('colloc02')
-flabels.append('colloc10')
-flabels.append('colloc11')
-flabels.append('colloc12')
-flabels.append('colloc20')
-flabels.append('colloc21')
-flabels.append('colloc22')
-flabels.append('sent_prob')
+flabels.append('subimdb00')
+flabels.append('subtlex00')
+flabels.append('simplewiki00')
+flabels.append('wiki00')
+flabels.append('brown00')
 flabels.append('senses')
 flabels.append('synonyms')
 flabels.append('hypernyms')
@@ -24,7 +16,7 @@ flabels.append('mindepth')
 flabels.append('maxdepth')
 
 generators = os.listdir('../../substitutions/')
-generators = ['paetzold']
+#generators = ['paetzold']
 
 best_map = {}
 f = open('../evaluators/best_ss.txt')
@@ -39,7 +31,9 @@ for line in f:
 f.close()
 
 for generator in generators:
-        for selector in best_map[generator]:
+	#selectors = best_map[generator].keys()
+	selectors = ['void']
+        for selector in selectors:
 		for i in range(0, len(flabels)):
 			os.system('mkdir ../../rankings/'+flabels[i])
 			output = '../../rankings/'+flabels[i]+'/ranks_'+generator+'_'+selector+'.txt'

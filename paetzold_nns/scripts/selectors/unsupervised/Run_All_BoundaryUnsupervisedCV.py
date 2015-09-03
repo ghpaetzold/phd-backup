@@ -10,13 +10,14 @@ rs = ['1']
 fs = ['5', '10']
 ts = ['0.25', '0.5', '0.75']
 ks = ['all']
-#ks = ['7', '9']
-proportions = ['0.25', '0.5', '0.75']
+ks = ['8']
+proportions = ['7', '14']
+proportions = ['0.25', '0.5', '0.75'] 
 
 #Run Boundary selector:
 c = 0
 for generator in generators:
-	train_victor_corpus = '../../../substitutions/'+generator+'/substitutions_unsupervised.txt'
+	train_victor_corpus = '../../../substitutions/all/substitutions_unsupervised.txt'
 	for proportion in proportions:
 		for positive_range in rs:
 			for folds in fs:

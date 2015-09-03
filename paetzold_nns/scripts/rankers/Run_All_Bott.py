@@ -18,13 +18,17 @@ for line in f:
         best_map[gen][sel] = file
 f.close()
 
+#Parameters:
+alphas = ['1']
+
 for generator in generators:
-	#selectors = best_map[generator].keys()
-        selectors = ['void']
+        selectors = best_map[generator].keys()
+        #selectors = ['void']
         for selector in selectors:
-		testset = '../../substitutions/'+generator+'/'+best_map[generator][selector]		
-		output = '../../rankings/biran/ranks_'+generator+'_'+selector+'.txt'
-		clm = '/export/data/ghpaetzold/benchmarking/lexmturk/corpora/wiki.5gram.bin.txt'
-		slm = '/export/data/ghpaetzold/benchmarking/lexmturk/corpora/simplewiki.5.bin.txt'
-		comm = 'nohup python Run_Biran.py '+trainset+' '+clm+' '+slm+' '+testset+' '+output+' &'
-		os.system(comm)
+		testset = '../../substitutions/'+generator+'/'+best_map[generator][selector]
+		for a1 in alphas:
+			for a2 in alphas:
+				output = '../../rankings/bott/ranks_'+generator+'_'+selector+'_'+a1+'_'+a2+'.txt'
+				lm = '/export/data/ghpaetzold/machinelearningranking/corpora/lm/simplewiki.5gram.bin.txt'
+				comm = 'nohup python Run_Bott.py '+trainset+' '+lm+' '+a1+' '+a2+' '+testset+' '+output+' &'
+				os.system(comm)

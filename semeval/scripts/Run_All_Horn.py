@@ -1,8 +1,8 @@
 import os
 
 #Parameters:
-Cs = ['0.0005', '0.0007', '0.001', '0.01', '0.1']
-epsilons = ['0.0001', '0.0005', '0.0007', '0.001']
+Cs = ['1', '0.1']
+epsilons = ['0.0001', '0.001']
 kernels = ['0', '1', '2', '3', '4']
 
 trainset = '../corpora/semeval/semeval_train.txt'

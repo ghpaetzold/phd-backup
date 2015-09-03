@@ -250,7 +250,155 @@ class PaetzoldGenerator:
 		else:
 			result = tag.strip()
 		return result
+
+class GlavasGenerator:
+
+	def __init__(self, w2vmodel):
+		"""
+		Creates a GlavasGenerator instance.
+	
+		@param w2vmodel: Binary parsed word vector model.
+		For more information on how to produce the model, please refer to the LEXenstein Manual.
+		"""
+		self.lemmatizer = WordNetLemmatizer()
+		self.stemmer = PorterStemmer()
+		self.model = gensim.models.word2vec.Word2Vec.load_word2vec_format(w2vmodel, binary=True)
+
+	def getSubstitutions(self, victor_corpus, amount):
+		"""
+		Generates substitutions for the target words of a corpus in VICTOR format.
+	
+		@param victor_corpus: Path to a corpus in the VICTOR format.
+		For more information about the file's format, refer to the LEXenstein Manual.
+		@return: A dictionary that assigns target complex words to sets of candidate substitutions.
+		Example: substitutions['perched'] = {'sat', 'roosted'}
+		"""
+
+		#Get initial set of substitutions:
+		substitutions = self.getInitialSet(victor_corpus, amount)
+		return substitutions
+
+	def getInitialSet(self, victor_corpus, amount):
+		lexf = open(victor_corpus)
+		data = []
+		for line in lexf:
+			d = line.strip().split('\t')
+			data.append(d)
+		lexf.close()
 		
+		trgs = []
+		trgsstems = []
+		trgslemmas = []
+		for i in range(0, len(data)):
+			d = data[i]
+			target = d[1].strip().lower()
+			head = int(d[2].strip())
+			trgs.append(target)
+		trgslemmas = self.lemmatizeWords(trgs)
+		trgsstems = self.stemWords(trgs)
+		
+		trgmap = {}
+		for i in range(0, len(trgslemmas)):
+			target = data[i][1].strip().lower()
+			head = int(data[i][2].strip())
+			lemma = trgslemmas[i]
+			stem = trgsstems[i]
+			trgmap[target] = (lemma, stem)
+	
+		subs = []
+		cands = set([])
+		for i in range(0, len(data)):
+			d = data[i]
+
+			t = trgs[i]
+			tstem = trgsstems[i]
+			tlemma = trgslemmas[i]
+
+			word = t
+
+			most_sim = []
+			try:
+				most_sim = self.model.most_similar(positive=[word], topn=50)
+			except KeyError:
+				most_sim = []
+
+			subs.append([word[0] for word in most_sim])
+			
+		subsr = subs
+		subs = []
+		for l in subsr:
+			lr = []
+			for inst in l:
+				cand = inst.split('|||')[0].strip()
+				encc = None
+				try:
+					encc = cand.encode('ascii')
+				except Exception:
+					encc = None
+				if encc:
+					cands.add(cand)
+					lr.append(inst)
+			subs.append(lr)
+			
+		cands = list(cands)
+		candslemmas = self.lemmatizeWords(cands)
+		candsstems = self.stemWords(cands)
+		candmap = {}
+		for i in range(0, len(cands)):
+			cand = cands[i]
+			lemma = candslemmas[i]
+			stem = candsstems[i]
+			candmap[cand] = (lemma, stem)
+		
+		subs_filtered = self.filterSubs(data, subs, candmap, trgs, trgsstems, trgslemmas)
+		
+		final_cands = {}
+		for i in range(0, len(data)):
+			target = data[i][1]
+			cands = subs_filtered[i][0:min(amount, subs_filtered[i])]
+			cands = [str(word.split('|||')[0].strip()) for word in cands]
+			if target not in final_cands:
+				final_cands[target] = set([])
+			final_cands[target].update(set(cands))
+		
+		return final_cands
+		
+	def lemmatizeWords(self, words):
+		result = []
+		for word in words:
+			result.append(self.lemmatizer.lemmatize(word))
+		return result
+		
+	def stemWords(self, words):
+		result = []
+		for word in words:
+			result.append(self.stemmer.stem(word))
+		return result
+	
+	def filterSubs(self, data, subs, candmap, trgs, trgsstems, trgslemmas):
+		result = []
+		for i in range(0, len(data)):
+			d = data[i]
+
+			t = trgs[i]
+			tstem = trgsstems[i]
+			tlemma = trgslemmas[i]
+
+			word = t
+
+			most_sim = subs[i]
+			most_simf = []
+
+			for cand in most_sim:
+				cword = cand
+				clemma = candmap[cword][0]
+				cstem = candmap[cword][1]
+
+				if clemma!=tlemma and cstem!=tstem:
+					most_simf.append(cand)
+
+			result.append(most_simf)
+		return result
 
 class KauchakGenerator:
 
@@ -513,11 +661,11 @@ class KauchakGenerator:
 		return final_substitutions
 		
 	def getInflections(self, verbstems):
-		data1 = self.mat.conjugateVerbs(verbstems, 'PAST_PERFECT_PARTICIPLE')
-		data2 = self.mat.conjugateVerbs(verbstems, 'PAST_PARTICIPLE')
-		data3 = self.mat.conjugateVerbs(verbstems, 'PRESENT_PARTICIPLE')
-		data4 = self.mat.conjugateVerbs(verbstems, 'PRESENT')
-		data5 = self.mat.conjugateVerbs(verbstems, 'PAST')
+		data1 = self.mat.conjugateVerbs(verbstems, 'PAST_PERFECT_PARTICIPLE', 'FIRST_PERSON_SINGULAR')
+		data2 = self.mat.conjugateVerbs(verbstems, 'PAST_PARTICIPLE', 'FIRST_PERSON_SINGULAR')
+		data3 = self.mat.conjugateVerbs(verbstems, 'PRESENT_PARTICIPLE', 'FIRST_PERSON_SINGULAR')
+		data4 = self.mat.conjugateVerbs(verbstems, 'PRESENT', 'FIRST_PERSON_SINGULAR')
+		data5 = self.mat.conjugateVerbs(verbstems, 'PAST', 'FIRST_PERSON_SINGULAR')
 		return self.correctWords(data1), self.correctWords(data2), self.correctWords(data3), self.correctWords(data4), self.correctWords(data5)
 
 	def getSingulars(self, plurstems):
@@ -755,11 +903,11 @@ class YamamotoGenerator:
 		return final_substitutions
 		
 	def getInflections(self, verbstems):
-		data1 = self.mat.conjugateVerbs(verbstems, 'PAST_PERFECT_PARTICIPLE')
-		data2 = self.mat.conjugateVerbs(verbstems, 'PAST_PARTICIPLE')
-		data3 = self.mat.conjugateVerbs(verbstems, 'PRESENT_PARTICIPLE')
-		data4 = self.mat.conjugateVerbs(verbstems, 'PRESENT')
-		data5 = self.mat.conjugateVerbs(verbstems, 'PAST')
+		data1 = self.mat.conjugateVerbs(verbstems, 'PAST_PERFECT_PARTICIPLE', 'FIRST_PERSON_SINGULAR')
+		data2 = self.mat.conjugateVerbs(verbstems, 'PAST_PARTICIPLE', 'FIRST_PERSON_SINGULAR')
+		data3 = self.mat.conjugateVerbs(verbstems, 'PRESENT_PARTICIPLE', 'FIRST_PERSON_SINGULAR')
+		data4 = self.mat.conjugateVerbs(verbstems, 'PRESENT', 'FIRST_PERSON_SINGULAR')
+		data5 = self.mat.conjugateVerbs(verbstems, 'PAST', 'FIRST_PERSON_SINGULAR')
 		return self.correctWords(data1), self.correctWords(data2), self.correctWords(data3), self.correctWords(data4), self.correctWords(data5)
 
 	def getSingulars(self, plurstems):
@@ -1039,11 +1187,11 @@ class MerriamGenerator:
 		return final_substitutions
 		
 	def getInflections(self, verbstems):
-		data1 = self.mat.conjugateVerbs(verbstems, 'PAST_PERFECT_PARTICIPLE')
-		data2 = self.mat.conjugateVerbs(verbstems, 'PAST_PARTICIPLE')
-		data3 = self.mat.conjugateVerbs(verbstems, 'PRESENT_PARTICIPLE')
-		data4 = self.mat.conjugateVerbs(verbstems, 'PRESENT')
-		data5 = self.mat.conjugateVerbs(verbstems, 'PAST')
+		data1 = self.mat.conjugateVerbs(verbstems, 'PAST_PERFECT_PARTICIPLE', 'FIRST_PERSON_SINGULAR')
+		data2 = self.mat.conjugateVerbs(verbstems, 'PAST_PARTICIPLE', 'FIRST_PERSON_SINGULAR')
+		data3 = self.mat.conjugateVerbs(verbstems, 'PRESENT_PARTICIPLE', 'FIRST_PERSON_SINGULAR')
+		data4 = self.mat.conjugateVerbs(verbstems, 'PRESENT', 'FIRST_PERSON_SINGULAR')
+		data5 = self.mat.conjugateVerbs(verbstems, 'PAST', 'FIRST_PERSON_SINGULAR')
 		return self.correctWords(data1), self.correctWords(data2), self.correctWords(data3), self.correctWords(data4), self.correctWords(data5)
 
 	def getSingulars(self, plurstems):
@@ -1187,6 +1335,7 @@ class WordnetGenerator:
 		toPA = []
 		toPRPA = []
 		toPAPA = []
+		toPE = []
 		toPR = []
 		toComparative = []
 		toSuperlative = []
@@ -1214,7 +1363,9 @@ class WordnetGenerator:
 				elif pos == 'VBN':
 					toPA.extend(cands)
 					toPAPA.extend(cands)
-				elif pos == 'VBP' or pos == 'VBZ':
+				elif pos == 'VBP':
+					toPE.extend(cands)
+				elif pos == 'VBZ':
 					toPR.extend(cands)
 				elif pos == 'JJR' or pos == 'RBR':
 					toComparative.extend(cands)
@@ -1234,6 +1385,7 @@ class WordnetGenerator:
 		toPAL = self.correctWords(self.mat.lemmatizeWords(toPA))
 		toPRPAL = self.correctWords(self.mat.lemmatizeWords(toPRPA))
 		toPAPAL = self.correctWords(self.mat.lemmatizeWords(toPAPA))
+		toPEL = self.correctWords(self.mat.lemmatizeWords(toPE))
 		toPRL = self.correctWords(self.mat.lemmatizeWords(toPR))
 		toComparativeL = self.correctWords(self.mat.lemmatizeWords(toComparative))
 		toSuperlativeL = self.correctWords(self.mat.lemmatizeWords(toSuperlative))
@@ -1243,11 +1395,12 @@ class WordnetGenerator:
 		plurals = self.correctWords(self.mat.inflectNouns(toPluralL, 'plural'))
 		
 		#Inflect verbs:
-		papepas = self.correctWords(self.mat.conjugateVerbs(toPAPEPAL, 'PAST_PERFECT_PARTICIPLE'))
-		pas = self.correctWords(self.mat.conjugateVerbs(toPAL, 'PAST'))
-		prpas = self.correctWords(self.mat.conjugateVerbs(toPRPAL, 'PRESENT_PARTICIPLE'))
-		papas = self.correctWords(self.mat.conjugateVerbs(toPAPAL, 'PAST_PARTICIPLE'))
-		prs = self.correctWords(self.mat.conjugateVerbs(toPRL, 'PRESENT'))
+		papepas = self.correctWords(self.mat.conjugateVerbs(toPAPEPAL, 'PAST_PERFECT_PARTICIPLE', 'FIRST_PERSON_SINGULAR'))
+		pas = self.correctWords(self.mat.conjugateVerbs(toPAL, 'PAST', 'FIRST_PERSON_SINGULAR'))
+		prpas = self.correctWords(self.mat.conjugateVerbs(toPRPAL, 'PRESENT_PARTICIPLE', 'FIRST_PERSON_SINGULAR'))
+		papas = self.correctWords(self.mat.conjugateVerbs(toPAPAL, 'PAST_PARTICIPLE', 'FIRST_PERSON_SINGULAR'))
+		pes = self.correctWords(self.mat.conjugateVerbs(toPEL, 'PERFECT', 'FIRST_PERSON_SINGULAR'))
+		prs = self.correctWords(self.mat.conjugateVerbs(toPRL, 'PRESENT', 'THIRD_PERSON_SINGULAR'))
 		
 		#Inflect adjectives and adverbs:
 		comparatives = self.correctWords(self.mat.inflectAdjectives(toComparativeL, 'comparative'))
@@ -1261,6 +1414,7 @@ class WordnetGenerator:
 		paM = {}
 		prpaM = {}
 		papaM = {}
+		peM = {}
 		prM = {}
 		comparativeM = {}
 		superlativeM = {}
@@ -1287,6 +1441,9 @@ class WordnetGenerator:
 		for i in range(0, len(toPAPA)):
 			stemM[toPAPA[i]] = toPAPAL[i]
 			papaM[toPAPA[i]] = papas[i]
+		for i in range(0, len(toPE)):
+			stemM[toPE[i]] = toPEL[i]
+			peM[toPE[i]] = pes[i]
 		for i in range(0, len(toPR)):
 			stemM[toPR[i]] = toPRL[i]
 			prM[toPR[i]] = prs[i]
@@ -1343,7 +1500,11 @@ class WordnetGenerator:
 						if targetL!=stemM[cand]:
 							final_cands.add(paM[cand])
 							final_cands.add(papaM[cand])
-				elif pos == 'VBP' or pos == 'VBZ':
+				elif pos == 'VBP':
+					for cand in cands:
+						if targetL!=stemM[cand]:
+							final_cands.add(peM[cand])
+				elif pos == 'VBZ':
 					for cand in cands:
 						if targetL!=stemM[cand]:
 							final_cands.add(prM[cand])
@@ -1698,6 +1859,7 @@ class BiranGenerator:
 		toPA = []
 		toPRPA = []
 		toPAPA = []
+		toPE = []
 		toPR = []
 		toComparative = []
 		toSuperlative = []
@@ -1725,7 +1887,9 @@ class BiranGenerator:
 				elif pos == 'VBN':
 					toPA.extend(cands)
 					toPAPA.extend(cands)
-				elif pos == 'VBP' or pos == 'VBZ':
+				elif pos == 'VBP':
+					toPE.extend(cands)
+				elif pos == 'VBZ':
 					toPR.extend(cands)
 				elif pos == 'JJR' or pos == 'RBR':
 					toComparative.extend(cands)
@@ -1745,6 +1909,7 @@ class BiranGenerator:
 		toPAL = self.correctWords(self.mat.lemmatizeWords(toPA))
 		toPRPAL = self.correctWords(self.mat.lemmatizeWords(toPRPA))
 		toPAPAL = self.correctWords(self.mat.lemmatizeWords(toPAPA))
+		toPEL = self.correctWords(self.mat.lemmatizeWords(toPE))
 		toPRL = self.correctWords(self.mat.lemmatizeWords(toPR))
 		toComparativeL = self.correctWords(self.mat.lemmatizeWords(toComparative))
 		toSuperlativeL = self.correctWords(self.mat.lemmatizeWords(toSuperlative))
@@ -1754,11 +1919,12 @@ class BiranGenerator:
 		plurals = self.correctWords(self.mat.inflectNouns(toPluralL, 'plural'))
 		
 		#Inflect verbs:
-		papepas = self.correctWords(self.mat.conjugateVerbs(toPAPEPAL, 'PAST_PERFECT_PARTICIPLE'))
-		pas = self.correctWords(self.mat.conjugateVerbs(toPAL, 'PAST'))
-		prpas = self.correctWords(self.mat.conjugateVerbs(toPRPAL, 'PRESENT_PARTICIPLE'))
-		papas = self.correctWords(self.mat.conjugateVerbs(toPAPAL, 'PAST_PARTICIPLE'))
-		prs = self.correctWords(self.mat.conjugateVerbs(toPRL, 'PRESENT'))
+		papepas = self.correctWords(self.mat.conjugateVerbs(toPAPEPAL, 'PAST_PERFECT_PARTICIPLE', 'FIRST_PERSON_SINGULAR'))
+		pas = self.correctWords(self.mat.conjugateVerbs(toPAL, 'PAST', 'FIRST_PERSON_SINGULAR'))
+		prpas = self.correctWords(self.mat.conjugateVerbs(toPRPAL, 'PRESENT_PARTICIPLE', 'FIRST_PERSON_SINGULAR'))
+		papas = self.correctWords(self.mat.conjugateVerbs(toPAPAL, 'PAST_PARTICIPLE', 'FIRST_PERSON_SINGULAR'))
+		pes = self.correctWords(self.mat.conjugateVerbs(toPEL, 'PERFECT', 'FIRST_PERSON_SINGULAR'))
+		prs = self.correctWords(self.mat.conjugateVerbs(toPRL, 'PRESENT', 'THIRD_PERSON_SINGULAR'))
 		
 		#Inflect adjectives and adverbs:
 		comparatives = self.correctWords(self.mat.inflectAdjectives(toComparativeL, 'comparative'))
@@ -1772,6 +1938,7 @@ class BiranGenerator:
 		paM = {}
 		prpaM = {}
 		papaM = {}
+		peM = {}
 		prM = {}
 		comparativeM = {}
 		superlativeM = {}
@@ -1798,6 +1965,9 @@ class BiranGenerator:
 		for i in range(0, len(toPAPA)):
 			stemM[toPAPA[i]] = toPAPAL[i]
 			papaM[toPAPA[i]] = papas[i]
+		for i in range(0, len(toPE)):
+			stemM[toPE[i]] = toPEL[i]
+			peM[toPE[i]] = pes[i]
 		for i in range(0, len(toPR)):
 			stemM[toPR[i]] = toPRL[i]
 			prM[toPR[i]] = prs[i]
@@ -1854,7 +2024,11 @@ class BiranGenerator:
 						if targetL!=stemM[cand]:
 							final_cands.add(paM[cand])
 							final_cands.add(papaM[cand])
-				elif pos == 'VBP' or pos == 'VBZ':
+				elif pos == 'VBP':
+					for cand in cands:
+						if targetL!=stemM[cand]:
+							final_cands.add(peM[cand])
+				elif pos == 'VBZ':
 					for cand in cands:
 						if targetL!=stemM[cand]:
 							final_cands.add(prM[cand])

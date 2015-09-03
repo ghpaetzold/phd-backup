@@ -6,7 +6,7 @@ import os
 
 #Parameters:
 losses = ['hinge', 'log', 'modified_huber', 'squared_hinge', 'perceptron']
-losses = ['hinge', 'squared_hinge', 'modified_huber']
+#losses = ['hinge', 'squared_hinge', 'modified_huber']
 penalties = ['elasticnet']
 alphas = ['0.0001', '0.001', '0.01']
 l1ratios = ['0.0', '0.15', '0.25', '0.5', '0.75', '1.0']

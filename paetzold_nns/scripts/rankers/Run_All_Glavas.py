@@ -1,7 +1,7 @@
 import os
 
 generators = os.listdir('../../substitutions/')
-generators = ['glavas']
+#generators = ['glavas']
 
 best_map = {}
 f = open('../evaluators/best_ss.txt')
@@ -18,7 +18,9 @@ f.close()
 os.system('mkdir ../../rankings/glavas')
 
 for generator in generators:
-	for selector in best_map[generator]:
+	#selectors = best_map[generator].keys()
+        selectors = ['void']
+        for selector in selectors:
 		trainset = 'placeholder'
 		testset = '../../substitutions/'+generator+'/'+best_map[generator][selector]
 		output = '../../rankings/glavas/ranks_'+generator+'_'+selector+'.txt'
