@@ -3,7 +3,17 @@ import os
 from lexenstein.evaluators import *
 
 methods = os.listdir('../../labels/')
+methods = ['svm', 'pa', 'sgd', 'decision', 'adaboost', 'gradientboost', 'randomtrees']
 maxis = set(['svm', 'pa', 'sgd', 'decision', 'shardlow', 'svm_colloc', 'svm_set1', 'svm_set2', 'voting', 'adaboost', 'gradientboost', 'extratrees', 'randomtrees', 'nslackcrf'])
+
+namem = {}
+namem['svm'] = 'Support Vector Machines'
+namem['pa'] = 'Passive Agressive Learning'
+namem['sgd'] = 'Stochastic Gradient Descent'
+namem['decision'] = 'Decision Trees'
+namem['adaboost'] = 'Adaptive Boosting'
+namem['gradientboost'] = 'Gradient Boosting'
+namem['randomtrees'] = 'Random Forests'
 
 bestscoring = open('best_cwi.txt', 'w')
 
@@ -30,7 +40,7 @@ for method in methods:
 			if f > maxf:
 				maxf = f
 				maxfile = file
-			myt.append([prefix[0].upper()+prefix[1:len(prefix)], '$'+"%.3f" % p+'$', '$'+"%.3f" % r+'$', '$'+"%.3f" % f+'$'])
+			myt.append([method, '$'+"%.3f" % p+'$', '$'+"%.3f" % r+'$', '$'+"%.3f" % f+'$'])
 			
 		bestscoring.write(method + '\t' + maxfile + '\t' + str(maxf) + '\n')
 	else:
@@ -54,7 +64,7 @@ for method in methods:
 				maxfile = file
 		if maxprefix!='':
 #			if method!='voting':
-			bestscoring.write(method + '\t' + maxfile + '\t' + str(maxf) + '\n')
-			myt.append([maxprefix, '$'+"%.3f" % maxv[0]+'$', '$'+"%.3f" % maxv[1]+'$', '$'+"%.3f" % maxv[2]+'$'])
+			bestscoring.write(maxprefix + '\t' + maxfile + '\t' + str(maxf) + '\n')
+			myt.append([namem[method], '$'+"%.3f" % maxv[0]+'$', '$'+"%.3f" % maxv[1]+'$', '$'+"%.3f" % maxv[2]+'$'])
 print(tabulate(myt, headers, tablefmt="latex"))
 bestscoring.close()

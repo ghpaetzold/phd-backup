@@ -2,7 +2,7 @@ import os
 
 #Parameters:
 ks = ['5', '6', '7']
-Cs = ['1']
+Cs = ['1', '0.1', '0.01']
 losses = ['hinge', 'squared_hinge']
 
 trainset = '../../corpora/cwi_paetzold_training.txt'

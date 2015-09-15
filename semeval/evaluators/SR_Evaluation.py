@@ -76,7 +76,7 @@ for method in rankorder:
 	print('\n')
 
 	#Get statistics without selection:
-	components = [t1, t2, t3]
+	components = [maxt1, maxt2, maxt3]
 	myt += namem[method] + ' '
 	for comp in components:
 		cstr = "%.3f" % comp

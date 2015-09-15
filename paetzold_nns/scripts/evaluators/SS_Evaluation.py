@@ -34,7 +34,7 @@ namem['svmrank'] = 'SVM Ranking Selector'
 namem['boundaryUnsupervisedCV'] = 'Unsupervised Boundary Selector'
 #namem['boundaryUnsupervised'] = 'Boundary (Unsupervised)'
 namem['wordvector'] = 'Paetzold Selector'
-#namem['void'] = 'Void Selector'
+namem['void'] = 'Void Selector'
 
 #Selector order:
 selorder = ['void', 'first', 'lesk', 'path', 'biran', 'clusters', 'nunes', 'wordvector', 'svmrank', 'boundaryUnsupervisedCV']

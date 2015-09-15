@@ -127,4 +127,5 @@ for generator in results.keys():
 			myt += r'\\' + '\n'
 		myt += r'\end{tabular}'+'\n'
 		myt += r'\end{table}'+'\n'
+		myt += r'\pagebreak'+'\n'
 		print(myt)
