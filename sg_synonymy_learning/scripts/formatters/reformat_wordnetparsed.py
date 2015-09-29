@@ -1,9 +1,10 @@
 import sys, os
 
 size = sys.argv[1]
+arch = sys.argv[2]
 
-orig = '../../corpora/wordvectors/retrofitted_wordnetparsed'+size+'_vectors.txt'
-fixed = '../../corpora/wordvectors/retrofitted_wordnetparsed'+size+'_vectors_fixed.txt'
+orig = '../../corpora/wordvectors/retrofitted_wordnetparsed'+size+'_vectors_'+arch+'.txt'
+fixed = '../../corpora/wordvectors/retrofitted_wordnetparsed'+size+'_vectors_'+arch+'_fixed.txt'
 f = open(orig)
 o = open(fixed, 'w')
 
@@ -20,4 +21,4 @@ for line in f:
 f.close()
 o.close()
 
-#os.system('mv ' + fixed + ' ' + orig)
+os.system('mv ' + fixed + ' ' + orig)

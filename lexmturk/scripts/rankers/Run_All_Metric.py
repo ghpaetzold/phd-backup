@@ -26,7 +26,8 @@ flabels.append('maxdepth')
 flabels = ['length', 'colloc00', 'senses', 'synonyms', 'hypernyms', 'hyponyms']
 
 generators = os.listdir('../../substitutions/')
-generators = ['wordnet']
+generators = ['biran', 'kauchak', 'wordnet', 'yamamoto', 'glavas', 'glavasretrofitted', 'paetzold', 'paetzoldretrofitted']
+generators = ['glavasretrofitted', 'paetzoldretrofitted']
 
 best_map = {}
 f = open('../evaluators/best_ss.txt')

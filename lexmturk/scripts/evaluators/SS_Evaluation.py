@@ -7,10 +7,11 @@ def getSelectors(map, generator):
 	for file in files:
 		if file != 'substitutions.txt' and '_unsupervised' not in file:
 			bulk = file[0:len(file)-4].strip().split('_')[1].strip()
-			if bulk in result:
-				result[bulk].add(file)
-			else:
-				result[bulk] = set([file])
+			if bulk in map:
+				if bulk in result:
+					result[bulk].add(file)
+				else:
+					result[bulk] = set([file])
 	return result
 
 
@@ -22,17 +23,17 @@ namem = {}
 namem['lesk'] = 'Lesk'
 namem['first'] = 'First'
 namem['random'] = 'Random'
-namem['wupalmer'] = 'Leacock'
-#namem['path'] = 'Path'
+#namem['wupalmer'] = 'Leacock'
+namem['path'] = 'Path'
 #namem['enhancedlesk'] = 'Enhanced Lesk'
 namem['biran'] = 'Biran'
 #namem['wordvector'] = 'Word Vector'
 #namem['postag'] = 'POS Tag'
 namem['clusters'] = 'Brown Clusters'
-namem['boundaryCV'] = 'Supervised Boundary'
-namem['boundaryUnsupervisedCV'] = 'Unsupervised Boundary'
-namem['svmrank'] = 'SVM Rank'
-namem['subimdb22'] = 'Metric-Based'
+#namem['boundaryCV'] = 'Supervised Boundary'
+#namem['boundaryUnsupervisedCV'] = 'Unsupervised Boundary'
+#namem['svmrank'] = 'SVM Rank'
+#namem['subimdb22'] = 'Metric-Based'
 #namem['wordvectortreebank'] = 'Word Vector (Treebank)'
 #namem['wordvectorgeneralized'] = 'Word Vector (Generalized)'
 #namem['SGDClassifier'] = 'Grammaticality Model'
@@ -40,6 +41,7 @@ namem['subimdb22'] = 'Metric-Based'
 #Generators
 methods = ['biran', 'kauchak', 'merriam', 'wordnet', 'yamamoto', 'all', 'paetzold']
 methods = ['wordnet', 'kauchak', 'paetzold', 'all']
+methods = ['biran', 'kauchak', 'wordnet', 'yamamoto', 'glavas', 'glavasretrofitted', 'paetzold', 'paetzoldretrofitted']
 
 #Data:
 lexf = open('../../corpora/lexmturk_all.txt')
@@ -52,7 +54,8 @@ for line in lexf:
 lexf.close()
 
 #Maxims:
-maxims = set(['wordvector', 'biran', 'void', 'clusters', 'boundary', 'boundaryCV', 'svmrank', 'wordvectortreebank', 'wordvectorgeneralized', 'SGDClassifier', 'boundaryUnsupervisedCV', 'subimdb22'])
+
+maxims = set(['lesk', 'first', 'random', 'path', 'wordvector', 'biran', 'void', 'clusters', 'boundary', 'boundaryCV', 'svmrank', 'wordvectortreebank', 'wordvectorgeneralized', 'SGDClassifier', 'boundaryUnsupervisedCV', 'subimdb22'])
 
 #Create file containing best SS parameters:
 bestssf = open('best_ss.txt', 'w')

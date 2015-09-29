@@ -8,6 +8,7 @@ elif senseaware=='1':
         senseaware = True
 else:
         print('senseaware parameter not recognized!')
+arch = sys.argv[3]
 
 #Create common vectors path:
 vectors = '../../corpora/wordvectors/wordnet'
@@ -15,7 +16,7 @@ if senseaware:
         vectors += 'parsed'
 else:
         vectors += 'orig'
-vectors += size+'_vectors.txt'
+vectors += size+'_vectors_'+arch+'.txt'
 
 #Get retrofitted file:
 retrofitted = '../../corpora/wordvectors/retrofitted_wordnet'
@@ -23,7 +24,7 @@ if senseaware:
         retrofitted += 'parsed'
 else:
         retrofitted += 'orig'
-retrofitted += size+'_vectors.txt'
+retrofitted += size+'_vectors_'+arch+'.txt'
 
 #Create lexicon path:
 wnlexicon = '../../lexicons/wordnet-synonyms.txt'

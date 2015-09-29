@@ -32,12 +32,13 @@ elif senseaware=='1':
         senseaware = True
 else:
         print('senseaware parameter not recognized!')
+arch = sys.argv[3]
 
 #Get text model:
 textmodel = '../../corpora/wordvectors/word_vectors_all_'
 if senseaware:
         textmodel += 'generalized_'
-textmodel += size + '_cbow.txt'
+textmodel += size + '_'+arch+'.txt'
 
 #Get retrofitted file:
 retrofitted = '../../corpora/wordvectors/retrofitted_wordnet'
@@ -45,7 +46,7 @@ if senseaware:
 	retrofitted += 'parsed'
 else:
 	retrofitted += 'orig'
-retrofitted += size+'_vectors.txt'
+retrofitted += size+'_vectors_'+arch+'.txt'
 
 #Get temp file:
 temp = '../../corpora/temp/'
@@ -53,13 +54,13 @@ if senseaware:
         temp += 'parsed'
 else:
         temp += 'orig'
-temp += size+'_cbow_temp.txt'
+temp += size+'_'+arch+'_temp.txt'
 
 #Get output file:
 output = '/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_'
 if senseaware:
         output += 'generalized_'
-output += size + '_cbow_retrofitted.bin'
+output += size + '_'+arch+'_retrofitted.bin'
 
 #textmodel = sys.argv[1]
 #retrofitted = sys.argv[2]

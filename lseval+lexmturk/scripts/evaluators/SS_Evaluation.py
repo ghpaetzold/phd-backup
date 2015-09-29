@@ -3,7 +3,7 @@ from lexenstein.evaluators import *
 
 def getSelectors(map):
 	result = {}
-	files = os.listdir('../../substitutions/wordnet/')
+	files = os.listdir('../../substitutions/paetzold/')
 	for file in files:
 		if file != 'substitutions.txt':
 			bulk = file[0:len(file)-4].strip().split('_')[1].strip()
@@ -35,9 +35,10 @@ namem['nunes'] = 'Nunes'
 #namem['boundaryUnsupervised'] = 'Boundary (Unsupervised)'
 namem['wordvector'] = 'Paetzold'
 namem['void'] = 'Void Selector'
+namem['crfunsupervised'] = 'Unsupervised CRF'
 
 #Selector order:
-selorder = ['lesk', 'path', 'nunes', 'clusters', 'biran', 'wordvector', 'first', 'void']
+selorder = ['lesk', 'path', 'nunes', 'clusters', 'biran', 'wordvector', 'first', 'crfunsupervised', 'void']
 
 #Generator name map:
 genmap = {}
@@ -52,7 +53,7 @@ genmap['all'] = 'all generators combined'
 
 #Generators:
 methods = os.listdir('../../substitutions/')
-#methods = ['all']
+methods = ['paetzold']
 #methods = ['merriam', 'yamamoto', 'wordnet', 'biran', 'kauchak', 'glavas', 'paetzold', 'all']
 
 #Dataset:

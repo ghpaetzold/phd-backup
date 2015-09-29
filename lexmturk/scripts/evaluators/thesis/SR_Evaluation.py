@@ -3,18 +3,35 @@ import os
 from lexenstein.evaluators import *
 
 #generators = os.listdir('../../substitutions/')
-generators = ['biran', 'wordnet', 'yamamoto', 'kauchak', 'paetzold']
+#generators = ['biran', 'wordnet', 'yamamoto', 'kauchak', 'paetzold']
+generators = ['biran', 'kauchak', 'wordnet', 'yamamoto', 'glavas', 'glavasretrofitted', 'paetzold', 'paetzoldretrofitted']
 selectors = ['first', 'random', 'path', 'lesk', 'clusters', 'biran']
 #methods = set(os.listdir('../../rankings/'))
 methods = ['length', 'colloc00', 'senses', 'synonyms', 'hypernyms', 'hyponyms']
 
+#Generator names:
+genmap = {}
+genmap['biran'] = 'Biran'
+genmap['kauchak'] = 'Kauchak'
+genmap['merriam'] = 'Merriam'
+genmap['wordnet'] = 'WordNet'
+genmap['yamamoto'] = 'Yamamoto'
+genmap['glavas'] = 'TEM'
+genmap['glavasretrofitted'] = 'REM'
+genmap['paetzold'] = 'SAEM'
+genmap['paetzoldretrofitted'] = 'RSAEM'
+genmap['all'] = 'All'
+
+hlinemarker = 'glavas'
+
+#Selector names:
 namem = {}
-namem['lesk'] = 'Lesk'
-namem['first'] = 'First'
-namem['random'] = 'Random'
-namem['path'] = 'Wu-Palmer'
-namem['clusters'] = 'Clusters'
-namem['biran'] = 'Biran'
+namem['lesk'] = 'the Lesk Algorithm (Lesk)'
+namem['first'] = 'the First Sense approach (First)'
+namem['random'] = 'the Random Sense approach (Random)'
+namem['path'] = 'the Path Similarity approach (Path)'
+namem['biran'] = 'the Co-Occurrence Model Filtering approach (Biran)'
+namem['clusters'] = 'the Word Clustering approach (Clusters)'
 namem['void'] = 'No Selection'
 
 results = {}
@@ -53,7 +70,7 @@ for method in methods:
 	myt = ''
 	myt += r'\begin{table}[htpb]'+'\n'
 	myt += r'\caption{Accuracy scores for candidate substitutions ranked by their number of ' + method + '}\n'
-	myt += namem[selector] + r' Selector}' + '\n'		
+#	myt += namem[selector] + r' Selector}' + '\n'		
 	myt += r'\centering'+'\n'
 	myt += r'\label{table:w2vsgsssr'+str(index)+'}\n'
 	myt += r'\begin{tabular}{l|cccccc}'+'\n'
@@ -61,8 +78,9 @@ for method in methods:
 	myt += r'\hline'+'\n'
 
 	for generator in generators:
-		genprefix = generator[0].upper() + generator[1:len(generator)]
-		myt += genprefix + ' '
+		if generator==hlinemarker:
+			myt += r'\hline' + '\n'
+		myt += genmap[generator] + ' '
 		for selector in selectors:
 			methodp = method[0].upper() + method[1:len(method)]
 			data = results[generator][selector][method]
