@@ -16,7 +16,7 @@ flabels.append('mindepth')
 flabels.append('maxdepth')
 
 generators = os.listdir('../../substitutions/')
-#generators = ['paetzold']
+generators = ['all']
 
 best_map = {}
 f = open('../evaluators/best_ss.txt')
@@ -31,8 +31,8 @@ for line in f:
 f.close()
 
 for generator in generators:
-	#selectors = best_map[generator].keys()
-	selectors = ['void']
+	selectors = best_map[generator].keys()
+	#selectors = ['void']
         for selector in selectors:
 		for i in range(0, len(flabels)):
 			os.system('mkdir ../../rankings/'+flabels[i])
