@@ -29,14 +29,18 @@ namem['nunes'] = 'Nunes'
 #namem['GrammaticalitySGD'] = 'Grammaticality (SGD)'
 #namem['boundaryUnsupervisedCV'] = 'Unsupervised Boundary Selector'
 #namem['boundaryUnsupervised'] = 'Boundary (Unsupervised)'
-namem['wvTEM'] = 'TEM'
-namem['wvREM'] = 'REM'
-namem['wvSEM'] = 'SEM'
-namem['wvRSEM'] = 'RSEM'
+namem['wvTEM'] = 'WV-TEM'
+namem['wvREM'] = 'WV-REM'
+namem['wvSEM'] = 'WV-SEM'
+namem['wvRSEM'] = 'WV-RSEM'
+namem['ubrTEM'] = 'UBR-TEM'
+namem['ubrREM'] = 'UBR-REM'
+namem['ubrSEM'] = 'UBR-SEM'
+namem['ubrRSEM'] = 'UBR-RSEM'
 namem['void'] = 'Void Selector'
 
 #Selector order:
-selorder = ['wvTEM', 'wvREM', 'wvSEM', 'wvRSEM', 'biran', 'clusters']
+selorder = ['ubrTEM', 'ubrREM', 'ubrSEM', 'ubrRSEM', 'wvTEM', 'wvREM', 'wvSEM', 'wvRSEM', 'biran', 'clusters']
 
 #Generator name map:
 genmap = {}
