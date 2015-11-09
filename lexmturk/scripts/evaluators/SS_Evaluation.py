@@ -23,13 +23,15 @@ namem = {}
 namem['lesk'] = 'Lesk'
 namem['first'] = 'First'
 namem['random'] = 'Random'
+namem['void'] = 'Void'
 #namem['wupalmer'] = 'Leacock'
 namem['path'] = 'Path'
 #namem['enhancedlesk'] = 'Enhanced Lesk'
 namem['biran'] = 'Biran'
-#namem['wordvector'] = 'Word Vector'
+namem['wordvector'] = 'Paetzold'
 #namem['postag'] = 'POS Tag'
-namem['clusters'] = 'Brown Clusters'
+namem['clusters'] = 'Belder'
+namem['aluisio'] = 'Aluisio'
 #namem['boundaryCV'] = 'Supervised Boundary'
 #namem['boundaryUnsupervisedCV'] = 'Unsupervised Boundary'
 #namem['svmrank'] = 'SVM Rank'
@@ -42,6 +44,7 @@ namem['clusters'] = 'Brown Clusters'
 methods = ['biran', 'kauchak', 'merriam', 'wordnet', 'yamamoto', 'all', 'paetzold']
 methods = ['wordnet', 'kauchak', 'paetzold', 'all']
 methods = ['biran', 'kauchak', 'wordnet', 'yamamoto', 'glavas', 'glavasretrofitted', 'paetzold', 'paetzoldretrofitted']
+methods = ['yamamoto']
 
 #Data:
 lexf = open('../../corpora/lexmturk_all.txt')
@@ -55,7 +58,7 @@ lexf.close()
 
 #Maxims:
 
-maxims = set(['lesk', 'first', 'random', 'path', 'wordvector', 'biran', 'void', 'clusters', 'boundary', 'boundaryCV', 'svmrank', 'wordvectortreebank', 'wordvectorgeneralized', 'SGDClassifier', 'boundaryUnsupervisedCV', 'subimdb22'])
+maxims = set(['lesk', 'first', 'random', 'path', 'wordvector', 'biran', 'void', 'clusters', 'boundary', 'boundaryCV', 'svmrank', 'wordvectortreebank', 'wordvectorgeneralized', 'SGDClassifier', 'boundaryUnsupervisedCV', 'subimdb22', 'aluisio'])
 
 #Create file containing best SS parameters:
 bestssf = open('best_ss.txt', 'w')
@@ -130,6 +133,7 @@ for index in range(0, len(methods)):
 						cstr += '0'
 					myt += r'& $' + cstr + r'$ '
 				myt += r'\\' + '\n'
+			print(selector + ': ' + maxfile)
 		else:
 			for file in selectors[selector]:
 				sele_d = []

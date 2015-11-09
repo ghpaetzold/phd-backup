@@ -7,6 +7,18 @@ victor_corpus = sys.argv[1]
 test_victor_corpus = sys.argv[2].strip()
 output_path = sys.argv[3].strip()
 
+def getTaggedSents(corpus):
+        result = []
+        f = open(corpus)
+        for line in f:
+                tags = []
+                tokens = line.strip().split(' ')
+                for token in tokens:
+                        tokendata = token.strip().split('|||')
+                        tags.append((tokendata[0].strip(), tokendata[1].strip()))
+                result.append(tags)
+        return result
+
 model = '/export/data/ghpaetzold/benchmarking/lexmturk/scripts/evaluators/stanford-postagger-full-2015-04-20/models/english-bidirectional-distsim.tagger'
 tagger = '/export/data/ghpaetzold/benchmarking/lexmturk/scripts/evaluators/stanford-postagger-full-2015-04-20/stanford-postagger.jar'
 java = '/usr/bin/java'
@@ -23,6 +35,8 @@ fe.addWordVectorSimilarityFeature(w2vmodel, 'Simplicity')
 fe.addWordVectorContextSimilarityFeature(w2vmodel, model, tagger, java, 'Simplicity')
 
 br = GlavasRanker(fe)
+tagged_sents = getTaggedSents('../../corpora/tagged_sents_ls_dataset_benchmarking.txt')
+br.fe.temp_resources['tagged_sents'] = tagged_sents
 ranks = br.getRankings(test_victor_corpus)
 
 lm = kenlm.LanguageModel('/export/data/ghpaetzold/subtitlesimdb/corpora/160715/subtleximdb.5gram.unk.bin.txt')
@@ -32,12 +46,16 @@ f = open(test_victor_corpus)
 for rank in ranks:
 	target = f.readline().strip().split('\t')[1].strip()
 	targetp = lm.score(target)
-	candp = lm.score(rank[0])
-	if targetp>=candp:
-		newline = target + '\t'
+	newline = ''
+	if len(rank)>0:
+		candp = lm.score(rank[0])
+		if targetp>=candp:
+			newline = target + '\t'
+		else:
+			newline = ''
+		for r in rank:
+			newline += r + '\t'
 	else:
-		newline = ''
-	for r in rank:
-		newline += r + '\t'
+		newline = target
 	o.write(newline.strip() + '\n')
 o.close()

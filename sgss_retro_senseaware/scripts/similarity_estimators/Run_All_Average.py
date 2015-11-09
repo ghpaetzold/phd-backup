@@ -1,15 +1,16 @@
 import os
 
 #Datasets:
-datasets = ['WS-353', 'RG-65']
+#datasets = ['WS-353', 'RG-65']
 #datasets = ['MC-30', 'MEN-3000', 'SCWS-2003', 'MT-287']
 #datasets = ['MC-30', 'MEN-3000']
 #datasets = ['SCWS-2003', 'MT-287']
 #datasets = ['SCWS-2003']
-datasets = ['WS-353', 'RG-65', 'SCWS-2003', 'MT-287']
+#datasets = ['WS-353', 'RG-65', 'SCWS-2003', 'MT-287']
+datasets = ['SIMLEX-999']
 types = ['TEM', 'REM', 'SEM', 'RSEM']
-#sizes = ['500']
-sizes = ['700']
+sizes = ['500']
+#sizes = ['700']
 archs = ['cbow', 'skip']
 
 for dataset in datasets:

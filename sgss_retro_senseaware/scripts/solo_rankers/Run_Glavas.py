@@ -24,7 +24,11 @@ tagger = '/export/data/ghpaetzold/benchmarking/lexmturk/scripts/evaluators/stanf
 java = '/usr/bin/java'
 
 fe = FeatureEstimator()
-fe.addCollocationalFeature('/export/data/ghpaetzold/subtitlesimdb/corpora/160715/subtleximdb.5gram.unk.bin.txt', 2, 2, 'Simplicity')
+fe.addNGramProbabilityFeature('/export/data/ghpaetzold/machinelearningranking/corpora/lm/simplewiki.5gram.bin.txt', 1, 0, 'Simplicity')
+fe.addNGramProbabilityFeature('/export/data/ghpaetzold/machinelearningranking/corpora/lm/simplewiki.5gram.bin.txt', 0, 1, 'Simplicity')
+fe.addNGramProbabilityFeature('/export/data/ghpaetzold/machinelearningranking/corpora/lm/simplewiki.5gram.bin.txt', 1, 1, 'Simplicity')
+fe.addNGramProbabilityFeature('/export/data/ghpaetzold/machinelearningranking/corpora/lm/simplewiki.5gram.bin.txt', 2, 0, 'Simplicity')
+fe.addNGramProbabilityFeature('/export/data/ghpaetzold/machinelearningranking/corpora/lm/simplewiki.5gram.bin.txt', 0, 2, 'Simplicity')
 if 'S' in type:
         fe.addTaggedWordVectorSimilarityFeature(mpath, model, tagger, java, 'paetzold', 'Simplicity')
 else:

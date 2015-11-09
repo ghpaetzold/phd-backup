@@ -474,8 +474,8 @@ class BottRanker:
 		ScoreWL = 0
 		if len(word)>4:
 			ScoreWL = math.sqrt(len(word)-4)
-		#ScoreFreq = -1*self.simple_lm.score(word, bos=False, eos=False)
-		ScoreFreq = -1*self.simple_lm.score(word)
+		ScoreFreq = -1*self.simple_lm.score(word, bos=False, eos=False)
+		#ScoreFreq = -1*self.simple_lm.score(word)
 		return a1*ScoreWL + a2*ScoreFreq
 
 class YamamotoRanker:
@@ -551,8 +551,8 @@ class YamamotoRanker:
 		return result
 		
 	def getCandidateScore(self, sent, target, head, word, a1, a2, a3, a4, a5):
-		#Fcorpus = a1*self.simple_lm.score(word, bos=False, eos=False)
-		Fcorpus = a1*self.simple_lm.score(word)
+		Fcorpus = a1*self.simple_lm.score(word, bos=False, eos=False)
+		#Fcorpus = a1*self.simple_lm.score(word)
 		Sense = a2*self.getSenseScore(word, target)
 		Cooc = a3*self.getCoocScore(word, sent)
 		Log = a4*self.getLogScore(Cooc, sent, word)
@@ -573,14 +573,14 @@ class YamamotoRanker:
 			bos = True
 		if tokens[h+1]=='':
 			eos = True
-		#result = self.simple_lm.score(t1, bos=bos, eos=eos)+self.simple_lm.score(t2, bos=bos, eos=eos)+self.simple_lm.score(t3, bos=bos, eos=eos)
-		result = self.simple_lm.score(t1)+self.simple_lm.score(t2)+self.simple_lm.score(t3)
+		result = self.simple_lm.score(t1, bos=bos, eos=eos)+self.simple_lm.score(t2, bos=bos, eos=eos)+self.simple_lm.score(t3, bos=bos, eos=eos)
+		#result = self.simple_lm.score(t1)+self.simple_lm.score(t2)+self.simple_lm.score(t3)
 		return result
 	
 	def getLogScore(self, Cooc, sent, word):
 		dividend = Cooc
-		#divisor = self.simple_lm.score(word, bos=False, eos=False)*self.simple_lm.score(sent, bos=True, eos=True)
-		divisor = self.simple_lm.score(word)*self.simple_lm.score(sent)
+		divisor = self.simple_lm.score(word, bos=False, eos=False)*self.simple_lm.score(sent, bos=True, eos=True)
+		#divisor = self.simple_lm.score(word)*self.simple_lm.score(sent)
 		if divisor==0:
 			return 0
 		else:
@@ -670,8 +670,8 @@ class BiranRanker:
 		return result
 		
 	def getCandidateComplexity(self, word):
-		#C = (self.complex_lm.score(word, bos=False, eos=False))/(self.simple_lm.score(word, bos=False, eos=False))
-		C = (self.complex_lm.score(word))/(self.simple_lm.score(word))
+		C = (self.complex_lm.score(word, bos=False, eos=False))/(self.simple_lm.score(word, bos=False, eos=False))
+		#C = (self.complex_lm.score(word))/(self.simple_lm.score(word))
 		L = float(len(word))
 		return C*L
 
@@ -1168,11 +1168,13 @@ class SVMRanker:
 		os.system(comm)
 		print('Scored!')
 	
-	def getRankings(self, features_file, scores_file):
+	def getRankings(self, victor_corpus, features_file, scores_file):
 		"""
 		Produces ranking scores in SVM-Rank format.
 		The scores file produced can be used as the "scores_file" parameter of the getRankings function.
 	
+		@param victor_corpus: Path to a corpus in the VICTOR format.
+		For more information about the file's format, refer to the LEXenstein Manual.
 		@param features_file: Path to features file produced over a testing VICTOR corpus.
 		Should be produced by the getFeaturesFile function.
 		@param scores_file: Path to a scores file in SVM-Rank format.
@@ -1213,12 +1215,22 @@ class SVMRanker:
 			else:
 				ranking_data[id] = {word:score}
 		
+		#Get problems:
+		size = 0
+		f = open(victor_corpus)
+		for line in f:
+			size += 1
+		f.close()
+		
 		#Produce rankings:
 		result = []
-		for id in sorted(ranking_data.keys()):
-			candidates = ranking_data[id].keys()
-			candidates = sorted(candidates, key=ranking_data[id].__getitem__, reverse=False)
-			result.append(candidates)
+		for id in range(1, size+1):
+			if id not in ranking_data:
+				result.append([])
+			else:
+				candidates = ranking_data[id].keys()
+				candidates = sorted(candidates, key=ranking_data[id].__getitem__, reverse=False)
+				result.append(candidates)
 			
 		#Return rankings:
 		return result

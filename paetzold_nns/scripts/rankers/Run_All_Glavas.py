@@ -1,7 +1,7 @@
 import os
 
 generators = os.listdir('../../substitutions/')
-#generators = ['glavas']
+generators = ['glavas']
 
 best_map = {}
 f = open('../evaluators/best_ss.txt')

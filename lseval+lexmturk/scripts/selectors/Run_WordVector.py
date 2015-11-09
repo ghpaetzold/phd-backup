@@ -35,7 +35,7 @@ subs = getSubs(generator)
 pos_model = '/export/data/ghpaetzold/benchmarking/lexmturk/scripts/evaluators/stanford-postagger-full-2015-04-20/models/english-bidirectional-distsim.tagger'
 stanford_tagger = '/export/data/ghpaetzold/benchmarking/lexmturk/scripts/evaluators/stanford-postagger-full-2015-04-20/stanford-postagger.jar'
 java_path = '/usr/bin/java'
-vector_model = '/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_generalized_1100_cbow.bin'
+vector_model = '/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_generalized_500_cbow.bin'
 
 wvs = WordVectorSelector(vector_model, pos_model, stanford_tagger, java_path, pos_type='paetzold')
 selected = wvs.selectCandidates(subs, victor_corpus, proportion=proportion, proportion_type='percentage', stop_words_file=stop_words_file, window=window, onlyInformative=onlyInformative, keepTarget=keepTarget, onePerWord=onePerWord)

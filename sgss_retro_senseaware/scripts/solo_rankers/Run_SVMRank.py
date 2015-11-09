@@ -31,11 +31,14 @@ tagger = '/export/data/ghpaetzold/benchmarking/lexmturk/scripts/evaluators/stanf
 java = '/usr/bin/java'
 
 fe = FeatureEstimator()
-fe.addCollocationalFeature('/export/data/ghpaetzold/subtitlesimdb/corpora/160715/subtleximdb.5gram.unk.bin.txt', 2, 2, 'Complexity')
-if 'S' in type:
-        fe.addTaggedWordVectorSimilarityFeature(mpath, model, tagger, java, 'paetzold', 'Simplicity')
-else:
-        fe.addWordVectorSimilarityFeature(mpath, 'Simplicity')
+fe.addTranslationProbabilityFeature('/export/data/ghpaetzold/LEXenstein/corpora/transprob_dict_lexmturk.bin', 'Simplicity')
+fe.addCollocationalFeature('/export/data/ghpaetzold/benchmarking/lexmturk/corpora/brown.5gram.bin.txt', 0, 0, 'Simplicity')
+fe.addCollocationalFeature('/export/data/ghpaetzold/benchmarking/lexmturk/corpora/simplewiki.5.bin.txt', 0, 0, 'Simplicity')
+fe.addSentenceProbabilityFeature('/export/data/ghpaetzold/benchmarking/lexmturk/corpora/brown.5gram.bin.txt', 'Simplicity')
+fe.addSentenceProbabilityFeature('/export/data/ghpaetzold/benchmarking/lexmturk/corpora/wiki.5gram.bin.txt', 'Simplicity')
+fe.addSentenceProbabilityFeature('/export/data/ghpaetzold/benchmarking/lexmturk/corpora/simplewiki.5.bin.txt', 'Simplicity')
+fe.addNGramProbabilityFeature('/export/data/ghpaetzold/benchmarking/lexmturk/corpora/brown.5gram.bin.txt', 1, 1, 'Simplicity')
+fe.addNGramProbabilityFeature('/export/data/ghpaetzold/benchmarking/lexmturk/corpora/brown.5gram.bin.txt', 2, 2, 'Simplicity')
 
 br = SVMRanker(fe, '/export/tools/svm-rank/')
 br.getFeaturesFile(victor_corpus, train_feature_file)

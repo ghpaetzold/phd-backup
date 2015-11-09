@@ -24,10 +24,23 @@ fe.addWordVectorContextSimilarityFeature(w2vmodel, model, tagger, java, 'Simplic
 br = GlavasRanker(fe)
 ranks = br.getRankings(test_victor_corpus)
 
+lm = kenlm.LanguageModel('/export/data/ghpaetzold/subtitlesimdb/corpora/160715/subtleximdb.5gram.unk.bin.txt')
+
 o = open(output_path, 'w')
+f = open(test_victor_corpus)
 for rank in ranks:
-	newline = ''
-	for r in rank:
-		newline += r + '\t'
-	o.write(newline.strip() + '\n')
+        target = f.readline().strip().split('\t')[1].strip()
+        targetp = lm.score(target)
+        newline = ''
+        if len(rank)>0:
+                candp = lm.score(rank[0])
+                if targetp>=candp:
+                        newline = target + '\t'
+                else:
+                        newline = ''
+                for r in rank:
+                        newline += r + '\t'
+        else:
+                newline = target
+        o.write(newline.strip() + '\n')
 o.close()

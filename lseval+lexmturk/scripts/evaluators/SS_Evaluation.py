@@ -3,7 +3,7 @@ from lexenstein.evaluators import *
 
 def getSelectors(map):
 	result = {}
-	files = os.listdir('../../substitutions/paetzold/')
+	files = os.listdir('../../substitutions/all/')
 	for file in files:
 		if file != 'substitutions.txt':
 			bulk = file[0:len(file)-4].strip().split('_')[1].strip()
@@ -27,18 +27,19 @@ namem['path'] = 'Leacock'
 namem['biran'] = 'Biran'
 namem['clusters'] = 'Belder'
 namem['nunes'] = 'Nunes'
+namem['aluisio'] = 'Aluisio'
 #namem['boundary'] = 'Boundary (No-CV)'
 #namem['boundaryCV'] = 'Boundary (CV)'
 #namem['svmrank'] = 'SVM Ranking Selector'
 #namem['GrammaticalitySGD'] = 'Grammaticality (SGD)'
-#namem['boundaryUnsupervisedCV'] = 'Unsupervised Boundary Selector'
+namem['boundaryUnsupervisedCV'] = 'Unsupervised Boundary Selector'
 #namem['boundaryUnsupervised'] = 'Boundary (Unsupervised)'
 namem['wordvector'] = 'Paetzold'
 namem['void'] = 'Void Selector'
 namem['crfunsupervised'] = 'Unsupervised CRF'
 
 #Selector order:
-selorder = ['lesk', 'path', 'nunes', 'clusters', 'biran', 'wordvector', 'first', 'crfunsupervised', 'void']
+selorder = ['lesk', 'path', 'clusters', 'biran', 'wordvector', 'first', 'aluisio', 'void', 'boundaryUnsupervisedCV']
 
 #Generator name map:
 genmap = {}
@@ -53,7 +54,7 @@ genmap['all'] = 'all generators combined'
 
 #Generators:
 methods = os.listdir('../../substitutions/')
-methods = ['paetzold']
+#methods = ['all']
 #methods = ['merriam', 'yamamoto', 'wordnet', 'biran', 'kauchak', 'glavas', 'paetzold', 'all']
 
 #Dataset:

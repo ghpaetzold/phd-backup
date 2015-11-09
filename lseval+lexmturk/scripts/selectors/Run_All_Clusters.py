@@ -2,7 +2,7 @@
 import os
 
 generators = os.listdir('../../substitutions/')
-generators = ['all']
+#generators = ['all']
 
 victor_corpus = '../../corpora/ls_dataset_benchmarking.txt'
 

@@ -4,7 +4,7 @@ trainset = '../../corpora/ls_dataset_benchmarking.txt'
 testset = '../../corpora/ls_dataset_benchmarking.txt'
 
 generators = os.listdir('../../substitutions/')
-generators = ['biran']
+#generators = ['biran']
 
 best_map = {}
 f = open('../evaluators/best_ss.txt')
@@ -21,8 +21,8 @@ f.close()
 os.system('mkdir ../../rankings/biran')
 
 for generator in generators:
-	#selectors = best_map[generator].keys()
-        selectors = ['biran']
+	selectors = best_map[generator].keys()
+        #selectors = ['biran']
         for selector in selectors:
 		testset = '../../substitutions/'+generator+'/'+best_map[generator][selector]		
 		output = '../../rankings/biran/ranks_'+generator+'_'+selector+'.txt'

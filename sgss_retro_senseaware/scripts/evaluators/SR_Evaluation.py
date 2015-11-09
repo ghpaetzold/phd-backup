@@ -4,14 +4,16 @@ from lexenstein.evaluators import *
 
 #Names:
 namem = {}
-namem['boundary'] = 'Boundary Ranking'
+namem['boundary'] = 'Boundary'
 namem['glavas'] = 'Glavas'
 namem['svm'] = 'SVM'
+namem['cxtsim'] = 'Paetzold'
+namem['tgtsim'] = 'Target Similarity'
 
 #Order:
-rankorder = ['boundary', 'glavas', 'svm']
+rankorder = ['boundary', 'glavas', 'svm', 'cxtsim', 'tgtsim']
 types = ['TEM', 'SEM', 'REM', 'RSEM']
-archs = ['cbow', 'skip']
+archs = ['cbow']
 size = '500'
 
 #Initialize header:
@@ -55,7 +57,7 @@ for method in rankorder:
 
 			#Get statistics without selection:
 			components = [maxt1, maxt2, maxt3]
-			myt += namem[method] + '('+type+','+arch+') '
+			myt += namem[method] + ' ('+type+','+arch+') '
 			for comp in components:
 				cstr = "%.3f" % comp
 				if len(cstr)==1:

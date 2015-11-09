@@ -1,9 +1,10 @@
 import os
 
 #Parameters:
-Cs = ['1', '0.1']
-epsilons = ['0.0001', '0.001']
-kernels = ['0', '1', '2', '3', '4']
+Cs = ['0.1']
+epsilons = ['0.0001']
+kernels = ['0', '2']
+kernels = ['1']
 
 generators = os.listdir('../../../substitutions/')
 generators = ['kauchak']
@@ -24,8 +25,8 @@ os.system('mkdir ../../../rankings/kauchak')
 
 counter = -1
 for generator in generators:
-	#selectors = best_map[generator].keys()
-        selectors = ['void']
+	selectors = best_map[generator].keys()
+        #selectors = ['void']
         for selector in selectors:
 		for C in Cs:
 			for e in epsilons:

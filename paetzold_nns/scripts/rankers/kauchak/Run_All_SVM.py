@@ -1,12 +1,12 @@
 import os
 
 #Parameters:
-Cs = ['1']
-epsilons = ['0.0001']
-kernels = ['0', '3']
+Cs = ['1', '0.1', '0.001']
+epsilons = ['0.0001', '0.001']
+kernels = ['0', '1', '2', '3']
 
 generators = os.listdir('../../../substitutions/')
-#generators = ['wordnet', 'yamamoto']
+generators = ['kauchak']
 
 best_map = {}
 f = open('../../evaluators/best_ss.txt')

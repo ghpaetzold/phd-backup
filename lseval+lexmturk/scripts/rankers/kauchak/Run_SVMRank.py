@@ -29,7 +29,7 @@ br.getTrainingModel(train_feature_file, c, epsilon, kernel, model_file)
 br.getFeaturesFile(test_victor_corpus, test_feature_file)
 br.getScoresFile(test_feature_file, model_file, scores_file)
 
-ranks = br.getRankings(test_feature_file, scores_file)
+ranks = br.getRankings(test_victor_corpus, test_feature_file, scores_file)
 
 o = open(output_path, 'w')
 for rank in ranks:

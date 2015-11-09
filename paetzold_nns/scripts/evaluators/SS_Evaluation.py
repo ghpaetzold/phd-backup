@@ -41,7 +41,7 @@ namem['AppropriatenessUS'] = 'Appropriateness'
 #namem['boundaryUnsupervisedCV'] = 'Unsupervised Boundary Selector'
 #namem['boundaryUnsupervised'] = 'Boundary (Unsupervised)'
 #namem['wordvector'] = 'Paetzold Selector'
-#namem['void'] = 'Void Selector'
+namem['void'] = 'Void Selector'
 
 #Selector order:
 selorder = ['void', 'first', 'lesk', 'path', 'biran', 'clusters', 'nunes', 'wordvector', 'svmrank', 'boundaryUnsupervisedCV', 'GrammaticalityUS', 'MeaningUS', 'AppropriatenessUS']
@@ -63,7 +63,7 @@ genmap['all'] = 'all generators combined'
 #Generators:
 methods = os.listdir('../../substitutions/')
 methods = ['merriam', 'yamamoto', 'wordnet', 'biran', 'kauchak', 'glavas', 'paetzold', 'all']
-methods = ['wordnet', 'kauchak', 'yamamoto', 'all']
+#methods = ['wordnet', 'kauchak', 'yamamoto', 'all']
 
 #Dataset:
 dataset = '../../corpora/paetzold_nns_dataset.txt'

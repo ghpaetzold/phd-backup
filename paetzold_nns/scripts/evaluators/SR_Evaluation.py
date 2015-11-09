@@ -4,15 +4,16 @@ from lexenstein.evaluators import *
 
 #Generators:
 generators = os.listdir('../../substitutions/')
-#generators = ['glavas']
+generators = ['glavas']
 #generators = ['paetzold']
 #generators = ['kauchak']
 #generators = ['biran']
-generators = ['all']
+#generators = ['all']
 
 #Selectors:
 #selectors = ['void', 'first', 'lesk', 'path', 'biran', 'clusters', 'nunes', 'wordvector', 'svmrank', 'boundaryUnsupervisedCV']
-selectors = ['void', 'first', 'lesk', 'path', 'biran', 'clusters', 'GrammaticalityUS', 'MeaningUS', 'AppropriatenessUS']
+#selectors = ['void', 'first', 'lesk', 'path', 'biran', 'clusters', 'GrammaticalityUS', 'MeaningUS', 'AppropriatenessUS']
+selectors = ['void']
 
 #Rankers:
 methods = set(os.listdir('../../rankings/'))
@@ -68,7 +69,8 @@ srnamem['syllable'] = 'Syllable Count'
 #Order:
 #rankorder = ['length', 'syllable', 'senses', 'synonyms', 'hypernyms', 'hyponyms', 'simplewiki00', 'brown00', 'subtlex00', 'subimdb00']
 #rankorder.extend(['biran', 'bott', 'yamamoto', 'kauchak', 'glavas', 'boundaryCV'])
-rankorder = ['simplewiki00', 'length', 'senses', 'synonyms', 'hypernyms', 'hyponyms']
+#rankorder = ['simplewiki00', 'length', 'senses', 'synonyms', 'hypernyms', 'hyponyms']
+rankorder = ['glavas']
 
 results = {}
 for generator in generators:

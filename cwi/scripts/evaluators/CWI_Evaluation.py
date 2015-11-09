@@ -3,7 +3,7 @@ import os
 from lexenstein.evaluators import *
 
 methods = os.listdir('../../labels/')
-methods = ['svm', 'pa', 'sgd', 'decision', 'adaboost', 'gradientboost', 'randomtrees', 'crfsuite']
+methods = ['svm', 'pa', 'sgd', 'decision', 'adaboost', 'gradientboost', 'randomtrees', 'crfsuite', 'freqSimplewiki', 'nn']
 
 namem = {}
 namem['svm'] = 'Support Vector Machines'
@@ -14,6 +14,8 @@ namem['adaboost'] = 'Adaptive Boosting'
 namem['gradientboost'] = 'Gradient Boosting'
 namem['randomtrees'] = 'Random Forests'
 namem['crfsuite'] = 'Conditional Random Fields'
+namem['freqSimplewiki'] = 'Frequency: Simple Wikipedia'
+namem['nn'] = 'Neural Networks'
 
 bestscoring = open('best_cwi.txt', 'w')
 

@@ -4,14 +4,16 @@ from lexenstein.evaluators import *
 
 #Generators:
 generators = os.listdir('../../substitutions/')
-generators = ['all']
+generators = ['wordnet']
 
 #Selectors:
-selectors = ['biran', 'subimdb22', 'boundaryUnsupervisedCV', 'boundaryCV', 'svmrank', 'clusters', 'lesk', 'first', 'random', 'wupalmer', 'void']
+#selectors = ['biran', 'subimdb22', 'boundaryUnsupervisedCV', 'boundaryCV', 'svmrank', 'clusters', 'lesk', 'first', 'random', 'wupalmer', 'void']
+selectors = ['void']
 
 #Rankers:
 methods = set(os.listdir('../../rankings/'))
 methods = ['colloc00', 'length', 'senses', 'synonyms']
+methods = ['brownfreq']
 
 #Names:
 namem = {}

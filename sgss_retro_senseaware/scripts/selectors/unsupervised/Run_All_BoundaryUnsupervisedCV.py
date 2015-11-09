@@ -5,7 +5,7 @@ type = sys.argv[1]
 model = None
 pos_type = None
 retrofitted = None
-size = '500'
+size = '1300'
 arch = 'cbow'
 
 #Open model:

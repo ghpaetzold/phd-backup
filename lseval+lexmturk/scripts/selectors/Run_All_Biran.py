@@ -1,7 +1,7 @@
 import os
 
 generators = os.listdir('../../substitutions/')
-generators = ['all', 'biran']
+#generators = ['all', 'biran']
 victor_corpus = '../../corpora/ls_dataset_benchmarking.txt'
 
 #Run Biran selector:

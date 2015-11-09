@@ -1,13 +1,13 @@
 import os
 
 #Parameters:
-positive_ranges = ['1', '2', '3']
-folds = ['5', '10']
-test_sizes = ['0.25', '0.5', '0.75']
-ks = ['all', '4']
+positive_ranges = ['3']
+folds = ['10']
+test_sizes = ['0.75']
+ks = ['all']
 
 generators = os.listdir('../../substitutions/')
-generators = ['paetzold']
+#generators = ['paetzold']
 
 best_map = {}
 f = open('../evaluators/best_ss.txt')
@@ -23,13 +23,13 @@ f.close()
 
 for generator in generators:
 	selectors = best_map[generator].keys()
-        selectors = ['wordvector']
+        #selectors = ['wordvector']
         for selector in selectors:
 		for p in positive_ranges:
 			for f in folds:
 				for t in test_sizes:
 					for k in ks:
 						output = '../../rankings/boundaryCV/ranks_'+generator+'_'+selector+'_'+p+'_'+f+'_'+t+'_'+k+'.txt'
-						comm = 'nohup python Run_BoundaryCV.py ../../ls_dataset_benchmarking.txt '+p+' '+f+' '+t
+						comm = 'nohup python Run_BoundaryCV.py ../../corpora/ls_dataset_benchmarking.txt '+p+' '+f+' '+t
 						comm += ' ../../substitutions/'+generator+'/'+best_map[generator][selector]+' '+output+' '+k+' &'
 						os.system(comm)

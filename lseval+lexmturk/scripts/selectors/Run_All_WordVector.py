@@ -1,11 +1,12 @@
 import os
 
 generators = os.listdir('../../substitutions/')
-generators = ['paetzold']
+#generators = ['paetzold']
 victor_corpus = '../../corpora/ls_dataset_benchmarking.txt'
 
 #Run WordVec selector:
 proportions = ['0.25','0.5','0.75']
+proportions = ['0.7']
 stopwordsfiles = ['../../../lexmturk/corpora/stop_words.txt']
 windows = ['0', '1']
 informatives = ['True']
