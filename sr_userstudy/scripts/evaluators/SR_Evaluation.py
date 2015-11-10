@@ -11,20 +11,58 @@ namem['bott'] = 'Bott Ranker'
 namem['paetzold'] = 'Boundary Ranker'
 namem['glavas'] = 'Glavas Ranker'
 namem['horn'] = 'SVM Ranker'
-namem['yamamoto'] = 'Yamamoto Ranker'
-namem['brown00'] = 'Frequency: Brown'
-namem['simplewiki00'] = 'Frequency: Simple Wiki'
-namem['subimdb00'] = 'Frequency: SubIMDB'
-namem['subtlex00'] = 'Frequency: SUBTLEX'
-namem['senses'] = 'Senses'
-namem['synonyms'] = 'Synonyms'
-namem['hypernyms'] = 'Hypernyms'
-namem['hyponyms'] = 'Hyponyms'
-namem['length'] = 'Word Length'
-namem['syllable'] = 'Syllable Count'
+namem['WordLength'] = 'Word Length'
+namem['NumberofSyllables'] = 'Number of Syllables'
+namem['FrequencySubIMDB'] = 'Frequency: SubIMDB'
+namem['FrequencySUBTLEX'] = 'Frequency: SUBTLEX'
+namem['FrequencySimpleWiki'] = 'Frequency: SimpleWiki'
+namem['FrequencyWikipedia'] = 'Frequency: Wikipedia'
+namem['FrequencyBrown'] = 'Frequency: Brown'
+namem['SenseCount'] = 'Sense Count'
+namem['SynonymCount'] = 'Synonym Count'
+namem['HypernymCount'] = 'Hypernym Count'
+namem['HyponymCount'] = 'Hyponym Count'
+namem['MinimumSenseDepth'] = 'Minimum Sense Depth'
+namem['MaximumSenseDepth'] = 'Maximum Sense Depth'
+namem['Ngramlef10right'] = r'N-gram $\left ( 1, 0 \right )$'
+namem['Ngramlef01right'] = r'N-gram $\left ( 0, 1 \right )$'
+namem['Ngramlef11right'] = r'N-gram $\left ( 1, 1 \right )$'
+namem['Ngramlef20right'] = r'N-gram $\left ( 2, 0 \right )$'
+namem['Ngramlef21right'] = r'N-gram $\left ( 2, 1 \right )$'
+namem['Ngramlef02right'] = r'N-gram $\left ( 0, 2 \right )$'
+namem['Ngramlef12right'] = r'N-gram $\left ( 1, 2 \right )$'
+namem['Ngramlef22right'] = r'N-gram $\left ( 2, 2 \right )$'
+namem['POSProb.'] = 'POS Prob.'
+namem['TargetSim.'] = 'Target Sim.'
+namem['ContextSim'] = 'Context Sim.'
 
 #Order:
-rankorder = ['biran', 'bott', 'paetzold', 'glavas', 'horn']
+rankorder = []
+rankorder.append(r'WordLength')
+rankorder.append(r'NumberofSyllables')
+rankorder.append(r'FrequencySubIMDB')
+rankorder.append(r'FrequencySUBTLEX')
+rankorder.append(r'FrequencySimpleWiki')
+rankorder.append(r'FrequencyWikipedia')
+rankorder.append(r'FrequencyBrown')
+rankorder.append(r'SenseCount')
+rankorder.append(r'SynonymCount')
+rankorder.append(r'HypernymCount')
+rankorder.append(r'HyponymCount')
+rankorder.append(r'MinimumSenseDepth')
+rankorder.append(r'MaximumSenseDepth')
+rankorder.append(r'Ngramlef10right')
+rankorder.append(r'Ngramlef01right')
+rankorder.append(r'Ngramlef11right')
+rankorder.append(r'Ngramlef20right')
+rankorder.append(r'Ngramlef21right')
+rankorder.append(r'Ngramlef02right')
+rankorder.append(r'Ngramlef12right')
+rankorder.append(r'Ngramlef22right')
+rankorder.append(r'POSProb.')
+rankorder.append(r'TargetSim.')
+rankorder.append(r'ContextSim')
+rankorder += ['biran', 'bott', 'horn', 'glavas', 'paetzold']
 
 #Initialize header:
 myt = ''
@@ -39,6 +77,7 @@ myt += r'\hline'+'\n'
 #Initialize evaluator:
 re = RankerEvaluator()
 
+#for method in rankorder:
 for method in rankorder:
 	print('Method: ' + method)
 	files = os.listdir('../../rankings/'+method+'/')
@@ -77,6 +116,7 @@ for method in rankorder:
 	#Get statistics without selection:
 	components = [maxt1, maxt2, maxt3]
 	myt += namem[method] + ' '
+#	myt += method + ' '
 	for comp in components:
 		cstr = "%.3f" % comp
 		if len(cstr)==1:
