@@ -1,0 +1,67 @@
+from tabulate import tabulate
+import os
+from lexenstein.evaluators import *
+
+#Initialize table:
+myt = ''
+myt += r'\begin{table}[htpb]'+'\n'
+myt += r'\caption{Evaluation results for SG approaches' + '}\n'
+myt += r'\centering'+'\n'
+myt += r'\label{table:benchsg}'+'\n'
+myt += r'\begin{tabular}{l|cccc}'+'\n'
+myt += r'Generator & Potential & Precision & Recall & F1 \\'+ '\n'
+myt += r'\hline'+'\n'
+
+#Generators:
+methods = os.listdir('../../substitutions/')
+#methods = ['biran', 'kauchak', 'yamamoto', 'wordnet', 'glavas', 'all']
+#methods = ['wordnet', 'biran', 'yamamoto', 'kauchak', 'glavas', 'paetzold', 'all']
+
+#Name map:
+genmap = {}
+genmap['biran'] = 'Biran'
+genmap['kauchak'] = 'Horn'
+genmap['merriam'] = 'Merriam'
+genmap['wordnet'] = 'Devlin'
+genmap['yamamoto'] = 'Yamamoto'
+genmap['glavas'] = 'Glavas'
+genmap['paetzold'] = 'Paetzold'
+genmap['all'] = 'All'
+
+#Produce table:
+for method in sorted(methods):
+	try:
+		orig_p = '../../substitutions/'+method+'/substitutions.txt'
+		
+		orig_s = {}
+		
+		orig_f = open(orig_p)
+		for line in orig_f:
+			data = line.strip().split('\t')
+			target = data[0].strip()
+			if len(data)>1:
+				subs = set(data[1].split('|||'))
+				orig_s[target] = subs
+		orig_f.close()
+		
+		ge = GeneratorEvaluator()
+		pot, prec, rec, fmean = ge.evaluateGenerator('../../corpora/ls_dataset_benchmarking.txt', orig_s)
+	
+		#Get statistics without selection:
+		components = [pot, prec, rec, fmean]
+		myt += method + ' '
+		for comp in components:
+			cstr = "%.3f" % comp
+			if len(cstr)==1:
+				cstr += '.000'
+			elif len(cstr)==3:
+				cstr += '00'
+			elif len(cstr)==4:
+				cstr += '0'
+			myt += r'& $' + cstr + r'$ '
+		myt += r'\\' + '\n'
+	except Exception:
+		pass
+myt += r'\end{tabular}'+'\n'
+myt += r'\end{table}'+'\n'
+print(myt)

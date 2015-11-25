@@ -23,7 +23,7 @@ namem = {}
 namem['lesk'] = 'Lesk'
 namem['first'] = 'First'
 namem['random'] = 'Random'
-namem['void'] = 'Void'
+#namem['void'] = 'Void'
 #namem['wupalmer'] = 'Leacock'
 namem['path'] = 'Path'
 #namem['enhancedlesk'] = 'Enhanced Lesk'
@@ -44,7 +44,7 @@ namem['aluisio'] = 'Aluisio'
 methods = ['biran', 'kauchak', 'merriam', 'wordnet', 'yamamoto', 'all', 'paetzold']
 methods = ['wordnet', 'kauchak', 'paetzold', 'all']
 methods = ['biran', 'kauchak', 'wordnet', 'yamamoto', 'glavas', 'glavasretrofitted', 'paetzold', 'paetzoldretrofitted']
-methods = ['yamamoto']
+#methods = ['kauchak']
 
 #Data:
 lexf = open('../../corpora/lexmturk_all.txt')

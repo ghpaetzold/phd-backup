@@ -69,10 +69,10 @@ for method in methods:
 	index += 1
 	myt = ''
 	myt += r'\begin{table}[htpb]'+'\n'
-	myt += r'\caption{Accuracy scores for candidate substitutions ranked by their number of ' + method + '}\n'
+	#myt += r'\caption{Accuracy scores for candidate substitutions ranked by their number of ' + method + '}\n'
 #	myt += namem[selector] + r' Selector}' + '\n'		
 	myt += r'\centering'+'\n'
-	myt += r'\label{table:w2vsgsssr'+str(index)+'}\n'
+	#myt += r'\label{table:w2vsgsssr'+str(index)+'}\n'
 	myt += r'\begin{tabular}{l|cccccc}'+'\n'
 	myt += r' & First & Random & Path & Lesk & Clusters & Biran \\'+ '\n'
 	myt += r'\hline'+'\n'
@@ -95,5 +95,7 @@ for method in methods:
 			myt += r'& $' + cstr + r'$ '
 		myt += r'\\' + '\n'
 	myt += r'\end{tabular}'+'\n'
+	myt += r'\caption{Accuracy scores for candidate substitutions ranked by their number of ' + method + '}\n'
+	myt += r'\label{table:w2vsgsssr'+str(index)+'}\n'
 	myt += r'\end{table}'+'\n'
 	print(myt)

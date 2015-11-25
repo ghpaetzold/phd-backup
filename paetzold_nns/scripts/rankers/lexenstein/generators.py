@@ -477,7 +477,7 @@ class KauchakGenerator:
 							if leftp in substitutions_initial[leftw]:
 								substitutions_initial[leftw][leftp].add(rightw)
 							else:
-								substitutions_initial[leftw][leftp] = set(rightw)
+								substitutions_initial[leftw][leftp] = set([rightw])
 						else:
 							substitutions_initial[leftw] = {leftp:set([rightw])}
 		fparallel.close()
@@ -2096,8 +2096,8 @@ class BiranGenerator:
 		return substitutions_initial
 		
 	def getComplexity(self, word, clm, slm):
-		#C = (clm.score(word, bos=False, eos=False))/(slm.score(word, bos=False, eos=False))
-		C = (clm.score(word)/(slm.score(word))
+		C = (clm.score(word, bos=False, eos=False))/(slm.score(word, bos=False, eos=False))
+		#C = (clm.score(word)/(slm.score(word))
 		L = float(len(word))
 		return C*L
 

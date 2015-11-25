@@ -23,8 +23,8 @@ genmap['wordnet'] = 'WordNet'
 genmap['yamamoto'] = 'Yamamoto'
 genmap['glavas'] = 'TEM'
 genmap['glavasretrofitted'] = 'REM'
-genmap['paetzold'] = 'SAEM'
-genmap['paetzoldretrofitted'] = 'RSAEM'
+genmap['paetzold'] = 'CAEM'
+genmap['paetzoldretrofitted'] = 'RCAEM'
 genmap['all'] = 'All'
 
 #Selector names:
@@ -61,11 +61,11 @@ for index in range(0, len(selectors)):
 
 	myt = ''
 	myt += r'\begin{table}[htpb]'+'\n'
-	myt += r'\caption{Results obtained by '+namem[selector]+'}\n'
+	#myt += r'\caption{Results obtained by '+namem[selector]+'}\n'
 	myt += r'\centering'+'\n'
-	myt += r'\label{table:benchss'+str(index)+'}\n'
+	#myt += r'\label{table:benchss'+str(index)+'}\n'
 	myt += r'\begin{tabular}{l|cccc}'+'\n'
-	myt += r'Selector & Potential & Precision & Recall & F-$1$ \\'+ '\n'
+	myt += r'Selector & Potential & Precision & Recall & F1 \\'+ '\n'
 	myt += r'\hline'+'\n'
 
 	se = SelectorEvaluator()
@@ -80,7 +80,7 @@ for index in range(0, len(selectors)):
 			sele_d = []
 			sele_p = '../../../substitutions/'+method+'/'+file
 	
-			index = -1
+			#index = -1
 			sele_f = None
 			try:
 				sele_f = open(sele_p)
@@ -123,6 +123,8 @@ for index in range(0, len(selectors)):
 				myt += r'& $' + cstr + r'$ '
 			myt += r'\\' + '\n'
 	myt += r'\end{tabular}'+'\n'
+	myt += r'\caption{Results obtained by '+namem[selector]+'}\n'
+	myt += r'\label{table:benchss'+str(index)+'}\n'
 	myt += r'\end{table}'+'\n'
 	if selector in namem.keys():
 		print(myt)

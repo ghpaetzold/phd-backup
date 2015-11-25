@@ -6,10 +6,10 @@ size = int(sys.argv[3])
 output = sys.argv[4]
 
 print('Calculating number of instances...')
-#c = 0
+#words = set([])
 #f = open(glove)
 #for line in f:
-#	c += 1
+#	words.add(line.strip().split(
 #f.close()
 
 print('Saving temporary file...')

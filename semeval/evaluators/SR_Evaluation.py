@@ -12,10 +12,16 @@ namem['paetzold'] = 'Boundary Ranker'
 namem['glavas'] = 'Glavas Ranker'
 namem['horn'] = 'SVM Ranker'
 namem['yamamoto'] = 'Yamamoto Ranker'
+namem['wiki00'] = 'Frequency: Wiki'
 namem['brown00'] = 'Frequency: Brown'
 namem['simplewiki00'] = 'Frequency: Simple Wiki'
 namem['subimdb00'] = 'Frequency: SubIMDB'
 namem['subtlex00'] = 'Frequency: SUBTLEX'
+namem['brown22'] = 'Context: Brown'
+namem['wiki22'] = 'Context: Wiki'
+namem['simplewiki22'] = 'Context: Simple Wiki'
+namem['subimdb22'] = 'Context: SubIMDB'
+namem['subtlex22'] = 'Context: SUBTLEX'
 namem['senses'] = 'Senses'
 namem['synonyms'] = 'Synonyms'
 namem['hypernyms'] = 'Hypernyms'
@@ -24,8 +30,8 @@ namem['length'] = 'Word Length'
 namem['syllable'] = 'Syllable Count'
 
 #Order:
-rankorder = ['length', 'syllable', 'senses', 'synonyms', 'hypernyms', 'hyponyms', 'simplewiki00', 'brown00', 'subtlex00', 'subimdb00']
-rankorder.extend(['biran', 'bott', 'yamamoto', 'horn', 'glavas', 'paetzold'])
+rankorder = ['length', 'syllable', 'senses', 'synonyms', 'hypernyms', 'hyponyms', 'wiki00', 'simplewiki00', 'brown00', 'subtlex00', 'subimdb00']
+rankorder.extend(['biran', 'bott', 'yamamoto', 'horn', 'glavas', 'paetzold', 'wiki22', 'simplewiki22', 'brown22', 'subtlex22', 'subimdb22'])
 
 #Initialize header:
 myt = ''

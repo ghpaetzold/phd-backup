@@ -11,6 +11,13 @@ flabels.append('subtlex00')
 flabels.append('simplewiki00')
 flabels.append('wiki00')
 flabels.append('brown00')
+
+flabels.append('subimdb22')
+flabels.append('subtlex22')
+flabels.append('simplewiki22')
+flabels.append('wiki22')
+flabels.append('brown22')
+
 flabels.append('senses')
 flabels.append('synonyms')
 flabels.append('hypernyms')

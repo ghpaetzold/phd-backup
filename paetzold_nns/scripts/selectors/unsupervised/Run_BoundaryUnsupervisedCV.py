@@ -72,7 +72,7 @@ bs.trainSelectorWithCrossValidation(train_victor_corpus, positive_range, folds, 
 
 tagged_sents = getTaggedSents('../../../corpora/tagged_sents_paetzold_nns_dataset.txt')
 bs.ranker.fe.temp_resources['tagged_sents'] = tagged_sents
-selected = bs.selectCandidates(subs, test_victor_corpus, temp_file, proportion, proportion_type='percentage')
+selected = bs.selectCandidates(subs, test_victor_corpus, temp_file, proportion, proportion_type='integer')
 
 outf = open(out, 'w')
 vicf = open(test_victor_corpus)

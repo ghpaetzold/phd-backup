@@ -63,9 +63,9 @@ for method in methods:
 	index += 1
 	myt = ''
 	myt += r'\begin{table}[htpb]'+'\n'
-	myt += r'\caption{Accuracy scores for candidate substitutions ranked by their number of ' + method + '}\n'
+	#myt += r'\caption{Accuracy scores for candidate substitutions ranked by their number of ' + method + '}\n'
 	myt += r'\centering'+'\n'
-	myt += r'\label{table:ssrankrndtrp'+str(index)+'}\n'
+	#myt += r'\label{table:ssrankrndtrp'+str(index)+'}\n'
 	myt += r'\begin{tabular}{l|cccc}'+'\n'
 	myt += r' & WordNet & Kauchak & Paetzold & All \\'+ '\n'
 	myt += r'\hline'+'\n'
@@ -90,5 +90,7 @@ for method in methods:
 			myt += r'\hline'+'\n'
 
 	myt += r'\end{tabular}'+'\n'
+	myt += r'\caption{Accuracy scores for candidate substitutions ranked by their number of ' + method + '}\n'
+	myt += r'\label{table:ssrankrndtrp'+str(index)+'}\n'
 	myt += r'\end{table}'+'\n'
 	print(myt)

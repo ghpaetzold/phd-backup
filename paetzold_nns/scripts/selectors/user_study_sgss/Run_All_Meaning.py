@@ -2,6 +2,7 @@ import os
 
 #Generators:
 generators = os.listdir('../../../substitutions/')
+generators = ['kauchak']
 #generators.remove('all')
 
 #Parameters:

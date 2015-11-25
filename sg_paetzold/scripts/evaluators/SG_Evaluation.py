@@ -85,16 +85,7 @@ for metric in metrics:
 	for ann in anns:
 		counter += 1
 		table = r'\begin{table}[htpb]' + '\n'
-		if ann=='annotated':
-			table += r'\caption{' + metric + ' measures for sense-aware embedding models}\n'
-		elif ann=='normal':
-			table += r'\caption{' + metric + ' measures for traditional embedding models}\n'
-		elif ann=='retro':
-			table += r'\caption{' + metric + ' measures for retrofitted embedding models}\n'
-		elif ann=='retroannotated':
-			table += r'\caption{' + metric + ' measures for retrofitted sense-aware embedding models}\n'
 		table += r'\centering' + '\n'
-		table += r'\label{table:sgpaetzeval' + str(counter) + '}\n'
 		table += r'\begin{tabular}{c|ccc|ccc}' + '\n'
 		table += r' & \multicolumn{3}{c}{CBOW} & \multicolumn{3}{c}{Skip-Gram} \\' + '\n'
 		table += r'\# & $300$ & $500$ & $700$ & $300$ & $500$ & $700$ \\' + '\n' + r'\hline' + '\n'
@@ -106,5 +97,14 @@ for metric in metrics:
 			table += r'$' + str(resdata[metric][ann][amount]['skip']['500']) + r'$ & '
 			table += r'$' + str(resdata[metric][ann][amount]['skip']['700']) + r'$ \\ ' + '\n'
 		table += r'\end{tabular}' + '\n'
+		if ann=='annotated':
+			table += r'\caption{' + metric + ' measures for sense-aware embedding models}\n'
+		elif ann=='normal':
+			table += r'\caption{' + metric + ' measures for traditional embedding models}\n'
+		elif ann=='retro':
+			table += r'\caption{' + metric + ' measures for retrofitted embedding models}\n'
+		elif ann=='retroannotated':
+			table += r'\caption{' + metric + ' measures for retrofitted sense-aware embedding models}\n'
+		table += r'\label{table:sgpaetzeval' + str(counter) + '}\n'
 		table += r'\end{table}' + '\n\n'
 		print(str(table))

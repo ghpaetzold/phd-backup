@@ -1,13 +1,13 @@
 import os
 
 generators = os.listdir('../../substitutions/')
-#generators = ['kauchak']
+generators = ['kauchak']
 #generators = ['biran']
 #generators = ['merriam']
 #generators = ['wordnet']
 #generators = ['yamamoto']
 #generators = ['all']
-generators = ['paetzold', 'glavas', 'glavas_retrofitted', 'paetzold_retrofitted']
+#generators = ['paetzold', 'glavas', 'glavas_retrofitted', 'paetzold_retrofitted']
 
 victor_corpus = '../../corpora/lexmturk_all.txt'
 

@@ -1,7 +1,8 @@
 import os
 
 generators = os.listdir('../../substitutions/')
-generators = ['paetzold', 'glavas', 'glavas_retrofitted', 'paetzold_retrofitted']
+#generators = ['paetzold', 'glavas', 'glavas_retrofitted', 'paetzold_retrofitted']
+generators = ['kauchak']
 
 victor_corpus = '../../corpora/lexmturk_all.txt'
 
