@@ -1,17 +1,25 @@
 import os
 
 #Parameters:
-hiddens = ['20', '50']
-losses = ['mean_squared_error', 'mean_absolute_error', 'binary_crossentropy']
-optimizers = ['sgd', 'adagrad', 'adadelta', 'rmsprop', 'adam']
+hiddens = ['100', '200', '300']
+lrs = ['0.1']
+momentums = ['0.01', '0.1']
+decays = ['0.000001']
+nesterovs = ['1']
+layers = ['5', '6', '4']
+#optimizers = ['sgd', 'adagrad', 'adadelta', 'rmsprop', 'adam']
 
 trainset = '../../../corpora/cwi_paetzold_training.txt'
 testset = '../../../corpora/cwi_paetzold_testing.txt'
 os.system('mkdir ../../../labels/nn')
 
 for hidden in hiddens:
-	for loss in losses:
-		for optimizer in optimizers:
-			output = '../../../labels/nn/labels_NeuralNetwork_'+hidden+'_'+loss+'_'+optimizer+'.txt'
-			comm = 'nohup python Run_NN.py '+trainset+' '+hidden+' '+loss+' '+optimizer+' '+testset+' '+output+' &'
-			os.system(comm)
+	for lr in lrs:
+		for momentum in momentums:
+			for decay in decays:
+				for nesterov in nesterovs:
+					for layer in layers:
+						output = '../../../labels/nn/labels_NeuralNetwork_SGD_'+hidden+'_'+lr+'_'+momentum+'_'+decay+'_'+nesterov+'_'+layer+'.txt'
+						comm = 'nohup python Run_NN.py '+trainset+' '+hidden+' '+lr+' '+momentum+' '+decay+' '+nesterov+' '+layer+' '+testset+' '+output+' &'
+						#comm = 'python Run_NN.py '+trainset+' '+hidden+' '+lr+' '+momentum+' '+decay+' '+nesterov+' '+layer+' '+testset+' '+output
+						os.system(comm)

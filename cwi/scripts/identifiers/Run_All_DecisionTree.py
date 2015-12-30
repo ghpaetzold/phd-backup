@@ -8,13 +8,13 @@ splitters = ['best']
 maxes = ['sqrt']
 depths = ['4', '5', '6', '7', 'None']
 
-trainset = '../../corpora/cwi_paetzold_training.txt'
-testset = '../../corpora/cwi_paetzold_testing.txt'
+trainset = '../../corpora/cwi_paetzold_training_lower.txt'
+testset = '../../corpora/cwi_paetzold_testing_lower.txt'
 for c in criterions:
 	for s in splitters:
 		for m in maxes:
 			for d in depths:
 				for k in ks:
-					output = '../../labels/decision/labels_DecisionTreeClassifier_'+c+'_'+s+'_'+m+'_'+d+'_'+k+'_allfeats.txt'
+					output = '../../labels/decision/labels_DecisionTreeClassifier_'+c+'_'+s+'_'+m+'_'+d+'_'+k+'_lower.txt'
 					comm = 'nohup python Run_DecisionTree.py '+trainset+' '+k+' '+c+' '+s+' '+m+' '+d+' '+testset+' '+output+' &'
 					os.system(comm)

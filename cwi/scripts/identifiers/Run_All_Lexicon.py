@@ -11,15 +11,16 @@ lexicons.append(('../../../lexmturk/corpora/basic_words.txt', 'simple'))
 lexicons.append(('../../../lexmturk/corpora/subimdb.vocab.txt', 'simple'))
 
 labels = []
-labels.append('Simple_Wikipedia')
+labels.append('SimpleWikipedia')
 labels.append('Wikipedia')
-labels.append('Stop_Words')
-labels.append('Ogdens_Words')
+labels.append('Stop')
+labels.append('Ogdens')
 labels.append('SubIMDB')
 
 for i in range(0, len(lexicons)):
 	lexicon = lexicons[i]
 	label = labels[i]
-	output = '../../labels/lexicon/labels_'+label+'.txt'
+	os.system('mkdir ../../labels/lex_'+label)
+	output = '../../labels/lex_'+label+'/labels.txt'
 	comm = 'nohup python Run_Lexicon.py '+testset+' '+trainset+' '+lexicon[0]+' '+lexicon[1]+' '+output+' &'
 	os.system(comm)

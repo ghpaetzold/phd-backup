@@ -14,7 +14,9 @@ for line in f:
 	data = line.strip().split('\t')
 	file = data[1].strip()
 	score = float(data[2].strip())
-	scores[(data[0].strip(), file)]=score
+	name = data[0].strip()
+	if name!='voting':
+		scores[(name, file)]=score
 ranked = sorted(scores.keys(), key=scores.__getitem__, reverse=True)
 
 limit = min(len(ranked), k)
