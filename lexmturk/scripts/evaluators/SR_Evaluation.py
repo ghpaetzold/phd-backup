@@ -4,16 +4,16 @@ from lexenstein.evaluators import *
 
 #Generators:
 generators = os.listdir('../../substitutions/')
-generators = ['wordnet']
+generators = ['paetzoldretrofitted']
 
 #Selectors:
 #selectors = ['biran', 'subimdb22', 'boundaryUnsupervisedCV', 'boundaryCV', 'svmrank', 'clusters', 'lesk', 'first', 'random', 'wupalmer', 'void']
-selectors = ['void']
+selectors = ['boundaryUnsupervisedCV']
 
 #Rankers:
 methods = set(os.listdir('../../rankings/'))
 methods = ['colloc00', 'length', 'senses', 'synonyms']
-methods = ['brownfreq']
+methods = ['paetzoldaaai']
 
 #Names:
 namem = {}
@@ -27,6 +27,8 @@ namem['void'] = 'No Selection'
 namem['boundaryCV'] = 'Boundary'
 namem['svmrank'] = 'SVM Rank'
 namem['clusters'] = 'Clusters'
+namem['boundaryUnsupervisedCV'] = 'Boundary Unsupervised'
+#namem['paetzoldaaai'] = 'Paetzold AAAI'
 #namem['SGDClassifier'] = 'Grammaticality Model'
 
 results = {}

@@ -1,12 +1,13 @@
 import os
 
 #Parameters:
-Cs = ['1', '0.1', '0.001']
-epsilons = ['0.0001', '0.001']
-kernels = ['0', '1', '2', '3']
+Cs = ['1']
+epsilons = ['0.001']
+kernels = ['3']
 
 generators = os.listdir('../../../substitutions/')
-generators = ['kauchak']
+#generators = ['all', 'biran', 'kauchak', 'wordnet']
+#generators = ['glavas', 'merriam', 'yamamoto', 'paetzold']
 
 best_map = {}
 f = open('../../evaluators/best_ss.txt')
@@ -22,8 +23,8 @@ f.close()
 
 counter = -1
 for generator in generators:
-	#selectors = best_map[generator].keys()
-        selectors = ['void']
+	selectors = best_map[generator].keys()
+        #selectors = ['void']
         for selector in selectors:
 		for C in Cs:
 			for e in epsilons:

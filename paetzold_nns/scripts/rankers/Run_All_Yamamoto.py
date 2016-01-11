@@ -22,7 +22,7 @@ f.close()
 
 for generator in generators:
         selectors = best_map[generator].keys()
-        selectors = ['void']
+        #selectors = ['void']
         for selector in selectors:
 		testset = '../../substitutions/'+generator+'/'+best_map[generator][selector]
 		output = '../../rankings/yamamoto/ranks_'+generator+'_'+selector+'_1_1_1_1_1.txt'

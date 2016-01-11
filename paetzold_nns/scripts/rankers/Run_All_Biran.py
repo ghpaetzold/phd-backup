@@ -19,8 +19,8 @@ for line in f:
 f.close()
 
 for generator in generators:
-	#selectors = best_map[generator].keys()
-        selectors = ['void']
+	selectors = best_map[generator].keys()
+        #selectors = ['void']
         for selector in selectors:
 		testset = '../../substitutions/'+generator+'/'+best_map[generator][selector]		
 		output = '../../rankings/biran/ranks_'+generator+'_'+selector+'.txt'

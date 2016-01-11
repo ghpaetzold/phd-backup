@@ -27,6 +27,6 @@ for type in types:
 	nesterov = config[7]
 	layer = config[8]
 	modelout = '../../../finalmodels/'+type+'/model_MLPBaselineFeatures_'+hidden+'_'+lr+'_'+momentum+'_'+decay+'_'+nesterov+'_'+layer
-	#comm = 'nohup python Run_NN.py '+trainset+' '+hidden+' '+lr+' '+momentum+' '+decay+' '+nesterov+' '+layer+' '+testset+' '+output+' '+modelout+' &'
-	comm = 'python Run_NN.py '+trainset+' '+hidden+' '+lr+' '+momentum+' '+decay+' '+nesterov+' '+layer+' '+modelout
+	comm = 'nohup python Train_NN.py '+trainset+' '+hidden+' '+lr+' '+momentum+' '+decay+' '+nesterov+' '+layer+' '+modelout+' &'
+	#comm = 'python Train_NN.py '+trainset+' '+hidden+' '+lr+' '+momentum+' '+decay+' '+nesterov+' '+layer+' '+modelout
 	os.system(comm)

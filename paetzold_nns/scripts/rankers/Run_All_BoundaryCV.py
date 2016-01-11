@@ -7,6 +7,9 @@ test_sizes = ['0.25', '0.5', '0.75']
 
 generators = os.listdir('../../substitutions/')
 generators = ['all', 'biran']
+generators = ['kauchak', 'wordnet']
+generators = ['glavas', 'merriam']
+generators = ['yamamoto', 'paetzold']
 
 best_map = {}
 f = open('../evaluators/best_ss.txt')

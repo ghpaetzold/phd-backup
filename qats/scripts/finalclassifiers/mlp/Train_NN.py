@@ -49,12 +49,17 @@ Ytr = getLabels(train_victor_corpus)
 print('X: ' + str(Xtr.shape))
 print('Y: ' + str(Ytr.shape))
 
-model = Sequential()
-model.add(Dense(output_dim=hidden_size, input_dim=Xtr.shape[1], init="glorot_uniform"))
-model.add(Activation("tanh"))
-model.add(Dropout(0.25))
-for i in range(0, layers):
-	model.add(Dense(output_dim=hidden_size, init="glorot_uniform"))
+model = None
+try:
+        model = model_from_json(open(model_file+'.json').read())
+        model.load_weights(model_file+'.h5')
+except Exception:
+	model = Sequential()
+	model.add(Dense(output_dim=hidden_size, input_dim=Xtr.shape[1], init="glorot_uniform"))
+	model.add(Activation("tanh"))
+	model.add(Dropout(0.25))
+	for i in range(0, layers):
+		model.add(Dense(output_dim=hidden_size, init="glorot_uniform"))
 	model.add(Activation("tanh"))
 model.add(Dense(output_dim=3, init="glorot_uniform"))
 model.add(Activation("sigmoid"))
@@ -63,5 +68,9 @@ model.compile(loss='categorical_crossentropy', optimizer=sgd)
 
 print('Training...')
 #model.fit(Xtr, Ytr, nb_epoch=10000, batch_size=Xtr.shape[0])
-model.fit(Xtr, Ytr, nb_epoch=2, batch_size=Xtr.shape[0])
+#model.fit(Xtr, Ytr, nb_epoch=2, batch_size=Xtr.shape[0])
 
+model.fit(Xtr, Ytr, nb_epoch=10000, batch_size=2000)
+json_string = model.to_json()
+open(model_file+'.json', 'w').write(json_string)
+model.save_weights(model_file+'.h5', overwrite=True)

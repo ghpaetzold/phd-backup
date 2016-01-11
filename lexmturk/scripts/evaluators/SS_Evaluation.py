@@ -33,7 +33,7 @@ namem['wordvector'] = 'Paetzold'
 namem['clusters'] = 'Belder'
 namem['aluisio'] = 'Aluisio'
 #namem['boundaryCV'] = 'Supervised Boundary'
-#namem['boundaryUnsupervisedCV'] = 'Unsupervised Boundary'
+namem['boundaryUnsupervisedCV'] = 'Unsupervised Boundary'
 #namem['svmrank'] = 'SVM Rank'
 #namem['subimdb22'] = 'Metric-Based'
 #namem['wordvectortreebank'] = 'Word Vector (Treebank)'
@@ -44,7 +44,7 @@ namem['aluisio'] = 'Aluisio'
 methods = ['biran', 'kauchak', 'merriam', 'wordnet', 'yamamoto', 'all', 'paetzold']
 methods = ['wordnet', 'kauchak', 'paetzold', 'all']
 methods = ['biran', 'kauchak', 'wordnet', 'yamamoto', 'glavas', 'glavasretrofitted', 'paetzold', 'paetzoldretrofitted']
-#methods = ['kauchak']
+methods = ['paetzoldretrofitted']
 
 #Data:
 lexf = open('../../corpora/lexmturk_all.txt')
@@ -59,6 +59,7 @@ lexf.close()
 #Maxims:
 
 maxims = set(['lesk', 'first', 'random', 'path', 'wordvector', 'biran', 'void', 'clusters', 'boundary', 'boundaryCV', 'svmrank', 'wordvectortreebank', 'wordvectorgeneralized', 'SGDClassifier', 'boundaryUnsupervisedCV', 'subimdb22', 'aluisio'])
+maxims = set(['boundaryUnsupervisedCV'])
 
 #Create file containing best SS parameters:
 bestssf = open('best_ss.txt', 'w')

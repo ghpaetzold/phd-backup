@@ -23,7 +23,7 @@ alphas = ['1']
 
 for generator in generators:
         selectors = best_map[generator].keys()
-        selectors = ['void']
+        #selectors = ['void']
         for selector in selectors:
 		testset = '../../substitutions/'+generator+'/'+best_map[generator][selector]
 		for a1 in alphas:

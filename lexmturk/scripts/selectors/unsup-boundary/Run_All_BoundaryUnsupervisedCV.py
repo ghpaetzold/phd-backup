@@ -2,6 +2,7 @@ import os
 
 generators = os.listdir('../../../substitutions/')
 generators = ['wordnet', 'kauchak', 'paetzold', 'all']
+generators = ['paetzoldretrofitted']
 
 test_victor_corpus = '../../../corpora/lexmturk_all.txt'
 
