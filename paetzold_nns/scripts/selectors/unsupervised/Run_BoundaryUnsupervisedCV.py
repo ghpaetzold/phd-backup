@@ -18,7 +18,7 @@ features = sys.argv[12].strip()
 if features!='all':
 	features = int(features)
 temp_file = sys.argv[13].strip()
-proportion = float(sys.argv[14].strip())
+proportion = int(sys.argv[14].strip())
 out = sys.argv[15].strip()
 
 def getTaggedSents(corpus):
@@ -57,7 +57,7 @@ fe = FeatureEstimator()
 #fe.addNGramProbabilityFeature('/export/data/ghpaetzold/subtitlesimdb/corpora/160715/subtleximdb.5gram.unk.bin.txt', 0, 2, 'Simplicity')
 fe.addCollocationalFeature('/export/data/ghpaetzold/subtitlesimdb/corpora/160715/subtleximdb.5gram.unk.bin.txt', 2, 2, 'Complexity')
 fe.addTargetPOSTagProbability('/export/data/ghpaetzold/LEXenstein/corpora/POS_condprob_model.bin', model, tagger, java, 'Simplicity')
-w2vmodel = '/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_generalized_500_cbow.bin'
+w2vmodel = '/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_generalized_1300_cbow.bin'
 fe.addTaggedWordVectorSimilarityFeature(w2vmodel, model, tagger, java, 'paetzold', 'Simplicity')
 
 br = BoundaryRanker(fe)

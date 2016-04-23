@@ -11,6 +11,9 @@ import pickle
 from sklearn.preprocessing import normalize
 import numpy
 import shelve
+import urllib2
+import json
+import re
 
 class FeatureEstimator:
 
@@ -31,24 +34,38 @@ class FeatureEstimator:
 		#One-run resource list:
 		self.temp_resources = {}
 		
-	def calculateFeatures(self, corpus, format='victor'):
+	def calculateFeatures(self, corpus, format='victor', input='file'):
 		"""
 		Calculate the selected features over the candidates of a VICTOR or CWICTOR corpus.
 	
 		@param corpus: Path to a corpus in the VICTOR or CWICTOR format.
-		For more information about the file's format, refer to the LEXenstein Manual.
-		@param format: Input file format.
-		Values available: victor, cwictor
+		For more information about the input's format, refer to the LEXenstein Manual.
+		@param format: Input format.
+		Values available: victor, cwictor.
+		@param input: Type of input provided.
+		Values available: file, text.
 		@return: Returns a MxN matrix, where M is the number of substitutions of all instances in the VICTOR corpus, and N the number of selected features.
 		"""
 		data = []
 		if format.strip().lower()=='victor':
-			data = [line.strip().split('\t') for line in open(corpus)]
+			if input=='file':
+				data = [line.strip().split('\t') for line in open(corpus)]
+			elif input=='text':
+				data = [line.strip().split('\t') for line in corpus.split('\n')]
+			else:
+				print('Unrecognized format: must be file or text.')
 		elif format.strip().lower()=='cwictor':
-			f = open(corpus)
-			for line in f:
-				line_data = line.strip().split('\t')
-				data.append([line_data[0].strip(), line_data[1].strip(), line_data[2].strip(), '0:'+line_data[1].strip()])
+			if input=='file':
+				f = open(corpus)
+				for line in f:
+					line_data = line.strip().split('\t')
+					data.append([line_data[0].strip(), line_data[1].strip(), line_data[2].strip(), '0:'+line_data[1].strip()])
+			elif input=='text':
+				for line in corpus.split('\n'):
+					line_data = line.strip().split('\t')
+					data.append([line_data[0].strip(), line_data[1].strip(), line_data[2].strip(), '0:'+line_data[1].strip()])
+			else:
+				print('Unrecognized format: must be file or text.')
 		else:
 			print('Unknown input format during feature estimation!')
 			return []
@@ -819,6 +836,30 @@ class FeatureEstimator:
 				resultma.append(maxdepth)
 		return resultma
 		
+	def averageDepth(self, data, args):
+		resultma = []
+		for line in data:
+			for subst in line[3:len(line)]:
+				words = subst.strip().split(':')[1].strip()
+				avgdepth = 0
+				total = 0
+				for word in words.split(' '):
+					senses = None
+					try:
+						senses = wn.synsets(word)
+					except UnicodeDecodeError:
+						senses = []
+					for sense in senses:
+						auxmax = sense.max_depth()
+						avgdepth += auxmax
+					total += len(senses)
+				try:
+					avgdepth /= total
+				except Exception:
+					avgdepth = 0
+				resultma.append(avgdepth)
+		return resultma
+		
 	def subjectDependencyProbabilityFeature(self, data, args):
 		model = self.resources[args[0]]
 		parser = self.resources[args[1]]
@@ -1583,6 +1624,345 @@ class FeatureEstimator:
 				result.append(similarity)
 		return result
 		
+	def nullLinkNominalFeature(self, data, args):
+		parser = self.resources[args[0]]
+		
+		#Get parsed sentences:
+		if 'inv_dep_maps' in self.temp_resources:
+			inv_dep_maps = self.temp_resources['inv_dep_maps']
+		else:
+			dep_maps = None
+			if 'dep_maps' in self.temp_resources:
+				dep_maps = self.temp_resources['dep_maps']
+			else:
+				sentences = [l[0].strip().split(' ') for l in data]
+				dep_parsed_sents = None
+				if 'dep_parsed_sents' in self.temp_resources:
+					dep_parsed_sents = self.temp_resources['dep_parsed_sents']
+				else:
+					dep_parsed_sents = dependencyParseSentences(parser, sentences)
+					self.temp_resources['dep_parsed_sents'] = dep_parsed_sents
+				dep_maps = []
+				for sent in dep_parsed_sents:
+					dep_map = {}
+					for parse in sent:
+						deplink = str(parse[0])
+						subjectindex = int(str(parse[2]))-1
+						objectindex = int(str(parse[4]))-1
+						if subjectindex not in dep_map:
+							dep_map[subjectindex] = {objectindex: set([deplink])}
+						elif objectindex not in dep_map[subjectindex]:
+							dep_map[subjectindex][objectindex] = set([deplink])
+						else:
+							dep_map[subjectindex][objectindex].add(deplink)
+					dep_maps.append(dep_map)
+				self.temp_resources['dep_maps'] = dep_maps
+				
+			inv_dep_maps = []
+			for inst in dep_maps:
+				inv_dep_map = {}
+				for subjectindex in inst:
+					for objectindex in inst[subjectindex]:
+						if objectindex not in inv_dep_map:
+							inv_dep_map[objectindex] = {}
+						inv_dep_map[objectindex][subjectindex] = inst[subjectindex][objectindex]
+				inv_dep_maps.append(inv_dep_map)
+			self.temp_resources['inv_dep_maps'] = inv_dep_maps
+
+		dep_maps = self.temp_resources['dep_maps']
+		inv_dep_maps = self.temp_resources['inv_dep_maps']
+			
+		result = []
+		for i in range(0, len(data)):
+			line = data[i]
+			sent = line[0].strip().split(' ')
+			target = line[1].strip().lower()
+			head = int(line[2].strip())
+			
+			dep_map = dep_maps[i]
+			inv_dep_map = inv_dep_maps[i]
+			value = False
+			if head in dep_map or head in inv_dep_map:
+				value = True
+				
+			for subst in line[3:len(line)]:
+				result.append(value)
+		return result
+		
+	def backoffBehaviorNominalFeature(self, data, args):
+		ngrams = args[0]
+		result = []
+		counts = self.resources[ngrams]
+		for line in data:
+			sent = line[0].strip().split(' ')
+			target = line[1]
+			head = int(line[2])
+			for subst in line[3:len(line)]:
+				word = subst.split(':')[1].strip()
+				ngram2t, bos2t, eos2t = self.getNgram(word, sent, head, 2, 0)
+				ngram1t, bos1t, eos1t = self.getNgram(word, sent, head, 1, 0)
+				ngram0t, bos0t, eos0t = self.getNgram(word, sent, head, 0, 0)
+				ngram2f, bos2f, eos2f = word, True, False
+				ngram1f, bos1f, eos1f = word, True, False
+				if head>0:
+					ngram2f, bos2f, eos2f = self.getNgram(sent[head-1], sent, head-1, 1, 0)
+					ngram1f, bos1f, eos1f = self.getNgram(sent[head-1], sent, head-1, 0, 0)
+				
+				backoff = -1
+				if ngram2t in counts:
+					backoff = 7.0
+				elif ngram2f in counts and ngram1t in counts:
+					backoff = 6.0
+				elif ngram1t in counts:
+					backoff = 5.0
+				elif ngram2f in counts and ngram0t in counts:
+					backoff = 4.0
+				elif ngram1f in counts and ngram0t in counts:
+					backoff = 3.0
+				elif ngram0t in counts:
+					backoff = 2.0
+				else:
+					backoff = 1.0
+				result.append(backoff)
+		return result
+		
+	def candidateNominalFeature(self, data, args):
+		result = []
+		for line in data:
+			for subst in line[3:len(line)]:
+				words = subst.strip().split(':')[1].strip()
+				result.append(words)
+		return result
+		
+	def ngramNominalFeature(self, data, args):
+		spanl = args[0]
+		spanr = args[1]
+		result = []
+		for line in data:
+			sent = line[0].strip().split(' ')
+			target = line[1]
+			head = int(line[2])
+			for subst in line[3:len(line)]:
+				word = subst.split(':')[1].strip()
+				ngram, bosv, eosv = self.getNgram(word, sent, head, spanl, spanr)
+				tokens = ngram.split(' ')
+				fngram = ''
+				for token in tokens:
+					fngram += token + '|||'
+				result.append(fngram[0:len(fngram)-3])
+		return result
+		
+	def candidatePOSNominalFeature(self, data, args):
+		result = []
+		
+		tagger = self.resources[args[0]]
+		pos_type = args[1]
+		
+		#Get tagged sentences:
+		tagged_sents = None
+		if 'tagged_sents' in self.temp_resources:
+			tagged_sents = self.temp_resources['tagged_sents']
+		else:
+			sentences = [l[0].strip().split(' ') for l in data]
+			tagged_sents = tagger.tag_sents(sentences)
+			self.temp_resources['tagged_sents'] = tagged_sents
+			
+		#Transform them to the right format:
+		if pos_type=='paetzold':
+			transformed = []
+			for sent in tagged_sents:
+				tokens = []
+				for token in sent:
+					tokens.append((token[0], getGeneralisedPOS(token[1])))
+				transformed.append(tokens)
+			tagged_sents = transformed
+
+		for i in range(0, len(data)):
+			line = data[i]
+			target = line[1].strip().lower()
+			head = int(line[2].strip())
+			target_pos = tagged_sents[i][head][1]
+			for subst in line[3:len(line)]:
+				result.append(target_pos)
+		return result
+		
+	def POSNgramNominalFeature(self, data, args):
+		result = []
+		
+		spanl = args[0]
+		spanr = args[1]
+		tagger = self.resources[args[2]]
+		pos_type = args[3]
+		
+		#Get tagged sentences:
+		tagged_sents = None
+		if 'tagged_sents' in self.temp_resources:
+			tagged_sents = self.temp_resources['tagged_sents']
+		else:
+			sentences = [l[0].strip().split(' ') for l in data]
+			tagged_sents = tagger.tag_sents(sentences)
+			self.temp_resources['tagged_sents'] = tagged_sents
+			
+		#Transform them to the right format:
+		if pos_type=='paetzold':
+			transformed = []
+			for sent in tagged_sents:
+				tokens = []
+				for token in sent:
+					tokens.append((token[0], getGeneralisedPOS(token[1])))
+				transformed.append(tokens)
+			tagged_sents = transformed
+
+		for i in range(0, len(data)):
+			line = data[i]
+			target = line[1].strip().lower()
+			head = int(line[2].strip())
+			target_pos = tagged_sents[i][head][1]
+			POStokens = [posdata[1] for posdata in tagged_sents[i]]
+			for subst in line[3:len(line)]:
+				ngram, bosv, eosv = self.getNgram(target_pos, POStokens, head, spanl, spanr)
+				tokens = ngram.split(' ')
+				fngram = ''
+				for token in tokens:
+					fngram += token + '|||'
+				result.append(fngram[0:len(fngram)-3])
+		return result
+		
+	def POSNgramWithCandidateNominalFeature(self, data, args):
+		result = []
+		
+		spanl = args[0]
+		spanr = args[1]
+		tagger = self.resources[args[2]]
+		pos_type = args[3]
+		
+		#Get tagged sentences:
+		tagged_sents = None
+		if 'tagged_sents' in self.temp_resources:
+			tagged_sents = self.temp_resources['tagged_sents']
+		else:
+			sentences = [l[0].strip().split(' ') for l in data]
+			tagged_sents = tagger.tag_sents(sentences)
+			self.temp_resources['tagged_sents'] = tagged_sents
+			
+		#Transform them to the right format:
+		if pos_type=='paetzold':
+			transformed = []
+			for sent in tagged_sents:
+				tokens = []
+				for token in sent:
+					tokens.append((token[0], getGeneralisedPOS(token[1])))
+				transformed.append(tokens)
+			tagged_sents = transformed
+
+		for i in range(0, len(data)):
+			line = data[i]
+			target = line[1].strip().lower()
+			head = int(line[2].strip())
+			target_pos = tagged_sents[i][head][1]
+			POStokens = [posdata[1] for posdata in tagged_sents[i]]
+			for subst in line[3:len(line)]:
+				word = subst.split(':')[1].strip()
+				ngram, bosv, eosv = self.getNgram(word, POStokens, head, spanl, spanr)
+				tokens = ngram.split(' ')
+				fngram = ''
+				for token in tokens:
+					fngram += token + '|||'
+				result.append(fngram[0:len(fngram)-3])
+		return result
+		
+	def imageSearchCountFeature(self, data, args):
+		result = []
+		
+		key = args[0]
+
+		for i in range(0, len(data)):
+			line = data[i]
+			for subst in line[3:len(line)]:
+				word = subst.split(':')[1].strip()
+				imagecount = None
+				if word not in self.resources['image_counts']:
+					imagecount = self.getImageCount(word, key)
+					self.resources['image_counts'][word] = imagecount
+				else:
+					imagecount = self.resources['image_counts'][word]
+				result.append(imagecount)
+		return result
+		
+	def webSearchCountFeature(self, data, args):
+		result = []
+
+		for i in range(0, len(data)):
+			line = data[i]
+			for subst in line[3:len(line)]:
+				word = subst.split(':')[1].strip()
+				pagecount = None
+				if word not in self.resources['page_counts']:
+					pagecount = self.getPageCount(word)
+					self.resources['page_counts'][word] = pagecount
+				else:
+					pagecount = self.resources['page_counts'][word]
+				result.append(pagecount)
+		return result
+		
+	def getImageCount(self, word, key):
+		headers = {}
+		headers['Api-Key'] = key
+		tokens = word.strip().split(' ')
+		suffix = ''
+		for token in tokens:
+			suffix += token + '+'
+		suffix = suffix[0:len(suffix)-1]
+		
+		#Make HTTP request:
+		url = 'https://api.gettyimages.com/v3/search/images?fields=id&phrase='+suffix
+		req = urllib2.Request(url=url, headers=headers)
+		
+		#Send request:
+		count = None
+		try:
+			f = urllib2.urlopen(req)
+			data = json.loads(f.read())
+			count = int(data['result_count'])
+		except Exception:
+			count = 0
+		return count
+		
+	def getPageCount(self, word):
+		tokens = word.strip().split(' ')
+		suffix = ''
+		for token in tokens:
+			suffix += token + '+'
+		suffix = suffix[0:len(suffix)-1]
+		
+		#Make HTTP request:
+		exp = re.compile('class=\"sb_count\"[^>]*>([^<]+)<')
+		url = 'https://www.bing.com/search?q='+suffix
+		req = urllib2.Request(url=url)
+		
+		#Send request:
+		count = None
+		try:
+			f = urllib2.urlopen(req)
+			data = f.read()
+			result = exp.findall(data)
+			count = int(result[0].strip().split(' ')[0].strip().replace(',', ''))
+		except Exception:
+			count = 0
+		return count
+		
+	def morphologicalFeature(self, data, args):
+		dictionary = args[0]
+		result = []
+		for line in data:
+			for subst in line[3:len(line)]:
+				words = subst.strip().split(':')[1].strip()
+				if words in dictionary:
+					result.append(dictionary[words])
+				else:
+					result.append(0.0)
+		return result
+		
 	def readNgramFile(self, ngram_file):
 		counts = shelve.open(ngram_file, protocol=pickle.HIGHEST_PROTOCOL)
 		return counts
@@ -1673,7 +2053,7 @@ class FeatureEstimator:
 		Each entry in the word vector model must be in the following format: <word>|||<tag>
 		To create a corpus for such model to be trained, one must tag each word in a corpus, and then concatenate words and tags using the aforementioned convention.
 	
-		@param model: Path to a binary word vector model.
+		@param model: Path to a binary tagged word vector model.
 		For instructions on how to create the model, please refer to the LEXenstein Manual.
 		@param pos_model: Path to a POS tagging model for the Stanford POS Tagger.
 		The models can be downloaded from the following link: http://nlp.stanford.edu/software/tagger.shtml
@@ -2202,6 +2582,21 @@ class FeatureEstimator:
 			self.features.append((self.maxDepth ,[]))
 			self.identifiers.append(('Maximal Sense Depth', orientation))
 			
+	def addAverageDepthFeature(self, orientation):
+		"""
+		Adds an average sense depth feature to the estimator.
+		Calculates the average distance between two senses of a given candidate.
+		
+		@param orientation: Whether the feature is a simplicity of complexity measure.
+		Possible values: Complexity, Simplicity.
+		"""
+		
+		if orientation not in ['Complexity', 'Simplicity']:
+			print('Orientation must be Complexity or Simplicity')
+		else:
+			self.features.append((self.averageDepth ,[]))
+			self.identifiers.append(('Average Sense Depth', orientation))
+			
 	def addSubjectDependencyProbabilityFeature(self, language_model, stanford_parser, dependency_models, java_path, orientation):
 		"""
 		Adds a subject dependency probability feature to the estimator.
@@ -2540,10 +2935,12 @@ class FeatureEstimator:
 
 	def addTaggedWordVectorContextSimilarityFeature(self, model, pos_model, stanford_tagger, java_path, pos_type, orientation):
 		"""
-		Adds a word vector context similarity feature to the estimator.
+		Adds a tagged word vector context similarity feature to the estimator.
 		The value will be the average similarity between the word vector of a candidate and the vectors of all content word in the target word's context.
+		Each entry in the word vector model must be in the following format: <word>|||<tag>
+		To create a corpus for such model to be trained, one must tag each word in a corpus, and then concatenate words and tags using the aforementioned convention.
 	
-		@param model: Path to a binary word vector model.
+		@param model: Path to a binary tagged word vector model.
 		For instructions on how to create the model, please refer to the LEXenstein Manual.
 		@param pos_model: Path to a POS tagging model for the Stanford POS Tagger.
 		The models can be downloaded from the following link: http://nlp.stanford.edu/software/tagger.shtml
@@ -2569,3 +2966,192 @@ class FeatureEstimator:
 				self.resources[pos_model] = tagger
 			self.features.append((self.taggedWordVectorContextSimilarityFeature, [model, pos_model, pos_type]))
 			self.identifiers.append(('Tagged Word Vector Context Similarity (Model: '+model+') (POS Model: '+pos_model+') (POS Type: '+pos_type+')', orientation))
+			
+	def addNullLinkNominalFeature(self, stanford_parser, dependency_models, java_path, orientation):
+		"""
+		Adds a null link nominal feature to the estimator
+		The value will be 1 if there is at least one dependency link of which the candidate is part of, and 0 otherwise.
+
+		@param stanford_parser: Path to the "stanford-parser.jar" file.
+		The parser can be downloaded from the following link: http://nlp.stanford.edu/software/lex-parser.shtml
+		@param dependency_models: Path to a JAR file containing parsing models.
+		The models can be downloaded from the following link: http://nlp.stanford.edu/software/lex-parser.shtml
+		@param java_path: Path to the system's "java" executable.
+		Can be commonly found in "/usr/bin/java" in Unix/Linux systems, or in "C:/Program Files/Java/jdk_version/java.exe" in Windows systems.
+		@param orientation: Whether the feature is a simplicity of complexity measure.
+		Possible values: Complexity, Simplicity.
+		"""
+		if orientation not in ['Complexity', 'Simplicity']:
+			print('Orientation must be Complexity or Simplicity')
+		else:
+			os.environ['JAVAHOME'] = java_path
+			if dependency_models not in self.resources:
+				parser = StanfordParser(path_to_jar=stanford_parser, path_to_models_jar=dependency_models)
+				self.resources[dependency_models] = parser
+				
+			self.features.append((self.nullLinkNominalFeature, [dependency_models]))
+			self.identifiers.append(('Null Link Nominal Feature (Models: '+dependency_models+')', orientation))
+			
+	def addBackoffBehaviorNominalFeature(self, ngram_file, orientation):
+		"""
+		Adds a nominal language model backoff behavior nominal feature to the estimator.
+	
+		@param ngram_file: Path to a shelve file containing n-gram frequency counts.
+		@param orientation: Whether the feature is a simplicity of complexity measure.
+		Possible values: Complexity, Simplicity.
+		"""
+		if orientation not in ['Complexity', 'Simplicity']:
+			print('Orientation must be Complexity or Simplicity')
+		else:
+			if ngram_file not in self.resources:
+				counts = self.readNgramFile(ngram_file)
+				self.resources[ngram_file] = counts
+				
+			self.features.append((self.backoffBehaviorNominalFeature, [ngram_file]))
+			self.identifiers.append(('N-Gram Nominal Feature (N-Grams File: '+ngram_file+')', orientation))
+			
+	def addImageSearchCountFeature(self, key, orientation):
+		"""
+		Adds an image search count feature to the estimator.
+		The resulting value will be the number of distinct pictures retrieved by the Getty Images API.
+		This feature requires for a free "Connect Embed" key, which gives you access to 5 queries per second, and unlimited queries per day.
+		For more information on how to acquire a key, please visit their website at: https://developer.gettyimages.com
+	
+		@param key: Connect Embed key for the Getty Images API.
+		@param orientation: Whether the feature is a simplicity of complexity measure.
+		Possible values: Complexity, Simplicity.
+		"""
+		if orientation not in ['Complexity', 'Simplicity']:
+			print('Orientation must be Complexity or Simplicity')
+		else:
+			if key not in self.resources:
+				self.resources['GettyImagesKey'] = key
+			if 'image_counts' not in self.resources:
+				self.resources['image_counts'] = {}
+				
+			self.features.append((self.imageSearchCountFeature, [key]))
+			self.identifiers.append(('Image Search Count Feature (Key: '+key+')', orientation))
+			
+	def addWebSearchCountFeature(self, orientation):
+		"""
+		Adds a web search count feature to the estimator.
+		The resulting value will be the number of websites retrieved by Bing.
+	
+		@param orientation: Whether the feature is a simplicity of complexity measure.
+		Possible values: Complexity, Simplicity.
+		"""
+		if orientation not in ['Complexity', 'Simplicity']:
+			print('Orientation must be Complexity or Simplicity')
+		else:
+			if 'page_counts' not in self.resources:
+				self.resources['page_counts'] = {}
+				
+			self.features.append((self.webSearchCountFeature, []))
+			self.identifiers.append((' Web Search Count Feature', orientation))
+			
+	def addMorphologicalFeature(self, dictionary, description, orientation):
+		"""
+		Adds a generalized morphological feature to the estimator.
+		It requires for a dictionary that assigns words to their respective feature values.
+		For each word in a dataset, the value of this feature will be the one found in the dictionar provided, or 0 if it is not available.
+	
+		@param dictionary: A dictionary object assigning words to values.
+		Example: dictionary['chair'] = 45.33.
+		@param description: Description of the feature.
+		Example: "Age of Acquisition".
+		@param orientation: Whether the feature is a simplicity of complexity measure.
+		Possible values: Complexity, Simplicity.
+		"""
+		if orientation not in ['Complexity', 'Simplicity']:
+			print('Orientation must be Complexity or Simplicity')
+		else:				
+			self.features.append((self.morphologicalFeature, [dictionary]))
+			self.identifiers.append((description, orientation))
+			
+	# Nominal features:
+	
+	def addCandidateNominalFeature(self):
+		"""
+		Adds a candidate nominal feature to the estimator.
+		"""
+		self.features.append((self.candidateNominalFeature, []))
+		self.identifiers.append(('Candidate Nominal Feature', 'Not Applicable'))
+	
+	def addNgramNominalFeature(self, leftw, rightw):
+		"""
+		Adds a n-gram nominal feature to the estimator.
+	
+		@param leftw: Number of tokens to the left.
+		@param rightw: Number of tokens to the right.
+		"""
+		self.features.append((self.ngramNominalFeature, [leftw, rightw]))
+		self.identifiers.append(('N-Gram Nominal Feature ['+str(leftw)+', '+str(rightw)+']', 'Not Applicable'))
+		
+	def addCandidatePOSNominalFeature(self, pos_model, stanford_tagger, java_path, pos_type):
+		"""
+		Adds a candidate POS tag nominal feature to the estimator.
+
+		@param pos_model: Path to a POS tagging model for the Stanford POS Tagger.
+		The models can be downloaded from the following link: http://nlp.stanford.edu/software/tagger.shtml
+		@param stanford_tagger: Path to the "stanford-postagger.jar" file.
+		The tagger can be downloaded from the following link: http://nlp.stanford.edu/software/tagger.shtml
+		@param java_path: Path to the system's "java" executable.
+		Can be commonly found in "/usr/bin/java" in Unix/Linux systems, or in "C:/Program Files/Java/jdk_version/java.exe" in Windows systems.
+		@param pos_type: The type of POS tags to be used.
+		Values supported: treebank, paetzold
+		"""
+		os.environ['JAVAHOME'] = java_path
+		if pos_model not in self.resources:
+			tagger = StanfordPOSTagger(pos_model, stanford_tagger)
+			self.resources[pos_model] = tagger
+			
+		self.features.append((self.candidatePOSNominalFeature, [pos_model, pos_type]))
+		self.identifiers.append(('Candidate POS Nominal Feature (POS Model: '+pos_model+') (POS Type: '+pos_type+')', 'Not Applicable'))
+		
+	def addPOSNgramNominalFeature(self, leftw, rightw, pos_model, stanford_tagger, java_path, pos_type):
+		"""
+		Adds a POS n-gram nominal feature to the estimator.
+		The n-gram will contain the candidate's POS tag surrounded by the POS tags of neighboring words.
+
+		@param leftw: Number of tokens to the left.
+		@param rightw: Number of tokens to the right.
+		@param pos_model: Path to a POS tagging model for the Stanford POS Tagger.
+		The models can be downloaded from the following link: http://nlp.stanford.edu/software/tagger.shtml
+		@param stanford_tagger: Path to the "stanford-postagger.jar" file.
+		The tagger can be downloaded from the following link: http://nlp.stanford.edu/software/tagger.shtml
+		@param java_path: Path to the system's "java" executable.
+		Can be commonly found in "/usr/bin/java" in Unix/Linux systems, or in "C:/Program Files/Java/jdk_version/java.exe" in Windows systems.
+		@param pos_type: The type of POS tags to be used.
+		Values supported: treebank, paetzold
+		"""
+		os.environ['JAVAHOME'] = java_path
+		if pos_model not in self.resources:
+			tagger = StanfordPOSTagger(pos_model, stanford_tagger)
+			self.resources[pos_model] = tagger
+			
+		self.features.append((self.POSNgramNominalFeature, [leftw, rightw, pos_model, pos_type]))
+		self.identifiers.append(('POS N-gram Nominal Feature ['+str(leftw)+', '+str(rightw)+'] (POS Model: '+pos_model+') (POS Type: '+pos_type+')', 'Not Applicable'))
+		
+	def addPOSNgramWithCandidateNominalFeature(self, leftw, rightw, pos_model, stanford_tagger, java_path, pos_type):
+		"""
+		Adds a candidate centered POS n-gram nominal feature to the estimator.
+		The n-gram will contain the candidate surrounded by the POS tags of neighboring words.
+
+		@param leftw: Number of tokens to the left.
+		@param rightw: Number of tokens to the right.
+		@param pos_model: Path to a POS tagging model for the Stanford POS Tagger.
+		The models can be downloaded from the following link: http://nlp.stanford.edu/software/tagger.shtml
+		@param stanford_tagger: Path to the "stanford-postagger.jar" file.
+		The tagger can be downloaded from the following link: http://nlp.stanford.edu/software/tagger.shtml
+		@param java_path: Path to the system's "java" executable.
+		Can be commonly found in "/usr/bin/java" in Unix/Linux systems, or in "C:/Program Files/Java/jdk_version/java.exe" in Windows systems.
+		@param pos_type: The type of POS tags to be used.
+		Values supported: treebank, paetzold
+		"""
+		os.environ['JAVAHOME'] = java_path
+		if pos_model not in self.resources:
+			tagger = StanfordPOSTagger(pos_model, stanford_tagger)
+			self.resources[pos_model] = tagger
+			
+		self.features.append((self.POSNgramWithCandidateNominalFeature, [leftw, rightw, pos_model, pos_type]))
+		self.identifiers.append(('POS N-gram with Candidate Nominal Feature ['+str(leftw)+', '+str(rightw)+'] (POS Model: '+pos_model+') (POS Type: '+pos_type+')', 'Not Applicable'))

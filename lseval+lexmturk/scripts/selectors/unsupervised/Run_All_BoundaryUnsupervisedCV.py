@@ -1,7 +1,7 @@
 import os
 
 generators = os.listdir('../../../substitutions/')
-#generators = ['paetzold']
+generators = ['paetzold']
 
 test_victor_corpus = '../../../corpora/ls_dataset_benchmarking.txt'
 

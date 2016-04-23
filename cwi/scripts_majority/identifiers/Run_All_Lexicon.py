@@ -1,6 +1,6 @@
 import os
 
-trainset = '../../corpora/cwi_paetzold_training_majority.txt'
+trainset = '../../corpora/cwi_paetzold_training_conservative.txt'
 testset = '../../corpora/cwi_paetzold_testing.txt'
 
 lexicons = []
@@ -11,15 +11,16 @@ lexicons.append(('../../../lexmturk/corpora/basic_words.txt', 'simple'))
 lexicons.append(('../../../lexmturk/corpora/subimdb.vocab.txt', 'simple'))
 
 labels = []
-labels.append('Lex:Simple_Wikipedia')
-labels.append('Lex:Wikipedia')
-labels.append('Lex:Stop_Words')
-labels.append('Lex:Ogdens_Words')
-labels.append('Lex:SubIMDB')
+labels.append('SimpleWikipedia')
+labels.append('Wikipedia')
+labels.append('Stop')
+labels.append('Ogdens')
+labels.append('SubIMDB')
 
 for i in range(0, len(lexicons)):
 	lexicon = lexicons[i]
 	label = labels[i]
-	output = '../../labels_majority/lexicon/labels_'+label+'.txt'
+	os.system('mkdir ../../labels_majority/lex_'+label)
+	output = '../../labels_majority/lex_'+label+'/labels.txt'
 	comm = 'nohup python Run_Lexicon.py '+testset+' '+trainset+' '+lexicon[0]+' '+lexicon[1]+' '+output+' &'
 	os.system(comm)

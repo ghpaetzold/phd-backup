@@ -6,10 +6,11 @@ folds = ['5', '10']
 test_sizes = ['0.25', '0.5', '0.75']
 
 generators = os.listdir('../../substitutions/')
-generators = ['all', 'biran']
-generators = ['kauchak', 'wordnet']
-generators = ['glavas', 'merriam']
-generators = ['yamamoto', 'paetzold']
+#generators = ['all', 'biran']
+#generators = ['kauchak', 'wordnet']
+#generators = ['glavas', 'merriam']
+#generators = ['yamamoto', 'paetzold']
+generators = ['paetzold']
 
 best_map = {}
 f = open('../evaluators/best_ss.txt')
@@ -22,6 +23,9 @@ for line in f:
 		best_map[gen] = {}
 	best_map[gen][sel] = file
 f.close()
+
+for gen in best_map:
+        best_map[gen]['void'] = 'substitutions_void.txt'
 
 for generator in generators:
 	selectors = best_map[generator].keys()

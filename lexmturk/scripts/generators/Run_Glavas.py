@@ -5,7 +5,7 @@ import sys
 
 victor_corpus = sys.argv[1].strip()
 
-w2v = '/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_1300_cbow.bin'
+w2v = '/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_200_glove.bin'
 
 kg = GlavasGenerator(w2v)
 subs = kg.getSubstitutions(victor_corpus, 10)

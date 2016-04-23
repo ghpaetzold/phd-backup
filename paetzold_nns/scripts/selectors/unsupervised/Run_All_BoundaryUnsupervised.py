@@ -10,7 +10,7 @@ alphas = ['0.001', '0.01', '0.1']
 l1ratios = ['0.0', '0.25', '0.5', '0.75', '1.0']
 epsilons = ['0.00001']
 #epsilons = ['0.0001']
-proportions = ['0.25', '0.5']
+proportions = ['0.75']
 
 generators = os.listdir('../../../substitutions/')
 generators = ['paetzold']

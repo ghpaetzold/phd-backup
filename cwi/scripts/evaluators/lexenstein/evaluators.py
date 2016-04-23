@@ -10,49 +10,56 @@ class IdentifierEvaluator:
 		@return: Accuracy, Precision, Recall and the F-score between Accuracy and Recall for the substitutions provided as input with respect to the gold-standard in the VICTOR corpus.
 		For more information on how the metrics are calculated, please refer to the LEXenstein Manual.
 		"""
+
+		gold = [int(line.strip().split('\t')[3]) for line in open(cwictor_corpus)]
 		
 		#Initialize variables:
-		accuracyc = 0
-		accuracyt = 0
-		precisionc = 0
-		precisiont = 0
-		recallc = 0
-		recallt = 0
+		accuracyc = 0.0
+		accuracyt = 0.0
+		precisionc = 0.0
+		precisiont = 0.0
+		recallc = 0.0
+		recallt = 0.0
 		
 		#Calculate measures:
-		index = -1
-		f = open(cwictor_corpus)
-		for line in f:
-			index += 1
-			data = line.strip().split('\t')
-			label = int(data[3].strip())
-			predicted_label = predicted_labels[index]
-			if label==predicted_label:
+		for i in range(0, len(gold)):
+			gold_label = gold[i]
+			predicted_label = predicted_labels[i]
+			if gold_label==predicted_label:
 				accuracyc += 1
-				if label==1:
-					precisionc += 1
+				if gold_label==1:
 					recallc += 1
-			if label==1:
+					precisionc += 1
+			if gold_label==1:
 				recallt += 1
 			if predicted_label==1:
 				precisiont += 1
 			accuracyt += 1
-		
-		accuracy = float(accuracyc)/float(accuracyt)
-		precision = 0.0
+
 		try:
-			precision = float(precisionc)/float(precisiont)
-		except Exception:
-			precision = 0.0
-		recall = float(recallc)/float(recallt)
-		fmean = 0.0
-		if accuracy==0.0 and recall==0.0:
-			fmean = 0.0
-		else:
-			fmean = 2*(accuracy*recall)/(accuracy+recall)
-			
+			accuracy = accuracyc / accuracyt
+		except ZeroDivisionError:
+			accuracy = 0
+		try:
+			precision = precisionc / precisiont
+		except ZeroDivisionError:
+			precision = 0
+		try:
+			recall = recallc / recallt
+		except ZeroDivisionError:
+			recall = 0
+		fmean = 0
+		gmean = 0
+		
+		try:
+			fmean = 2 * (precision * recall) / (precision + recall)
+			gmean = 2 * (accuracy * recall) / (accuracy + recall)
+		except ZeroDivisionError:
+			fmean = 0
+			gmean = 0
+		
 		#Return measures:
-		return accuracy, precision, recall, fmean
+		return accuracy, precision, recall, fmean, gmean
 		
 class GeneratorEvaluator:
 

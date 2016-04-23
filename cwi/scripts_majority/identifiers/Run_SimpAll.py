@@ -7,8 +7,8 @@ from lexenstein.rankers import *
 from lexenstein.identifiers import *
 import sys
 
-test_corpus = '../../corpora/cwi_paetzold_testing_majority.txt'
-out_file = '../../labels_majority/all/labels_All.txt'
+test_corpus = '../../corpora/cwi_paetzold_testing.txt'
+out_file = '../../labels/all/labels_All.txt'
 
 sai = SimplifyAllIdentifier()
 labels = sai.identifyComplexWords(test_corpus)

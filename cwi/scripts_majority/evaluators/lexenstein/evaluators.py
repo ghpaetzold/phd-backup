@@ -7,42 +7,59 @@ class IdentifierEvaluator:
 		@param cwictor_corpus: Path to a training corpus in CWICTOR format.
 		For more information about the file's format, refer to the LEXenstein Manual.
 		@param predicted_labels: A vector containing the predicted binary labels of each instance in the CWICTOR corpus.
-		@return: Precision, Recall and F-measure for the substitutions provided as input with respect to the gold-standard in the VICTOR corpus.
+		@return: Accuracy, Precision, Recall and the F-score between Accuracy and Recall for the substitutions provided as input with respect to the gold-standard in the VICTOR corpus.
 		For more information on how the metrics are calculated, please refer to the LEXenstein Manual.
 		"""
+
+		gold = [int(line.strip().split('\t')[3]) for line in open(cwictor_corpus)]
 		
 		#Initialize variables:
-		precisionc = 0
-		precisiont = 0
-		recallc = 0
-		recallt = 0
+		accuracyc = 0.0
+		accuracyt = 0.0
+		precisionc = 0.0
+		precisiont = 0.0
+		recallc = 0.0
+		recallt = 0.0
 		
 		#Calculate measures:
-		index = -1
-		f = open(cwictor_corpus)
-		for line in f:
-			index += 1
-			data = line.strip().split('\t')
-			label = int(data[3].strip())
-			predicted_label = predicted_labels[index]
-			if label==predicted_label:
-				precisionc += 1
-				if label==1:
+		for i in range(0, len(gold)):
+			gold_label = gold[i]
+			predicted_label = predicted_labels[i]
+			if gold_label==predicted_label:
+				accuracyc += 1
+				if gold_label==1:
 					recallc += 1
-			if label==1:
+					precisionc += 1
+			if gold_label==1:
 				recallt += 1
-			precisiont += 1
+			if predicted_label==1:
+				precisiont += 1
+			accuracyt += 1
+
+		try:
+			accuracy = accuracyc / accuracyt
+		except ZeroDivisionError:
+			accuracy = 0
+		try:
+			precision = precisionc / precisiont
+		except ZeroDivisionError:
+			precision = 0
+		try:
+			recall = recallc / recallt
+		except ZeroDivisionError:
+			recall = 0
+		fmean = 0
+		gmean = 0
 		
-		precision = float(precisionc)/float(precisiont)
-		recall = float(recallc)/float(recallt)
-		fmean = 0.0
-		if precision==0.0 and recall==0.0:
-			fmean = 0.0
-		else:
-			fmean = 2*(precision*recall)/(precision+recall)
-			
+		try:
+			fmean = 2 * (precision * recall) / (precision + recall)
+			gmean = 2 * (accuracy * recall) / (accuracy + recall)
+		except ZeroDivisionError:
+			fmean = 0
+			gmean = 0
+		
 		#Return measures:
-		return precision, recall, fmean
+		return accuracy, precision, recall, fmean, gmean
 		
 class GeneratorEvaluator:
 
@@ -71,9 +88,9 @@ class GeneratorEvaluator:
 			data = line.strip().split('\t')
 			target = data[1].strip()
 			items = data[3:len(data)]
-			candidates = [item.strip().split(':')[1].strip() for item in items]
-			if target in substitutions.keys():
-				overlap = set(candidates).intersection(set(substitutions[target]))
+			candidates = set([item.strip().split(':')[1].strip() for item in items])
+			if target in substitutions:
+				overlap = candidates.intersection(set(substitutions[target]))
 				precisionc += len(overlap)
 				if len(overlap)>0:
 					potentialc += 1
@@ -123,11 +140,11 @@ class SelectorEvaluator:
 			data = line.strip().split('\t')
 			target = data[1].strip()
 			items = data[3:len(data)]
-			candidates = [item.strip().split(':')[1].strip() for item in items]
+			candidates = set([item.strip().split(':')[1].strip() for item in items])
 			
 			selected = substitutions[index]
 			if len(selected)>0:
-				overlap = set(candidates).intersection(set(selected))
+				overlap = candidates.intersection(set(selected))
 				precisionc += len(overlap)
 				if len(overlap)>0:
 					potentialc += 1
@@ -345,6 +362,7 @@ class PipelineEvaluator:
 		#Initialize counting variables:
 		total = 0
 		totalc = 0
+		accurate = 0
 		precise = 0
 		
 		#Read victor corpus:
@@ -364,7 +382,10 @@ class PipelineEvaluator:
 			if first!=target:
 				totalc += 1
 				if first in gold_subs:
+					accurate += 1
 					precise += 1
+			else:
+				precise += 1
 		
 		#Return metrics:
-		return float(precise)/float(totalc), float(precise)/float(total), float(totalc)/float(total)
+		return float(precise)/float(total), float(accurate)/float(total), float(totalc)/float(total)

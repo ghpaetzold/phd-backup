@@ -9,16 +9,22 @@ generators = os.listdir('../../substitutions/')
 #generators = ['kauchak']
 #generators = ['biran']
 #generators = ['all']
+generators.append('allvocab')
+generators = ['allvocab']
 
 #Selectors:
-selectors = ['void', 'first', 'lesk', 'path', 'biran', 'clusters', 'aluisio', 'wordvector', 'svmrank', 'boundaryUnsupervisedCV']
+#selectors = ['void', 'first', 'lesk', 'path', 'biran', 'clusters', 'aluisio', 'wordvector', 'svmrank', 'boundaryUnsupervisedCV']
+#selectors = ['void', 'first', 'lesk', 'path', 'biran', 'clusters', 'wordvector', 'boundaryUnsupervisedCV']
 #selectors = ['void', 'first', 'lesk', 'path', 'biran', 'clusters', 'GrammaticalityUS', 'MeaningUS', 'AppropriatenessUS']
 #selectors = ['boundaryUnsupervisedCV']
-#selectors = ['void']
+selectors = ['void']
+selectors = ['rnnlmlexmturk', 'rnnlmnnseval', 'rnnlmssuserstudy', 'rnnlmall']
 
 #Rankers:
 methods = set(os.listdir('../../rankings/'))
-methods.remove('wiki00')
+#methods.remove('wiki00')
+methods = ['brown00', 'kauchak', 'glavas', 'rnnlmlexmturk', 'rnnlmnnseval', 'rnnlmssuserstudy', 'rnnlmall']
+methods = ['brown00', 'kauchak', 'glavas']
 
 #Selector name map:
 namem = {}
@@ -36,6 +42,10 @@ namem['void'] = 'Void'
 namem['GrammaticalityUS'] = 'Grammaticality'
 namem['MeaningUS'] = 'Meaning Preservation'
 namem['AppropriatenessUS'] = 'Appropriateness'
+namem['rnnlmall'] = 'NLM (All)'
+namem['rnnlmlexmturk'] = 'NLM (LexMTurk)'
+namem['rnnlmnnseval'] = 'NLM (NNSEval)'
+namem['rnnlmssuserstudy'] = 'NLM (SSEval)'
 
 #Generator name map:
 genmap = {}
@@ -47,6 +57,7 @@ genmap['kauchak'] = 'the Kauchak generator'
 genmap['glavas'] = 'the Glavas generator'
 genmap['paetzold'] = 'the Paetzold generator'
 genmap['all'] = 'all generators combined'
+genmap['allvocab'] = 'all words in the vocabulary'
 
 #Ranker names:
 srnamem = {}
@@ -70,13 +81,15 @@ srnamem['hypernyms'] = 'Hypernyms'
 srnamem['hyponyms'] = 'Hyponyms'
 srnamem['length'] = 'Word Length'
 srnamem['syllable'] = 'Syllable Count'
+srnamem['rnnlmall'] = 'NLM (All)'
+srnamem['rnnlmlexmturk'] = 'NLM (LexMTurk)'
+srnamem['rnnlmnnseval'] = 'NLM (NNSEval)'
+srnamem['rnnlmssuserstudy'] = 'NLM (SSEval)'
 
 #Order:
 rankorder = ['length', 'syllable', 'senses', 'synonyms', 'hypernyms', 'hyponyms', 'simplewiki00', 'brown00', 'subtlex00', 'subimdb00', 'simplewiki22', 'brown22', 'subtlex22', 'subimdb22']
 rankorder.extend(['biran', 'bott', 'yamamoto', 'kauchak', 'glavas', 'boundaryCV'])
-
 #rankorder = ['simplewiki00', 'length', 'senses', 'synonyms', 'hypernyms', 'hyponyms']
-
 #rankorder = ['subimdb00']
 #rankorder.extend(['subimdb10'])
 #rankorder.extend(['subimdb01'])
@@ -87,6 +100,7 @@ rankorder.extend(['biran', 'bott', 'yamamoto', 'kauchak', 'glavas', 'boundaryCV'
 #rankorder.extend(['subimdb21'])
 #rankorder.extend(['subimdb22'])
 #rankorder = ['glavas']
+rankorder = ['brown00', 'kauchak', 'glavas', 'rnnlmlexmturk', 'rnnlmnnseval', 'rnnlmssuserstudy', 'rnnlmall']
 
 results = {}
 for generator in generators:
@@ -102,6 +116,7 @@ for method in methods:
 		#print(method)
 		files = os.listdir('../../rankings/'+method+'/')
 
+		maxfile = None
 		for file in files:
 			filed = file.strip().split('.')[0].strip().split('_')
 			generator = filed[1].strip()
@@ -118,9 +133,12 @@ for method in methods:
 			try:
 				if precision>results[generator][selector][method][0]:
 					results[generator][selector][method] = (precision, accuracy, changed)
+					if generator=='paetzold' and selector=='boundaryUnsupervisedCV' and method=='kauchak':
+						maxfile = file
 			except Exception:
 				pass
-
+#		if method=='kauchak':
+#			print('File: ' + maxfile)
 maxp = 0.0
 maxpf = ''
 maxa = 0.0
@@ -179,5 +197,5 @@ for generator in results.keys():
 		myt += namem[selector] + r' Selector}' + '\n'
 		myt += r'\label{table:benchpipe'+str(index)+'}\n'
 		myt += r'\end{table}'+'\n'
-#		myt += r'\pagebreak'+'\n'
+		myt += r'\pagebreak'+'\n'
 		print(myt)

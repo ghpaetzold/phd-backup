@@ -9,12 +9,12 @@ kernels = ['rbf', 'sigmoid']
 #kernels = ['sigmoid']
 gammas = ['0.0', '1', '10']
 
-trainset = '../../corpora/cwi_paetzold_training_majority.txt'
-testset = '../../corpora/cwi_paetzold_testing_majority.txt'
+trainset = '../../corpora/cwi_paetzold_training.txt'
+testset = '../../corpora/cwi_paetzold_testing.txt'
 for C in Cs:
 	for kernel in kernels:
 		for g in gammas:
 			for k in ks:
-				output = '../../labels_majority/shardlow/labels_Shardlow_'+C+'_'+kernel+'_'+g+'_'+k+'.txt'
+				output = '../../labels/shardlow/labels_Shardlow_'+C+'_'+kernel+'_'+g+'_'+k+'.txt'
 				comm = 'nohup python Run_Shardlow.py '+trainset+' '+k+' '+C+' '+kernel+' 3 '+g+' 0.0 '+testset+' '+output+' &'
 				os.system(comm)

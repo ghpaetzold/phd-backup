@@ -1,6 +1,7 @@
-f = open('../../corpora/original.txt')
-o1 = open('../../corpora/s1s.txt', 'w')
-o2 = open('../../corpora/s2s.txt', 'w')
+#f = open('../../corpora/original.txt')
+f = open('../../corpora/testset/test.shared-task.tsv')
+o1 = open('../../corpora/testset/s1s.txt', 'w')
+o2 = open('../../corpora/testset/s2s.txt', 'w')
 for line in f:
 	data = line.strip().split('\t')
 	s1 = data[0].strip()

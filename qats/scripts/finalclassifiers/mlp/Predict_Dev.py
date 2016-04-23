@@ -12,6 +12,7 @@ import gensim
 
 out_file = sys.argv[1].strip()
 model_file = sys.argv[2].strip()
+train_file = sys.argv[3].strip()
 
 def getFeatures():
         Xtr = []
@@ -34,7 +35,19 @@ labels = []
 for label in labels_raw:
         labels.append(label)
 
+f = open(train_file)
 o = open(out_file, 'w')
-for label in labels:
-        o.write(str(label) + '\t' + str(label) + '\n')
+for i in range(0, len(labels)):
+	label = labels[i]
+	data = f.readline().strip().split('\t')
+	s1 = data[0]
+	s2 = data[1]
+	if s1==s2:
+		if 'G_' in train_file or 'M_' in train_file or 'O_' in train_file:
+			o.write('2\t2\n')
+		else:
+			o.write('2\t2\n')
+	else:
+	        o.write(str(label) + '\t' + str(label) + '\n')
 o.close()
+f.close()

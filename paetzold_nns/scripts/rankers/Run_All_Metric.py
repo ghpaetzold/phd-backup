@@ -36,6 +36,8 @@ generators = os.listdir('../../substitutions/')
 #generators = ['kauchak', 'wordnet']
 #generators = ['glavas', 'merriam']
 #generators = ['yamamoto', 'paetzold']
+#generators = ['paetzold']
+generators = ['allvocab']
 
 best_map = {}
 f = open('../evaluators/best_ss.txt')
@@ -53,7 +55,7 @@ for gen in best_map:
 
 for generator in generators:
 	selectors = best_map[generator].keys()
-	selectors = ['void']
+	#selectors = ['boundaryUnsupervisedCV']
         for selector in selectors:
 		for i in range(0, len(flabels)):
 			os.system('mkdir ../../rankings/'+flabels[i])

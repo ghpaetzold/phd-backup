@@ -23,7 +23,7 @@ namem = {}
 namem['lesk'] = 'Lesk'
 namem['first'] = 'First'
 namem['random'] = 'Random'
-#namem['void'] = 'Void'
+namem['void'] = 'Void'
 #namem['wupalmer'] = 'Leacock'
 namem['path'] = 'Path'
 #namem['enhancedlesk'] = 'Enhanced Lesk'
@@ -36,7 +36,7 @@ namem['aluisio'] = 'Aluisio'
 namem['boundaryUnsupervisedCV'] = 'Unsupervised Boundary'
 #namem['svmrank'] = 'SVM Rank'
 #namem['subimdb22'] = 'Metric-Based'
-#namem['wordvectortreebank'] = 'Word Vector (Treebank)'
+namem['wordvectortreebank'] = 'Word Vector (Treebank)'
 #namem['wordvectorgeneralized'] = 'Word Vector (Generalized)'
 #namem['SGDClassifier'] = 'Grammaticality Model'
 
@@ -44,7 +44,9 @@ namem['boundaryUnsupervisedCV'] = 'Unsupervised Boundary'
 methods = ['biran', 'kauchak', 'merriam', 'wordnet', 'yamamoto', 'all', 'paetzold']
 methods = ['wordnet', 'kauchak', 'paetzold', 'all']
 methods = ['biran', 'kauchak', 'wordnet', 'yamamoto', 'glavas', 'glavasretrofitted', 'paetzold', 'paetzoldretrofitted']
-methods = ['paetzoldretrofitted']
+#methods = ['paetzoldretrofitted']
+#methods = ['all']
+#methods = ['paetzold']
 
 #Data:
 lexf = open('../../corpora/lexmturk_all.txt')
@@ -59,7 +61,7 @@ lexf.close()
 #Maxims:
 
 maxims = set(['lesk', 'first', 'random', 'path', 'wordvector', 'biran', 'void', 'clusters', 'boundary', 'boundaryCV', 'svmrank', 'wordvectortreebank', 'wordvectorgeneralized', 'SGDClassifier', 'boundaryUnsupervisedCV', 'subimdb22', 'aluisio'])
-maxims = set(['boundaryUnsupervisedCV'])
+#maxims = set(['wordvectortreebank', 'boundaryUnsupervisedCV'])
 
 #Create file containing best SS parameters:
 bestssf = open('best_ss.txt', 'w')

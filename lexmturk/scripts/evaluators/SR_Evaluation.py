@@ -3,17 +3,23 @@ import os
 from lexenstein.evaluators import *
 
 #Generators:
-generators = os.listdir('../../substitutions/')
-generators = ['paetzoldretrofitted']
+#generators = os.listdir('../../substitutions/')
+generators = ['paetzold']
+#generators = ['glavas']
+#generators = ['kauchak']
 
 #Selectors:
 #selectors = ['biran', 'subimdb22', 'boundaryUnsupervisedCV', 'boundaryCV', 'svmrank', 'clusters', 'lesk', 'first', 'random', 'wupalmer', 'void']
 selectors = ['boundaryUnsupervisedCV']
+#selectors = ['void']
 
 #Rankers:
-methods = set(os.listdir('../../rankings/'))
-methods = ['colloc00', 'length', 'senses', 'synonyms']
+#methods = set(os.listdir('../../rankings/'))
+#methods = ['colloc00', 'length', 'senses', 'synonyms']
 methods = ['paetzoldaaai']
+#methods = ['boundaryCV']
+#methods = ['glavas']
+#methods = ['svm']
 
 #Names:
 namem = {}

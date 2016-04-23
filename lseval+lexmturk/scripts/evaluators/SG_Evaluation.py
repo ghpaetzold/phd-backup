@@ -15,7 +15,7 @@ myt += r'\hline'+'\n'
 #Generators:
 methods = os.listdir('../../substitutions/')
 #methods = ['biran', 'kauchak', 'yamamoto', 'wordnet', 'glavas', 'all']
-methods = ['wordnet', 'biran', 'yamamoto', 'kauchak', 'glavas', 'paetzold', 'all']
+methods = ['wordnet', 'biran', 'yamamoto', 'kauchak', 'glavas', 'glavascomparable', 'paetzold', 'all']
 
 #Name map:
 genmap = {}
@@ -25,6 +25,7 @@ genmap['merriam'] = 'Merriam'
 genmap['wordnet'] = 'Devlin'
 genmap['yamamoto'] = 'Yamamoto'
 genmap['glavas'] = 'Glavas'
+genmap['glavascomparable'] = 'Glavas (C)'
 genmap['paetzold'] = 'Paetzold'
 genmap['all'] = 'All'
 

@@ -6,6 +6,34 @@ methods = os.listdir('../../labels/')
 #methods = ['svm', 'pa', 'sgd', 'decision', 'adaboost', 'gradientboost', 'randomtrees', 'crfsuite', 'freqSimplewiki']
 
 namem = {}
+namem['bestf1semeval'] = 'Best F1 SemEval'
+namem['svm'] = 'Support Vector Machines'
+namem['pa'] = 'Passive Agressive Learning'
+namem['sgd'] = 'Stochastic Gradient Descent'
+namem['decision'] = 'Decision Trees'
+namem['adaboost'] = 'Adaptive Boosting'
+namem['gradientboost'] = 'Gradient Boosting'
+namem['randomtrees'] = 'Random Forests'
+namem['crfsuite'] = 'Conditional Random Fields'
+namem['freqSimplewiki'] = 'Frequency: Simple Wikipedia'
+namem['freqSubimdb'] = 'Frequency: SubIMDB'
+namem['freqSubtlex'] = 'Frequency: SUBTLEX'
+namem['freqSubimdblex'] = 'Frequency: SubIMDBLEX'
+namem['freqWiki'] = 'Frequency: Wikipedia'
+namem['length'] = 'Length'
+namem['senses'] = 'Number of Senses'
+namem['synonyms'] = 'Number of Synonyms'
+namem['hypernyms'] = 'Number of Hypernyms'
+namem['hyponyms'] = 'Number of Hyponyms'
+namem['mindepth'] = 'Minimum Depth'
+namem['maxdepth'] = 'Maximum Depth'
+namem['nn'] = 'Neural Networks'
+namem['voting'] = 'Voting'
+namem['votinghard'] = 'Hard Voting'
+namem['all'] = 'All Complex'
+namem['none'] = 'All Simple'
+namem['lex_Ogdens'] = r'Lexicon: Ogdens'
+namem['lex_SimpleWikipedia'] = r'Lexicon: Simple Wikipedia'
 namem['svm'] = 'Support Vector Machines'
 namem['pa'] = 'Passive Agressive Learning'
 namem['sgd'] = 'Stochastic Gradient Descent'
@@ -54,7 +82,7 @@ for method in methods:
 			maxprefix = prefix
 			maxfile = file
 	if maxprefix!='':
-		if method!='voting':
+#		if method!='voting':
 			bestscoring.write(method + '\t' + maxfile + '\t' + str(maxf) + '\n')
 			myt.append([method, '$'+"%.3f" % maxv[0]+'$', '$'+"%.3f" % maxv[1]+'$', '$'+"%.3f" % maxv[2]+'$'])
 print(tabulate(myt, headers, tablefmt="latex"))

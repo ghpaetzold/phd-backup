@@ -4,7 +4,7 @@ trainset = '../../corpora/paetzold_nns_dataset.txt'
 testset = '../../corpora/paetzold_nns_dataset.txt'
 
 generators = os.listdir('../../substitutions/')
-#generators = ['biran']
+generators = ['allvocab']
 
 best_map = {}
 f = open('../evaluators/best_ss.txt')
@@ -18,9 +18,12 @@ for line in f:
         best_map[gen][sel] = file
 f.close()
 
+for gen in best_map:
+        best_map[gen]['void'] = 'substitutions_void.txt'
+
 for generator in generators:
 	selectors = best_map[generator].keys()
-        #selectors = ['void']
+#        selectors = ['void']
         for selector in selectors:
 		testset = '../../substitutions/'+generator+'/'+best_map[generator][selector]		
 		output = '../../rankings/biran/ranks_'+generator+'_'+selector+'.txt'

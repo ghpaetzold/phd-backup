@@ -4,7 +4,7 @@ trainset = '../../corpora/paetzold_nns_dataset.txt'
 testset = '../../corpora/paetzold_nns_dataset.txt'
 
 generators = os.listdir('../../substitutions/')
-#generators = ['biran']
+generators = ['allvocab']
 
 best_map = {}
 f = open('../evaluators/best_ss.txt')
@@ -20,6 +20,9 @@ f.close()
 
 #Parameters:
 alphas = ['1']
+
+for gen in best_map:
+        best_map[gen]['void'] = 'substitutions_void.txt'
 
 for generator in generators:
         selectors = best_map[generator].keys()

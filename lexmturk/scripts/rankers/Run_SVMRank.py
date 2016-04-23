@@ -13,6 +13,21 @@ scores_file = sys.argv[8].strip()
 test_victor_corpus = sys.argv[9].strip()
 output_path = sys.argv[10].strip()
 
+#Add target to test corpus:
+data = test_victor_corpus.strip().split(r'/')
+gen = data[len(data)-2]
+rest = data[len(data)-1]
+rest = rest[0:len(rest)-4]
+temp_victor = './temp/'+gen+'_'+rest+'.temp'
+
+f = open(test_victor_corpus)
+o = open(temp_victor, 'w')
+for line in f:
+        data = line.strip().split('\t')
+        o.write(line.strip() + '\t0:' + data[1].strip() + '\n')
+f.close()
+o.close()
+
 fe = FeatureEstimator()
 fe.addCollocationalFeature('../../../semeval/corpora/lm/subtleximdb/subtleximdb.5gram.unk.bin.txt', 2, 2, 'Complexity')
 
@@ -22,7 +37,7 @@ br.getTrainingModel(train_feature_file, c, epsilon, kernel, model_file)
 br.getFeaturesFile(test_victor_corpus, test_feature_file)
 br.getScoresFile(test_feature_file, model_file, scores_file)
 
-ranks = br.getRankings(test_feature_file, scores_file)
+ranks = br.getRankings(temp_victor, test_feature_file, scores_file)
 
 o = open(output_path, 'w')
 for rank in ranks:

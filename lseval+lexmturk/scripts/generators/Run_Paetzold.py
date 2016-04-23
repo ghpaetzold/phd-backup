@@ -11,7 +11,7 @@ nc = NorvigCorrector('/export/data/ghpaetzold/LEXenstein/corpora/norvig_model_wm
 
 pos_model = '/export/data/ghpaetzold/benchmarking/lexmturk/scripts/evaluators/stanford-postagger-full-2015-04-20/models/wsj-0-18-left3words-distsim.tagger'
 stanford_tagger = '/export/data/ghpaetzold/benchmarking/lexmturk/scripts/evaluators/stanford-postagger-full-2015-04-20/stanford-postagger.jar'
-w2vpm = '/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_generalized_1100_cbow.bin'
+w2vpm = '/export/data/ghpaetzold/word2vecvectors/models/word_vectors_all_generalized_1300_cbow_retrofitted.bin'
 
 kg = PaetzoldGenerator(w2vpm, nc, pos_model, stanford_tagger, '/usr/bin/java')
 subs = kg.getSubstitutions(victor_corpus, 10)

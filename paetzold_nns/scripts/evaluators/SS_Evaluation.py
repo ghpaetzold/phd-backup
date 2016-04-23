@@ -3,7 +3,7 @@ from lexenstein.evaluators import *
 
 def getSelectors(map):
 	result = {}
-	files = os.listdir('../../substitutions/paetzold/')
+	files = os.listdir('../../substitutions/all/')
 	for file in files:
 		if file != 'substitutions.txt':
 			bulk = file[0:len(file)-4].strip().split('_')[1].strip()
@@ -42,10 +42,15 @@ namem['boundaryUnsupervisedCV'] = 'Unsupervised Boundary Selector'
 #namem['boundaryUnsupervised'] = 'Boundary (Unsupervised)'
 namem['wordvector'] = 'Paetzold Selector'
 #namem['void'] = 'Void Selector'
+namem['rnnlmall'] = 'NLM (All)'
+namem['rnnlmlexmturk'] = 'NLM (LexMTurk)'
+namem['rnnlmnnseval'] = 'NLM (NNSEval)'
+namem['rnnlmssuserstudy'] = 'NLM (SSEval)'
 
 #Selector order:
 #selorder = ['void', 'first', 'lesk', 'path', 'biran', 'clusters', 'nunes', 'wordvector', 'svmrank', 'boundaryUnsupervisedCV', 'GrammaticalityUS', 'MeaningUS', 'AppropriatenessUS']
-selorder = ['void', 'first', 'lesk', 'path', 'biran', 'clusters', 'aluisio', 'wordvector', 'svmrank', 'boundaryUnsupervisedCV']
+selorder = ['void', 'first', 'lesk', 'path', 'biran', 'clusters', 'boundaryUnsupervisedCV']
+#selorder = ['rnnlmlexmturk', 'rnnlmnnseval', 'rnnlmssuserstudy', 'rnnlmall']
 
 #Line breakers:
 #breakers = set(['clusters'])
@@ -61,11 +66,13 @@ genmap['kauchak'] = 'the Kauchak generator'
 genmap['glavas'] = 'the Glavas generator'
 genmap['paetzold'] = 'the Paetzold generator'
 genmap['all'] = 'all generators combined'
+genmap['allvocab'] = 'all vocabulary'
 
 #Generators:
 methods = os.listdir('../../substitutions/')
 methods = ['merriam', 'yamamoto', 'wordnet', 'biran', 'kauchak', 'glavas', 'paetzold', 'all']
 #methods = ['wordnet', 'kauchak', 'yamamoto', 'all']
+#methods = ['allvocab']
 
 #Dataset:
 dataset = '../../corpora/paetzold_nns_dataset.txt'

@@ -1,7 +1,7 @@
 import os
 
 generators = os.listdir('../../substitutions/')
-generators = ['kauchak', 'biran']
+generators = ['allvocab']
 
 best_map = {}
 f = open('../evaluators/best_ss.txt')
@@ -14,6 +14,9 @@ for line in f:
                 best_map[gen] = {}
         best_map[gen][sel] = file
 f.close()
+
+for gen in best_map:
+        best_map[gen]['void'] = 'substitutions_void.txt'
 
 os.system('mkdir ../../rankings/glavas')
 

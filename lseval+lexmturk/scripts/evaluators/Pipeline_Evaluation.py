@@ -11,6 +11,7 @@ generators = ['wordnet', 'biran', 'yamamoto', 'glavas', 'kauchak', 'paetzold']
 
 #Selectors:
 selectors = ['void', 'biran', 'wordvector']
+selectors = ['void', 'biran', 'boundaryUnsupervisedCV']
 
 #Rankers:
 methods = set(os.listdir('../../rankings/'))
@@ -26,7 +27,7 @@ namem['clusters'] = 'Belder'
 namem['nunes'] = 'Nunes'
 namem['svmrank'] = 'SVM Ranking'
 #namem['boundaryUnsupervised'] = 'Unsupervised Boundary Ranking RAW'
-#namem['boundaryUnsupervisedCV'] = 'Unsupervised Boundary Ranking'
+namem['boundaryUnsupervisedCV'] = 'Unsupervised Boundary Ranking'
 namem['wordvector'] = "Paetzold"
 namem['void'] = 'Void'
 

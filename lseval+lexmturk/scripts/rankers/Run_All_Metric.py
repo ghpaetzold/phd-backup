@@ -1,11 +1,13 @@
 import os
 
 flabels = []
-flabels.append('devlin')
-flabels.append('subimdb')
+#flabels.append('devlin')
+#flabels.append('subimdb')
+flabels.append('subimdb22')
 
 generators = os.listdir('../../substitutions/')
-#generators = ['wordnet']
+generators.remove('glavascomparable')
+#generators = ['paetzold']
 
 best_map = {}
 f = open('../evaluators/best_ss.txt')

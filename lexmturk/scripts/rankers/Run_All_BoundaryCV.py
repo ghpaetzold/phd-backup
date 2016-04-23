@@ -21,7 +21,8 @@ for line in f:
 f.close()
 
 for generator in generators:
-	for selector in best_map[generator]:
+#	for selector in best_map[generator]:
+	for selector in ['boundaryUnsupervisedCV']:
 		for p in positive_ranges:
 			for f in folds:
 				for t in test_sizes:

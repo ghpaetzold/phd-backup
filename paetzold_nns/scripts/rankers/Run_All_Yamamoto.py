@@ -20,6 +20,9 @@ for line in f:
         best_map[gen][sel] = file
 f.close()
 
+for gen in best_map:
+        best_map[gen]['void'] = 'substitutions_void.txt'
+
 for generator in generators:
         selectors = best_map[generator].keys()
         #selectors = ['void']
